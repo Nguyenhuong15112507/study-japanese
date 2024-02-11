@@ -15,11 +15,9 @@ export const studentJapaneseStore = defineStore('studyJapanese', {
   actions: {
     login(user) {
       this.user = user
-      console.log(user)
     },
     appendContent(announce) {
       this.announce.push(announce)
-      console.log(announce)
     },
     appendLesson(lesson) {
       this.lesson.push(lesson)

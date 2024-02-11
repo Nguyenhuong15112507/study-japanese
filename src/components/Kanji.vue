@@ -32,7 +32,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="isDisplayLearnContent && kanjiFormRef.id !== null" class="question-content-container ">
+                <div v-if="isDisplayLearnContent && kanjiFormRef.kanjiid !== null" class="question-content-container ">
                     <div  class="question-group-list">
                         <div class="question-group-item">
                                 <h5 class="question-content">{{ kanjiFormRef.title }}</h5>
@@ -109,6 +109,15 @@ const kanjiFormRef = ref(kanjiForm)
 const pageKanji = userStudentJapaneseStore.kanji
 const pageKanjiList = ref(pageKanji)
 
+if(pathkanjiId?.kanjiid) {
+    const kanji = pageKanjiList.value.find(item => item.id === pathkanjiId.kanjiid)
+    if (kanji) { 
+        kanjiFormRef.value = kanji
+        isDisplayLearnContent.value = true
+     }
+    
+}
+
 const handleChangeLearnContent = (id) => {
     const kanji = pageKanjiList.value.find(item => item.id === id)
     if (!kanji) { return }
@@ -116,14 +125,7 @@ const handleChangeLearnContent = (id) => {
     isDisplayLearnContent.value = !isDisplayLearnContent.value
 
 }
-if(pathkanjiId?.id) {
-    const kanji = pageKanjiList.value.find(item => item.id === pathkanjiId.id)
-    if (kanji) { 
-        kanjiFormRef.value = kanji
-        isDisplayLearnContent.value = true
-     }
-    
-}
+
 </script>
 
 <style scoped>
