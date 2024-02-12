@@ -14,56 +14,7 @@
                         <button class="learn-vocab">Practice</button>
 
                     </div>
-                    <div class="N4-flashcard-item">
-                        <h4 class="flashcard-item-title">Vocabulary lesson 1</h4>
-                        <div class="flashcard-item-body">
-                            <div class="vocab-amount">20 words</div>
-                            <p class="item-overview">About shopping</p>
-                            <p class="update-date">2024/01/03</p>
-                        </div>
-                        <button class="learn-vocab">Practice</button>
-
-                    </div>
-                    <div class="N4-flashcard-item">
-                        <h4 class="flashcard-item-title">Vocabulary lesson 1</h4>
-                        <div class="flashcard-item-body">
-                            <div class="vocab-amount">20 words</div>
-                            <p class="item-overview">About shopping</p>
-                            <p class="update-date">2024/01/03</p>
-                        </div>
-                        <button class="learn-vocab">Practice</button>
-
-                    </div>
-                    <div class="N4-flashcard-item">
-                        <h4 class="flashcard-item-title">Vocabulary lesson 1</h4>
-                        <div class="flashcard-item-body">
-                            <div class="vocab-amount">20 words</div>
-                            <p class="item-overview">About shopping</p>
-                            <p class="update-date">2024/01/03</p>
-                        </div>
-                        <button class="learn-vocab">Practice</button>
-
-                    </div>
-                    <div class="N4-flashcard-item">
-                        <h4 class="flashcard-item-title">Vocabulary lesson 1</h4>
-                        <div class="flashcard-item-body">
-                            <div class="vocab-amount">20 words</div>
-                            <p class="item-overview">About shopping</p>
-                            <p class="update-date">2024/01/03</p>
-                        </div>
-                        <button class="learn-vocab">Practice</button>
-
-                    </div>
-                    <div class="N4-flashcard-item">
-                        <h4 class="flashcard-item-title">Vocabulary lesson 1</h4>
-                        <div class="flashcard-item-body">
-                            <div class="vocab-amount">20 words</div>
-                            <p class="item-overview">About shopping</p>
-                            <p class="update-date">2024/01/03</p>
-                        </div>
-                        <button class="learn-vocab">Practice</button>
-
-                    </div>
+                    
                 </div>
                 <h4 class="JLPT-lever-list">N4 list kanji</h4>
                 <div class="N4-flashcard-list">
@@ -88,46 +39,7 @@
                         <button class="learn-vocab">Practice</button>
 
                     </div>
-                    <div class="N4-flashcard-item">
-                        <h4 class="flashcard-item-title">Vocabulary lesson 1</h4>
-                        <div class="flashcard-item-body">
-                            <div class="vocab-amount">20 words</div>
-                            <p class="item-overview">About shopping</p>
-                            <p class="update-date">2024/01/03</p>
-                        </div>
-                        <button class="learn-vocab">Practice</button>
-
-                    </div>
-                    <div class="N4-flashcard-item">
-                        <h4 class="flashcard-item-title">Vocabulary lesson 1</h4>
-                        <div class="flashcard-item-body">
-                            <div class="vocab-amount">20 words</div>
-                            <p class="item-overview">About shopping</p>
-                            <p class="update-date">2024/01/03</p>
-                        </div>
-                        <button class="learn-vocab">Practice</button>
-
-                    </div>
-                    <div class="N4-flashcard-item">
-                        <h4 class="flashcard-item-title">Vocabulary lesson 1</h4>
-                        <div class="flashcard-item-body">
-                            <div class="vocab-amount">20 words</div>
-                            <p class="item-overview">About shopping</p>
-                            <p class="update-date">2024/01/03</p>
-                        </div>
-                        <button class="learn-vocab">Practice</button>
-
-                    </div>
-                    <div class="N4-flashcard-item">
-                        <h4 class="flashcard-item-title">Vocabulary lesson 1</h4>
-                        <div class="flashcard-item-body">
-                            <div class="vocab-amount">20 words</div>
-                            <p class="item-overview">About shopping</p>
-                            <p class="update-date">2024/01/03</p>
-                        </div>
-                        <button class="learn-vocab">Practice</button>
-
-                    </div>
+                    
                 </div>
                 <h4 class="JLPT-lever-list">N3 list vocabulary</h4>
                 <div class="N4-flashcard-list">
@@ -142,56 +54,7 @@
                         <button class="learn-vocab">Practice</button>
 
                     </div>
-                    <div class="N4-flashcard-item">
-                        <h4 class="flashcard-item-title">Vocabulary lesson 1</h4>
-                        <div class="flashcard-item-body">
-                            <div class="vocab-amount">20 words</div>
-                            <p class="item-overview">About shopping</p>
-                            <p class="update-date">2024/01/03</p>
-                        </div>
-                        <button class="learn-vocab">Practice</button>
-
-                    </div>
-                    <div class="N4-flashcard-item">
-                        <h4 class="flashcard-item-title">Vocabulary lesson 1</h4>
-                        <div class="flashcard-item-body">
-                            <div class="vocab-amount">20 words</div>
-                            <p class="item-overview">About shopping</p>
-                            <p class="update-date">2024/01/03</p>
-                        </div>
-                        <button class="learn-vocab">Practice</button>
-
-                    </div>
-                    <div class="N4-flashcard-item">
-                        <h4 class="flashcard-item-title">Vocabulary lesson 1</h4>
-                        <div class="flashcard-item-body">
-                            <div class="vocab-amount">20 words</div>
-                            <p class="item-overview">About shopping</p>
-                            <p class="update-date">2024/01/03</p>
-                        </div>
-                        <button class="learn-vocab">Practice</button>
-
-                    </div>
-                    <div class="N4-flashcard-item">
-                        <h4 class="flashcard-item-title">Vocabulary lesson 1</h4>
-                        <div class="flashcard-item-body">
-                            <div class="vocab-amount">20 words</div>
-                            <p class="item-overview">About shopping</p>
-                            <p class="update-date">2024/01/03</p>
-                        </div>
-                        <button class="learn-vocab">Practice</button>
-
-                    </div>
-                    <div class="N4-flashcard-item">
-                        <h4 class="flashcard-item-title">Vocabulary lesson 1</h4>
-                        <div class="flashcard-item-body">
-                            <div class="vocab-amount">20 words</div>
-                            <p class="item-overview">About shopping</p>
-                            <p class="update-date">2024/01/03</p>
-                        </div>
-                        <button class="learn-vocab">Practice</button>
-
-                    </div>
+                    
                 </div>
             </div>  
        

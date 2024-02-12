@@ -218,25 +218,6 @@
         </div>
         <h4 class="lesson-name">JLPT N4: Grammar</h4>
         <div class="list-content-item lesson-content-list">
-          <div class="lession-content-overview">
-            <img src="../img/15801f0d.jpg" alt="" class="lesson-content-img" />
-            <h4 class="lesson-name">N5: Vocabulary1</h4>
-            <div class="created-date">
-              <span class="label">Date: </span>
-              <span class="date">12/12/2023</span>
-            </div>
-            <p class="overview-para">
-              Today, we will learning about N4's vocabulary and practice with
-              some example.
-            </p>
-            <ul class="show-detail-and-practice">
-              <li class="show-detail"><a href="">Show detail</a></li>
-              <li class="practice-example"><a href="">Practice</a></li>
-            </ul>
-          </div>
-        </div>
-        <h4 class="lesson-name">JLPT N4: Kanji</h4>
-        <div class="list-content-item lesson-content-list">
           <div
             v-for="(item, index) in lessonContenlist"
             :key="index"
@@ -838,7 +819,7 @@ const appendAnnounceContent = () => {
   announceData.title = announceName.value;
   announceData.content = announceContent.value;
   announceData.date = annouceDate.value;
-  announceContenlist.value.push(announceData);
+  // announceContenlist.value.push(announceData);
 
   const announceObject = {
     title: announceName.value,

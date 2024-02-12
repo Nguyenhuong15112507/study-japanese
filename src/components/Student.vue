@@ -9,14 +9,14 @@
                         <p class="anounce-para">{{ item.content }}</p>
                         <p class="update-time">{{ item.date }}</p>
                     </div>
-                    
+
                 </div>
             </div>
             <div class="anouncement">
                 <h3 class="announce-title">Study result</h3>
                 <div class="announce-list">
                     <div class="announce-item">
-                        
+
                     </div>
                 </div>
             </div>
@@ -25,21 +25,22 @@
             <div class="content-input">
                 <h3 class="title-content">Give Question</h3>
                 <div class="content-input-header">
-                <button class="new-btn" id="creat-new-lesson-btn" onclick="isvisible(popupContainner)">Question</button>
-                
-                <div class="homwork-list-header">
-                    <label for="status">Status</label>
-                    <select name="status" id="status-filter">
-                        <option value="Waiting">Waiting</option>
-                        <option value="Doing">Doing</option>
-                        <option value="Finished">Finished</option>
-                        <option value="Pending">Pending</option>
-                    </select>
+                    <button class="new-btn" id="creat-new-lesson-btn" onclick="isvisible(popupContainner)">Question</button>
+
+                    <div class="homwork-list-header">
+                        <label for="status">Status</label>
+                        <select name="status" id="status-filter">
+                            <option value="Waiting">Waiting</option>
+                            <option value="Doing">Doing</option>
+                            <option value="Finished">Finished</option>
+                            <option value="Pending">Pending</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
                 <div class="list-content-item lesson-homework-list">
-                    <div  v-for="(item, index) in listLesson" :key="index" class="lession-content-overview lession-homework-overview">
-                        <h4 class="lesson-name">{{item.name}}</h4>
+                    <div v-for="(item, index) in listLesson" :key="index"
+                        class="lession-content-overview lession-homework-overview">
+                        <h4 class="lesson-name">{{ item.name }}</h4>
                         <div class="created-date">
                             <span class="label">Date: </span>
                             <span class="date">{{ item.date }}</span>
@@ -63,7 +64,8 @@
                             <span class="label">Status: </span>
                             <span class="homework-status">Done</span>
                         </div>
-                        <p class="overview-para">I've already finish this homework, but i have some Q&A. Please check these Q&A in this URL</p>
+                        <p class="overview-para">I've already finish this homework, but i have some Q&A. Please check these
+                            Q&A in this URL</p>
                         <div class="show-detail-and-practice">
                             <button class="check-homework-btn">Show detail</button>
                         </div>
@@ -78,7 +80,8 @@
                             <span class="label">Status: </span>
                             <span class="homework-status">Done</span>
                         </div>
-                        <p class="overview-para">I've already finish this homework, but i have some Q&A. Please check these Q&A in this URL</p>
+                        <p class="overview-para">I've already finish this homework, but i have some Q&A. Please check these
+                            Q&A in this URL</p>
                         <div class="show-detail-and-practice">
                             <button class="check-homework-btn">Show detail</button>
                         </div>
@@ -93,7 +96,8 @@
                             <span class="label">Status: </span>
                             <span class="homework-status">Done</span>
                         </div>
-                        <p class="overview-para">I've already finish this homework, but i have some Q&A. Please check these Q&A in this URL</p>
+                        <p class="overview-para">I've already finish this homework, but i have some Q&A. Please check these
+                            Q&A in this URL</p>
                         <div class="show-detail-and-practice">
                             <button class="check-homework-btn">Show detail</button>
                         </div>
@@ -108,7 +112,8 @@
                             <span class="label">Date: </span>
                             <span class="date">12/12/2023</span>
                         </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some example.</p>
+                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
+                            example.</p>
                         <ul class="show-detail-and-practice">
                             <li class="show-detail"><a href="">Show detail</a></li>
                             <li class="practice-example"><a href="">Practice</a></li>
@@ -121,7 +126,8 @@
                             <span class="label">Date: </span>
                             <span class="date">12/13/2023</span>
                         </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some example.</p>
+                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
+                            example.</p>
                         <ul class="show-detail-and-practice">
                             <li class="show-detail"><a href="">Show detail</a></li>
                             <li class="practice-example"><a href="">Practice</a></li>
@@ -134,7 +140,8 @@
                             <span class="label">Date: </span>
                             <span class="date">14/12/2023</span>
                         </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some example.</p>
+                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
+                            example.</p>
                         <ul class="show-detail-and-practice">
                             <li class="show-detail"><a href="">Show detail</a></li>
                             <li class="practice-example"><a href="">Practice</a></li>
@@ -147,7 +154,8 @@
                             <span class="label">Date: </span>
                             <span class="date">15/12/2023</span>
                         </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some example.</p>
+                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
+                            example.</p>
                         <ul class="show-detail-and-practice">
                             <li class="show-detail"><a href="">Show detail</a></li>
                             <li class="practice-example"><a href="">Practice</a></li>
@@ -160,7 +168,8 @@
                             <span class="label">Date: </span>
                             <span class="date">15/12/2023</span>
                         </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some example.</p>
+                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
+                            example.</p>
                         <ul class="show-detail-and-practice">
                             <li class="show-detail"><a href="">Show detail</a></li>
                             <li class="practice-example"><a href="">Practice</a></li>
@@ -173,7 +182,8 @@
                             <span class="label">Date: </span>
                             <span class="date">15/12/2023</span>
                         </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some example.</p>
+                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
+                            example.</p>
                         <ul class="show-detail-and-practice">
                             <li class="show-detail"><a href="">Show detail</a></li>
                             <li class="practice-example"><a href="">Practice</a></li>
@@ -182,7 +192,7 @@
                 </div>
                 <h4 class="lesson-name">JLPT N4: Grammar</h4>
                 <div class="list-content-item lesson-content-list">
-                    
+
                     <div class="lession-content-overview">
                         <img src="../img/15801f0d.jpg" alt="" class="lesson-content-img">
                         <h4 class="lesson-name">N5: Vocabulary1</h4>
@@ -190,7 +200,8 @@
                             <span class="label">Date: </span>
                             <span class="date">12/12/2023</span>
                         </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some example.</p>
+                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
+                            example.</p>
                         <ul class="show-detail-and-practice">
                             <li class="show-detail"><a href="">Show detail</a></li>
                             <li class="practice-example"><a href="">Practice</a></li>
@@ -203,7 +214,8 @@
                             <span class="label">Date: </span>
                             <span class="date">12/13/2023</span>
                         </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some example.</p>
+                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
+                            example.</p>
                         <ul class="show-detail-and-practice">
                             <li class="show-detail"><a href="">Show detail</a></li>
                             <li class="practice-example"><a href="">Practice</a></li>
@@ -216,7 +228,8 @@
                             <span class="label">Date: </span>
                             <span class="date">14/12/2023</span>
                         </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some example.</p>
+                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
+                            example.</p>
                         <ul class="show-detail-and-practice">
                             <li class="show-detail"><a href="">Show detail</a></li>
                             <li class="practice-example"><a href="">Practice</a></li>
@@ -229,7 +242,8 @@
                             <span class="label">Date: </span>
                             <span class="date">15/12/2023</span>
                         </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some example.</p>
+                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
+                            example.</p>
                         <ul class="show-detail-and-practice">
                             <li class="show-detail"><a href="">Show detail</a></li>
                             <li class="practice-example"><a href="">Practice</a></li>
@@ -242,7 +256,8 @@
                             <span class="label">Date: </span>
                             <span class="date">15/12/2023</span>
                         </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some example.</p>
+                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
+                            example.</p>
                         <ul class="show-detail-and-practice">
                             <li class="show-detail"><a href="">Show detail</a></li>
                             <li class="practice-example"><a href="">Practice</a></li>
@@ -255,7 +270,8 @@
                             <span class="label">Date: </span>
                             <span class="date">15/12/2023</span>
                         </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some example.</p>
+                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
+                            example.</p>
                         <ul class="show-detail-and-practice">
                             <li class="show-detail"><a href="">Show detail</a></li>
                             <li class="practice-example"><a href="">Practice</a></li>
@@ -286,7 +302,7 @@
                             <span class="span-label"><label for="daily-pic">Upload</label></span>
                             <input type="file" name="daily-pic" id="daily-pic">
                         </div>
-                        
+
 
                     </div>
                     <div class="btn-container">
@@ -368,16 +384,17 @@
                     <input type="text" name="homework-url" id="homework-url">
                     <input type="file" name="homework" id="homework">
                 </div>
-                
+
             </div>
             <div class="btn-container">
                 <button class="new-btn submit-btn" id="submit-lesson-btn">Submit</button>
-                <button class="new-btn cancel-btn" id="cancel-lesson-btn" onclick="isnotvisible(popupContainner)">Cancel</button>
+                <button class="new-btn cancel-btn" id="cancel-lesson-btn"
+                    onclick="isnotvisible(popupContainner)">Cancel</button>
             </div>
         </div>
     </div>
-   
-<!-- <footer>Powered by W3.css</footer> -->
+
+    <!-- <footer>Powered by W3.css</footer> -->
 </template>
 
 <script setup>
@@ -393,13 +410,12 @@ const listLesson = ref(pageLesson)
 
 </script>
 
-<style scoped>
-@import '../style/student.css';
+<style scoped>@import '../style/student.css';
 
 .isVisible {
     visibility: visible;
 }
+
 .ishide {
     display: none;
-}
-</style>
+}</style>
