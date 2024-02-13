@@ -1,5 +1,9 @@
 <template>
     <div class="flashcard-detail-body">
+        <button @click="handleChangeToDetail()"
+            class="new-btn"
+            id="creat-new-result-btn"
+            style="margin: 10px">Back</button>
         <div  @click="handleChangeFlashcard()"  class="card-wrapper">
             <div :class="['card-body', { 'hangeCardDisplay': isChange }]">
                 <div v-if="isChange" class="card-front">
@@ -21,9 +25,12 @@ const isChange = ref(true)
 const handleChangeFlashcard = () => {
     isChange.value =!isChange.value
 }
-
+const handleChangeToDetail = () => {
+    router.push('/practice/flashcardList')
+}
 </script>
 <style scoped>
 @import '../style/flashcrad.css';
+@import '../style/teacher.css';
 
 </style>

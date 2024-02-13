@@ -76,7 +76,7 @@ const selectOption = ref('')
 const hasErr = ref([])
 const isShowPass = ref(false)
 const isSignIn = ref(false)
-const buttonName = ref('Login')
+let buttonName = ref('Login')
 const userStudentJapaneseStore = studentJapaneseStore()
 
 
