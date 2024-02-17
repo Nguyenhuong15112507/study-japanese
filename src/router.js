@@ -44,6 +44,11 @@ const router = createRouter({
                   component: () => import('./components/FlashCardDetail.vue')
                 },
                 {
+                  path: '/practice/flashcard',
+                  name: 'flashcard',
+                  component: () => import('./components/FlashCard.vue')
+                },
+                {
                   path: '/practice/flashcardlist',
                   name: 'flashcardList',
                   component: () => import('./components/FlashcardList.vue')

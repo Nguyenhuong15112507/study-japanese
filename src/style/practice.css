@@ -81,12 +81,14 @@ footer {
     height: 800px;
     overflow-y: auto;
 }
-.practice-type-menu {
+.practice-type-menu[data-v-902065cb] {
     display: flex;
     justify-content: center;
     position: fixed;
     top: 150px;
-    left: 22%;
+    z-index: 10;
+    width: 100%;
+    background-color: #fff;
 }
 .practice-type-btn, .learn-vocab {
     margin: 20px;
@@ -181,7 +183,7 @@ footer {
     align-items: center;
 }
 .question-content-container {
-    margin: 10px 5px 10px 10px;
+    margin: 10px;
     border: 1px solid rgb(49, 171, 224, 0.6);
     border-radius: 2px;
     padding-left: 10px;

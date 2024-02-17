@@ -32,6 +32,12 @@
                     </div>
                 </div>
                 <div v-if="isDisplayLearnContent && grammarRef.id !== null" class="question-content-container">
+                    <div class="buttons">
+                            <button id="prev" disabled>Prev</button>
+                            <button id="next">Next</button>
+                            <button  @click="handleBack()">Back</button>
+
+                    </div>
                     <div class="question-group-list">
                         <div class="question-group-item">
                             <h5 class="question-content">1. {{grammarRef.Gramform}}</h5>
@@ -41,7 +47,7 @@
                                 <li class="answer-item"> 3. {{ grammarRef.example2 }}</li>
                                 <img src="../img/9-1.png" class="example-img" alt="">
                             </ul>
-                            <button class="check-homework-btn back-btn" @click="handleBack()">Back</button>
+                           
                         </div>
                     </div>
                 </div>
@@ -162,6 +168,32 @@ const handleBack = () => {
     width: 25%;
     /* margin: 10px; */
 
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 10px;
+}
+.buttons button {
+  padding: 8px 25px;
+  background: rgb(49, 171, 224);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 400;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+  transition: all 200ms linear;
+}
+.buttons button:active {
+  transform: scale(0.97);
+}
+.buttons button:disabled {
+  background: rgb(108, 185, 217);
+  cursor: not-allowed;
 }
 
 .lession-homework-overview {

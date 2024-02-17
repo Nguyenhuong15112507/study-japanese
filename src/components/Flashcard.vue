@@ -11,7 +11,7 @@
                             <p class="item-overview">About shopping</p>
                             <p class="update-date">2024/01/03</p>
                         </div>
-                        <button class="learn-vocab">Practice</button>
+                        <button @click="handleChangeToDetail()" class="learn-vocab">Practice</button>
 
                     </div>
                     
@@ -65,7 +65,17 @@
        
     
 </template>
+<script setup>
+import { ref } from 'vue';
+import router from "../router";
 
+const handleChangeToDetail = () => {
+    router.push('/practice/flashcardList');
+};
+
+
+
+</script>
 <style scoped>
 @import '../style/practice.css';
 </style>

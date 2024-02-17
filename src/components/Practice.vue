@@ -7,8 +7,10 @@
                 <button :class="['practice-type-btn conversation', {'isOrigin': isDisPlay !==4}]" @click="handleChangeQuestion(4)">Conversation</button>
     
         </div>
-        <question  v-if="isDisPlay === 2" />
         <flashcard v-if="isDisPlay === 1" />
+        <question  v-if="isDisPlay === 2" />
+        <listening v-if="isDisPlay === 3" />
+        <conversation v-if="isDisPlay === 4" />
        
 
 
@@ -20,8 +22,10 @@ import { ref } from "vue";
 
 import Question from './Question.vue'
 import Flashcard from './Flashcard.vue';
+import Listening from "./Listening.vue";
+import Conversation from "./Conversation.vue";
 
-const isDisPlay = ref(2)
+const isDisPlay = ref(1)
 
 const handleChangeQuestion = (value) => {
     isDisPlay.value = value
