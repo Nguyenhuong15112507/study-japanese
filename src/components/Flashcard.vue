@@ -11,7 +11,7 @@
                             <p class="item-overview">About shopping</p>
                             <p class="update-date">2024/01/03</p>
                         </div>
-                        <button @click="handleChangeToDetail()" class="learn-vocab">Practice</button>
+                        <button @click="handleChangeToDetail()" class="learn-vocab">Learn</button>
 
                     </div>
                     

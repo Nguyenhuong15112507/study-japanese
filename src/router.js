@@ -52,6 +52,11 @@ const router = createRouter({
                   path: '/practice/flashcardlist',
                   name: 'flashcardList',
                   component: () => import('./components/FlashcardList.vue')
+                },
+                {
+                  path: '/practice/flashcardQuesDetail',
+                  name: 'flashcardQuesDetail',
+                  component: () => import('./components/FlashcardQuesDetail.vue')
                 }
               ],
         },

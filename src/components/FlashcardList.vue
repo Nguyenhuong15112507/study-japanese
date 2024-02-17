@@ -5,6 +5,9 @@
             Back
         </button>
         <button @click="handleChangeToDetail()" class="new-btn" id="creat-new-result-btn" style="margin: 10px">
+            Learn
+        </button>
+        <button @click="handleChangeToQues()" class="new-btn" id="creat-new-result-btn" style="margin: 10px">
             Practice
         </button>
         <!-- <button class="new-btn" @click="addRow">Add Row</button> -->
@@ -60,6 +63,9 @@ const handleChangeToDetail = () => {
 //     params: { rowDataIds: rowDataIds }
 // });
 };
+const handleChangeToQues = () => {
+    router.push('/practice/flashcardQuesDetail')
+}
 const handlebacktoList = () => {
   router.push('/practice');
 }

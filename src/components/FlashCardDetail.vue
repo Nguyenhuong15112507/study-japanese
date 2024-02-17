@@ -41,6 +41,7 @@ const handleChangeFlashcard = () => {
 const handleChangeToDetail = () => {
     router.push('/practice/flashcardList')
 }
+
 </script>
 <style scoped>
 @import '../style/flashcrad.css';
