@@ -82,7 +82,29 @@ const router = createRouter({
                 component: () => import('./components/Kanji.vue')
               }
             ],
-      }
+      },
+      {
+        path: '/learn-listen',
+        component: () => import('./AppLayout.vue'),
+        children: [
+            {
+              path: '',
+              name: 'learn-listen',
+              component: () => import('./components/LearnListen.vue')
+            }
+          ],
+    },
+    {
+      path: '/learn-conversation',
+      component: () => import('./AppLayout.vue'),
+      children: [
+          {
+            path: '',
+            name: 'learn-conversation',
+            component: () => import('./components/LearnConversation.vue')
+          }
+        ],
+  }
     ]
 })
 

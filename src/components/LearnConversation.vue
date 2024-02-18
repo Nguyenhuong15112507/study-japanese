@@ -37,16 +37,16 @@
                 </div>
                 <div class="question-group-list">
                     <div class="question-group-item">
-                        <h3 class="listening-title">3課: いくらですか。</h3>
+                        <h3 class="listening-title">1課: ここは どこですか。</h3>
                         <div class="img-container" >
-                        <img src="../assets/img/listening.gif" alt="" class="listening-theme-img">
+                        <img src="../assets/img/conversation-img.gif" alt="" class="listening-theme-img">
                         </div>
                         <div class="listening-exercises-content">
-                            <div class="listen-content">
+                            <!-- <div class="listen-content">
                                 <h4 class="listen-quesanswer">Question</h4>
                                 <button @click.prevent="playSound('../src/audio/20240217-02090091.mp3')" class="fas fa-volume-up"></button>
                                 <span class="listen-content-ques">いくらですか。例のように書きましょう。</span>
-                            </div>
+                            </div> -->
                             <div class="listen-content">
                                 <h4 class="listen-quesanswer">Conversation</h4>
                                 <i class="fas fa-volume-up"></i>
@@ -164,7 +164,13 @@ const playSound = (sound) => {
     width: 95%;
     margin: 10px;
 }
-
+.question-container {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    position: relative;
+    top: 160px;
+}
 .container .steps {
     display: flex;
     width: 80%;

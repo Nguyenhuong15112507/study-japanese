@@ -21,8 +21,8 @@
             <ul class="page-content-menu">
                 <li class="page-content-item" @click="handleChangePageGrammar()">Grammar</li>
                 <li class="page-content-item" @click="handleChangePageKanji()">Kanji</li>
-                <li class="page-content-item">Conversation</li>
-                <li class="page-content-item">Listening</li>
+                <li class="page-content-item" @click="handleChangePageConversation()">Conversation</li>
+                <li class="page-content-item" @click="handleChangePageListen()">Listening</li>
                 <li class="page-content-item" @click="handleChangePagePracetice()">Practice</li>
                 
             </ul>
@@ -57,6 +57,12 @@ const handleChangePageGrammar = () => {
 }
 const handleChangePageKanji = () => {
     router.push('/kanji')
+}
+const handleChangePageConversation = () => {
+    router.push('/learn-conversation')
+}
+const handleChangePageListen = () => {
+    router.push('/learn-listen')
 }
 const handleChangePageTeacher = () => {
     if(userRole.value === 'teacher') {

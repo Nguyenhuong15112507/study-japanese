@@ -25,7 +25,8 @@ header {
     height: 130px;
     z-index: 1;
     top: 0;
-    
+    width: 100%;
+    left: 0;
 }
 /* .sticky {
     position: fixed;

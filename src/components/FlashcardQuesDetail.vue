@@ -6,11 +6,11 @@
             <span class="current-selection">Practice</span>
             <i class="fas fa-chevron-down"></i>
         </div>
-        <div class="current-question-title">
+        <!-- <div class="current-question-title">
             <p class="current-page">1 / 20</p>
             <p class="current-page">Vocab Honors English Set 2</p>
 
-        </div>
+        </div> -->
         <div class="learn-type-menu">
             <i class="fas fa-bars"></i>
             <span class="current-selection">Question list</span>
@@ -60,21 +60,27 @@
 
 .menu-bar {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    background-color: #fff;
+    background-color: rgb(197 237 255);
+    position: absolute;
+    width: 100%;
+    top: -121px;
+    padding: 10px;
+}
+.current-selection {
+    margin: 10px;
 }
 .current-question-title {
     display: block;
     text-align: center;
 }
-.pop-container {
+.pop-container[data-v-b352a98d] {
     height: 80em;
     width: 100%;
-    top: 170px;
+    top: 263px;
     position: relative;
-    display:inline-block;
-    
+    display: inline-block;
 }
 .question-wrap {
     width: 100%;
@@ -127,5 +133,6 @@
     display: grid;
     grid-template-columns: auto 1fr;
 }
+
 
 </style>

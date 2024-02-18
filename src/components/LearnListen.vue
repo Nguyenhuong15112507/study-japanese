@@ -48,19 +48,18 @@
                                 <span class="listen-content-ques">いくらですか。例のように書きましょう。</span>
                             </div>
                             <div class="listen-content">
-                                <h4 class="listen-quesanswer">Conversation</h4>
+                                <h4 class="listen-quesanswer">Answer</h4>
                                 <i class="fas fa-volume-up"></i>
-                                <button class="result-btn" style="background-color: rgb(231, 135, 135);" @click="handleDisplayAnwser()">Hide script</button>
+                                <button class="result-btn" style="background-color: rgb(231, 135, 135);" @click="handleDisplayAnwser()">Result</button>
 
-                                <div v-if="!display" class="answer-conversation-list">
-                                <p class="listen-content-ques"><i  @click.prevent="playSound('../src/audio/conversation/FM-V1.wav')" class="fas fa-volume-up"></i> 女: おはよう　ございます。</p>
-                                <p class="listen-content-ques"><i @click.prevent="playSound('../src/audio/conversation/M-V1.wav')" class="fas fa-volume-up"></i> 男: おはよう　ございます。</p>
-                                <p class="listen-content-ques"><i @click.prevent="playSound('../src/audio/conversation/FM-V2.wav')" class="fas fa-volume-up"></i> 女: せんせい、ここは　きょうしつですか。</p>
-                                <p class="listen-content-ques"><i @click.prevent="playSound('../src/audio/conversation/M-V2.wav')" class="fas fa-volume-up"></i> 男: はい、そこは　エークラスの　きょうしつです。</p>
-                                <p class="listen-content-ques"><i @click.prevent="playSound('../src/audio/conversation/FM-V3.wav')" class="fas fa-volume-up"></i> 女: その　へやも　きょうしつですか。</p>
-                                <p class="listen-content-ques"><i @click.prevent="playSound('../src/audio/conversation/M-V3.wav')" class="fas fa-volume-up"></i> 男: いいえ、ここは　きょうしつでは　ありません。せんせいの　へやです。</p>
-                                <p class="listen-content-ques"><i @click.prevent="playSound('../src/audio/conversation/FM-V4.wav')" class="fas fa-volume-up"></i> 女: どなたの　へやですか。</p>
-                                <p class="listen-content-ques"><i @click.prevent="playSound('../src/audio/conversation/M-V4.wav')" class="fas fa-volume-up"></i> 男: やまもとせんせいの　へやです。</p>
+                                <div v-if="display" class="answer-conversation-list">
+                                <p class="listen-content-ques"><i  @click.prevent="playSound('../src/audio/FM-V1.mp3')" class="fas fa-volume-up"></i> 女:すみません、このラジオはいくらですか。</p>
+                                <p class="listen-content-ques"><i @click.prevent="playSound('../src/audio/M-V1.mp3')" class="fas fa-volume-up"></i> 男:どれですか。</p>
+                                <p class="listen-content-ques"><i @click.prevent="playSound('../src/audio/FM-V2.mp3')" class="fas fa-volume-up"></i> 女:これ。この大きいラジオです。</p>
+                                <p class="listen-content-ques"><i @click.prevent="playSound('../src/audio/M-V2.mp3')" class="fas fa-volume-up"></i> 男:ああ、それは1000円です。</p>
+                                <p class="listen-content-ques"><i @click.prevent="playSound('../src/audio/FM-V3.mp3')" class="fas fa-volume-up"></i> 女:じゃ、この小さいラジオはいくらですか。</p>
+                                <p class="listen-content-ques"><i @click.prevent="playSound('../src/audio/M-V3.mp3')" class="fas fa-volume-up"></i> 男:それは3000円です。いいラジオですよ。</p>
+                                <p class="listen-content-ques"><i @click.prevent="playSound('../src/audio/FM-V4.mp3')" class="fas fa-volume-up"></i> 女:うーん、そうですねえ、でも、ちょっと高いですね。</p>
                                 </div>
                             </div>
                         </div>
@@ -164,7 +163,13 @@ const playSound = (sound) => {
     width: 95%;
     margin: 10px;
 }
-
+.question-container {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    position: relative;
+    top: 160px;
+}
 .container .steps {
     display: flex;
     width: 80%;
