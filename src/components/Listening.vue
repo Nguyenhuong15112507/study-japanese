@@ -44,7 +44,7 @@
                         <div class="listening-exercises-content">
                             <div class="listen-content">
                                 <h4 class="listen-quesanswer">Question</h4>
-                                <button @click.prevent="playSound('/Users/nguyenhuong/Desktop/Code Website/study-japanese/study-japanese/src/audio/20240217-02090091.mp3')" class="fas fa-volume-up"></button>
+                                <button @click.prevent="playSound('../src/audio/20240217-02090091.mp3')" class="fas fa-volume-up"></button>
                                 <span class="listen-content-ques">いくらですか。例のように書きましょう。</span>
                             </div>
                             <div class="listen-content">
@@ -53,13 +53,13 @@
                                 <button class="result-btn" style="background-color: rgb(231, 135, 135);" @click="handleDisplayAnwser()">Result</button>
 
                                 <div v-if="display" class="answer-conversation-list">
-                                <p class="listen-content-ques"><i @click.prevent="playSound('../audio/FM-V1.mp3')" class="fas fa-volume-up"></i> 女:すみません、このラジオはいくらですか。</p>
-                                <p class="listen-content-ques"><i class="fas fa-volume-up"></i> 男:どれですか。</p>
-                                <p class="listen-content-ques"><i class="fas fa-volume-up"></i> 女:これ。この大きいラジオです。</p>
-                                <p class="listen-content-ques"><i class="fas fa-volume-up"></i> 男:ああ、それは1000円です。</p>
-                                <p class="listen-content-ques"><i class="fas fa-volume-up"></i> 女:じゃ、この小さいラジオはいくらですか。</p>
-                                <p class="listen-content-ques"><i class="fas fa-volume-up"></i> 男:それは3000円です。いいラジオですよ。</p>
-                                <p class="listen-content-ques"><i class="fas fa-volume-up"></i> 女:うーん、そうですねえ、でも、ちょっと高いですね。</p>
+                                <p class="listen-content-ques"><i  @click.prevent="playSound('../src/audio/FM-V1.mp3')" class="fas fa-volume-up"></i> 女:すみません、このラジオはいくらですか。</p>
+                                <p class="listen-content-ques"><i @click.prevent="playSound('../src/audio/M-V1.mp3')" class="fas fa-volume-up"></i> 男:どれですか。</p>
+                                <p class="listen-content-ques"><i @click.prevent="playSound('../src/audio/FM-V2.mp3')" class="fas fa-volume-up"></i> 女:これ。この大きいラジオです。</p>
+                                <p class="listen-content-ques"><i @click.prevent="playSound('../src/audio/M-V2.mp3')" class="fas fa-volume-up"></i> 男:ああ、それは1000円です。</p>
+                                <p class="listen-content-ques"><i @click.prevent="playSound('../src/audio/FM-V3.mp3')" class="fas fa-volume-up"></i> 女:じゃ、この小さいラジオはいくらですか。</p>
+                                <p class="listen-content-ques"><i @click.prevent="playSound('../src/audio/M-V3.mp3')" class="fas fa-volume-up"></i> 男:それは3000円です。いいラジオですよ。</p>
+                                <p class="listen-content-ques"><i @click.prevent="playSound('../src/audio/FM-V4.mp3')" class="fas fa-volume-up"></i> 女:うーん、そうですねえ、でも、ちょっと高いですね。</p>
                                 </div>
                             </div>
                         </div>
