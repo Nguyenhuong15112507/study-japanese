@@ -70,6 +70,7 @@
 import { ref } from "vue"; // dung de import 
 import { studentJapaneseStore } from "../store"
 import router from "../router";
+import {login} from "../api/Authority"
 const userName = ref('')
 const passW = ref('')
 const selectOption = ref('')
@@ -81,7 +82,7 @@ const userStudentJapaneseStore = studentJapaneseStore()
 
 
 
-const submit = () => {
+const submit = async () => {
     hasErr.value = []
     if (userName.value === "") {
         hasErr.value.push('userNameIsEmpty')
@@ -105,11 +106,16 @@ const submit = () => {
     }
     const userOb = {
         userName: userName.value,
-        password: passW.value,
-        role: 'teacher'
+        password: passW.value
     }
-    userStudentJapaneseStore.login(userOb)
-    router.push('/')
+    try {
+        const data = await login(userOb)
+        console.log(data)
+    } catch (error) {
+        
+    }
+    // userStudentJapaneseStore.login(userOb)
+    // router.push('/')
     // if (selectOption.value === "teacher") {
     //     router.push('/')
     // } else if (selectOption.value === "student") {
