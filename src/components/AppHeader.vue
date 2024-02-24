@@ -7,7 +7,7 @@
                 <div class="nav-bar-item">Q&A</div>
             </div>
             <div class="login-infor">
-                <img class="login-infor-img" src="../img/Hinh-Anh-Anime-Chibi-Girl (3).jpg" style="width: 30px;" alt="">
+                <div @click="handleChangePageUser()"><img class="login-infor-img" src="../img/Hinh-Anh-Anime-Chibi-Girl (3).jpg" style="width: 30px;" alt=""></div>
                 <div class="user-name" id="user-name" @click="handleDisplayPopup()">{{ userName }}</div>
             </div>
             <ul v-if="popupIsVisable" :class="['menu-login', {'isVisable': popupIsVisable}]">
@@ -77,6 +77,9 @@ const handleChangePageLogin = () => {
 }
 const handleDisplayPopup = () => {
     popupIsVisable.value = !popupIsVisable.value
+}
+const handleChangePageUser = () => {
+    router.push('/user-profile')
 }
 </script>
 

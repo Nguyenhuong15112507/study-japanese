@@ -1,5 +1,5 @@
 <template>
-<footer>Powered by W3.css</footer>
+<footer>Powered by KaoriChan</footer>
 </template>
 <script setup>
 import router from "../router";
@@ -14,6 +14,6 @@ footer {
     background-color: rgb(49, 171, 224);
     color: white;
     position: relative;
-    bottom: -10em;
+    bottom: 0;
 }
 </style>

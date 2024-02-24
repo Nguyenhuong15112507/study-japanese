@@ -31,7 +31,7 @@
                 </div>
                 <div class="erroMesSentence" v-if="hasErr.includes('passWIsEmpty')">Please enter your password</div>
                 <div class="erroMesSentence" v-if="hasErr.includes('passWLength')">Your password exceed 10</div>
-                <div class="input-item">
+                <!-- <div class="input-item">
                     <span class="input-label"><label for="authority">Authority</label></span>
                     <select type="text" class="selector" id="authority" v-model="selectOption"
                         @change="handleOnchangeSelection()">
@@ -39,7 +39,7 @@
                         <option id="option-teacher" value="teacher">Teacher</option>
                         <option id="option-student" value="student">Student</option>
                     </select>
-                </div>
+                </div> -->
                 <div class="erroMesSentence" v-if="hasErr.includes('roleIsEmpty')">Please choose your role.</div>
                 <div class="input-item-check">
                     <input type="checkbox" id="remember">
@@ -96,27 +96,27 @@ const submit = () => {
     if (passW.value.length > 10) {
         hasErr.value.push('passWLength')
     }
-    console.log(selectOption.value)
-    if (selectOption.value !== "teacher" && selectOption.value !== "student") {
-        hasErr.value.push('roleIsEmpty')
-    }
+    // console.log(selectOption.value)
+    // if (selectOption.value !== "teacher" && selectOption.value !== "student") {
+    //     hasErr.value.push('roleIsEmpty')
+    // }
     if (hasErr.value.length > 0) {
         return
     }
     const userOb = {
         userName: userName.value,
         password: passW.value,
-        role: selectOption.value
+        role: 'teacher'
     }
     userStudentJapaneseStore.login(userOb)
-
-    if (selectOption.value === "teacher") {
-        router.push('/')
-    } else if (selectOption.value === "student") {
-        router.push('/student')
-    } else {
-        return
-    }
+    router.push('/')
+    // if (selectOption.value === "teacher") {
+    //     router.push('/')
+    // } else if (selectOption.value === "student") {
+    //     router.push('/student')
+    // } else {
+    //     return
+    // }
 
     userName.value = ""
     passW.value = ""

@@ -22,7 +22,7 @@ header, footer {
 }
 header {
     position: fixed;
-    height: 130px;
+    height: 136px;
     z-index: 1;
     top: 0;
     width: 100%;
@@ -34,10 +34,10 @@ header {
     width: 100%;
 
 } */
-footer {
+/* footer {
     position: relative;
     bottom: -10em;
-}
+} */
 .page-title-content {
     margin: 10px;
 }

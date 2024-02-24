@@ -1,10 +1,17 @@
 <template>
     <div class="pop-container">
     <div class="menu-bar">
-        <div class="learn-type-menu">
+        <div @click="handleChangeFlashcard()" class="learn-type-menu">
             <i class="far fa-file-alt"></i>
             <span class="current-selection">Practice</span>
             <i class="fas fa-chevron-down"></i>
+            <div v-if="isChange" class="dropdown">
+                <!-- <div class=dropdown-arow></div> -->
+                <ul class="dropdown-list">
+                    <li class="dropdown-item"><i class="fas fa-book-reader"></i><span>Remember</span></li>
+                    <li class="dropdown-item"><i class="fas fa-user-edit"></i><span>Test</span></li>
+                </ul>
+            </div>
         </div>
         <!-- <div class="current-question-title">
             <p class="current-page">1 / 20</p>
@@ -16,6 +23,7 @@
             <span class="current-selection">Question list</span>
         </div>
         <div class="learn-type-menu">
+            <i class="fas fa-cog"></i>
             <span class="current-selection">Question setting</span>
         </div>
     </div>
@@ -54,6 +62,17 @@
     </div>
 </template>
 
+<script setup>
+import { ref } from 'vue';
+import router from "../router";
+const isChange = ref(true)
+const handleChangeFlashcard = () => {
+    isChange.value =!isChange.value
+}
+</script>
+
+
+
 <style scoped>
 @import '../style/student.css';
 
@@ -63,9 +82,11 @@
     justify-content: space-around;
     align-items: center;
     background-color: rgb(197 237 255);
-    position: absolute;
+    position: fixed;
     width: 100%;
-    top: -121px;
+    top: 150px;
+    left: 0;
+    right: 0;
     padding: 10px;
 }
 .current-selection {
@@ -75,6 +96,65 @@
     display: block;
     text-align: center;
 }
+/* For the dropdown content */
+.dropdown {
+  position: absolute;
+  background-color: rgb(197 237 255);
+  border: 1px solid #dfdfdf;
+  border-radius: 4px;
+  top: 100%;
+  left: 107px;
+  z-index: 1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  display: none;
+}
+.dropdown::after {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 8px solid #943c3c; /* Adjust arrow color here */
+    position: absolute;
+    top: -4px; /* Position arrow at top of dropdown */
+    left: 50%;
+    transform: translateX(-50%);
+}
+/* For the dropdown list */
+.dropdown-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.dropdown-active {
+    display: block;
+}
+
+/* For the dropdown items */
+.dropdown-item {
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Hover effect for dropdown items */
+.dropdown-item:hover {
+  background-color: #f7f9fa;
+}
+
+/* For the icons in the dropdown items */
+.fas {
+  font-size: 12px;
+  margin-right: 5px;
+  color: #9daec2;
+}
+
+/* To show the dropdown content */
+.practice:hover .dropdown {
+  display: block;
+}
+
 .pop-container[data-v-b352a98d] {
     height: 80em;
     width: 100%;

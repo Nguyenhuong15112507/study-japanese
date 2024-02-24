@@ -104,7 +104,29 @@ const router = createRouter({
             component: () => import('./components/LearnConversation.vue')
           }
         ],
-  }
+  },
+  {
+    path: '/create-flashcard',
+    component: () => import('./AppLayout.vue'),
+    children: [
+        {
+          path: '',
+          name: 'create-flashcard',
+          component: () => import('./components/FlashcardCreate.vue')
+        }
+      ],
+},
+{
+  path: '/user-profile',
+  component: () => import('./AppLayout.vue'),
+  children: [
+      {
+        path: '',
+        name: 'user-profile',
+        component: () => import('./components/UserProFile.vue')
+      }
+    ],
+}
     ]
 })
 
