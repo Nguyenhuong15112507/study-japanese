@@ -4,21 +4,12 @@
       <div class="anouncement">
         <h3 class="announce-title">Anounce</h3>
         <div class="announce-list">
-          <button
-            type="submit"
-            class="new-btn"
-            id="creat-new-announce-btn"
-            style="margin: 10px"
-            @click="handleOnClickbtn()"
-          >
+          <button type="submit" class="new-btn" id="creat-new-announce-btn" style="margin: 10px"
+            @click="handleOnClickbtn()">
             Create
           </button>
-          <button
-            class="new-btn cancel-btn delete-btn"
-            id="delete-announce-btn"
-            style="margin-left: 0"
-            @click="removeAnnounce()"
-          >
+          <button class="new-btn cancel-btn delete-btn" id="delete-announce-btn" style="margin-left: 0"
+            @click="removeAnnounce()">
             Delete
           </button>
           <div class="announce-item">
@@ -54,18 +45,9 @@
             </p>
             <p class="update-time">12/30/2023</p>
           </div>
-          <div
-            v-for="(item, index) in announceContenlist"
-            :key="index"
-            class="announce-item"
-          >
+          <div v-for="(item, index) in announceContenlist" :key="index" class="announce-item">
             <div class="themeAndCheck">
-              <input
-                type="checkbox"
-                name="theme-check"
-                class="theme-check"
-                @change="handleChangeCheckbox(item)"
-              />
+              <input type="checkbox" name="theme-check" class="theme-check" @change="handleChangeCheckbox(item)" />
               <h4 class="anounce-theme">{{ item.title }}</h4>
             </div>
             <p class="anounce-para">{{ item.content }}</p>
@@ -76,18 +58,10 @@
       <div class="anouncement">
         <h3 class="announce-title">Study result</h3>
         <div class="announce-list">
-          <button
-            class="new-btn"
-            id="creat-new-result-btn"
-            style="margin: 10px"
-          >
+          <button class="new-btn" id="creat-new-result-btn" style="margin: 10px">
             Create
           </button>
-          <button
-            class="new-btn cancel-btn delete-btn"
-            id="delete-result-btn"
-            style="margin-left: 0"
-          >
+          <button class="new-btn cancel-btn delete-btn" id="delete-result-btn" style="margin-left: 0">
             Delete
           </button>
           <div class="announce-item">
@@ -105,11 +79,7 @@
       <div class="content-input">
         <h3 class="title-content">Create New Grammar Lesson</h3>
         <div class="content-input-header">
-          <button
-            class="new-btn"
-            id="creat-new-lesson-btn"
-            @click="handleOpenPopup()"
-          >
+          <button class="new-btn" id="creat-new-lesson-btn" @click="handleOpenPopup()">
             Create
           </button>
 
@@ -196,21 +166,18 @@
               <button class="check-homework-btn">Check result</button>
             </div>
           </div>
-          <div
-            v-for="(item, index) in lessonContenlist"
-            :key="index"
-            class="lession-content-overview lession-homework-overview"
-          >
-            <h4 class="lesson-name">{{ item.name }}</h4>
+          <div v-for="(item, index) in lessonContenlist" :key="index"
+            class="lession-content-overview lession-homework-overview">
+            <h4 class="lesson-name">{{ item.grammar_name }}</h4>
             <div class="created-date">
               <span class="label">Date: </span>
-              <span class="date">{{ item.date }}</span>
+              <span class="date">{{ item.create_at ? moment(item.create_at).format("DD-MM-YYYY") : "" }}</span>
             </div>
             <div class="status">
               <span class="label">Status: </span>
-              <span class="homework-status">{{ item.homework }}</span>
+              <span class="homework-status">{{ item.home_work }}</span>
             </div>
-            <p class="overview-para">{{ item.Gramform }}</p>
+            <p class="overview-para">{{ item.grammar_form }}</p>
             <div class="show-detail-and-practice">
               <button class="check-homework-btn">Check result</button>
             </div>
@@ -218,23 +185,21 @@
         </div>
         <h4 class="lesson-name">JLPT N4: Grammar</h4>
         <div class="list-content-item lesson-content-list">
-          <div
-            v-for="(item, index) in lessonContenlist"
-            :key="index"
-            class="lession-content-overview"
-          >
+          <div v-for="(item, index) in lessonContenlist" :key="index" class="lession-content-overview">
             <img src="../img/15801f0d.jpg" alt="" class="lesson-content-img" />
-            <h4 class="lesson-name">{{ item.name }}</h4>
+            <h4 class="lesson-name">{{ item.grammar_name }}</h4>
             <div class="created-date">
               <span class="label">Date: </span>
-              <span class="date">{{ item.date }}</span>
+              <span class="date">{{ item.create_at ? moment(item.create_at).format("DD-MM-YYYY") : "" }}</span>
             </div>
-            <p class="overview-para">{{ item.Gramform }}</p>
+            <p class="overview-para">{{ item.grammar_form }}</p>
             <ul class="show-detail-and-practice">
               <li class="show-detail">
-                <button @click="handleShowDetail(item.id)">Show detail</button>
+                <button class="check-homework-btn" @click="handleShowDetail(item.id)">Show detail</button>
               </li>
-              <li class="practice-example"><a href="">Practice</a></li>
+              <li class="practice-example">
+                <button class="check-homework-btn" @click="handleEditGrammar(item.id)">Edit</button>
+              </li>
             </ul>
           </div>
         </div>
@@ -447,60 +412,28 @@
           <h4 class="form-title">New Kanji Lesson</h4>
           <div class="new-form daily-create">
             <div class="input-item">
-              <span class="span-label"
-                ><label for="dailyName">Title</label></span
-              >
-              <input
-                type="text"
-                name="dailyName"
-                id="dailyName"
-                v-model="kanjiTitle"
-              />
+              <span class="span-label"><label for="dailyName">Title</label></span>
+              <input type="text" name="dailyName" id="dailyName" v-model="kanjiTitle" />
             </div>
             <div class="input-item">
-              <span class="span-label"
-                ><label for="dailyContent">Kanji</label></span
-              >
-              <textarea
-                name="dailyContent1"
-                id="dailyContent1"
-                v-model="kanjiContent1"
-              ></textarea>
+              <span class="span-label"><label for="dailyContent">Kanji</label></span>
+              <textarea name="dailyContent1" id="dailyContent1" v-model="kanjiContent1"></textarea>
             </div>
             <div class="input-item">
-              <span class="span-label"
-                ><label for="dailyContent">Example</label></span
-              >
-              <textarea
-                name="dailyContent2"
-                id="dailyContent2"
-                v-model="kanjiContent2"
-              ></textarea>
+              <span class="span-label"><label for="dailyContent">Example</label></span>
+              <textarea name="dailyContent2" id="dailyContent2" v-model="kanjiContent2"></textarea>
             </div>
             <div class="input-item">
-              <span class="span-label"
-                ><label for="dailydate">Date</label></span
-              >
-              <input
-                type="date"
-                name="date"
-                id="dailydate"
-                v-model="kanjiDate"
-              />
+              <span class="span-label"><label for="dailydate">Date</label></span>
+              <input type="date" name="date" id="dailydate" v-model="kanjiDate" />
             </div>
             <div class="input-item">
-              <span class="span-label"
-                ><label for="daily-pic">Upload</label></span
-              >
+              <span class="span-label"><label for="daily-pic">Upload</label></span>
               <input type="file" name="daily-pic" id="daily-pic" />
             </div>
 
             <div class="btn-container">
-              <button
-                class="new-btn submit-btn"
-                id="submit-daily-btn"
-                @click="appendKanjiContent()"
-              >
+              <button class="new-btn submit-btn" id="submit-daily-btn" @click="appendKanjiContent()">
                 Submit
               </button>
               <button class="new-btn cancel-btn" id="cancel-daily-btn">
@@ -510,16 +443,8 @@
           </div>
         </div>
         <div class="list-content-item daily-content-list">
-          <div
-            v-for="(item, index) in kanjiContentList"
-            :key="index"
-            class="daily-content-overview"
-          >
-            <img
-              class="student-daily-img"
-              src="../img/Hinh-Anh-Anime-Chibi-Girl (3).jpg"
-              alt=""
-            />
+          <div v-for="(item, index) in kanjiContentList" :key="index" class="daily-content-overview">
+            <img class="student-daily-img" src="../img/Hinh-Anh-Anime-Chibi-Girl (3).jpg" alt="" />
             <h4 class="daily-name">{{ item.title }}</h4>
             <div class="created-date">
               <span class="label">Date: </span>
@@ -527,9 +452,7 @@
             </div>
             <p class="overview-para">{{ item.content1 }}</p>
             <div class="show-detail">
-              <button class="show-detail" @click="handleShowKanjiDetail(item.id)"
-                >Show detail</button
-              >
+              <button class="show-detail" @click="handleShowKanjiDetail(item.id)">Show detail</button>
             </div>
           </div>
         </div>
@@ -537,151 +460,75 @@
     </div>
   </div>
   <!-- Create lession -->
-  <div
-    v-if="isDisplayLessonCreate"
-    :class="['anouncement-create', { isVisible: isDisplayLessonCreate }]"
-  >
+  <div v-if="isDisplayLessonCreate" :class="['anouncement-create', { isVisible: isDisplayLessonCreate }]">
     <div class="new-input lesson">
       <h4 class="form-title" style="font-size: 20px">Lesson</h4>
       <div class="new-form lesson-create">
         <div class="input-item">
           <span class="span-label"><label for="lessonName">Title</label></span>
-          <input
-            type="text"
-            name="lessonName"
-            id="lessonName"
-            v-model="lessonName"
-          />
+          <input type="text" name="lessonName" id="lessonName" v-model="lessonName" />
         </div>
         <div class="input-item">
-          <span class="span-label"
-            ><label for="lessonContent">Form</label></span
-          >
-          <textarea
-            class="textareacss"
-            name="lessonContent"
-            id="lessonContent1"
-            v-model="lessonContentForm"
-          ></textarea>
+          <span class="span-label"><label for="lessonContent">Form</label></span>
+          <textarea class="textareacss" name="lessonContent" id="lessonContent1" v-model="lessonContentForm"></textarea>
         </div>
         <div class="input-item">
-          <span class="span-label"
-            ><label for="lessonContent">Define</label></span
-          >
-          <textarea
-            class="textareacss"
-            name="lessonContent"
-            id="lessonContent2"
-            v-model="lessonContentDefine"
-          ></textarea>
+          <span class="span-label"><label for="lessonContent">Define</label></span>
+          <textarea class="textareacss" name="lessonContent" id="lessonContent2" v-model="lessonContentDefine"></textarea>
         </div>
         <div class="input-item">
-          <span class="span-label"
-            ><label for="lessonContent">Example 1</label></span
-          >
-          <textarea
-            class="textareacss"
-            name="lessonContent"
-            id="lessonContent3"
-            v-model="lessonContentExample1"
-          ></textarea>
+          <span class="span-label"><label for="lessonContent">Example 1</label></span>
+          <textarea class="textareacss" name="lessonContent" id="lessonContent3"
+            v-model="lessonContentExample1"></textarea>
         </div>
         <div class="input-item">
-          <span class="span-label"
-            ><label for="lessonContent">Example 2</label></span
-          >
-          <textarea
-            class="textareacss"
-            name="lessonContent"
-            id="lessonContent4"
-            v-model="lessonContentExample2"
-          ></textarea>
+          <span class="span-label"><label for="lessonContent">Example 2</label></span>
+          <textarea class="textareacss" name="lessonContent" id="lessonContent4"
+            v-model="lessonContentExample2"></textarea>
         </div>
-        <div class="input-item">
+        <!-- <div class="input-item">
           <span class="span-label"><label for="date">Date</label></span>
           <input type="date" name="date" id="date" v-model="lessonDate" />
-        </div>
+        </div> -->
         <div class="input-item">
-          <span class="span-label"
-            ><label for="homework-url">Upload</label></span
-          >
-          <input
-            type="text"
-            name="homework-url"
-            id="homework-url"
-            v-model="homework"
-          />
+          <span class="span-label"><label for="homework-url">Upload</label></span>
+          <input type="text" name="homework-url" id="homework-url" v-model="homework" />
           <input type="file" name="homework" id="homework" />
         </div>
       </div>
       <div class="btn-container">
-        <button
-          class="new-btn submit-btn"
-          id="submit-lesson-btn"
-          @click="appendLessonContent()"
-        >
+        <button class="new-btn submit-btn" id="submit-lesson-btn" @click="appendLessonContent()">
           Submit
         </button>
-        <button
-          class="new-btn cancel-btn"
-          id="cancel-lesson-btn"
-          @click="handleClosePopup()"
-        >
+        <button class="new-btn cancel-btn" id="cancel-lesson-btn" @click="handleClosePopup()">
           Cancel
         </button>
       </div>
     </div>
   </div>
   <!-- Announce create -->
-  <div
-    v-if="isDisplayAnnounceCreate"
-    :class="['anouncement-create', { isVisible: isDisplayAnnounceCreate }]"
-  >
+  <div v-if="isDisplayAnnounceCreate" :class="['anouncement-create', { isVisible: isDisplayAnnounceCreate }]">
     <div class="new-input announce">
       <h4 class="form-title">New announce</h4>
       <div class="new-form announce-create">
         <div class="input-item">
           <span class="span-label"><label for="lessonName">Title</label></span>
-          <input
-            type="text"
-            name="lessonName"
-            id="announceName"
-            v-model="announceName"
-          />
+          <input type="text" name="lessonName" id="announceName" v-model="announceName" />
         </div>
         <div class="input-item">
-          <span class="span-label"
-            ><label for="lessonContent">Content</label></span
-          >
-          <textarea
-            name="lessonContent"
-            id="announceContent"
-            v-model="announceContent"
-          ></textarea>
+          <span class="span-label"><label for="lessonContent">Content</label></span>
+          <textarea name="lessonContent" id="announceContent" v-model="announceContent"></textarea>
         </div>
         <div class="input-item">
           <span class="span-label"><label for="date">Date</label></span>
-          <input
-            type="date"
-            name="date"
-            id="announcedate"
-            v-model="annouceDate"
-          />
+          <input type="date" name="date" id="announcedate" v-model="annouceDate" />
         </div>
       </div>
       <div class="btn-container">
-        <button
-          class="new-btn submit-btn"
-          id="submit-createdanounce-btn"
-          @click="appendAnnounceContent()"
-        >
+        <button class="new-btn submit-btn" id="submit-createdanounce-btn" @click="appendAnnounceContent()">
           Submit
         </button>
-        <button
-          class="new-btn cancel-btn"
-          id="cancel-createdanounce-btn"
-          @click="handleOnClickbtn()"
-        >
+        <button class="new-btn cancel-btn" id="cancel-createdanounce-btn" @click="handleOnClickbtn()">
           Cancel
         </button>
       </div>
@@ -693,15 +540,14 @@
 <script setup>
 import { ref } from "vue"; // dung de import
 import router from "../router";
+import moment from 'moment'
 import { studentJapaneseStore } from "../store";
+import { listGrammar, createGrammar, editGrammar } from "../api/grammar"
 
 const userStudentJapaneseStore = studentJapaneseStore();
 
-const lessonContenlist = ref(
-  userStudentJapaneseStore.lesson !== null
-    ? userStudentJapaneseStore.lesson
-    : []
-);
+const lessonContenlist = ref([]);
+const id = ref("");
 const lessonName = ref("");
 const lessonContent = ref("");
 const lessonContentForm = ref("");
@@ -737,7 +583,19 @@ const multiSelection = ref([]);
 
 const isTab = ref(1);
 
-const appendLessonContent = () => {
+const fetchGrammar = async () => {
+  try {
+    const data = await listGrammar()
+    console.log(data)
+    if (data?.data?.data) {
+      lessonContenlist.value = data.data.data
+    }
+  } catch (error) {
+
+  }
+}
+fetchGrammar()
+const appendLessonContent = async () => {
   const data = {};
   let validates = [
     lessonName.value,
@@ -747,7 +605,7 @@ const appendLessonContent = () => {
     lessonDate.value,
     homework.value,
   ];
-  if (validates.includes("")) return;
+  // if (validates.includes("")) return;
   let r = (Math.random() + 1).toString(36).substring(7);
   data.id = r;
   data.name = lessonName.value;
@@ -758,17 +616,28 @@ const appendLessonContent = () => {
   data.homework = homework.value;
   data.date = lessonDate.value;
 
-  const lessonObject = {
-    id: r,
-    name: lessonName.value,
-    Gramform: lessonContentForm.value,
-    formDefine: lessonContentDefine.value,
-    example1: lessonContentExample1.value,
-    example2: lessonContentExample2.value,
-    homework: homework.value,
-    date: lessonDate.value,
-  };
-  userStudentJapaneseStore.appendLesson(lessonObject);
+
+  const lessonRequest =
+  {
+    "grammar_name": lessonName.value,
+    "grammar_form": lessonContentForm.value,
+    "form_define": lessonContentDefine.value,
+    "example_1": lessonContentExample1.value,
+    "example_2": lessonContentExample2.value,
+    "home_work": homework.value,
+    "description": "",
+    "path_base": "",
+    "file_name": "",
+    "file_ext": ""
+  }
+  try {
+    const data = await createGrammar(lessonRequest)
+    if (data?.data?.data) {
+      fetchGrammar()
+    }
+  } catch (error) {
+
+  }
 
   lessonName.value = "";
   lessonContentForm.value = "";
@@ -779,7 +648,31 @@ const appendLessonContent = () => {
   lessonDate.value = "";
   isDisplayLessonCreate.value = !isDisplayLessonCreate.value;
 };
+const handleEditGrammar = async () => {
+  handleOpenPopup(id)
+  const lessonRequest =
+  {"id": id.value,
+    "grammar_name": lessonName.value,
+    "grammar_form": lessonContentForm.value,
+    "form_define": lessonContentDefine.value,
+    "example_1": lessonContentExample1.value,
+    "example_2": lessonContentExample2.value,
+    "home_work": homework.value,
+    "description": "",
+    "path_base": "",
+    "file_name": "",
+    "file_ext": ""
+  }
+  try {
+    const data = await editGrammar(lessonRequest)
+    if (data?.data?.data) {
+      fetchGrammar()
+    }
+  } catch (error) {
+    
+  }
 
+}
 const appendKanjiContent = () => {
   const kanjiData = {};
   if (kanjiTitle.value == "") return;
@@ -887,11 +780,8 @@ const listLessonInGrammar = ref(userStudentJapaneseStore.lesson);
 const pagekanjiList = ref(userStudentJapaneseStore.kanji);
 
 const handleShowDetail = (id) => {
-  const grammar = listLessonInGrammar.value.find((item) => item.id === id);
-  if (!grammar) {
-    return;
-  }
-  router.push({ path: "/grammar", query: { id: grammar.id } });
+
+  router.push({ path: "/grammar", query: { id: id } });
 };
 
 const handleShowKanjiDetail = (kanjiid) => {
