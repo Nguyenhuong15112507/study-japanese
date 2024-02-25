@@ -3,7 +3,7 @@
                 <h3 class="flashcard-list-title">Flashcard List</h3>
                 <div class="voca-list-title">
                 <span class="JLPT-lever-list">N4 list vocabulary</span>
-                <i class="far fa-plus-square" style="font-size: 25px; color: rgba(19, 99, 221, 0.6);"></i>
+                <button @click="handleChangeTocreate()"><i class="far fa-plus-square" style="font-size: 25px; color: rgba(19, 99, 221, 0.6);"></i></button>
                 </div>
                 <div class="N4-flashcard-list">
                     
@@ -14,8 +14,10 @@
                             <p class="item-overview">About shopping</p>
                             <p class="update-date">2024/01/03</p>
                         </div>
+                        <div style="display: flex;">
                         <button @click="handleChangeToDetail()" class="learn-vocab">Learn</button>
-
+                        <button @click="handleChangeToPrace()" class="learn-vocab">Practice</button>
+                        </div>
                     </div>
                     
                 </div>
@@ -73,9 +75,14 @@ import { ref } from 'vue';
 import router from "../router";
 
 const handleChangeToDetail = () => {
-    router.push('/practice/flashcardList');
+    router.push('/practice/flashcardDetail');
 };
-
+const handleChangeTocreate = () => {
+    router.push('/practice/flashcardList');
+}
+const handleChangeToPrace = () => {
+    router.push('/practice/flashcardQuesDetail');
+};
 
 
 </script>

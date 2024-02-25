@@ -11,7 +11,8 @@
                 <div class="user-name" id="user-name" @click="handleDisplayPopup()">{{ userName }}</div>
             </div>
             <ul v-if="popupIsVisable" :class="['menu-login', {'isVisable': popupIsVisable}]">
-                <li class="menu-item">User Information</li>
+                <li @click="handleChangePageUser()" class="menu-item">User Information</li>
+                <li @click="handleChangeChat()" class="menu-item">Chat with teacher</li>
                 <li class="menu-item">Change passwork</li>
                 <li class="menu-item" @click="handleChangePageLogin()">Log out</li>
             </ul>
@@ -45,7 +46,7 @@ const user = userStudentJapaneseStore.user
 const userName = ref('')
 const userRole = ref('')
 if(user !== null) {
-    userName.value = user.userName
+    userName.value = user.username
     userRole.value = user.role
 }
 
@@ -80,6 +81,9 @@ const handleDisplayPopup = () => {
 }
 const handleChangePageUser = () => {
     router.push('/user-profile')
+}
+const handleChangeChat = () => {
+    router.push('/chatMessage')
 }
 </script>
 

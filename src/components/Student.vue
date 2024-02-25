@@ -23,7 +23,7 @@
         </div>
         <div class="page-container">
             <div class="content-input">
-                <h3 class="title-content">Give Question</h3>
+                <!-- <h3 class="title-content">Give Question</h3>
                 <div class="content-input-header">
                     <button class="new-btn" id="creat-new-lesson-btn" onclick="isvisible(popupContainner)">Question</button>
 
@@ -54,230 +54,25 @@
                             <button class="check-homework-btn">Show detail</button>
                         </div>
                     </div>
-                    <div class="lession-content-overview lession-homework-overview">
-                        <h4 class="lesson-name">N5: Vocabulary1 homework</h4>
-                        <div class="created-date">
-                            <span class="label">Date: </span>
-                            <span class="date">12/12/2023</span>
-                        </div>
-                        <div class="status">
-                            <span class="label">Status: </span>
-                            <span class="homework-status">Done</span>
-                        </div>
-                        <p class="overview-para">I've already finish this homework, but i have some Q&A. Please check these
-                            Q&A in this URL</p>
-                        <div class="show-detail-and-practice">
-                            <button class="check-homework-btn">Show detail</button>
-                        </div>
-                    </div>
-                    <div class="lession-content-overview lession-homework-overview">
-                        <h4 class="lesson-name">N5: Vocabulary1 homework</h4>
-                        <div class="created-date">
-                            <span class="label">Date: </span>
-                            <span class="date">12/12/2023</span>
-                        </div>
-                        <div class="status">
-                            <span class="label">Status: </span>
-                            <span class="homework-status">Done</span>
-                        </div>
-                        <p class="overview-para">I've already finish this homework, but i have some Q&A. Please check these
-                            Q&A in this URL</p>
-                        <div class="show-detail-and-practice">
-                            <button class="check-homework-btn">Show detail</button>
-                        </div>
-                    </div>
-                    <div class="lession-content-overview lession-homework-overview">
-                        <h4 class="lesson-name">N5: Vocabulary1 homework</h4>
-                        <div class="created-date">
-                            <span class="label">Date: </span>
-                            <span class="date">12/12/2023</span>
-                        </div>
-                        <div class="status">
-                            <span class="label">Status: </span>
-                            <span class="homework-status">Done</span>
-                        </div>
-                        <p class="overview-para">I've already finish this homework, but i have some Q&A. Please check these
-                            Q&A in this URL</p>
-                        <div class="show-detail-and-practice">
-                            <button class="check-homework-btn">Show detail</button>
-                        </div>
-                    </div>
-                </div>
+                    
+                </div> -->
                 <h4 class="lesson-name">JLPT N4: Vocabulary</h4>
                 <div class="list-content-item lesson-content-list">
-                    <div class="lession-content-overview">
+                    <div  v-for="(item, index) in listLesson" :key="index" class="lession-content-overview">
                         <img src="../img/15801f0d.jpg" alt="" class="lesson-content-img">
-                        <h4 class="lesson-name">N5: Vocabulary1</h4>
+                        <h4 class="lesson-name">{{ item.name }}</h4>
                         <div class="created-date">
                             <span class="label">Date: </span>
-                            <span class="date">12/12/2023</span>
+                            <span class="date">{{ item.date }}</span>
                         </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
-                            example.</p>
+                        <p class="overview-para">{{ item.Gramform }}</p>
                         <ul class="show-detail-and-practice">
-                            <li class="show-detail"><a href="">Show detail</a></li>
-                            <li class="practice-example"><a href="">Practice</a></li>
-                        </ul>
-                    </div>
-                    <div class="lession-content-overview">
-                        <img src="../img/15801f0d.jpg" alt="" class="lesson-content-img">
-                        <h4 class="lesson-name">N5: Vocabulary2</h4>
-                        <div class="created-date">
-                            <span class="label">Date: </span>
-                            <span class="date">12/13/2023</span>
-                        </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
-                            example.</p>
-                        <ul class="show-detail-and-practice">
-                            <li class="show-detail"><a href="">Show detail</a></li>
-                            <li class="practice-example"><a href="">Practice</a></li>
-                        </ul>
-                    </div>
-                    <div class="lession-content-overview">
-                        <img src="../img/15801f0d.jpg" alt="" class="lesson-content-img">
-                        <h4 class="lesson-name">N5: Vocabulary3</h4>
-                        <div class="created-date">
-                            <span class="label">Date: </span>
-                            <span class="date">14/12/2023</span>
-                        </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
-                            example.</p>
-                        <ul class="show-detail-and-practice">
-                            <li class="show-detail"><a href="">Show detail</a></li>
-                            <li class="practice-example"><a href="">Practice</a></li>
-                        </ul>
-                    </div>
-                    <div class="lession-content-overview">
-                        <img src="../img/15801f0d.jpg" alt="" class="lesson-content-img">
-                        <h4 class="lesson-name">N5: Vocabulary4</h4>
-                        <div class="created-date">
-                            <span class="label">Date: </span>
-                            <span class="date">15/12/2023</span>
-                        </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
-                            example.</p>
-                        <ul class="show-detail-and-practice">
-                            <li class="show-detail"><a href="">Show detail</a></li>
-                            <li class="practice-example"><a href="">Practice</a></li>
-                        </ul>
-                    </div>
-                    <div class="lession-content-overview">
-                        <img src="../img/15801f0d.jpg" alt="" class="lesson-content-img">
-                        <h4 class="lesson-name">N5: Vocabulary4</h4>
-                        <div class="created-date">
-                            <span class="label">Date: </span>
-                            <span class="date">15/12/2023</span>
-                        </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
-                            example.</p>
-                        <ul class="show-detail-and-practice">
-                            <li class="show-detail"><a href="">Show detail</a></li>
-                            <li class="practice-example"><a href="">Practice</a></li>
-                        </ul>
-                    </div>
-                    <div class="lession-content-overview">
-                        <img src="../img/15801f0d.jpg" alt="" class="lesson-content-img">
-                        <h4 class="lesson-name">N5: Vocabulary4</h4>
-                        <div class="created-date">
-                            <span class="label">Date: </span>
-                            <span class="date">15/12/2023</span>
-                        </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
-                            example.</p>
-                        <ul class="show-detail-and-practice">
-                            <li class="show-detail"><a href="">Show detail</a></li>
+                            <li class="show-detail"><button @click="handleShowDetail(item.id)">Show detail</button></li>
                             <li class="practice-example"><a href="">Practice</a></li>
                         </ul>
                     </div>
                 </div>
-                <h4 class="lesson-name">JLPT N4: Grammar</h4>
-                <div class="list-content-item lesson-content-list">
 
-                    <div class="lession-content-overview">
-                        <img src="../img/15801f0d.jpg" alt="" class="lesson-content-img">
-                        <h4 class="lesson-name">N5: Vocabulary1</h4>
-                        <div class="created-date">
-                            <span class="label">Date: </span>
-                            <span class="date">12/12/2023</span>
-                        </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
-                            example.</p>
-                        <ul class="show-detail-and-practice">
-                            <li class="show-detail"><a href="">Show detail</a></li>
-                            <li class="practice-example"><a href="">Practice</a></li>
-                        </ul>
-                    </div>
-                    <div class="lession-content-overview">
-                        <img src="../img/15801f0d.jpg" alt="" class="lesson-content-img">
-                        <h4 class="lesson-name">N5: Vocabulary2</h4>
-                        <div class="created-date">
-                            <span class="label">Date: </span>
-                            <span class="date">12/13/2023</span>
-                        </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
-                            example.</p>
-                        <ul class="show-detail-and-practice">
-                            <li class="show-detail"><a href="">Show detail</a></li>
-                            <li class="practice-example"><a href="">Practice</a></li>
-                        </ul>
-                    </div>
-                    <div class="lession-content-overview">
-                        <img src="../img/15801f0d.jpg" alt="" class="lesson-content-img">
-                        <h4 class="lesson-name">N5: Vocabulary3</h4>
-                        <div class="created-date">
-                            <span class="label">Date: </span>
-                            <span class="date">14/12/2023</span>
-                        </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
-                            example.</p>
-                        <ul class="show-detail-and-practice">
-                            <li class="show-detail"><a href="">Show detail</a></li>
-                            <li class="practice-example"><a href="">Practice</a></li>
-                        </ul>
-                    </div>
-                    <div class="lession-content-overview">
-                        <img src="../img/15801f0d.jpg" alt="" class="lesson-content-img">
-                        <h4 class="lesson-name">N5: Vocabulary4</h4>
-                        <div class="created-date">
-                            <span class="label">Date: </span>
-                            <span class="date">15/12/2023</span>
-                        </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
-                            example.</p>
-                        <ul class="show-detail-and-practice">
-                            <li class="show-detail"><a href="">Show detail</a></li>
-                            <li class="practice-example"><a href="">Practice</a></li>
-                        </ul>
-                    </div>
-                    <div class="lession-content-overview">
-                        <img src="../img/15801f0d.jpg" alt="" class="lesson-content-img">
-                        <h4 class="lesson-name">N5: Vocabulary4</h4>
-                        <div class="created-date">
-                            <span class="label">Date: </span>
-                            <span class="date">15/12/2023</span>
-                        </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
-                            example.</p>
-                        <ul class="show-detail-and-practice">
-                            <li class="show-detail"><a href="">Show detail</a></li>
-                            <li class="practice-example"><a href="">Practice</a></li>
-                        </ul>
-                    </div>
-                    <div class="lession-content-overview">
-                        <img src="../img/15801f0d.jpg" alt="" class="lesson-content-img">
-                        <h4 class="lesson-name">N5: Vocabulary4</h4>
-                        <div class="created-date">
-                            <span class="label">Date: </span>
-                            <span class="date">15/12/2023</span>
-                        </div>
-                        <p class="overview-para">Today, we will learning about N4's vocabulary and practice with some
-                            example.</p>
-                        <ul class="show-detail-and-practice">
-                            <li class="show-detail"><a href="">Show detail</a></li>
-                            <li class="practice-example"><a href="">Practice</a></li>
-                        </ul>
-                    </div>
-                </div>
 
             </div>
             <div class="student-daily">
@@ -399,6 +194,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import router from "../router";
 import { studentJapaneseStore } from "../store"
 const userStudentJapaneseStore = studentJapaneseStore()
 
@@ -408,6 +204,14 @@ const pageLesson = userStudentJapaneseStore.lesson
 const listAnnounce = ref(pageAnnounce)
 const listLesson = ref(pageLesson)
 
+const listLessonInGrammar = ref(userStudentJapaneseStore.lesson);
+const handleShowDetail = (id) => {
+  const grammar = listLessonInGrammar.value.find((item) => item.id === id);
+  if (!grammar) {
+    return;
+  }
+  router.push({ path: "/grammar", query: { id: grammar.id } });
+};
 </script>
 
 <style scoped>@import '../style/student.css';

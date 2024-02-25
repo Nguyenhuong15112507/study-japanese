@@ -122,14 +122,14 @@ const handlechangenamebtn = () => {
     if (userName.value === "") {
         hasErr.value.push('userNameIsEmpty')
     }
-    if (userName.value.length > 10) {
+    if (userName.value.length > 100) {
         hasErr.value.push('userNameLength')
     }
     if (passW.value === "") {
         hasErr.value.push('passWIsEmpty')
     }
 
-    if (passW.value.length > 10) {
+    if (passW.value.length > 100) {
         hasErr.value.push('passWLength')
     }
 
@@ -148,10 +148,10 @@ const handleOnchangeUserN = (value) => {
     hasErr.value = hasErr.value.filter(item => item !== 'userNameIsEmpty')//Loc ra nhung phan tu khac userName de gan lai cho hasErr
 
     const isIncludesUserLength = hasErr.value.includes('userNameLength')
-    if (userName.value.length > 10 && isIncludesUserLength) {
+    if (userName.value.length > 100 && isIncludesUserLength) {
         return
     }
-    if (userName.value.length > 10 && !isIncludesUserLength) {
+    if (userName.value.length > 100 && !isIncludesUserLength) {
         hasErr.value.push('userNameLength')
         return
     }
@@ -170,10 +170,10 @@ const handleOnchangePassW = (value) => {
     hasErr.value = hasErr.value.filter(item => item !== 'passWIsEmpty')
 
     const isIncludesPassLength = hasErr.value.includes('passWLength')
-    if (passW.value.length > 10 && isIncludesPassLength) {
+    if (passW.value.length > 100 && isIncludesPassLength) {
         return
     }
-    if (passW.value.length > 10 && !isIncludesPassLength) {
+    if (passW.value.length > 100 && !isIncludesPassLength) {
         hasErr.value.push('passWLength')
         return
     }

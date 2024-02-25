@@ -3,13 +3,13 @@
     <div class="menu-bar">
         <div @click="handleChangeFlashcard()" class="learn-type-menu">
             <i class="far fa-file-alt"></i>
-            <span class="current-selection">Practice</span>
+            <span  class="current-selection">Practice</span>
             <i class="fas fa-chevron-down"></i>
-            <div v-if="isChange" class="dropdown">
+            <div v-if="!isChange" class="dropdown">
                 <!-- <div class=dropdown-arow></div> -->
                 <ul class="dropdown-list">
-                    <li class="dropdown-item"><i class="fas fa-book-reader"></i><span>Remember</span></li>
-                    <li class="dropdown-item"><i class="fas fa-user-edit"></i><span>Test</span></li>
+                    <li @click="handleChangeToDetail()" class="dropdown-item"><i class="fas fa-book-reader"></i><span>Remember</span></li>
+                    <li  @click="handleChangeTolist()" class="dropdown-item"><i class="fas fa-user-edit"></i><span>Vocabulary check</span></li>
                 </ul>
             </div>
         </div>
@@ -69,6 +69,13 @@ const isChange = ref(true)
 const handleChangeFlashcard = () => {
     isChange.value =!isChange.value
 }
+const handleChangeTolist = () => {
+    router.push('/practice/flashcardList')
+}
+const handleChangeToDetail = () => {
+    router.push('/practice/flashcardDetail')
+}
+
 </script>
 
 
@@ -106,7 +113,7 @@ const handleChangeFlashcard = () => {
   left: 107px;
   z-index: 1;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  display: none;
+
 }
 .dropdown::after {
     width: 0;
@@ -158,7 +165,7 @@ const handleChangeFlashcard = () => {
 .pop-container[data-v-b352a98d] {
     height: 80em;
     width: 100%;
-    top: 263px;
+    top: 198px;
     position: relative;
     display: inline-block;
 }

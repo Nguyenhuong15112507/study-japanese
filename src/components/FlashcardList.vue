@@ -4,6 +4,9 @@
         <button @click="handlebacktoList()" class="new-btn" id="back-result-btn" style="margin: 10px; background-color: rgb(210, 209, 209); width: 50px;">
             Back
         </button>
+        <button @click="" class="new-btn" id="save-result-btn" style="margin: 10px; width: 50px;">
+            Save
+        </button>
         <button @click="handleChangeToDetail()" class="new-btn" id="creat-new-result-btn" style="margin: 10px">
             Learn
         </button>

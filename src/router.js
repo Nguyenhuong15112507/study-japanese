@@ -8,6 +8,10 @@ const router = createRouter({
             component: () => import('./components/Login.vue'),
         },
         {
+          path: '/signin', 
+          component: () => import('./components/Signin.vue'),
+      },
+        {
             path: '/',
             component: () => import('./AppLayout.vue'),
             children: [
@@ -26,6 +30,17 @@ const router = createRouter({
                   path: '',
                   name: 'student',
                   component: () => import('./components/Student.vue')
+                }
+              ],
+        },
+        {
+            path: '/chatMessage',
+            component: () => import('./AppLayout.vue'),
+            children: [
+                {
+                  path: '',
+                  name: 'chatMessage',
+                  component: () => import('./components/ChatMessage.vue')
                 }
               ],
         },

@@ -8,8 +8,8 @@
         </div>
         <div class="login-container">
             <div class="login-form">
-                <h3 :class="['login-form-title', { 'ishide': isSignIn }]">Login</h3>
-                <h3 :class="['login-form-title', { 'ishide': !isSignIn }]">Signin</h3>
+                <h3 class="login-form-title">Login</h3>
+
                 <div class="input-item">
                     <span class="input-label"><label for="id">User name</label></span>
                     <div :class="['login-input', { 'validateInput': hasErr.includes('userNameIsEmpty') }]">
@@ -46,8 +46,7 @@
                     <label for="remember" class="input-label">Remember me</label>
                 </div>
                 <div class="login-btn-container">
-                    <button class="login-btn" id="login-signup-btn" @click="submit()">{{ !isSignIn ? 'Login' :
-                        'Signin' }}</button>
+                    <button class="login-btn" id="login-signup-btn" @click="submit()">Login</button>
 
                 </div>
             </div>
@@ -71,6 +70,7 @@ import { ref } from "vue"; // dung de import
 import { studentJapaneseStore } from "../store"
 import router from "../router";
 import {login} from "../api/Authority"
+import {setAcToken,setRole} from "../localStorage"
 const userName = ref('')
 const passW = ref('')
 const selectOption = ref('')
@@ -87,14 +87,14 @@ const submit = async () => {
     if (userName.value === "") {
         hasErr.value.push('userNameIsEmpty')
     }
-    if (userName.value.length > 10) {
+    if (userName.value.length > 100) {
         hasErr.value.push('userNameLength')
     }
     if (passW.value === "") {
         hasErr.value.push('passWIsEmpty')
     }
 
-    if (passW.value.length > 10) {
+    if (passW.value.length > 1000) {
         hasErr.value.push('passWLength')
     }
     // console.log(selectOption.value)
@@ -105,12 +105,18 @@ const submit = async () => {
         return
     }
     const userOb = {
-        userName: userName.value,
+        username: userName.value,
         password: passW.value
     }
     try {
         const data = await login(userOb)
-        console.log(data)
+        if(data?.data?.data) {
+            console.log(data.data.data)
+            userStudentJapaneseStore.login(data.data.data)
+            setAcToken(data.data.data.tokenVerify)
+            setRole(data.data.data.role)
+            router.push('/')
+        }
     } catch (error) {
         
     }
@@ -141,10 +147,10 @@ const handleOnchangeUserN = (value) => {
     hasErr.value = hasErr.value.filter(item => item !== 'userNameIsEmpty')//Loc ra nhung phan tu khac userName de gan lai cho hasErr
 
     const isIncludesUserLength = hasErr.value.includes('userNameLength')
-    if (userName.value.length > 10 && isIncludesUserLength) {
+    if (userName.value.length > 100 && isIncludesUserLength) {
         return
     }
-    if (userName.value.length > 10 && !isIncludesUserLength) {
+    if (userName.value.length > 100 && !isIncludesUserLength) {
         hasErr.value.push('userNameLength')
         return
     }
@@ -163,10 +169,10 @@ const handleOnchangePassW = (value) => {
     hasErr.value = hasErr.value.filter(item => item !== 'passWIsEmpty')
 
     const isIncludesPassLength = hasErr.value.includes('passWLength')
-    if (passW.value.length > 10 && isIncludesPassLength) {
+    if (passW.value.length > 100 && isIncludesPassLength) {
         return
     }
-    if (passW.value.length > 10 && !isIncludesPassLength) {
+    if (passW.value.length > 100 && !isIncludesPassLength) {
         hasErr.value.push('passWLength')
         return
     }
@@ -188,10 +194,7 @@ const handleShowPassWord = () => {
 }
 
 const handleTitilePopup = () => {
-    isSignIn.value = !isSignIn.value
-    if (!isSignIn.value) {
-        buttonName = "Signin"
-    }
+    router.push('/signin')
 }
 </script>
 
