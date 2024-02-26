@@ -21,6 +21,7 @@ export function showDetailGrammar(id) {
 export function editGrammar(data) {
   return request({
     url: "/api/grammar",
-    method: "put"
+    method: "put",
+    data
   });
 }

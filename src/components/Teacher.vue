@@ -198,7 +198,7 @@
                 <button class="check-homework-btn" @click="handleShowDetail(item.id)">Show detail</button>
               </li>
               <li class="practice-example">
-                <button class="check-homework-btn" @click="handleEditGrammar(item.id)">Edit</button>
+                <button class="check-homework-btn" @click="handleEditGrammar(item)">Edit</button>
               </li>
             </ul>
           </div>
@@ -648,31 +648,36 @@ const appendLessonContent = async () => {
   lessonDate.value = "";
   isDisplayLessonCreate.value = !isDisplayLessonCreate.value;
 };
-const handleEditGrammar = async () => {
-  handleOpenPopup(id)
-  const lessonRequest =
-  {"id": id.value,
-    "grammar_name": lessonName.value,
-    "grammar_form": lessonContentForm.value,
-    "form_define": lessonContentDefine.value,
-    "example_1": lessonContentExample1.value,
-    "example_2": lessonContentExample2.value,
-    "home_work": homework.value,
-    "description": "",
-    "path_base": "",
-    "file_name": "",
-    "file_ext": ""
-  }
+const handleEditGrammar = async (item) => {
+  // Open the popup
+  handleOpenPopup();
+
+  // Get the selected item's ID
+  const selectedId = item.id;
+
   try {
-    const data = await editGrammar(lessonRequest)
-    if (data?.data?.data) {
-      fetchGrammar()
+    // Fetch grammar details by ID
+    const response = await editGrammar({ id: selectedId });
+
+    if (response.data && response.data.data) {
+      const grammarData = response.data.data;
+
+      // Populate the edit form with fetched data
+      id.value = grammarData.id;
+      lessonName.value = grammarData.grammar_name;
+      lessonContentForm.value = grammarData.grammar_form;
+      lessonContentDefine.value = grammarData.form_define;
+      lessonContentExample1.value = grammarData.example_1;
+      lessonContentExample2.value = grammarData.example_2;
+      homework.value = grammarData.home_work;
+      lessonDate.value = grammarData.date; // Assuming 'date' exists in the response data
+    } else {
+      console.error("Failed to fetch grammar details");
     }
   } catch (error) {
-    
+    console.error("Error fetching grammar details:", error);
   }
-
-}
+};
 const appendKanjiContent = () => {
   const kanjiData = {};
   if (kanjiTitle.value == "") return;
