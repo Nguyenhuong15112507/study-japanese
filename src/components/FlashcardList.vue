@@ -13,6 +13,25 @@
         <button @click="handleChangeToQues()" class="new-btn" id="creat-new-result-btn" style="margin: 10px">
             Practice
         </button>
+        <div class="input-item" style="display: flex; align-items: center; width: 500px;">
+          <span class="span-label"><label for="lessonName">Title</label></span>
+          <input
+            type="text"
+            name="lessonName"
+            id="announceName"
+            v-model="announceName"
+            style="margin-left: 44px;"
+          />
+        </div>
+        <div class="input-item" style="display: flex; align-items: center; width: 500px;">
+          <span class="span-label"><label for="lessonName">Description</label></span>
+          <input
+            type="text"
+            name="lessonName"
+            id="announceName"
+            v-model="announceName"
+          />
+        </div>
         <!-- <button class="new-btn" @click="addRow">Add Row</button> -->
         <div class="vocabulary-list">
             <table class="vocabu-list-table" width="800" border="1" cellpadding="2px">

@@ -100,10 +100,8 @@
 <script setup>
 import { ref } from 'vue';
 import router from "../router";
-import { studentJapaneseStore } from "../store"
 import { listGrammar, createGrammar } from "../api/grammar"
 import moment from 'moment'
-const userStudentJapaneseStore = studentJapaneseStore()
 const isDisplayLearnContent = ref(false)
 const grammarId = ref(null)
 
@@ -121,7 +119,6 @@ const formGram = {
 }
 const grammarRef = ref(formGram)
 
-const pageLessonInGrammar = userStudentJapaneseStore.lesson
 const listLessonInGrammar = ref([])
 const fetchGrammar = async () => {
     try {
@@ -153,7 +150,6 @@ const handleChangeLearnContent = (id) => {
 
 }
 
-console.log(pathId)
 const handleBack = () => {
     isDisplayLearnContent.value = !isDisplayLearnContent.value
     grammarRef.value = formGram

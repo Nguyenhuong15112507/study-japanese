@@ -21,7 +21,7 @@
 import { ref } from "vue";
 
 import Question from './Question.vue'
-import Flashcard from './Flashcard.vue';
+import Flashcard from './Flashcard.vue'
 import Listening from "./Listening.vue";
 import Conversation from "./Conversation.vue";
 
