@@ -4,32 +4,27 @@
     <div class="voca-list-title">
       <span class="JLPT-lever-list">N4 list vocabulary</span>
       <button @click="handleChangeTocreate()">
-        <i
-          class="far fa-plus-square"
-          style="font-size: 25px; color: rgba(19, 99, 221, 0.6)"
-        ></i>
+        <i class="far fa-plus-square" style="font-size: 25px; color: rgba(19, 99, 221, 0.6)"></i>
       </button>
     </div>
     <div class="N4-flashcard-list">
-      <div
-        class="N4-flashcard-item"
-        v-for="(item, index) in pageFlashcardList"
-        :key="index"
-      >
-        <h4 class="flashcard-item-title">{{ item.title }}</h4>
-        <div class="flashcard-item-body">
-          <div class="vocab-amount">{{ item.totalVocabulary }}</div>
-          <p class="item-overview">{{ item.content }}</p>
-          <p class="update-date">
-            {{
-              item.create_at
+      <div class="N4-flashcard-item" v-for="(item, index) in pageFlashcardList" :key="index">
+        <div @click="handleShowDetail(item.id)">
+          <h4 class="flashcard-item-title">{{ item.title }}</h4>
+          <div class="flashcard-item-body">
+            <div class="vocab-amount">{{ item.totalVocabulary }}</div>
+            <p class="item-overview">{{ item.content }}</p>
+            <p class="update-date">
+              {{
+                item.create_at
                 ? moment(item.create_at).format("DD-MM-YYYY")
                 : ""
-            }}
-          </p>
+              }}
+            </p>
+          </div>
         </div>
         <div style="display: flex">
-          <button @click="handleChangeToDetail()" class="learn-vocab">
+          <button @click="handleChangeToDetail(item.id)" class="learn-vocab">
             Learn
           </button>
           <button @click="handleChangeToPrace()" class="learn-vocab">
@@ -87,12 +82,16 @@ const fetchFlashcard = async () => {
     if (data?.data?.data) {
       pageFlashcardList.value = data.data.data;
     }
-  } catch (error) {}
+  } catch (error) { }
 };
 fetchFlashcard();
 
-const handleChangeToDetail = () => {
-  router.push("/practice/flashcardDetail");
+const handleShowDetail = (id) => {
+  router.push({ path: "/practice/flashcardList", query: { id: id } });
+}
+
+const handleChangeToDetail = (id) => {
+  router.push({path: "/practice/flashcardDetail", query: { id: id }} );
 };
 const handleChangeTocreate = () => {
   router.push("/practice/flashcardList");
@@ -103,11 +102,13 @@ const handleChangeToPrace = () => {
 </script>
 <style scoped>
 @import "../style/practice.css";
+
 .voca-list-title {
   display: flex;
   align-items: center;
   margin-bottom: 15px;
 }
+
 .JLPT-lever-list {
   font-weight: 600;
   margin-right: 10px;

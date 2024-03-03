@@ -19,7 +19,8 @@
                         <h4 class="lesson-name">{{ item.grammar_name }}</h4>
                         <div class="created-date">
                             <span class="label">Date: </span>
-                            <span class="date">{{ item.create_at ? moment(item.create_at).format("DD-MM-YYYY") : "" }}</span>
+                            <span class="date">{{ item.create_at ? moment(item.create_at).format("DD-MM-YYYY") : ""
+                            }}</span>
                         </div>
                         <div class="status">
                             <span class="label">Status: </span>
@@ -123,7 +124,6 @@ const listLessonInGrammar = ref([])
 const fetchGrammar = async () => {
     try {
         const data = await listGrammar()
-        console.log(data)
         if (data?.data?.data) {
             listLessonInGrammar.value = data.data.data
             if (pathId?.id) {
@@ -131,7 +131,7 @@ const fetchGrammar = async () => {
                 if (grammar) {
                     grammarRef.value = grammar
                     isDisplayLearnContent.value = true
-                    
+
                 }
                 console.log(listLessonInGrammar.value)
             }
@@ -231,4 +231,5 @@ const handleBack = () => {
     left: 45%;
     bottom: -230px;
     font-size: 20px;
-}</style>
+}
+</style>

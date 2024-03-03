@@ -1,112 +1,143 @@
 <template>
-    <div class="flashcard-detail-body">
-        <h4 class="vocabu-list-title">List Vocabulary</h4>
-        <button @click="handlebacktoList()" class="new-btn" id="back-result-btn" style="margin: 10px; background-color: rgb(210, 209, 209); width: 50px;">
-            Back
-        </button>
-        <button @click="" class="new-btn" id="save-result-btn" style="margin: 10px; width: 50px;">
-            Save
-        </button>
-        <button @click="handleChangeToDetail()" class="new-btn" id="creat-new-result-btn" style="margin: 10px">
-            Learn
-        </button>
-        <button @click="handleChangeToQues()" class="new-btn" id="creat-new-result-btn" style="margin: 10px">
-            Practice
-        </button>
-        <div class="input-item" style="display: flex; align-items: center; width: 500px;">
-          <span class="span-label"><label for="lessonName">Title</label></span>
-          <input
-            type="text"
-            name="lessonName"
-            id="announceName"
-            v-model="announceName"
-            style="margin-left: 44px;"
-          />
-        </div>
-        <div class="input-item" style="display: flex; align-items: center; width: 500px;">
-          <span class="span-label"><label for="lessonName">Description</label></span>
-          <input
-            type="text"
-            name="lessonName"
-            id="announceName"
-            v-model="announceName"
-          />
-        </div>
-        <!-- <button class="new-btn" @click="addRow">Add Row</button> -->
-        <div class="vocabulary-list">
-            <table class="vocabu-list-table" width="800" border="1" cellpadding="2px">
-                <tr class="vocabu-table-head">
-                    <th class="vocabu-table-title" style="width: 50px ;"></th>
-                    <th class="vocabu-table-title" style="width: 50px ;">STT</th>
-                    <th class="vocabu-table-title">Vocabulary</th>
-                    <th class="vocabu-table-title">Spelling</th>
-                    <th class="vocabu-table-title">Defination</th>
-                    <th class="vocabu-table-title" style="padding: 5px 10px; width: 60px;">Edit</th>
-                    <th class="vocabu-table-title" style="padding: 5px 10px;width: 80px;">Delete</th>
-                </tr>
-                <tbody>
-                    <tr v-for="(row, index) in rows" :key="index" class="vocabu-table-tr">
-                        <td><input type="checkbox"  class="vocabu-table-content" @change="handleChangethisCheckbox(row)"  style="width: 100%;"/></td>
-                        <td v-if="!isEditing(index)" class="vocabu-table-content">{{ row.column1 }}</td>
-                        <td v-else><input type="text" v-model="editData.column1" @keyup.enter="saveEdit(index)" @blur="saveEdit(index)" class="vocabu-table-content"/></td>
-                        <td v-if="!isEditing(index)" class="vocabu-table-content"> {{ row.column2 }}</td>
-                        <td v-else><input type="text" v-model="editData.column2" @keyup.enter="saveEdit(index)" @blur="saveEdit(index)" class="vocabu-table-content"/></td>
-                        <td v-if="!isEditing(index)" class="vocabu-table-content">{{ row.column3 }}</td>
-                        <td v-else><input type="text" v-model="editData.column3" @keyup.enter="saveEdit(index)" @blur="saveEdit(index)" class="vocabu-table-content"/></td>
-                        <td v-if="!isEditing(index)" class="vocabu-table-content">{{ row.column4 }}</td>
-                        <td v-else><input type="text" v-model="editData.column4" @keyup.enter="saveEdit(index)" @blur="saveEdit(index)" class="vocabu-table-content"/></td>
-                        <td class="vocabu-table-content"><i @click="startEdit(index)" class="far fa-edit"></i></td>
-                        <td class="vocabu-table-content"><i @click="deleteRow(index)" class="far fa-trash-alt"></i></td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" class="vocabu-table-content" /></td>
-                        <td class="vocabu-table-content"><input type="text" v-model="newRow.column1" /></td>
-                        <td class="vocabu-table-content"><input type="text" v-model="newRow.column2" /></td>
-                        <td class="vocabu-table-content"><input type="text" v-model="newRow.column3" /></td>
-                        <td class="vocabu-table-content"><input type="text" v-model="newRow.column4" /></td>
-                        <td class="vocabu-table-content" colspan="2"><i @click="addRow" class="fas fa-plus"></i></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+  <div class="flashcard-detail-body">
+    <h4 class="vocabu-list-title">List Vocabulary</h4>
+    <button @click="handlebacktoList()" class="new-btn" id="back-result-btn"
+      style="margin: 10px; background-color: rgb(210, 209, 209); width: 50px;">
+      Back
+    </button>
+    <button @click="handleSaveVocabulary()" class="new-btn" id="save-result-btn" style="margin: 10px; width: 50px;">
+      Save
+    </button>
+    <button @click="handleChangeToDetail()" class="new-btn" id="creat-new-result-btn" style="margin: 10px">
+      Learn
+    </button>
+    <button @click="handleChangeToQues()" class="new-btn" id="creat-new-result-btn" style="margin: 10px">
+      Practice
+    </button>
+    <div class="input-item" style="display: flex; align-items: center; width: 500px;">
+      <span class="span-label"><label for="lessonName">Title</label></span>
+      <input type="text" name="lessonName" id="announceName" v-model="flashcardForm.title"
+        style="margin-left: 56px;" />
     </div>
+    <div class="input-item" style="display: flex; align-items: center; width: 500px;">
+      <span class="span-label"><label for="lessonName">Description</label></span>
+      <input type="text" name="lessonName" id="announceName" v-model="flashcardForm.description" />
+    </div>
+    <!-- <button class="new-btn" @click="addRow">Add Row</button> -->
+    <div class="vocabulary-list">
+      <table class="vocabu-list-table" width="800" border="1" cellpadding="2px">
+        <tr class="vocabu-table-head">
+          <th class="vocabu-table-title" style="width: 50px ;"></th>
+          <th class="vocabu-table-title" style="width: 50px ;">STT</th>
+          <th class="vocabu-table-title">Vocabulary</th>
+          <th class="vocabu-table-title">Spelling</th>
+          <th class="vocabu-table-title">Defination</th>
+          <th class="vocabu-table-title" style="padding: 5px 10px;width: 80px;">Delete</th>
+        </tr>
+        <tbody>
+          <tr v-for="(row, index) in rows" :key="index" class="vocabu-table-tr">
+            <td><input type="checkbox" class="vocabu-table-content" @change="handleChangethisCheckbox(row)"
+                style="width: 100%;" /></td>
+            <td v-if="!isEditing(index)" class="vocabu-table-content">{{ index + 1 }}</td>
+            <td v-else><input type="text" v-model="editData.column1" @keyup.enter="saveEdit(index)"
+                @blur="saveEdit(index)" class="vocabu-table-content" /></td>
+            <!-- <td v-if="!isEditing(index)" class="vocabu-table-content"> {{ row.new_word }}</td> -->
+            <td><input type="text" v-model="row.new_word" @keyup.enter="saveEdit(index)"
+                @blur="saveEdit(index)" class="vocabu-table-content" /></td>
+            <!-- <td v-if="!isEditing(index)" class="vocabu-table-content">{{ row.defination }}</td> -->
+            <td><input type="text" v-model="row.spelling" @keyup.enter="saveEdit(index)"
+                @blur="saveEdit(index)" class="vocabu-table-content" /></td>
+            <!-- <td v-if="!isEditing(index)" class="vocabu-table-content">{{ row.spelling }}</td> -->
+            <td><input type="text" v-model="row.defination" @keyup.enter="saveEdit(index)"
+                @blur="saveEdit(index)" class="vocabu-table-content" /></td>
+            <td class="vocabu-table-content"><i @click="deleteRow(index)" class="far fa-trash-alt"></i></td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" class="vocabu-table-content" /></td>
+            <td class="vocabu-table-content"></td>
+            <td class="vocabu-table-content"><input type="text" v-model="newRow.new_word" /></td>
+            <td class="vocabu-table-content"><input type="text" v-model="newRow.spelling" /></td>
+            <td class="vocabu-table-content"><input type="text" v-model="newRow.defination" /></td>
+            <td class="vocabu-table-content" colspan="1"><i @click="addRow" class="fas fa-plus"></i></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import router from "../router";
+import { showDetailFlashcard, createFlashcard } from "../api/flashcard";
+
+const queryRouter = router.currentRoute.value.query
 
 const multiflashcardSelection = ref([]);
- 
-const handleChangeToDetail = () => {
-    router.push('/practice/flashcardDetail');
-//     router.push({
-//     name: 'FlashcardDetail',
-//     params: { rowDataIds: rowDataIds }
-// });
-};
-const handleChangeToQues = () => {
-    router.push('/practice/flashcardQuesDetail')
+const flashcardFormDefault = {
+  title: '',
+  description: '',
+  list_flashcard_vocabulary: []
 }
-const handlebacktoList = () => {
-  router.push('/practice');
-}
-
-const rows = ref([
-  { column1: '1', column2: 'Data 2', column3: 'Data 3', column4: 'Data 4', column5: 'Data 5', column6: 'Data 6' }
-]);
+const flashcardForm = ref(flashcardFormDefault)
+const rows = ref([]);
 
 const newRow = ref({
   column1: '',
-  column2: '',
-  column3: '',
-  column4: '',
+  new_word: '',
+  defination: '',
+  spelling: '',
   column5: '',
   column6: ''
 });
 
 const editIndex = ref(null);
+
 const editData = ref({});
+
+const fetchFlashcardDetail = async (id) => {
+  try {
+    const data = await showDetailFlashcard(id)
+    const result = data?.data?.data
+    if(result){
+      flashcardForm.value = result
+      rows.value = result.list_flashcard_vocabulary
+    }
+  } catch (error) {
+
+  }
+}
+
+if(queryRouter?.id){
+  fetchFlashcardDetail(queryRouter.id)
+}
+
+const handleSaveVocabulary = async () => {
+  try {
+    const request = flashcardForm.value;
+    request.list_flashcard_vocabulary = rows.value.map((item) => { return { new_word: item.new_word, spelling: item.spelling, defination: item.defination } })
+    const data = await createFlashcard(request)
+    const result = data?.data?.data
+    if (result != null) {
+      fetchFlashcardDetail(result)
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
+const handleChangeToDetail = () => {
+  router.push('/practice/flashcardDetail');
+  //     router.push({
+  //     name: 'FlashcardDetail',
+  //     params: { rowDataIds: rowDataIds }
+  // });
+};
+const handleChangeToQues = () => {
+  router.push('/practice/flashcardQuesDetail')
+}
+const handlebacktoList = () => {
+  router.push('/practice');
+}
 
 const addRow = () => {
   rows.value.push({ ...newRow.value });
@@ -136,9 +167,9 @@ const deleteRow = (index) => {
 
 const resetForm = () => {
   newRow.value.column1 = '';
-  newRow.value.column2 = '';
-  newRow.value.column3 = '';
-  newRow.value.column4 = '';
+  newRow.value.new_word = '';
+  newRow.value.defination = '';
+  newRow.value.spelling = '';
   newRow.value.column5 = '';
   newRow.value.column6 = '';
 };
@@ -171,41 +202,47 @@ const handleSelectFlashcardItem = () => {
 @import '../style/flashcrad.css';
 @import '../style/teacher.css';
 
-input[type=text][data-v-ccf76d49], input[type=date][data-v-ccf76d49], .textareacss[data-v-ccf76d49], #dailyContent1[data-v-ccf76d49], #dailyContent2[data-v-ccf76d49], #status-filter[data-v-ccf76d49], #announceContent[data-v-ccf76d49] {
-    background-color: rgba(184, 227, 245, 0.3);
-    /* border-radius: 5px; */
-    border: none;
-    height: 28px;
-    /* padding-left: 10px; */
-    /* outline: none; */
-    width: 90%;
+input[type=text][data-v-ccf76d49],
+input[type=date][data-v-ccf76d49],
+.textareacss[data-v-ccf76d49],
+#dailyContent1[data-v-ccf76d49],
+#dailyContent2[data-v-ccf76d49],
+#status-filter[data-v-ccf76d49],
+#announceContent[data-v-ccf76d49] {
+  background-color: rgba(184, 227, 245, 0.3);
+  /* border-radius: 5px; */
+  border: none;
+  height: 28px;
+  /* padding-left: 10px; */
+  /* outline: none; */
+  width: 90%;
 }
 
 .vocabu-list-title {
-    margin: 10px 5px 0 5px;
+  margin: 10px 5px 0 5px;
 }
 
 .new-btn {
-    margin: 0 5px;
+  margin: 0 5px;
 }
 
 .vocabu-list-table {
-    border-collapse: collapse;
+  border-collapse: collapse;
 }
 
 .vocabu-table-title {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .vocabu-table-content {
-    text-align: center;
+  text-align: center;
 }
 
 .vocabu-table-tr:hover {
-    background-color: rgba(147, 214, 243, 0.6);
+  background-color: rgba(147, 214, 243, 0.6);
 }
 
 .vocabu-table-head {
-    background-color: rgba(8, 170, 239);
+  background-color: rgba(8, 170, 239);
 }
 </style>

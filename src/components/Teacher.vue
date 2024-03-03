@@ -4,90 +4,31 @@
       <div class="anouncement">
         <h3 class="announce-title">Anounce</h3>
         <div class="announce-list">
-          <button
-            type="submit"
-            class="new-btn"
-            id="creat-new-announce-btn"
-            style="margin: 10px"
-            @click="handleOnClickbtn()"
-          >
+          <button type="submit" class="new-btn" id="creat-new-announce-btn" style="margin: 10px"
+            @click="handleOnClickbtn()">
             Create
           </button>
-          <button
-            class="new-btn cancel-btn delete-btn"
-            id="delete-announce-btn"
-            style="margin-left: 0"
-            @click="removeAnnounce()"
-          >
+          <button class="new-btn cancel-btn delete-btn" id="delete-announce-btn" style="margin-left: 0"
+            @click="removeAnnounce()">
             Delete
           </button>
-          <div class="announce-item">
+          <div v-for="(item, index) in announceContenlist" :key="index" class="announce-item">
             <div class="themeAndCheck">
-              <input type="checkbox" name="theme-check" class="theme-check" />
-              <h4 class="anounce-theme">New lesson was uploaded.</h4>
+              <input type="checkbox" name="theme-check" class="theme-check" @change="handleChangeCheckbox(item)" />
+              <h4 class="anounce-theme" @click="handleShowAnnounceDetail(item.id)" >{{ item.announce_name }}</h4>
             </div>
-            <p class="anounce-para">
-              I've just uploaded new lesson. Please learn and do your homework.
-              Deadline is this weekend.
-            </p>
-            <p class="update-time">12/30/2023</p>
-          </div>
-          <div class="announce-item">
-            <div class="themeAndCheck">
-              <input type="checkbox" name="theme-check" class="theme-check" />
-              <h4 class="anounce-theme">New lesson was uploaded.</h4>
-            </div>
-            <p class="anounce-para">
-              I've just uploaded new lesson. Please learn and do your homework.
-              Deadline is this weekend.
-            </p>
-            <p class="update-time">12/30/2023</p>
-          </div>
-          <div class="announce-item">
-            <div class="themeAndCheck">
-              <input type="checkbox" name="theme-check" class="theme-check" />
-              <h4 class="anounce-theme">New lesson was uploaded.</h4>
-            </div>
-            <p class="anounce-para">
-              I've just uploaded new lesson. Please learn and do your homework.
-              Deadline is this weekend.
-            </p>
-            <p class="update-time">12/30/2023</p>
-          </div>
-          <div
-            v-for="(item, index) in announceContenlist"
-            :key="index"
-            class="announce-item"
-          >
-            <div class="themeAndCheck">
-              <input
-                type="checkbox"
-                name="theme-check"
-                class="theme-check"
-                @change="handleChangeCheckbox(item)"
-              />
-              <h4 class="anounce-theme">{{ item.title }}</h4>
-            </div>
-            <p class="anounce-para">{{ item.content }}</p>
-            <p class="update-time">{{ item.date }}</p>
+            <p class="anounce-para">{{ item.description }}</p>
+            <p class="update-time">{{ item.create_at ? moment(item.create_at).format('DD-MM-YYYY') : '' }}</p>
           </div>
         </div>
       </div>
       <div class="anouncement">
         <h3 class="announce-title">Study result</h3>
         <div class="announce-list">
-          <button
-            class="new-btn"
-            id="creat-new-result-btn"
-            style="margin: 10px"
-          >
+          <button class="new-btn" id="creat-new-result-btn" style="margin: 10px">
             Create
           </button>
-          <button
-            class="new-btn cancel-btn delete-btn"
-            id="delete-result-btn"
-            style="margin-left: 0"
-          >
+          <button class="new-btn cancel-btn delete-btn" id="delete-result-btn" style="margin-left: 0">
             Delete
           </button>
           <div class="announce-item">
@@ -105,47 +46,33 @@
       <div class="content-input">
         <h3 class="title-content">Create New Grammar Lesson</h3>
         <div class="content-input-header">
-          <button
-            class="new-btn"
-            id="creat-new-lesson-btn"
-            @click="handleOpenPopup()"
-          >
+          <button class="new-btn" id="creat-new-lesson-btn" @click="handleOpenPopup()">
             Create
           </button>
         </div>
 
         <h4 class="lesson-name">JLPT N4: Grammar</h4>
         <div class="list-content-item lesson-content-list">
-          <div
-            v-for="(item, index) in lessonContenlist"
-            :key="index"
-            class="lession-content-overview"
-          >
+          <div v-for="(item, index) in lessonContenlist" :key="index" class="lession-content-overview">
             <img src="../img/15801f0d.jpg" alt="" class="lesson-content-img" />
             <h4 class="lesson-name">{{ item.grammar_name }}</h4>
             <div class="created-date">
               <span class="label">Date: </span>
               <span class="date">{{
                 item.create_at
-                  ? moment(item.create_at).format("DD-MM-YYYY")
-                  : ""
+                ? moment(item.create_at).format("DD-MM-YYYY")
+                : ""
               }}</span>
             </div>
             <p class="overview-para">{{ item.grammar_form }}</p>
             <ul class="show-detail-and-practice">
               <li class="show-detail">
-                <button
-                  class="check-homework-btn"
-                  @click="handleShowDetail(item.id)"
-                >
+                <button class="check-homework-btn" @click="handleShowDetail(item.id)">
                   Show detail
                 </button>
               </li>
               <li class="practice-example">
-                <button
-                  class="check-homework-btn"
-                  @click="handleShowEditGrammar(item.id)"
-                >
+                <button class="check-homework-btn" @click="handleShowEditGrammar(item.id)">
                   Edit
                 </button>
               </li>
@@ -163,73 +90,33 @@
           <h4 class="form-title">New Kanji Lesson</h4>
           <div class="new-form daily-create">
             <div class="input-item">
-              <span class="span-label"
-                ><label for="dailyName">Title</label></span
-              >
-              <input
-                type="text"
-                name="dailyName"
-                id="dailyName"
-                v-model="formKanji.title"
-              />
+              <span class="span-label"><label for="dailyName">Title</label></span>
+              <input type="text" name="dailyName" id="dailyName" v-model="formKanji.title" />
             </div>
             <div class="input-item">
-              <span class="span-label"
-                ><label for="dailyContent">Kanji</label></span
-              >
-              <textarea
-                name="dailyContent1"
-                id="dailyContent1"
-                v-model="formKanji.kanji_name"
-              ></textarea>
+              <span class="span-label"><label for="dailyContent">Kanji</label></span>
+              <textarea name="dailyContent1" id="dailyContent1" v-model="formKanji.kanji_name"></textarea>
             </div>
             <div class="input-item">
-              <span class="span-label"
-                ><label for="dailyContent">Spell 1</label></span
-              >
-              <textarea
-                name="dailyContent2"
-                id="dailyContent2"
-                v-model="formKanji.spell_onyomi"
-              ></textarea>
+              <span class="span-label"><label for="dailyContent">Spell 1</label></span>
+              <textarea name="dailyContent2" id="dailyContent2" v-model="formKanji.spell_onyomi"></textarea>
             </div>
             <div class="input-item">
-              <span class="span-label"
-                ><label for="dailyContent">Spell 2</label></span
-              >
-              <textarea
-                name="dailyContent2"
-                id="dailyContent2"
-                v-model="formKanji.spell_kuyomi"
-              ></textarea>
+              <span class="span-label"><label for="dailyContent">Spell 2</label></span>
+              <textarea name="dailyContent2" id="dailyContent2" v-model="formKanji.spell_kuyomi"></textarea>
             </div>
             <div class="input-item">
-              <span class="span-label"
-                ><label for="dailyContent">Example</label></span
-              >
-              <textarea
-                name="dailyContent2"
-                id="dailyContent2"
-                v-model="formKanji.example"
-              ></textarea>
+              <span class="span-label"><label for="dailyContent">Example</label></span>
+              <textarea name="dailyContent2" id="dailyContent2" v-model="formKanji.example"></textarea>
             </div>
 
             <div class="input-item">
               <span class="span-label"><label for="daily-pic">URL</label></span>
-              <input
-                type="text"
-                name="daily-pic"
-                id="daily-pic"
-                v-model="formKanji.kanji_url"
-              />
+              <input type="text" name="daily-pic" id="daily-pic" v-model="formKanji.kanji_url" />
             </div>
 
             <div class="btn-container">
-              <button
-                class="new-btn submit-btn"
-                id="submit-daily-btn"
-                @click="handleCreateKanji()"
-              >
+              <button class="new-btn submit-btn" id="submit-daily-btn" @click="handleCreateKanji()">
                 Submit
               </button>
               <button class="new-btn cancel-btn" id="cancel-daily-btn">
@@ -239,29 +126,18 @@
           </div>
         </div>
         <div class="list-content-item daily-content-list">
-          <div
-            v-for="(item, index) in kanjiContentList"
-            :key="index"
-            class="daily-content-overview"
-          >
-            <img
-              class="student-daily-img"
-              src="../img/Hinh-Anh-Anime-Chibi-Girl (3).jpg"
-              alt=""
-            />
+          <div v-for="(item, index) in kanjiContentList" :key="index" class="daily-content-overview">
+            <img class="student-daily-img" src="../img/Hinh-Anh-Anime-Chibi-Girl (3).jpg" alt="" />
             <h4 class="daily-name">{{ item.title }}</h4>
             <div class="created-date">
               <span class="label">Date: </span>
               <span class="date">{{ item.create_at
-                  ? moment(item.create_at).format("DD-MM-YYYY")
-                  : "" }}</span>
+                ? moment(item.create_at).format("DD-MM-YYYY")
+                : "" }}</span>
             </div>
             <p class="overview-para">{{ item.kanji_name }}</p>
             <div class="show-detail">
-              <button
-                class="show-detail"
-                @click="handleShowKanjiDetail(item.id)"
-              >
+              <button class="show-detail" @click="handleShowKanjiDetail(item.id)">
                 Show detail
               </button>
             </div>
@@ -271,65 +147,33 @@
     </div>
   </div>
   <!-- Create lession -->
-  <div
-    v-if="isDisplayLessonCreate"
-    :class="['anouncement-create', { isVisible: isDisplayLessonCreate }]"
-  >
+  <div v-if="isDisplayLessonCreate" :class="['anouncement-create', { isVisible: isDisplayLessonCreate }]">
     <div class="new-input lesson">
       <h4 class="form-title" style="font-size: 20px">Lesson</h4>
       <div class="new-form lesson-create">
         <div class="input-item">
           <span class="span-label"><label for="lessonName">Title</label></span>
-          <input
-            type="text"
-            name="lessonName"
-            id="lessonName"
-            v-model="formGramma.grammar_name"
-          />
+          <input type="text" name="lessonName" id="lessonName" v-model="formGramma.grammar_name" />
         </div>
         <div class="input-item">
-          <span class="span-label"
-            ><label for="lessonContent">Form</label></span
-          >
-          <textarea
-            class="textareacss"
-            name="lessonContent"
-            id="lessonContent1"
-            v-model="formGramma.grammar_form"
-          ></textarea>
+          <span class="span-label"><label for="lessonContent">Form</label></span>
+          <textarea class="textareacss" name="lessonContent" id="lessonContent1"
+            v-model="formGramma.grammar_form"></textarea>
         </div>
         <div class="input-item">
-          <span class="span-label"
-            ><label for="lessonContent">Define</label></span
-          >
-          <textarea
-            class="textareacss"
-            name="lessonContent"
-            id="lessonContent2"
-            v-model="formGramma.form_define"
-          ></textarea>
+          <span class="span-label"><label for="lessonContent">Define</label></span>
+          <textarea class="textareacss" name="lessonContent" id="lessonContent2"
+            v-model="formGramma.form_define"></textarea>
         </div>
         <div class="input-item">
-          <span class="span-label"
-            ><label for="lessonContent">Example 1</label></span
-          >
-          <textarea
-            class="textareacss"
-            name="lessonContent"
-            id="lessonContent3"
-            v-model="formGramma.example_1"
-          ></textarea>
+          <span class="span-label"><label for="lessonContent">Example 1</label></span>
+          <textarea class="textareacss" name="lessonContent" id="lessonContent3"
+            v-model="formGramma.example_1"></textarea>
         </div>
         <div class="input-item">
-          <span class="span-label"
-            ><label for="lessonContent">Example 2</label></span
-          >
-          <textarea
-            class="textareacss"
-            name="lessonContent"
-            id="lessonContent4"
-            v-model="formGramma.example_2"
-          ></textarea>
+          <span class="span-label"><label for="lessonContent">Example 2</label></span>
+          <textarea class="textareacss" name="lessonContent" id="lessonContent4"
+            v-model="formGramma.example_2"></textarea>
         </div>
         <!-- <div class="input-item">
           <span class="span-label"><label for="date">Date</label></span>
@@ -337,91 +181,41 @@
         </div> -->
         <div class="input-item">
           <span class="span-label"><label for="homework-url">URL</label></span>
-          <input
-            type="text"
-            name="homework-url"
-            id="homework-url"
-            v-model="formGramma.home_work"
-          />
+          <input type="text" name="homework-url" id="homework-url" v-model="formGramma.home_work" />
         </div>
       </div>
       <div class="btn-container">
-        <button
-          v-if="!formGramma.id"
-          class="new-btn submit-btn"
-          id="submit-lesson-btn"
-          @click="handleCreateGrammar()"
-        >
+        <button v-if="!formGramma.id" class="new-btn submit-btn" id="submit-lesson-btn" @click="handleCreateGrammar()">
           Submit
         </button>
-        <button
-          v-else
-          class="new-btn submit-btn"
-          id="submit-lesson-btn"
-          @click="handleEditGrammar()"
-        >
+        <button v-else class="new-btn submit-btn" id="submit-lesson-btn" @click="handleEditGrammar()">
           Save
         </button>
-        <button
-          class="new-btn cancel-btn"
-          id="cancel-lesson-btn"
-          @click="handleClosePopup()"
-        >
+        <button class="new-btn cancel-btn" id="cancel-lesson-btn" @click="handleClosePopup()">
           Cancel
         </button>
       </div>
     </div>
   </div>
   <!-- Announce create -->
-  <div
-    v-if="isDisplayAnnounceCreate"
-    :class="['anouncement-create', { isVisible: isDisplayAnnounceCreate }]"
-  >
+  <div v-if="isDisplayAnnounceCreate" :class="['anouncement-create', { isVisible: isDisplayAnnounceCreate }]">
     <div class="new-input announce">
       <h4 class="form-title">New announce</h4>
       <div class="new-form announce-create">
         <div class="input-item">
           <span class="span-label"><label for="lessonName">Title</label></span>
-          <input
-            type="text"
-            name="lessonName"
-            id="announceName"
-            v-model="announceName"
-          />
+          <input type="text" name="lessonName" id="announceName" v-model="formAnnounce.announce_name" />
         </div>
         <div class="input-item">
-          <span class="span-label"
-            ><label for="lessonContent">Content</label></span
-          >
-          <textarea
-            name="lessonContent"
-            id="announceContent"
-            v-model="announceContent"
-          ></textarea>
-        </div>
-        <div class="input-item">
-          <span class="span-label"><label for="date">Date</label></span>
-          <input
-            type="date"
-            name="date"
-            id="announcedate"
-            v-model="annouceDate"
-          />
+          <span class="span-label"><label for="lessonContent">Content</label></span>
+          <textarea name="lessonContent" id="announceContent" v-model="formAnnounce.description"></textarea>
         </div>
       </div>
       <div class="btn-container">
-        <button
-          class="new-btn submit-btn"
-          id="submit-createdanounce-btn"
-          @click="appendAnnounceContent()"
-        >
-          Submit
+        <button class="new-btn submit-btn" id="submit-createdanounce-btn" @click="appendAnnounceContent()">
+          {{ formAnnounce.id ? 'Save' : 'Submit' }}
         </button>
-        <button
-          class="new-btn cancel-btn"
-          id="cancel-createdanounce-btn"
-          @click="handleOnClickbtn()"
-        >
+        <button class="new-btn cancel-btn" id="cancel-createdanounce-btn" @click="handleOnClickbtn()">
           Cancel
         </button>
       </div>
@@ -442,26 +236,16 @@ import {
   showDetailGrammar,
 } from "../api/grammar";
 import { listKanji, createKanji } from "../api/kanji";
+import { listAnnounce, showDetailAnnounce, createAnnounce, editAnnounce } from "../api/announce";
 const userStudentJapaneseStore = studentJapaneseStore();
 
 const lessonContenlist = ref([]);
-
-const announceContenlist = ref(
-  userStudentJapaneseStore.announce !== null
-    ? userStudentJapaneseStore.announce
-    : []
-);
+const announceContenlist = ref([]);
 const announceName = ref("");
 const announceContent = ref("");
 const annouceDate = ref("");
-const selected = ref(false);
-
 const kanjiContentList = ref([]);
-const kanjiTitle = ref("");
-const kanjiContent1 = ref("");
-const kanjiContent2 = ref("");
-const kanjiExample = ref("");
-const kanjiDate = ref("");
+
 const formGrammaDefault = {
   id: null,
   grammar_name: "",
@@ -472,7 +256,12 @@ const formGrammaDefault = {
   home_work: "",
 };
 const formGramma = ref(formGrammaDefault);
-
+const formAnnounceDefault = {
+  id: null,
+  announce_name: "",
+  description: "",
+};
+const formAnnounce = ref(formAnnounceDefault);
 const formKanjiDefault = {
   id: null,
   title: "",
@@ -490,17 +279,25 @@ const formKanji = ref(formKanjiDefault);
 const isDisplayAnnounceCreate = ref(false);
 const isDisplayLessonCreate = ref(false);
 
-const pagekanjiList = ref(userStudentJapaneseStore.kanji);
-
 const multiSelection = ref([]);
+const fetchAnnounce = async () => {
+  try {
+    const data = await listAnnounce();
+    if (data?.data?.data) {
+      announceContenlist.value = data.data.data;
+    }
+  } catch (error) {
 
+  }
+}
+fetchAnnounce()
 const fetchGrammar = async () => {
   try {
     const data = await listGrammar();
     if (data?.data?.data) {
       lessonContenlist.value = data.data.data;
     }
-  } catch (error) {}
+  } catch (error) { }
 };
 fetchGrammar();
 const handleCreateGrammar = async () => {
@@ -550,7 +347,7 @@ const handleEditGrammar = async () => {
       isDisplayLessonCreate.value = false;
       formGramma.value = formGrammaDefault;
     }
-  } catch (error) {}
+  } catch (error) { }
 };
 
 // kanji
@@ -561,7 +358,7 @@ const fetchKanji = async () => {
     if (data?.data?.data) {
       kanjiContentList.value = data.data.data;
     }
-  } catch (error) {}
+  } catch (error) { }
 };
 fetchKanji();
 
@@ -570,7 +367,7 @@ const handleCreateKanji = async () => {
     const request = formKanji.value;
     const data = await createKanji(request)
     const result = data?.data?.data
-    if(result){
+    if (result) {
       fetchKanji()
       formKanji.value = formKanjiDefault
     }
@@ -579,37 +376,34 @@ const handleCreateKanji = async () => {
   }
 }
 
-const appendAnnounceContent = () => {
-  const announceData = {};
-  if (
-    announceName.value == "" &&
-    announceContent.value == "" &&
-    annouceDate.value == ""
-  )
-    return;
-  announceData.title = announceName.value;
-  announceData.content = announceContent.value;
-  announceData.date = annouceDate.value;
-  // announceContenlist.value.push(announceData);
+const appendAnnounceContent = async () => {
 
-  const announceObject = {
-    title: announceName.value,
-    content: announceContent.value,
-    date: annouceDate.value,
-  };
+  try {
+    const data = await (formAnnounce.value.id ? editAnnounce(formAnnounce.value) : createAnnounce(formAnnounce.value))
+    const result = data?.data?.data
+    if (result) {
+      handleOnClickbtn()
+      fetchAnnounce()
+    }
+  } catch (error) {
 
-  userStudentJapaneseStore.appendContent(announceObject);
-  console.log(announceObject);
-  announceName.value = "";
-  announceContent.value = "";
-  annouceDate.value = "";
-  isDisplayAnnounceCreate.value = !isDisplayAnnounceCreate.value;
-  announceContenlist.value = announceContenlist.value.map((item, index) => {
-    return { ...item, index };
-  }); // them key 'index' vao object announceData
+  }
   ///'...' dung de giu nguyen gia tri va field cac phan tu khac trong object
   // map dung de them key moi cho object
 };
+
+const handleShowAnnounceDetail = async (id) => {
+  try {
+    const data = await showDetailAnnounce(id)
+    const result = data?.data?.data
+    if (result) {
+      isDisplayAnnounceCreate.value = true
+      formAnnounce.value = result
+    }
+  } catch (error) {
+    
+  }
+} 
 
 const handleOpenPopup = () => {
   isDisplayLessonCreate.value = !isDisplayLessonCreate.value;
@@ -620,9 +414,7 @@ const handleClosePopup = () => {
 };
 
 const handleOnClickbtn = () => {
-  announceName.value = "";
-  announceContent.value = "";
-  annouceDate.value = "";
+  formAnnounce.value = formAnnounceDefault
   isDisplayAnnounceCreate.value = !isDisplayAnnounceCreate.value;
 };
 
@@ -634,7 +426,6 @@ const handleChangeCheckbox = (row) => {
   } else {
     multiSelection.value.push(row.index);
   }
-  console.log(multiSelection.value);
 };
 
 const removeAnnounce = () => {
