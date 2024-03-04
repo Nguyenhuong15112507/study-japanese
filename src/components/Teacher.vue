@@ -100,7 +100,7 @@
                 </select>
                 <input type="text" name="lessonName" id="categoryName" placeholder="Enter category"
                   style="width: 400px;" />
-                <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;">Add</button>
+                <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;" @click="handleAddCategory()">Add</button>
               </div>
               <div class="input-item categories">
                 <h5>Categories</h5>
@@ -189,15 +189,15 @@
       <h4 class="form-title" style="font-size: 20px">Lesson</h4>
       <div class="new-form lesson-create">
         <div class="input-item" style="display: flex; align-items: center;">
-          <select name="category-kbn" id="" class="category-kbn" style="margin-right: 10px;">
+          <select name="category-kbn" id="" class="category-kbn" style="margin-right: 10px;" v-model="categoryForm.category_name">
             <option value="n5">N5</option>
             <option value="n4">N4</option>
             <option value="n3">N3</option>
             <option value="n2">N2</option>
             <option value="n1">N1</option>
           </select>
-          <input type="text" name="lessonName" id="categoryName" placeholder="Enter category" style="width: 400px;" />
-          <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;">Add</button>
+          <input type="text" name="lessonName" id="categoryName" placeholder="Enter category" style="width: 400px;" v-model="categoryForm.japanese_level" />
+          <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;" @click="handleCreateCategory()">Add</button>
         </div>
         <div class="input-item categories">
           <h5>Categories</h5>
@@ -209,11 +209,11 @@
               <th class="categories-list-title" style="width: 150px ;">Category</th>
             </tr>
             <tbody>
-              <tr class="categories-list-tr">
+              <tr v-for="(item, index) in categoryList" :key="index" class="categories-list-tr">
                 <td><input type="checkbox" class="vocabu-table-content" style="width: 100%;" /></td>
-                <td class="categories-list-content">{{ }}</td>
-                <td class="categories-list-content"> {{ }}</td>
-                <td class="categories-list-content"> {{ }}</td>
+                <td class="categories-list-content">{{ index + 1  }}</td>
+                <td class="categories-list-content"> {{ item.category_name}}</td>
+                <td class="categories-list-content"> {{ item.japanese_level }}</td>
               </tr>
             </tbody>
           </table>
@@ -304,13 +304,15 @@ import {
   editGrammar,
   showDetailGrammar,
 } from "../api/grammar";
-import { listKanji, createKanji } from "../api/kanji";
+import { listKanji, createKanji, showDetailkanji } from "../api/kanji";
+import { listCategories, createCategory, editCategory } from "../api/categories";
 import { listAnnounce, showDetailAnnounce, createAnnounce, editAnnounce } from "../api/announce";
 
 const lessonContenlist = ref([]);
 const announceContenlist = ref([]);
 
 const kanjiContentList = ref([]);
+const categoryList = ref([])
 
 const formGrammaDefault = {
   id: null,
@@ -327,6 +329,13 @@ const formAnnounceDefault = {
   announce_name: "",
   description: "",
 };
+const categoryFormDefault = {
+  id: null,
+  category_name: "",
+  kbn: "",
+  japanese_level: "",
+}
+const categoryForm = ref(categoryFormDefault)
 const formAnnounce = ref(formAnnounceDefault);
 const formKanjiDefault = {
   id: null,
@@ -358,6 +367,15 @@ const fetchAnnounce = async () => {
   }
 }
 fetchAnnounce()
+const fetchCategory = async () => {
+  try {
+    const data = await listCategories();
+    categoryList.value = data.data.data;
+  } catch (error) {
+    
+  }
+}
+
 const fetchGrammar = async () => {
   try {
     const data = await listGrammar();
@@ -367,7 +385,23 @@ const fetchGrammar = async () => {
   } catch (error) { }
 };
 fetchGrammar();
+
+const handleCreateCategory = async () => {
+  try {
+    const request = categoryForm.value;
+    const data = await createCategory(request)
+    const result = data?.data?.data
+    if (result) {
+      categoryForm.value = categoryFormDefault
+      handleCloseKanjiPopup()
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 const handleCreateGrammar = async () => {
+
   const lessonRequest = {
     ...formGramma.value,
     description: "",
@@ -474,9 +508,11 @@ const handleShowAnnounceDetail = async (id) => {
 }
 
 const handleOpenPopup = () => {
+  fetchCategory()
   isDisplayLessonCreate.value = !isDisplayLessonCreate.value;
 };
 const handleOpenKanjiPopup = () => {
+  fetchCategory()
   isDisplayKanjiCreate.value = !isDisplayKanjiCreate.value
 }
 const handleCloseKanjiPopup = () => {
