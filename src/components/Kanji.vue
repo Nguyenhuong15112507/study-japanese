@@ -24,13 +24,15 @@
             <h4 class="lesson-name">{{ item.title }}</h4>
             <div class="created-date">
               <span class="label">Date: </span>
-              <span class="date">{{ item.date }}</span>
+              <span class="date">{{ item.create_at
+                      ? moment(item.create_at).format("DD-MM-YYYY")
+                      : "" }}</span>
             </div>
             <div class="status">
-              <span class="label">Status: </span>
-              <span class="homework-status">{{ item.content1 }}</span>
+              <span class="label">Kanji: </span>
+              <span class="homework-status">{{ item.kanji_name }}</span>
             </div>
-            <p class="overview-para">{{ item.content2 }}</p>
+            <!-- <p class="overview-para">{{ item.content2 }}</p> -->
             <div class="show-detail-and-practice">
               <button
                 class="check-homework-btn"
@@ -49,17 +51,19 @@
             <div class="question-group-item">
               <h5 class="question-content">{{ kanjiFormRef.title }}</h5>
               <ul class="answers-list">
-                <li class="answer-item">{{ kanjiFormRef.kanji_url }}</li>
+                <li class="answer-item">{{ kanjiFormRef.kanji_name }}</li>
                 <li class="answer-item">{{ kanjiFormRef.spell_onyomi }}</li>
                 <li class="answer-item">{{ kanjiFormRef.spell_kuyomi }}</li>
                 <li class="answer-item">{{ kanjiFormRef.example }}</li>
-                <li class="answer-item">
+                <li class="answer-item">{{ kanjiFormRef.kanji_url }}</li>
+
+                <!-- <li class="answer-item">
                   {{
                     kanjiFormRef.create_at
                       ? moment(kanjiFormRef.create_at).format("DD-MM-YYYY")
                       : ""
                   }}
-                </li>
+                </li> -->
                 <img src="../img/9-1.png" class="example-img" alt="" />
               </ul>
             </div>

@@ -306,9 +306,34 @@ textarea {
 .show-detail, .practice-example {
     margin-right: 10px;
 }
-
+.daily-component {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 100%;
+    z-index: 7;
+    display: flex;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    visibility: hidden;
+}
 .student-daily {
     width: 100%;
+}
+.daily {
+    width: 90%;
+    position: absolute;
+    top: 10%;
+    background-color: #fff;
+    margin: 10px 0;
+    border: 1px solid rgb(49, 171, 224, 0.6);
+    -webkit-box-shadow: 0 0 5px 0 rgba(171, 213, 231, 0.6);
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .daily-create {

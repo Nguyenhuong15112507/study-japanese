@@ -15,7 +15,7 @@
           <div v-for="(item, index) in announceContenlist" :key="index" class="announce-item">
             <div class="themeAndCheck">
               <input type="checkbox" name="theme-check" class="theme-check" @change="handleChangeCheckbox(item)" />
-              <h4 class="anounce-theme" @click="handleShowAnnounceDetail(item.id)" >{{ item.announce_name }}</h4>
+              <h4 class="anounce-theme" @click="handleShowAnnounceDetail(item.id)">{{ item.announce_name }}</h4>
             </div>
             <p class="anounce-para">{{ item.description }}</p>
             <p class="update-time">{{ item.create_at ? moment(item.create_at).format('DD-MM-YYYY') : '' }}</p>
@@ -82,46 +82,82 @@
       </div>
 
       <!-- create new kanji -->
-
+      <h3 class="title-content">Create New Kanji Lesson</h3>
+      <button class="new-btn" id="creat-new-daily-btn" @click="handleOpenKanjiPopup()">Create</button>
       <div class="student-daily">
-        <h3 class="title-content">Create New Kanji Lesson</h3>
-        <button class="new-btn" id="creat-new-daily-btn">Create</button>
-        <div class="new-input daily">
-          <h4 class="form-title">New Kanji Lesson</h4>
-          <div class="new-form daily-create">
-            <div class="input-item">
-              <span class="span-label"><label for="dailyName">Title</label></span>
-              <input type="text" name="dailyName" id="dailyName" v-model="formKanji.title" />
-            </div>
-            <div class="input-item">
-              <span class="span-label"><label for="dailyContent">Kanji</label></span>
-              <textarea name="dailyContent1" id="dailyContent1" v-model="formKanji.kanji_name"></textarea>
-            </div>
-            <div class="input-item">
-              <span class="span-label"><label for="dailyContent">Spell 1</label></span>
-              <textarea name="dailyContent2" id="dailyContent2" v-model="formKanji.spell_onyomi"></textarea>
-            </div>
-            <div class="input-item">
-              <span class="span-label"><label for="dailyContent">Spell 2</label></span>
-              <textarea name="dailyContent2" id="dailyContent2" v-model="formKanji.spell_kuyomi"></textarea>
-            </div>
-            <div class="input-item">
-              <span class="span-label"><label for="dailyContent">Example</label></span>
-              <textarea name="dailyContent2" id="dailyContent2" v-model="formKanji.example"></textarea>
+        <div v-if="isDisplayKanjiCreate" :class="['daily-component', { isVisible: isDisplayKanjiCreate }]">
+
+          <div class="new-input daily">
+            <h4 class="form-title">New Kanji Lesson</h4>
+            <div class="new-form lesson-create">
+              <div class="input-item" style="display: flex; align-items: center;">
+                <select name="category-kbn" id="" class="category-kbn" style="margin-right: 10px;">
+                  <option value="n5">N5</option>
+                  <option value="n4">N4</option>
+                  <option value="n3">N3</option>
+                  <option value="n2">N2</option>
+                  <option value="n1">N1</option>
+                </select>
+                <input type="text" name="lessonName" id="categoryName" placeholder="Enter category"
+                  style="width: 400px;" />
+                <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;">Add</button>
+              </div>
+              <div class="input-item categories">
+                <h5>Categories</h5>
+                <table class="categories-list" width="700" border="1" cellpadding="2px">
+                  <tr class="categories-list-head">
+                    <th class="categories-list-title" style="width: 30px ;"></th>
+                    <th class="categories-list-title" style="width: 30px ;">STT</th>
+                    <th class="categories-list-title" style="width: 100px ;">Japanese level</th>
+                    <th class="categories-list-title" style="width: 150px ;">Category</th>
+                  </tr>
+                  <tbody>
+                    <tr class="categories-list-tr">
+                      <td><input type="checkbox" class="vocabu-table-content" style="width: 100%;" /></td>
+                      <td class="categories-list-content">{{ }}</td>
+                      <td class="categories-list-content"> {{ }}</td>
+                      <td class="categories-list-content"> {{ }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
 
-            <div class="input-item">
-              <span class="span-label"><label for="daily-pic">URL</label></span>
-              <input type="text" name="daily-pic" id="daily-pic" v-model="formKanji.kanji_url" />
-            </div>
+            <div class="new-form daily-create">
+              <div class="input-item">
+                <span class="span-label"><label for="dailyName">Title</label></span>
+                <input type="text" name="dailyName" id="dailyName" v-model="formKanji.title" />
+              </div>
+              <div class="input-item">
+                <span class="span-label"><label for="dailyContent">Kanji</label></span>
+                <textarea name="dailyContent1" id="dailyContent1" v-model="formKanji.kanji_name"></textarea>
+              </div>
+              <div class="input-item">
+                <span class="span-label"><label for="dailyContent">Spell 1</label></span>
+                <textarea name="dailyContent2" id="dailyContent2" v-model="formKanji.spell_onyomi"></textarea>
+              </div>
+              <div class="input-item">
+                <span class="span-label"><label for="dailyContent">Spell 2</label></span>
+                <textarea name="dailyContent2" id="dailyContent2" v-model="formKanji.spell_kuyomi"></textarea>
+              </div>
+              <div class="input-item">
+                <span class="span-label"><label for="dailyContent">Example</label></span>
+                <textarea name="dailyContent2" id="dailyContent2" v-model="formKanji.example"></textarea>
+              </div>
 
-            <div class="btn-container">
-              <button class="new-btn submit-btn" id="submit-daily-btn" @click="handleCreateKanji()">
-                Submit
-              </button>
-              <button class="new-btn cancel-btn" id="cancel-daily-btn">
-                Cancel
-              </button>
+              <div class="input-item">
+                <span class="span-label"><label for="daily-pic">URL</label></span>
+                <input type="text" name="daily-pic" id="daily-pic" v-model="formKanji.kanji_url" />
+              </div>
+
+              <div class="btn-container">
+                <button class="new-btn submit-btn" id="submit-daily-btn" @click="handleCreateKanji()">
+                  Submit
+                </button>
+                <button class="new-btn cancel-btn" id="cancel-daily-btn" @click="handleCloseKanjiPopup()">
+                  Cancel
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -146,6 +182,7 @@
       </div>
     </div>
   </div>
+
   <!-- Create lession -->
   <div v-if="isDisplayLessonCreate" :class="['anouncement-create', { isVisible: isDisplayLessonCreate }]">
     <div class="new-input lesson">
@@ -159,28 +196,27 @@
             <option value="n2">N2</option>
             <option value="n1">N1</option>
           </select>
-          <input type="text" name="lessonName" id="categoryName" placeholder="Enter category" style="width: 400px;"/>
+          <input type="text" name="lessonName" id="categoryName" placeholder="Enter category" style="width: 400px;" />
           <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;">Add</button>
         </div>
         <div class="input-item categories">
           <h5>Categories</h5>
-          <table class="categories-list" width="800" border="1" cellpadding="2px">
-        <tr class="categories-list-head">
-          <th class="categories-list-title" style="width: 50px ;"></th>
-          <th class="categories-list-title" style="width: 50px ;">STT</th>
-          <th class="categories-list-title">Japanese level</th>
-          <th class="categories-list-title">Category</th>
-        </tr>
-        <tbody>
-          <tr class="categories-list-tr">
-            <td><input type="checkbox" class="vocabu-table-content"
-                style="width: 100%;" /></td>
-            <td class="categories-list-content">{{  }}</td>
-            <td class="categories-list-content"> {{ }}</td>
-            <td class="categories-list-content"> {{ }}</td>
-          </tr>
-        </tbody>
-      </table>
+          <table class="categories-list" width="700" border="1" cellpadding="2px">
+            <tr class="categories-list-head">
+              <th class="categories-list-title" style="width: 30px ;"></th>
+              <th class="categories-list-title" style="width: 30px ;">STT</th>
+              <th class="categories-list-title" style="width: 100px ;">Japanese level</th>
+              <th class="categories-list-title" style="width: 150px ;">Category</th>
+            </tr>
+            <tbody>
+              <tr class="categories-list-tr">
+                <td><input type="checkbox" class="vocabu-table-content" style="width: 100%;" /></td>
+                <td class="categories-list-content">{{ }}</td>
+                <td class="categories-list-content"> {{ }}</td>
+                <td class="categories-list-content"> {{ }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <div class="new-form lesson-create">
@@ -270,13 +306,10 @@ import {
 } from "../api/grammar";
 import { listKanji, createKanji } from "../api/kanji";
 import { listAnnounce, showDetailAnnounce, createAnnounce, editAnnounce } from "../api/announce";
-const userStudentJapaneseStore = studentJapaneseStore();
 
 const lessonContenlist = ref([]);
 const announceContenlist = ref([]);
-const announceName = ref("");
-const announceContent = ref("");
-const annouceDate = ref("");
+
 const kanjiContentList = ref([]);
 
 const formGrammaDefault = {
@@ -311,6 +344,7 @@ const formKanji = ref(formKanjiDefault);
 
 const isDisplayAnnounceCreate = ref(false);
 const isDisplayLessonCreate = ref(false);
+const isDisplayKanjiCreate = ref(false);
 
 const multiSelection = ref([]);
 const fetchAnnounce = async () => {
@@ -403,6 +437,7 @@ const handleCreateKanji = async () => {
     if (result) {
       fetchKanji()
       formKanji.value = formKanjiDefault
+      handleCloseKanjiPopup()
     }
   } catch (error) {
     console.log(error)
@@ -434,12 +469,19 @@ const handleShowAnnounceDetail = async (id) => {
       formAnnounce.value = result
     }
   } catch (error) {
-    
+
   }
-} 
+}
 
 const handleOpenPopup = () => {
   isDisplayLessonCreate.value = !isDisplayLessonCreate.value;
+};
+const handleOpenKanjiPopup = () => {
+  isDisplayKanjiCreate.value = !isDisplayKanjiCreate.value
+}
+const handleCloseKanjiPopup = () => {
+  formKanji.value = formKanjiDefault;
+  isDisplayKanjiCreate.value = false;
 };
 const handleClosePopup = () => {
   formGramma.value = formGrammaDefault;
@@ -493,6 +535,19 @@ const handleShowKanjiDetail = (kanjiid) => {
 
 .ishide {
   display: none;
+}
+
+.categories-list {
+  border-collapse: collapse;
+}
+
+.categories-list-content {
+  text-align: center;
+
+}
+
+.categories-list-head {
+  background-color: rgb(61, 183, 236);
 }
 </style>
 
