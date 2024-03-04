@@ -197,7 +197,10 @@ header {
     max-height: 200px;
     padding-left: 10px;
     padding-bottom: 10px;
-    -webkit-box-shadow: 0 0 5px 0 rgba(171, 213, 231, 0.6);
+    /* -webkit-box-shadow: 0 0 5px 0 rgba(171, 213, 231, 0.6); */
+}
+.add-category-title {
+    margin: 10px auto;
 }
 .form-title {
     margin: 10px 0 5px 0;
@@ -210,6 +213,16 @@ header {
     margin: 5px 0;
     
 }
+.lesson-create, .daily-create {
+    -webkit-box-shadow: 0 0 5px 0 rgba(171, 213, 231, 0.6);
+    padding: 10px;
+}
+.categories-input {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
 input[type=text],input[type=date], .textareacss, #dailyContent1,#dailyContent2, #status-filter, #announceContent,.category-kbn {
     background-color: rgba(184, 227, 245, 0.3);
     border-radius: 5px;
@@ -217,6 +230,7 @@ input[type=text],input[type=date], .textareacss, #dailyContent1,#dailyContent2, 
     height: 30px;
     padding-left: 10px;
     outline: none;
+    width: 98%;
 }
 #status-filter {
     /* background-color: rgb(49, 171, 224, 0.6); */

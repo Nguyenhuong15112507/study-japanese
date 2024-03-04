@@ -90,20 +90,22 @@
           <div class="new-input daily">
             <h4 class="form-title">New Kanji Lesson</h4>
             <div class="new-form lesson-create">
-              <div class="input-item" style="display: flex; align-items: center;">
-                <select name="category-kbn" id="" class="category-kbn" style="margin-right: 10px;">
+              <h5 class="add-category-title">Categories</h5>
+              <div class="input-item categories-input" style="display: flex; align-items: center;">
+                <select name="category-kbn" id="" class="category-kbn" style="margin-right: 10px;width: 50px;"
+                  v-model="categoryForm.category_name">
                   <option value="n5">N5</option>
                   <option value="n4">N4</option>
                   <option value="n3">N3</option>
                   <option value="n2">N2</option>
                   <option value="n1">N1</option>
                 </select>
-                <input type="text" name="lessonName" id="categoryName" placeholder="Enter category"
-                  style="width: 400px;" />
-                <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;" @click="handleAddCategory()">Add</button>
+                <input type="text" name="lessonName" id="categoryName" placeholder="Enter category" style="width: 400px;"
+                  v-model="categoryForm.japanese_level" />
+                <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;"
+                  @click="handleCreateCategory(2)">Add</button>
               </div>
               <div class="input-item categories">
-                <h5>Categories</h5>
                 <table class="categories-list" width="700" border="1" cellpadding="2px">
                   <tr class="categories-list-head">
                     <th class="categories-list-title" style="width: 30px ;"></th>
@@ -112,11 +114,11 @@
                     <th class="categories-list-title" style="width: 150px ;">Category</th>
                   </tr>
                   <tbody>
-                    <tr class="categories-list-tr">
+                    <tr v-for="(item, index) in categoryList" :key="index" class="categories-list-tr">
                       <td><input type="checkbox" class="vocabu-table-content" style="width: 100%;" /></td>
-                      <td class="categories-list-content">{{ }}</td>
-                      <td class="categories-list-content"> {{ }}</td>
-                      <td class="categories-list-content"> {{ }}</td>
+                      <td class="categories-list-content">{{ index + 1 }}</td>
+                      <td class="categories-list-content"> {{ item.category_name }}</td>
+                      <td class="categories-list-content"> {{ item.japanese_level }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -173,7 +175,7 @@
             </div>
             <p class="overview-para">{{ item.kanji_name }}</p>
             <div class="show-detail">
-              <button class="show-detail" @click="handleShowKanjiDetail(item.id)">
+              <button class="check-homework-btn" @click="handleShowKanjiDetail(item.id)">
                 Show detail
               </button>
             </div>
@@ -188,19 +190,22 @@
     <div class="new-input lesson">
       <h4 class="form-title" style="font-size: 20px">Lesson</h4>
       <div class="new-form lesson-create">
-        <div class="input-item" style="display: flex; align-items: center;">
-          <select name="category-kbn" id="" class="category-kbn" style="margin-right: 10px;" v-model="categoryForm.category_name">
+        <h5 class="add-category-title">Categories</h5>
+        <div class="input-item categories-input" style="display: flex; align-items: center;">
+          <select name="category-kbn" id="" class="category-kbn" style="margin-right: 10px;width: 50px;"
+            v-model="categoryForm.category_name">
             <option value="n5">N5</option>
             <option value="n4">N4</option>
             <option value="n3">N3</option>
             <option value="n2">N2</option>
             <option value="n1">N1</option>
           </select>
-          <input type="text" name="lessonName" id="categoryName" placeholder="Enter category" style="width: 400px;" v-model="categoryForm.japanese_level" />
-          <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;" @click="handleCreateCategory(1)">Add</button>
+          <input type="text" name="lessonName" id="categoryName" placeholder="Enter category" style="width: 400px;"
+            v-model="categoryForm.japanese_level" />
+          <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;"
+            @click="handleCreateCategory(1)">Add</button>
         </div>
         <div class="input-item categories">
-          <h5>Categories</h5>
           <table class="categories-list" width="700" border="1" cellpadding="2px">
             <tr class="categories-list-head">
               <th class="categories-list-title" style="width: 30px ;"></th>
@@ -211,8 +216,8 @@
             <tbody>
               <tr v-for="(item, index) in categoryList" :key="index" class="categories-list-tr">
                 <td><input type="checkbox" class="vocabu-table-content" style="width: 100%;" /></td>
-                <td class="categories-list-content">{{ index + 1  }}</td>
-                <td class="categories-list-content"> {{ item.category_name}}</td>
+                <td class="categories-list-content">{{ index + 1 }}</td>
+                <td class="categories-list-content"> {{ item.category_name }}</td>
                 <td class="categories-list-content"> {{ item.japanese_level }}</td>
               </tr>
             </tbody>
@@ -371,7 +376,7 @@ const fetchCategory = async (kbn) => {
     const data = await listCategories(kbn);
     categoryList.value = data.data.data;
   } catch (error) {
-    
+
   }
 }
 
@@ -387,7 +392,7 @@ fetchGrammar();
 
 const handleCreateCategory = async (kbn) => {
   try {
-    const request = {...categoryForm.value, kbn: kbn};
+    const request = { ...categoryForm.value, kbn: kbn };
     const data = await createCategory(request)
     const result = data?.data?.data
     if (result) {
@@ -583,6 +588,5 @@ const handleShowKanjiDetail = (kanjiid) => {
 
 .categories-list-head {
   background-color: rgb(61, 183, 236);
-}
-</style>
+}</style>
 

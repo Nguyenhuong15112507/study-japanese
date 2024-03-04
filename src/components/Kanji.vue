@@ -49,13 +49,12 @@
         >
           <div class="question-group-list">
             <div class="question-group-item">
-              <h5 class="question-content">{{ kanjiFormRef.title }}</h5>
+              <h5 class="question-content">{{ kanjiFormRef.kanji_name }}</h5>
               <ul class="answers-list">
-                <li class="answer-item">{{ kanjiFormRef.kanji_name }}</li>
-                <li class="answer-item">{{ kanjiFormRef.spell_onyomi }}</li>
-                <li class="answer-item">{{ kanjiFormRef.spell_kuyomi }}</li>
-                <li class="answer-item">{{ kanjiFormRef.example }}</li>
-                <li class="answer-item">{{ kanjiFormRef.kanji_url }}</li>
+                <li class="answer-item"><div class="content-name">１。音読み：</div><div class="content-value">{{ kanjiFormRef.spell_onyomi }}</div></li>
+                <li class="answer-item"><div class="content-name">2。訓読み：</div><div class="content-value">{{ kanjiFormRef.spell_kuyomi }}</div></li>
+                <li class="answer-item"><div class="content-name">３。例：</div><div class="content-value">{{ kanjiFormRef.example }}</div></li>
+                <li class="answer-item"><div class="content-name">４。参考：</div><div class="content-value">{{ kanjiFormRef.kanji_url }}</div></li>
 
                 <!-- <li class="answer-item">
                   {{
@@ -217,5 +216,19 @@ const handleChangeLearnContent = (id) => {
 }
 .ishide {
   display: none;
+}
+.question-content {
+  margin: 10px auto;
+  font-size: 18px;
+  text-align: center;
+}
+.content-name {
+  margin: auto 10px;
+  width: 100px;
+  font-weight: 600;
+}
+.content-value {
+  margin-left: 30px;
+  margin-bottom: 10px;
 }
 </style>
