@@ -151,6 +151,39 @@
     <div class="new-input lesson">
       <h4 class="form-title" style="font-size: 20px">Lesson</h4>
       <div class="new-form lesson-create">
+        <div class="input-item" style="display: flex; align-items: center;">
+          <select name="category-kbn" id="" class="category-kbn" style="margin-right: 10px;">
+            <option value="n5">N5</option>
+            <option value="n4">N4</option>
+            <option value="n3">N3</option>
+            <option value="n2">N2</option>
+            <option value="n1">N1</option>
+          </select>
+          <input type="text" name="lessonName" id="categoryName" placeholder="Enter category" style="width: 400px;"/>
+          <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;">Add</button>
+        </div>
+        <div class="input-item categories">
+          <h5>Categories</h5>
+          <table class="categories-list" width="800" border="1" cellpadding="2px">
+        <tr class="categories-list-head">
+          <th class="categories-list-title" style="width: 50px ;"></th>
+          <th class="categories-list-title" style="width: 50px ;">STT</th>
+          <th class="categories-list-title">Japanese level</th>
+          <th class="categories-list-title">Category</th>
+        </tr>
+        <tbody>
+          <tr class="categories-list-tr">
+            <td><input type="checkbox" class="vocabu-table-content"
+                style="width: 100%;" /></td>
+            <td class="categories-list-content">{{  }}</td>
+            <td class="categories-list-content"> {{ }}</td>
+            <td class="categories-list-content"> {{ }}</td>
+          </tr>
+        </tbody>
+      </table>
+        </div>
+      </div>
+      <div class="new-form lesson-create">
         <div class="input-item">
           <span class="span-label"><label for="lessonName">Title</label></span>
           <input type="text" name="lessonName" id="lessonName" v-model="formGramma.grammar_name" />
