@@ -197,7 +197,7 @@
             <option value="n1">N1</option>
           </select>
           <input type="text" name="lessonName" id="categoryName" placeholder="Enter category" style="width: 400px;" v-model="categoryForm.japanese_level" />
-          <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;" @click="handleCreateCategory()">Add</button>
+          <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;" @click="handleCreateCategory(1)">Add</button>
         </div>
         <div class="input-item categories">
           <h5>Categories</h5>
@@ -332,7 +332,6 @@ const formAnnounceDefault = {
 const categoryFormDefault = {
   id: null,
   category_name: "",
-  kbn: "",
   japanese_level: "",
 }
 const categoryForm = ref(categoryFormDefault)
@@ -367,9 +366,9 @@ const fetchAnnounce = async () => {
   }
 }
 fetchAnnounce()
-const fetchCategory = async () => {
+const fetchCategory = async (kbn) => {
   try {
-    const data = await listCategories();
+    const data = await listCategories(kbn);
     categoryList.value = data.data.data;
   } catch (error) {
     
@@ -386,14 +385,14 @@ const fetchGrammar = async () => {
 };
 fetchGrammar();
 
-const handleCreateCategory = async () => {
+const handleCreateCategory = async (kbn) => {
   try {
-    const request = categoryForm.value;
+    const request = {...categoryForm.value, kbn: kbn};
     const data = await createCategory(request)
     const result = data?.data?.data
     if (result) {
       categoryForm.value = categoryFormDefault
-      handleCloseKanjiPopup()
+      fetchCategory(kbn)
     }
   } catch (error) {
     console.log(error)
@@ -508,11 +507,11 @@ const handleShowAnnounceDetail = async (id) => {
 }
 
 const handleOpenPopup = () => {
-  fetchCategory()
+  fetchCategory(1)
   isDisplayLessonCreate.value = !isDisplayLessonCreate.value;
 };
 const handleOpenKanjiPopup = () => {
-  fetchCategory()
+  fetchCategory(2)
   isDisplayKanjiCreate.value = !isDisplayKanjiCreate.value
 }
 const handleCloseKanjiPopup = () => {
