@@ -222,6 +222,10 @@ header {
     align-items: center;
     margin-left: 10px;
     margin-bottom: 10px;
+   max-height: 100px;
+    overflow-y: scroll;
+    scrollbar-color: rebeccapurple green;
+    scrollbar-width: thin;
 }
 input[type=text],input[type=date], .textareacss, #dailyContent1,#dailyContent2, #status-filter, #announceContent,.category-kbn {
     background-color: rgba(184, 227, 245, 0.3);

@@ -1,9 +1,21 @@
 import request from "../axios";
-const baseUrl = "/api/teacher";
-export function listCategories(kbn) {
+const baseUrl = "/api/category";
+export function listCategories() {
   return request({
-    url: baseUrl + "/" + kbn,
+    url: baseUrl + "/",
     method: "get",
+  });
+}
+export function listCategoriesByType(type) {
+  return request({
+    url: baseUrl + "/type/" + type,
+    method: "get",
+  });
+}
+export function getDetailCategory(id) {
+  return request({
+    url: baseUrl + "/" + id,
+    method: "get"
   });
 }
 export function createCategory(data) {
@@ -13,10 +25,11 @@ export function createCategory(data) {
     data,
   });
 }
-export function editCategory(data) {
+export function editCategory(id) {
   return request({
-    url: baseUrl,
+    url: baseUrl + "/" + id,
     method: "put",
     data,
   });
 }
+

@@ -89,7 +89,7 @@
 
           <div class="new-input daily">
             <h4 class="form-title">New Kanji Lesson</h4>
-            <div class="new-form lesson-create">
+            <div class="new-form lesson-create" >
               <h5 class="add-category-title">Categories</h5>
               <div class="input-item categories-input" style="display: flex; align-items: center;">
                 <select name="category-kbn" id="" class="category-kbn" style="margin-right: 10px;width: 50px;"
@@ -100,8 +100,8 @@
                   <option value="n2">N2</option>
                   <option value="n1">N1</option>
                 </select>
-                <input type="text" name="lessonName" id="categoryName" placeholder="Enter category" style="width: 400px;"
-                  v-model="categoryForm.japanese_level" />
+                <input :class="[{ 'validateInput': isEdit }]" type="text" name="lessonName" id="categoryName"
+                  placeholder="Enter category" style="width: 400px;" v-model="categoryForm.japanese_level" />
                 <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;"
                   @click="handleCreateCategory(2)">Add</button>
               </div>
@@ -310,7 +310,7 @@ import {
   showDetailGrammar,
 } from "../api/grammar";
 import { listKanji, createKanji, showDetailkanji } from "../api/kanji";
-import { listCategories, createCategory, editCategory } from "../api/categories";
+import { listCategoriesByType, createCategory, editCategory } from "../api/categories";
 import { listAnnounce, showDetailAnnounce, createAnnounce, editAnnounce } from "../api/announce";
 
 const lessonContenlist = ref([]);
@@ -358,6 +358,7 @@ const formKanji = ref(formKanjiDefault);
 const isDisplayAnnounceCreate = ref(false);
 const isDisplayLessonCreate = ref(false);
 const isDisplayKanjiCreate = ref(false);
+const isExit = ref(false)
 
 const multiSelection = ref([]);
 const fetchAnnounce = async () => {
@@ -371,9 +372,9 @@ const fetchAnnounce = async () => {
   }
 }
 fetchAnnounce()
-const fetchCategory = async (kbn) => {
+const fetchCategory = async (type) => {
   try {
-    const data = await listCategories(kbn);
+    const data = await listCategoriesByType(type);
     categoryList.value = data.data.data;
   } catch (error) {
 
@@ -390,14 +391,19 @@ const fetchGrammar = async () => {
 };
 fetchGrammar();
 
-const handleCreateCategory = async (kbn) => {
+const handleCreateCategory = async (type) => {
   try {
-    const request = { ...categoryForm.value, kbn: kbn };
+    if(categoryForm.category_name.value) {
+      isExit.value = true
+      return
+    }
+    const request = { ...categoryForm.value, type: type };
     const data = await createCategory(request)
     const result = data?.data?.data
+
     if (result) {
+      fetchCategory(type)
       categoryForm.value = categoryFormDefault
-      fetchCategory(kbn)
     }
   } catch (error) {
     console.log(error)
@@ -527,7 +533,9 @@ const handleClosePopup = () => {
   formGramma.value = formGrammaDefault;
   isDisplayLessonCreate.value = false;
 };
+const handleValidateCategoryName = () => {
 
+}
 const handleOnClickbtn = () => {
   formAnnounce.value = formAnnounceDefault
   isDisplayAnnounceCreate.value = !isDisplayAnnounceCreate.value;
@@ -588,5 +596,11 @@ const handleShowKanjiDetail = (kanjiid) => {
 
 .categories-list-head {
   background-color: rgb(61, 183, 236);
-}</style>
+}
+
+.validateInput {
+  color: red;
+  border: 1px solid red;
+}
+</style>
 
