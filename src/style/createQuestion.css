@@ -1,0 +1,131 @@
+.menu-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(197 237 255);
+    position: fixed;
+    width: 100%;
+    top: 150px;
+    left: 0;
+    right: 0;
+    padding: 10px;
+}
+.current-selection {
+    margin: 10px;
+}
+.current-question-title {
+    display: block;
+    text-align: center;
+}
+/* For the dropdown content */
+.dropdown {
+  position: absolute;
+  background-color: rgb(197 237 255);
+  border: 1px solid #dfdfdf;
+  border-radius: 4px;
+  top: 100%;
+  left: 107px;
+  z-index: 1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+
+}
+.dropdown::after {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 8px solid #943c3c; /* Adjust arrow color here */
+    position: absolute;
+    top: -4px; /* Position arrow at top of dropdown */
+    left: 50%;
+    transform: translateX(-50%);
+}
+/* For the dropdown list */
+.dropdown-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.dropdown-active {
+    display: block;
+}
+
+/* For the dropdown items */
+.dropdown-item {
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Hover effect for dropdown items */
+.dropdown-item:hover {
+  background-color: #f7f9fa;
+}
+
+/* For the icons in the dropdown items */
+.fas {
+  font-size: 12px;
+  margin-right: 5px;
+  color: #9daec2;
+}
+
+/* To show the dropdown content */
+.practice:hover .dropdown {
+  display: block;
+}
+
+
+.question-wrap {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    -webkit-box-shadow: 0 0 5px 0 rgba(171, 213, 231, 0.6);
+}
+.lession-content-overview[data-v-b352a98d], .daily-content-overview[data-v-b352a98d] {
+    
+    border: 1px solid rgb(49, 171, 224, 0.6);
+    padding: 10px;
+    border-radius: 5px;
+    width: 500px;
+    margin-bottom: 10px;
+    margin-right: 15px;
+    height: 480px;
+}
+.student-daily-img {
+    width: 50%;
+}
+.img-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.created-date {
+    display: flex;
+    justify-content: space-between;
+   
+}
+.select-option {
+    font-weight: 400;
+    font-size: 1rem;
+    -webkit-letter-spacing: normal;
+    -moz-letter-spacing: normal;
+    -ms-letter-spacing: normal;
+    letter-spacing: normal;
+    line-height: 1.5;
+    border-radius: 0.5rem;
+    border: 1px solid rgb(49, 171, 224, 0.6);
+    color: #000;
+    cursor: pointer;
+    display: flex;
+    padding: 10px;
+    margin: 10px 5px;
+    position: relative;
+    width: 100%;
+    word-break: break-word;
+    display: grid;
+    grid-template-columns: auto 1fr;
+}

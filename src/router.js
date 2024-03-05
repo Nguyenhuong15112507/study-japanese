@@ -75,6 +75,18 @@ const router = createRouter({
                 }
               ],
         },
+        ,
+        {
+            path: '/createQuestion',
+            component: () => import('./AppLayout.vue'),
+            children: [
+                {
+                  path: '',
+                  name: 'createQuestion',
+                  component: () => import('./components/CreateQuestion.vue')
+                }
+              ],
+        },
         
         {
             path: '/grammar',
