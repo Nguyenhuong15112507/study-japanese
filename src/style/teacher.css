@@ -197,6 +197,8 @@ header {
     max-height: 200px;
     padding-left: 10px;
     padding-bottom: 10px;
+    max-height: 200px;
+    overflow: scroll;
     /* -webkit-box-shadow: 0 0 5px 0 rgba(171, 213, 231, 0.6); */
 }
 .add-category-title {
@@ -426,9 +428,11 @@ delete-btn[disabled]{
 } */
 .lesson {
     width: 90%;
-   
+    background-color: #fff;
+    max-height: 800px;
+    overflow: scroll;
     position: absolute;
-    top: 10%;
+    top: 5%;
     background-color: #fff;
 }
 

@@ -193,7 +193,10 @@
     <div class="new-input lesson">
       <h4 class="form-title" style="font-size: 20px">Lesson</h4>
       <div class="new-form lesson-create">
+        <div class="header-contain">
         <h5 class="add-category-title">Categories</h5>
+        <errorMessage></errorMessage>
+      </div>
         <div class="input-item categories-input" style="display: flex; align-items: center;">
           <select name="category-kbn" id="" class="category-kbn" style="margin-right: 10px;width: 50px;"
                   v-model="categoryForm.japanese_level">
@@ -307,6 +310,7 @@ import {ref, reactive} from "vue"; // dung de import
 import router from "../router";
 import moment from "moment";
 import {studentJapaneseStore} from "../store";
+import { errorMessage} from "../components/errormessage/ErrorMessage.vue"
 import {
   listGrammar,
   createGrammar,
