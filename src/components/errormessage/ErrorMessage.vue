@@ -41,30 +41,37 @@
      text-align: center;
 }
  #container {
-     position: relative;
+     position: absolute;
      margin: auto;
      overflow: hidden;
      width: 700px;
      height: 250px;
+     top: 11px;
+    left: 0%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
  h1 {
-     font-size: 0.9em;
-     font-weight: 100;
-     letter-spacing: 3px;
-     padding-top: 5px;
-     color: #fcfcfc;
-     padding-bottom: 5px;
-     text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 100;
+    letter-spacing: 3px;
+    padding-top: 5px;
+    color: #fcfcfc;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+    margin: 1px;
 }
  .green {
      color: #4ec07d;
 }
  .red {
      color: #e96075;
+     font-size: 8px;
 }
  .alert {
-     font-weight: 700;
-     letter-spacing: 5px;
+    font-weight: 600;
+    letter-spacing: 3px;
 }
  p {
      margin-top: -5px;
@@ -89,8 +96,7 @@
  #error-box {
      position: absolute;
      width: 35%;
-     height: 100%;
-     right: 12%;
+     height: 90%;
      background: linear-gradient(to bottom left, #ef8d9c 40%, #ffc39e 100%);
      border-radius: 20px;
      box-shadow: 5px 5px 20px rgba(203, 205, 211, 10);
@@ -112,33 +118,33 @@
      opacity: 0.5;
 }
  .face {
-     position: absolute;
-     width: 22%;
-     height: 22%;
-     background: #fcfcfc;
-     border-radius: 50%;
-     border: 1px solid #777;
-     top: 21%;
+    position: absolute;
+    width: 12%;
+    height: 12%;
+    background: #fcfcfc;
+    border-radius: 50%;
+    border: 1px solid #777;
+    top: 9%;
      left: 37.5%;
      z-index: 2;
      animation: bounce 1s ease-in infinite;
 }
  .face2 {
-     position: absolute;
-     width: 22%;
-     height: 22%;
-     background: #fcfcfc;
-     border-radius: 50%;
-     border: 1px solid #777;
-     top: 21%;
+    position: absolute;
+    width: 9%;
+    height: 12%;
+    background: #fcfcfc;
+    border-radius: 50%;
+    border: 1px solid #777;
+    top: 4%;
      left: 37.5%;
      z-index: 2;
      animation: roll 3s ease-in-out infinite;
 }
  .eye {
      position: absolute;
-     width: 5px;
-     height: 5px;
+     width: 3px;
+     height: 3px;
      background: #777;
      border-radius: 50%;
      top: 40%;
@@ -150,9 +156,9 @@
  .mouth {
      position: absolute;
      top: 43%;
-     left: 41%;
-     width: 7px;
-     height: 7px;
+     left: 38%;
+     width: 4px;
+    height: 4px;
      border-radius: 50%;
 }
  .happy {
@@ -168,12 +174,12 @@
 }
  .shadow {
      position: absolute;
-     width: 21%;
+     width: 15%;
      height: 3%;
      opacity: 0.5;
      background: #777;
      left: 40%;
-     top: 43%;
+     top: 20%;
      border-radius: 50%;
      z-index: 1;
 }
@@ -187,21 +193,21 @@
      position: absolute;
      width: 100%;
      text-align: center;
-     height: 40%;
-     top: 47%;
+     height: 35%;
+     top: 20%;
 }
  .button-box {
-     position: absolute;
-     background: #fcfcfc;
-     width: 50%;
-     height: 15%;
-     border-radius: 20px;
-     top: 73%;
-     left: 25%;
-     outline: 0;
-     border: none;
-     box-shadow: 2px 2px 10px rgba(119, 119, 119, .5);
-     transition: all 0.5s ease-in-out;
+    position: absolute;
+    background: #fcfcfc;
+    width: 31%;
+    height: 10%;
+    border-radius: 20px;
+    top: 39%;
+    left: 34%;
+    outline: 0;
+    border: none;
+    box-shadow: 2px 2px 10px rgba(119, 119, 119, .5);
+    transition: all 0.5s ease-in-out;
 }
  .button-box:hover {
      background: #efefef;
@@ -242,27 +248,6 @@
      100% {
          left: 25%;
     }
-}
- footer {
-     position: absolute;
-     bottom: 0;
-     right: 0;
-     text-align: center;
-     font-size: 1em;
-     text-transform: uppercase;
-     padding: 10px;
-     font-family: 'Lato', sans-serif;
-}
- footer p {
-     color: #ef8d9c;
-     letter-spacing: 2px;
-}
- footer a {
-     color: #b0db7d;
-     text-decoration: none;
-}
- footer a:hover {
-     color: #ffc39e;
 }
 
 </style>
