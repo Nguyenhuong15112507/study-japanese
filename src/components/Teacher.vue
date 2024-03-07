@@ -195,7 +195,7 @@
       <div class="new-form lesson-create">
         <div class="header-contain">
         <h5 class="add-category-title">Categories</h5>
-        <errorMessage></errorMessage>
+        <ErrorMessage></ErrorMessage>
       </div>
         <div class="input-item categories-input" style="display: flex; align-items: center;">
           <select name="category-kbn" id="" class="category-kbn" style="margin-right: 10px;width: 50px;"
@@ -310,7 +310,7 @@ import {ref, reactive} from "vue"; // dung de import
 import router from "../router";
 import moment from "moment";
 import {studentJapaneseStore} from "../store";
-import { errorMessage} from "../components/errormessage/ErrorMessage.vue"
+import  ErrorMessage from "../components/errormessage/ErrorMessage.vue"
 import {
   listGrammar,
   createGrammar,
@@ -612,7 +612,7 @@ const handleShowKanjiDetail = (kanjiid) => {
 };
 
 const handleChangeCheckboxCategory = (val, item) => {
-  const checked = val.target.checked
+  const checked = val.target.checked //syntax lay value cua checkbox
   if(checked && multiSelectionCategory.value.length === 0){
     multiSelectionCategory.value.push(item)
     return

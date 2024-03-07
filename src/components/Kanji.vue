@@ -49,12 +49,12 @@
         >
           <div class="question-group-list">
             <div class="question-group-item">
-              <h5 class="question-content">{{ kanjiFormRef.kanji_name }}</h5>
+              <h5 class="question-content" style="font-size: 16px;color: rgba(26, 26, 226, 0.897);">{{ kanjiFormRef.kanji_name }}</h5>
               <ul class="answers-list">
-                <li class="answer-item"><div class="content-name">１。音読み：</div><div class="content-value">{{ kanjiFormRef.spell_onyomi }}</div></li>
-                <li class="answer-item"><div class="content-name">2。訓読み：</div><div class="content-value">{{ kanjiFormRef.spell_kuyomi }}</div></li>
-                <li class="answer-item"><div class="content-name">３。例：</div><div class="content-value">{{ kanjiFormRef.example }}</div></li>
-                <li class="answer-item"><div class="content-name">４。参考：</div><div class="content-value">{{ kanjiFormRef.kanji_url }}</div></li>
+                <li class="answer-item"><div class="content-name">音読み：</div><div class="content-value">{{ kanjiFormRef.spell_onyomi }}</div></li>
+                <li class="answer-item"><div class="content-name">訓読み：</div><div class="content-value">{{ kanjiFormRef.spell_kuyomi }}</div></li>
+                <li class="answer-item"><div class="content-name">例：</div><div class="content-value">{{ kanjiFormRef.example }}</div></li>
+                <li class="answer-item"><div class="content-name">参考：</div><div class="content-value">{{ kanjiFormRef.kanji_url }}</div></li>
 
                 <!-- <li class="answer-item">
                   {{
@@ -225,7 +225,7 @@ const handleChangeLearnContent = (id) => {
 .content-name {
   margin: auto 10px;
   width: 100px;
-  font-weight: 600;
+  color: blue;
 }
 .content-value {
   margin-left: 30px;

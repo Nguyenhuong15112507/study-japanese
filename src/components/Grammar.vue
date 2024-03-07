@@ -41,11 +41,11 @@
                     </div>
                     <div class="question-group-list">
                         <div class="question-group-item">
-                            <h5 class="question-content">1. {{ grammarRef.grammar_form }}</h5>
+                            <h5 class="question-content" style="color: rgba(43, 43, 239, 0.868); font-size: 16px;">1. {{ grammarRef.grammar_form }}</h5>
                             <ul class="answers-list">
-                                <li class="answer-item"> 1. {{ grammarRef.form_define }}</li>
-                                <li class="answer-item"> 2. {{ grammarRef.example_1 }}</li>
-                                <li class="answer-item"> 3. {{ grammarRef.example_2 }}</li>
+                                <li class="answer-item"> <div class="form-define">Define:</div><div>{{ grammarRef.form_define }}</div></li>
+                                <li class="answer-item"> <div class="form-define">Example 1:</div> {{ grammarRef.example_1 }}</li>
+                                <li class="answer-item"> <div class="form-define">Example 2:</div> {{ grammarRef.example_2 }}</li>
                                 <img src="../img/9-1.png" class="example-img" alt="">
                             </ul>
 
@@ -231,5 +231,10 @@ const handleBack = () => {
     left: 45%;
     bottom: -230px;
     font-size: 20px;
+}
+
+.form-define {
+    color: blue;
+
 }
 </style>

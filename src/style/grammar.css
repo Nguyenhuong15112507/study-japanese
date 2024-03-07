@@ -172,6 +172,7 @@ footer {
 }
 .answer-item {
     align-items: center;
+    margin-bottom: 9px 
 }
 .question-content-container {
     margin: 10px 5px 10px 10px;
