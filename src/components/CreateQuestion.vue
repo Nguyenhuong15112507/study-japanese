@@ -1,28 +1,28 @@
 <template>
     <div class="pop-container"
         style="top: 170px; position: relative; display: flex; flex-wrap: wrap; justify-content: center;">
-        <form action="" class="create-question">
+        <div class="create-question">
             <div class="new-form lesson-create">
 
                 <div class="input-item categories-input" style="display: flex; align-items: center;">
                 </div>
                 <div class="input-item categories-input" style="display: flex; align-items: center;">
                     <div class="label-input">Category</div>
-                    <input type="text" name="lessonName" placeholder="Choose category" :disabled="isDisabled"
+                    <input type="text"  placeholder="Choose category" :disabled="isDisabled"
                         style="width: 300px; background-color: rgb(235 234 234);" />
                     <button class="choose-btn" @click="handleOpenPopup()">Choose</button>
                 </div>
                 <div class="input-item categories-input" style="display: flex; align-items: center;">
                     <div class="label-input" style="">Time</div>
-                    <input type="time" name="lessonName" placeholder="Choose category"
+                    <input type="time"  placeholder="Choose category"
                         style="width: 100px; background-color: #fff; border: 1px solid rgba(156, 209, 232, 0.6); border-radius: 5px; height: 30px; margin-right: 5px;" />
                     <span>~</span>
-                    <input type="time" name="lessonName" placeholder="Choose category"
+                    <input type="time"  placeholder="Choose category"
                         style="width: 100px; background-color: #fff; border: 1px solid rgba(156, 209, 232, 0.6); border-radius: 5px;height: 30px; margin-left:  5px;" />
                 </div>
                 <div class="input-item categories-input" style="display: flex; align-items: center;">
                     <div class="label-input">Description</div>
-                    <textarea type="text" name="lessonName" class="textareacss" placeholder="Enter description"
+                    <textarea type="text"  class="textareacss" placeholder="Enter description"
                         style="width: 400px;background-color: #fff"></textarea>
                 </div>
 
@@ -31,12 +31,12 @@
                 <div class="daily-content-overview" style=" margin-top: 20px;">
                     <div class="question-input categories-input" style="display: flex; align-items: center;">
                         <div class="label-input">Question</div>
-                        <input type="text" name="lessonName" id="categoryName" placeholder="Enter question"
+                        <input type="text"  id="categoryName" placeholder="Enter question"
                             style="width: 400px;" />
                     </div>
                     <div class="question-input categories-input" style="display: flex; align-items: center;">
                         <div class="label-input">Type</div>
-                        <select name="category-kbn" id="" class="category-kbn"
+                        <select id="" class="category-kbn"
                             style="margin-right: 10px;width: 200px;background-color: rgba(184, 227, 245, 0.3);border: 1px solid rgba(156, 209, 232, 0.6); border-radius: 2px;">
                             <option value="n5">Tự luận</option>
                             <option value="n4">Trắc nghiệm</option>
@@ -46,7 +46,7 @@
                         <label for="file-upload" class="custom-file-upload">
                             <i class="fas fa-image"></i>
                         </label>
-                        <input type="file" name="image" id="file-upload">
+                        <input type="file" id="file-upload">
                     </div>
 
                     <div class="vocabulary-list">
@@ -81,12 +81,12 @@
             <button id="add-question" class="add-question-btn">
                 +
             </button>
-        </form>
+        </div>
         <div v-if="isDisplayCategory" class="new-categories-container-wrap">
             <div class="new-categories-container lesson-create">
                 <h5 class="add-category-title">Categories</h5>
                 <div class="input-item categories-input" style="display: flex; align-items: center;">
-                    <select name="category-kbn" id="" class="category-kbn" style="margin-right: 10px;width: 100px;"
+                    <select  id="" class="category-kbn" style="margin-right: 10px;width: 100px;"
                         v-model="categoryForm.japanese_level">
                         <option value="">Select level</option>
                         <option value="n5">N5</option>
@@ -95,7 +95,7 @@
                         <option value="n2">N2</option>
                         <option value="n1">N1</option>
                     </select>
-                    <input :class="[{ 'validateInput': isExit }]" type="text" name="lessonName" id="categoryName"
+                    <input :class="[{ 'validateInput': isExit }]" type="text" id="categoryName"
                         placeholder="Enter category" style="width: 400px;" v-model="categoryForm.category_name" />
                     <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;"
                         @click="handleCreateCategory(3)">Add
@@ -124,7 +124,7 @@
                         @click="">Save
                     </button>
                     <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center; background-color: #ddd;"
-                        @click="">Cancel
+                        @click="handleCloseChoseCategories">Cancel
                     </button>
                 </div>
             </div>
@@ -211,7 +211,7 @@ const handleChangeCheckboxCategory = (val, item) => {
 
 const handleOpenPopup = () => {
   fetchCategory(3)
-  isDisplayCategory.value = !isDisplayCategory.value;
+  isDisplayCategory.value = true;
 };
 
 const addRow = () => {
@@ -226,6 +226,11 @@ const deleteRow = (index) => {
 const handleChangethisCheckbox = (row) => {
     row.answer = !row.answer;
 };
+
+const handleCloseChoseCategories = () => {
+  isDisplayCategory.value = false
+  Object.assign(categoryForm.value, categoryFormDefault);
+}
 
 </script>
 <style scoped>
@@ -269,11 +274,12 @@ input:disabled {
 
 .categories {
     border-radius: 2px;
-    min-height: 200px;
+    min-height: 260px;
     padding-left: 10px;
+    padding-right: 10px;
     padding-bottom: 10px;
     max-height: 680px;
-    overflow: scroll;
+    overflow: auto;
     /* -webkit-box-shadow: 0 0 5px 0 rgba(171, 213, 231, 0.6); */
 }
 
@@ -287,7 +293,7 @@ input:disabled {
     margin-left: 10px;
     margin-bottom: 10px;
     max-height: 100px;
-    overflow-y: scroll;
+    overflow-y: auto;
 
 }
 </style>

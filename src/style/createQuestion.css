@@ -247,7 +247,7 @@ input[type="file"] {
   padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
-  z-index: 10;
+  z-index: 5;
 }
 
 .add-question-btn:hover {
