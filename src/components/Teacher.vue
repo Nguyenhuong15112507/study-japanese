@@ -195,7 +195,7 @@
       <div class="new-form lesson-create">
         <div class="header-contain">
         <h5 class="add-category-title">Categories</h5>
-        <ErrorMessage></ErrorMessage>
+        <ErrorMessage v-if="isVisibleErr"></ErrorMessage>
       </div>
         <div class="input-item categories-input" style="display: flex; align-items: center;">
           <select name="category-kbn" id="" class="category-kbn" style="margin-right: 10px;width: 50px;"
@@ -367,6 +367,7 @@ const isDisplayAnnounceCreate = ref(false);
 const isDisplayLessonCreate = ref(false);
 const isDisplayKanjiCreate = ref(false);
 const isExit = ref(false)
+const isVisibleErr = ref(false)
 
 const multiSelection = ref([]);
 const multiSelectionCategory = ref([]);
@@ -407,7 +408,7 @@ const handleCreateCategory = async (type) => {
 
     // check empty
     if (!categoryForm.value.category_name || !categoryForm.value.japanese_level) {
-      alert('empty')
+      isVisibleErr.value=true
       isExit.value = true
       return
     }
@@ -416,7 +417,7 @@ const handleCreateCategory = async (type) => {
     if (categoryList.value.filter((item => item.category_name.trim() ===
         categoryForm.value.category_name.trim())).length > 0) {
       isExit.value = true
-      alert("exist")
+      isVisibleErr.value=true
       return
     }
 
@@ -435,12 +436,12 @@ const handleCreateCategory = async (type) => {
 const handleCreateGrammar = async () => {
 
   if(multiSelectionCategory.value.length === 0){
-    alert("Vui long chon category")
+    isVisibleErr.value= true
     return
   }
 
   if(multiSelectionCategory.value.length > 1){
-    alert("Vui long chi chon 1 category")
+    isVisibleErr.value= true
     return
   }
 

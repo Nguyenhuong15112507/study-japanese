@@ -1,5 +1,5 @@
 <template>
-<div id="container">
+<div v-if="!isDisable" @click="handleCloseErrorPopup()" id="container">
   <!-- <div id="success-box">
     <div class="dot"></div>
     <div class="dot two"></div>
@@ -12,7 +12,7 @@
     <div class="message"><h1 class="alert">Success!</h1><p>yay, everything is working.</p></div>
     <button class="button-box"><h1 class="green">continue</h1></button>
   </div> -->
-  <div id="error-box">
+  <div  id="error-box">
     <div class="dot"></div>
     <div class="dot two"></div>
     <div class="face2">
@@ -22,11 +22,22 @@
     </div>
     <div class="shadow move"></div>
     <div class="message"><h1 class="alert">Error!</h1><p>You need to choose a category</p></div>
-    <button class="button-box"><h1 class="red">Try again</h1></button>
+    <button class="button-box"><h1 class="red" @click="handleCloseErrorPopup()">Try again</h1></button>
   </div>
 </div>
 
 </template>
+<script setup>
+import {ref, reactive} from "vue"; 
+const isDisable = ref(false)
+
+const handleCloseErrorPopup = () => {
+    isDisable.value = true
+}
+
+</script>
+
+
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
  html {
@@ -41,16 +52,18 @@
      text-align: center;
 }
  #container {
-     position: absolute;
-     margin: auto;
-     overflow: hidden;
-     width: 700px;
-     height: 250px;
-     top: 11px;
-    left: 0%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
     width: 100%;
+    z-index: 20;
     display: flex;
     justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    /* visibility: hidden; */
 }
  h1 {
     font-size: 12px;
@@ -74,11 +87,11 @@
     letter-spacing: 3px;
 }
  p {
-     margin-top: -5px;
-     font-size: 0.5em;
-     font-weight: 100;
-     color: #5e5e5e;
-     letter-spacing: 1px;
+    margin-top: -5px;
+    font-size: 10px;
+    font-weight: 100;
+    color: #5e5e5e;
+    letter-spacing: 1px;
 }
  button, .dot {
      cursor: pointer;
@@ -96,10 +109,11 @@
  #error-box {
      position: absolute;
      width: 35%;
-     height: 90%;
+     top: 80px;
+     height: 129px;
      background: linear-gradient(to bottom left, #ef8d9c 40%, #ffc39e 100%);
      border-radius: 20px;
-     box-shadow: 5px 5px 20px rgba(203, 205, 211, 10);
+     /* box-shadow: 5px 5px 20px rgba(203, 205, 211, 10); */
 }
  .dot {
      width: 8px;
@@ -131,15 +145,15 @@
 }
  .face2 {
     position: absolute;
-    width: 9%;
-    height: 12%;
+    width: 30px;
+    height: 30px;
     background: #fcfcfc;
     border-radius: 50%;
     border: 1px solid #777;
-    top: 4%;
-     left: 37.5%;
-     z-index: 2;
-     animation: roll 3s ease-in-out infinite;
+    top: 10px;
+    left: 60px;
+    z-index: 2;
+    animation: roll-b32f0dad 3s ease-in-out infinite;
 }
  .eye {
      position: absolute;
@@ -179,7 +193,7 @@
      opacity: 0.5;
      background: #777;
      left: 40%;
-     top: 20%;
+     top: 50px;
      border-radius: 50%;
      z-index: 1;
 }
@@ -190,19 +204,19 @@
      animation: move 3s ease-in-out infinite;
 }
  .message {
-     position: absolute;
-     width: 100%;
-     text-align: center;
-     height: 35%;
-     top: 20%;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    height: 80px;
+    top: 46px;
 }
  .button-box {
     position: absolute;
     background: #fcfcfc;
     width: 31%;
-    height: 10%;
+    height: 24px;
     border-radius: 20px;
-    top: 39%;
+    top: 91px;
     left: 34%;
     outline: 0;
     border: none;
