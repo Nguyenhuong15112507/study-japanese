@@ -194,9 +194,9 @@
       <h4 class="form-title" style="font-size: 20px">Lesson</h4>
       <div class="new-form lesson-create">
         <div class="header-contain">
-        <h5 class="add-category-title">Categories</h5>
-        <ErrorMessage v-if="isVisibleErr"></ErrorMessage>
-      </div>
+          <h5 class="add-category-title">Categories</h5>
+          <ErrorMessage :message="messageError" :is-visible="isVisibleErr" @close="handleCloseError" />
+        </div>
         <div class="input-item categories-input" style="display: flex; align-items: center;">
           <select name="category-kbn" id="" class="category-kbn" style="margin-right: 10px;width: 50px;"
                   v-model="categoryForm.japanese_level">
@@ -222,7 +222,8 @@
             </tr>
             <tbody>
             <tr v-for="(item, index) in categoryList" :key="index" class="categories-list-tr">
-              <td><input type="checkbox" @change="(val) => handleChangeCheckboxCategory(val, item)" class="vocabu-table-content" style="width: 100%;"/></td>
+              <td><input type="checkbox" @change="(val) => handleChangeCheckboxCategory(val, item)"
+                         class="vocabu-table-content" style="width: 100%;"/></td>
               <td class="categories-list-content">{{ index + 1 }}</td>
               <td class="categories-list-content"> {{ item.japanese_level }}</td>
               <td class="categories-list-content"> {{ item.category_name }}</td>
@@ -310,7 +311,7 @@ import {ref, reactive} from "vue"; // dung de import
 import router from "../router";
 import moment from "moment";
 import {studentJapaneseStore} from "../store";
-import  ErrorMessage from "../components/errormessage/ErrorMessage.vue"
+import ErrorMessage from "../components/errormessage/ErrorMessage.vue"
 import {
   listGrammar,
   createGrammar,
@@ -371,6 +372,7 @@ const isVisibleErr = ref(false)
 
 const multiSelection = ref([]);
 const multiSelectionCategory = ref([]);
+const messageError = ref("")
 const fetchAnnounce = async () => {
   try {
     const data = await listAnnounce();
@@ -404,12 +406,15 @@ fetchGrammar();
 
 const handleCreateCategory = async (type) => {
   isExit.value = false
+  isVisibleErr.value = false
+  messageError.value = ""
   try {
 
     // check empty
     if (!categoryForm.value.category_name || !categoryForm.value.japanese_level) {
-      isVisibleErr.value=true
+      isVisibleErr.value = true
       isExit.value = true
+      messageError.value = "Vui chon categories hoac level"
       return
     }
 
@@ -417,7 +422,8 @@ const handleCreateCategory = async (type) => {
     if (categoryList.value.filter((item => item.category_name.trim() ===
         categoryForm.value.category_name.trim())).length > 0) {
       isExit.value = true
-      isVisibleErr.value=true
+      isVisibleErr.value = true
+      messageError.value = "Categories exist!"
       return
     }
 
@@ -434,14 +440,17 @@ const handleCreateCategory = async (type) => {
 }
 
 const handleCreateGrammar = async () => {
-
-  if(multiSelectionCategory.value.length === 0){
-    isVisibleErr.value= true
+  isVisibleErr.value = false
+  messageError.value = ""
+  if (multiSelectionCategory.value.length === 0) {
+    isVisibleErr.value = true
+    messageError.value = "Vui long chon categories"
     return
   }
 
-  if(multiSelectionCategory.value.length > 1){
-    isVisibleErr.value= true
+  if (multiSelectionCategory.value.length > 1) {
+    isVisibleErr.value = true
+    messageError.value = "Vui long chi chon 1 categories"
     return
   }
 
@@ -614,21 +623,26 @@ const handleShowKanjiDetail = (kanjiid) => {
 
 const handleChangeCheckboxCategory = (val, item) => {
   const checked = val.target.checked //syntax lay value cua checkbox
-  if(checked && multiSelectionCategory.value.length === 0){
+  if (checked && multiSelectionCategory.value.length === 0) {
     multiSelectionCategory.value.push(item)
     return
   }
 
   const categoryExist = multiSelectionCategory.value.filter((itemC) => itemC.id === item.id)
-  if(checked && categoryExist.length === 0){
+  if (checked && categoryExist.length === 0) {
     multiSelectionCategory.value.push(item)
     return;
   }
 
-  if(!checked && categoryExist.length > 0){
+  if (!checked && categoryExist.length > 0) {
     multiSelectionCategory.value = multiSelectionCategory.value.filter((itemC) => itemC.id !== item.id)
   }
 
+}
+
+const handleCloseError = () => {
+  messageError.value = ""
+  isVisibleErr.value = false
 }
 </script>
 

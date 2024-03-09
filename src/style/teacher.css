@@ -199,7 +199,7 @@ header {
     padding-left: 10px;
     padding-bottom: 10px;
     max-height: 200px;
-    overflow: scroll;
+    overflow: auto;
     /* -webkit-box-shadow: 0 0 5px 0 rgba(171, 213, 231, 0.6); */
 }
 .add-category-title {
@@ -226,7 +226,7 @@ header {
     margin-left: 10px;
     margin-bottom: 10px;
    max-height: 100px;
-    overflow-y: scroll;
+    overflow-y: auto;
 
 }
 input[type=text],input[type=date], .textareacss, #dailyContent1,#dailyContent2, #status-filter, #announceContent,.category-kbn {
@@ -431,7 +431,7 @@ delete-btn[disabled]{
     width: 90%;
     background-color: #fff;
     max-height: 800px;
-    overflow: scroll;
+    overflow: auto;
     position: absolute;
     top: 5%;
     background-color: #fff;
