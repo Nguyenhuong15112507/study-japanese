@@ -10,7 +10,7 @@
                     <div class="label-input">Category</div>
                     <input type="text" name="lessonName" placeholder="Choose category" :disabled="isDisabled"
                         style="width: 300px; background-color: rgb(235 234 234);" />
-                    <button class="choose-btn">Choose</button>
+                    <button class="choose-btn" @click="handleOpenPopup()">Choose</button>
                 </div>
                 <div class="input-item categories-input" style="display: flex; align-items: center;">
                     <div class="label-input" style="">Time</div>
@@ -82,14 +82,137 @@
                 +
             </button>
         </form>
+        <div v-if="isDisplayCategory" class="new-categories-container-wrap">
+            <div class="new-categories-container lesson-create">
+                <h5 class="add-category-title">Categories</h5>
+                <div class="input-item categories-input" style="display: flex; align-items: center;">
+                    <select name="category-kbn" id="" class="category-kbn" style="margin-right: 10px;width: 100px;"
+                        v-model="categoryForm.japanese_level">
+                        <option value="">Select level</option>
+                        <option value="n5">N5</option>
+                        <option value="n4">N4</option>
+                        <option value="n3">N3</option>
+                        <option value="n2">N2</option>
+                        <option value="n1">N1</option>
+                    </select>
+                    <input :class="[{ 'validateInput': isExit }]" type="text" name="lessonName" id="categoryName"
+                        placeholder="Enter category" style="width: 400px;" v-model="categoryForm.category_name" />
+                    <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;"
+                        @click="handleCreateCategory(3)">Add
+                    </button>
+                </div>
+                <div class="input-item categories">
+                    <table class="categories-list" width="700" border="1" cellpadding="2px">
+                        <tr class="categories-list-head">
+                            <th class="categories-list-title" style="width: 20px ;"></th>
+                            <th class="categories-list-title" style="width: 20px ;">STT</th>
+                            <th class="categories-list-title" style="width: 50px ;">Japanese level</th>
+                            <th class="categories-list-title" style="width: 150px ;">Category</th>
+                        </tr>
+                        <tbody>
+                            <tr v-for="(item, index) in categoryList" :key="index" class="categories-list-tr">
+                                <td><input type="checkbox" class="vocabu-table-content" style="width: 100%;" /></td>
+                                <td class="categories-list-content">{{ index + 1 }}</td>
+                                <td class="categories-list-content"> {{ item.japanese_level }}</td>
+                                <td class="categories-list-content"> {{ item.category_name }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="input-item categories-input" style="display: flex; align-items: center; justify-content: center;">
+                    <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;"
+                        @click="">Save
+                    </button>
+                    <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center; background-color: #ddd;"
+                        @click="">Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script setup>
 import { ref } from 'vue';
-let isDisabled = ref(true);
-let rows = ref([
+import { listCategoriesByType, createCategory, editCategory } from "../api/categories";
+
+const categoryList = ref([])
+const isExit = ref(false)
+const isDisabled = ref(true);
+const isDisplayCategory = ref(false)
+const rows = ref([
     { index: 1, option: '', answer: false }
 ]);
+const categoryFormDefault = {
+    id: null,
+    category_name: "",
+    japanese_level: "",
+}
+const categoryForm = ref({ ...categoryFormDefault })
+const multiSelectionCategory = ref([]);
+
+const fetchCategory = async (type) => {
+    try {
+        const data = await listCategoriesByType(type);
+        categoryList.value = data.data.data;
+    } catch (error) {
+
+    }
+}
+
+const handleCreateCategory = async (type) => {
+    isExit.value = false
+    try {
+
+        // check empty
+        if (!categoryForm.value.category_name || !categoryForm.value.japanese_level) {
+            alert('empty')
+            isExit.value = true
+            return
+        }
+
+        // check exist category name
+        if (categoryList.value.filter((item => item.category_name.trim() ===
+            categoryForm.value.category_name.trim())).length > 0) {
+            isExit.value = true
+            alert("exist")
+            return
+        }
+
+        const request = { ...categoryForm.value, type: type };
+        const data = await createCategory(request)
+        const result = data?.data?.data
+        if (result) {
+            await fetchCategory(type)
+            Object.assign(categoryForm.value, categoryFormDefault);
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const handleChangeCheckboxCategory = (val, item) => {
+    const checked = val.target.checked //syntax lay value cua checkbox
+    if (checked && multiSelectionCategory.value.length === 0) {
+        multiSelectionCategory.value.push(item)
+        return
+    }
+
+    const categoryExist = multiSelectionCategory.value.filter((itemC) => itemC.id === item.id)
+    if (checked && categoryExist.length === 0) {
+        multiSelectionCategory.value.push(item)
+        return;
+    }
+
+    if (!checked && categoryExist.length > 0) {
+        multiSelectionCategory.value = multiSelectionCategory.value.filter((itemC) => itemC.id !== item.id)
+    }
+
+}
+
+const handleOpenPopup = () => {
+  fetchCategory(3)
+  isDisplayCategory.value = !isDisplayCategory.value;
+};
 
 const addRow = () => {
     let newIndex = rows.value.length + 1;
@@ -125,8 +248,46 @@ input[type=date],
     outline: none;
     width: 98%;
 }
+
 input:disabled {
     background-color: rgb(169, 163, 163);
     cursor: pointer;
+}
+
+.categories-list {
+    border-collapse: collapse;
+}
+
+.categories-list-content {
+    text-align: center;
+
+}
+
+.categories-list-head {
+    background-color: rgb(61, 183, 236);
+}
+
+.categories {
+    border-radius: 2px;
+    min-height: 200px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    max-height: 680px;
+    overflow: scroll;
+    /* -webkit-box-shadow: 0 0 5px 0 rgba(171, 213, 231, 0.6); */
+}
+
+.add-category-title {
+    margin: 10px auto;
+}
+
+.categories-input {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    max-height: 100px;
+    overflow-y: scroll;
+
 }
 </style>

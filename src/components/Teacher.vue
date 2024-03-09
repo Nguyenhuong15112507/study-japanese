@@ -100,7 +100,7 @@
                   <option value="n2">N2</option>
                   <option value="n1">N1</option>
                 </select>
-                <input :class="[{ 'validateInput': isEdit }]" type="text" name="lessonName" id="categoryName"
+                <input :class="[{ 'validateInput': isExit }]" type="text" name="lessonName" id="categoryName"
                        placeholder="Enter category" style="width: 400px;" v-model="categoryForm.category_name"/>
                 <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;"
                         @click="handleCreateCategory(2)">Add
