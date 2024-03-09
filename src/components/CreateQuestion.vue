@@ -9,7 +9,7 @@
                 <div class="input-item categories-input" style="display: flex; align-items: center;">
                     <div class="label-input">Category</div>
                     <input type="text"  placeholder="Choose category" :disabled="isDisabled"
-                        style="width: 300px; background-color: rgb(235 234 234);" v-model="categoryForm.category_name" />
+                        style="width: 300px; background-color: rgb(235 234 234);" v-model="selectedCategory.category_name" />
                     <button class="choose-btn" @click="handleOpenPopup()">Choose</button>
                 </div>
                 <div class="input-item categories-input" style="display: flex; align-items: center;">
@@ -121,7 +121,7 @@
                 </div>
                 <div class="input-item categories-input" style="display: flex; align-items: center; justify-content: center;">
                     <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;"
-                        @click="">Save
+                        @click="handleSelectedCategories">Save
                     </button>
                     <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center; background-color: #ddd;"
                         @click="handleCloseChoseCategories">Cancel
@@ -135,19 +135,21 @@
 import { ref } from 'vue';
 import { listCategoriesByType, createCategory, editCategory } from "../api/categories";
 
+const categoryFormDefault = {
+  id: null,
+  category_name: "",
+  japanese_level: "",
+}
+
 const categoryList = ref([])
 const isExit = ref(false)
 const isDisabled = ref(true);
 const isDisplayCategory = ref(false)
-const selectedCategory = ref([])
+const selectedCategory = ref({...categoryFormDefault})
 const rows = ref([
     { index: 1, option: '', answer: false }
 ]);
-const categoryFormDefault = {
-    id: null,
-    category_name: "",
-    japanese_level: "",
-}
+
 const categoryForm = ref({ ...categoryFormDefault })
 const multiSelectionCategory = ref([]);
 
@@ -233,6 +235,23 @@ const handleChangethisCheckbox = (row) => {
 const handleCloseChoseCategories = () => {
   isDisplayCategory.value = false
   Object.assign(categoryForm.value, categoryFormDefault);
+}
+
+const handleSelectedCategories = () => {
+  if(multiSelectionCategory.value.length === 0){
+    alert("Vui long chon categories!")
+    return
+  }
+
+  if(multiSelectionCategory.value.length > 1) {
+    alert("Vui long chi chon 1 categories!")
+    return;
+  }
+
+  selectedCategory.value = multiSelectionCategory.value[0]
+  isDisplayCategory.value = false
+  Object.assign(categoryForm.value, categoryFormDefault);
+
 }
 
 </script>
