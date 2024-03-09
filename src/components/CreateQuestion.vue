@@ -9,7 +9,7 @@
                 <div class="input-item categories-input" style="display: flex; align-items: center;">
                     <div class="label-input">Category</div>
                     <input type="text"  placeholder="Choose category" :disabled="isDisabled"
-                        style="width: 300px; background-color: rgb(235 234 234);" />
+                        style="width: 300px; background-color: rgb(235 234 234);" v-model="categoryForm.category_name" />
                     <button class="choose-btn" @click="handleOpenPopup()">Choose</button>
                 </div>
                 <div class="input-item categories-input" style="display: flex; align-items: center;">
@@ -111,7 +111,7 @@
                         </tr>
                         <tbody>
                             <tr v-for="(item, index) in categoryList" :key="index" class="categories-list-tr">
-                                <td><input type="checkbox" class="vocabu-table-content" style="width: 100%;" /></td>
+                                <td><input type="checkbox" @change="(val) => handleChangeCheckboxCategory(val, item)" class="vocabu-table-content" style="width: 100%;" /></td>
                                 <td class="categories-list-content">{{ index + 1 }}</td>
                                 <td class="categories-list-content"> {{ item.japanese_level }}</td>
                                 <td class="categories-list-content"> {{ item.category_name }}</td>
@@ -139,6 +139,7 @@ const categoryList = ref([])
 const isExit = ref(false)
 const isDisabled = ref(true);
 const isDisplayCategory = ref(false)
+const selectedCategory = ref([])
 const rows = ref([
     { index: 1, option: '', answer: false }
 ]);
@@ -218,7 +219,9 @@ const addRow = () => {
     let newIndex = rows.value.length + 1;
     rows.value.push({ index: newIndex, option: '', answer: false });
 };
+const handleSeclectCategory = () => {
 
+}
 const deleteRow = (index) => {
     rows.value.splice(index, 1);
 };
