@@ -107,63 +107,14 @@
         Submit
       </button>
     </div>
-    <div v-if="isDisplayCategory" class="new-categories-container-wrap">
-      <div class="new-categories-container lesson-create">
-        <h5 class="add-category-title">Categories</h5>
-        <div class="input-item categories-input" style="display: flex; align-items: center;">
-          <select id="" class="category-kbn" style="margin-right: 10px;width: 100px;"
-                  v-model="categoryForm.japanese_level">
-            <option value="">Select level</option>
-            <option value="n5">N5</option>
-            <option value="n4">N4</option>
-            <option value="n3">N3</option>
-            <option value="n2">N2</option>
-            <option value="n1">N1</option>
-          </select>
-          <input :class="[{ 'validateInput': isExit }]" type="text" id="categoryName" placeholder="Enter category"
-                 style="width: 400px;" v-model="categoryForm.category_name"/>
-          <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;"
-                  @click="handleCreateCategory(3)">Add
-          </button>
-        </div>
-        <div class="input-item categories">
-          <table class="categories-list" width="700" border="1" cellpadding="2px">
-            <tr class="categories-list-head">
-              <th class="categories-list-title" style="width: 20px ;"></th>
-              <th class="categories-list-title" style="width: 20px ;">STT</th>
-              <th class="categories-list-title" style="width: 50px ;">Japanese level</th>
-              <th class="categories-list-title" style="width: 150px ;">Category</th>
-            </tr>
-            <tbody>
-            <tr v-for="(item, index) in categoryList" :key="index" class="categories-list-tr">
-              <td><input type="checkbox" @change="(val) => handleChangeCheckboxCategory(val, item)"
-                         class="vocabu-table-content" style="width: 100%;"/></td>
-              <td class="categories-list-content">{{ index + 1 }}</td>
-              <td class="categories-list-content"> {{ item.japanese_level }}</td>
-              <td class="categories-list-content"> {{ item.category_name }}</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="input-item categories-input"
-             style="display: flex; align-items: center; justify-content: center;">
-          <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;"
-                  @click="handleSelectedCategories">Save
-          </button>
-          <button class="new-btn"
-                  style="padding: 0 10px; margin-left: 10px; align-items: center; background-color: #ddd;"
-                  @click="handleCloseChoseCategories">Cancel
-          </button>
-        </div>
-      </div>
-    </div>
   </div>
+  <create-categories-popup :is-visible="isDisplayCategory" :type="3" @close="handleCloseChoseCategories" @submit="handleSelectedCategories" />
   <ErrorMessage :message="messageError" :is-visible="isVisibleErr" @close="handleCloseError"/>
 </template>
 <script setup>
 import {ref} from 'vue';
-import {listCategoriesByType, createCategory, editCategory} from "../api/categories";
 import {createMultipleChoice} from "../api/multipleChoice.js"
+import CreateCategoriesPopup from "./popup/CreateCategoriesPopup.vue";
 
 const categoryFormDefault = {
   id: null,
@@ -195,99 +146,23 @@ const questionDefault = {
   list_quiz_item: []
 }
 
-const quizDefault = {
-  sort: 0,
-  quiz_content: "",
-  correct_answer: 0,
-  description: ""
-}
-
-const categoryList = ref([])
 const isExit = ref(false)
 const isDisabled = ref(true);
 const isDisplayCategory = ref(false)
 const messageError = ref('')
 const isVisibleErr = ref(false)
 const selectedCategory = ref({...categoryFormDefault})
-const rows = ref([]);
-const isNotEssay = ref(true)
 
 const categoryForm = ref({...categoryFormDefault})
-const multiSelectionCategory = ref([]);
 const multipleChoiceForm = ref({...multipleChoiceDefault})
 const questionForm = ref({...questionDefault})
-const quizForm = ref({...quizDefault})
 const listQuestion = ref([])
 
-
-const fetchCategory = async (type) => {
-  try {
-    const data = await listCategoriesByType(type);
-    categoryList.value = data.data.data;
-  } catch (error) {
-
-  }
-}
-
-const handleCreateCategory = async (type) => {
-  isExit.value = false
-  messageError.value = ""
-  isVisibleErr.value = false
-  try {
-
-    // check empty
-    if (!categoryForm.value.category_name || !categoryForm.value.japanese_level) {
-      messageError.value = "Please choose a category!"
-      isVisibleErr.value = true
-      isExit.value = true
-      return
-    }
-
-    // check exist category name
-    if (categoryList.value.filter((item => item.category_name.trim() ===
-        categoryForm.value.category_name.trim())).length > 0) {
-      isExit.value = true
-      messageError.value = "The category is existing!"
-      isVisibleErr.value = true
-      return
-    }
-
-    const request = {...categoryForm.value, type: type};
-    const data = await createCategory(request)
-    const result = data?.data?.data
-    if (result) {
-      await fetchCategory(type)
-      Object.assign(categoryForm.value, categoryFormDefault);
-    }
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-const handleChangeCheckboxCategory = (val, item) => {
-  const checked = val.target.checked //syntax lay value cua checkbox
-  if (checked && multiSelectionCategory.value.length === 0) {
-    multiSelectionCategory.value.push(item)
-    return
-  }
-
-  const categoryExist = multiSelectionCategory.value.filter((itemC) => itemC.id === item.id)
-  if (checked && categoryExist.length === 0) {
-    multiSelectionCategory.value.push(item)
-    return;
-  }
-
-  if (!checked && categoryExist.length > 0) {
-    multiSelectionCategory.value = multiSelectionCategory.value.filter((itemC) => itemC.id !== item.id)
-  }
-
-}
 const handleCloseError = () => {
   messageError.value = ""
   isVisibleErr.value = false
 }
 const handleOpenPopup = () => {
-  fetchCategory(3)
   isDisplayCategory.value = true;
 };
 
@@ -295,15 +170,9 @@ const addRow = (list_quiz_item = []) => {
   let newIndex = list_quiz_item.length + 1;
   list_quiz_item.push({sort: newIndex, quiz_content: '', correct_answer: false});
 };
-const handleSeclectCategory = () => {
 
-}
 const deleteRow = (list_quiz_item = [], index) => {
   list_quiz_item.splice(index, 1);
-};
-
-const handleChangethisCheckbox = (row) => {
-  row.answer = !row.answer;
 };
 
 const handleCloseChoseCategories = () => {
@@ -311,27 +180,12 @@ const handleCloseChoseCategories = () => {
   Object.assign(categoryForm.value, categoryFormDefault);
 }
 
-const handleSelectedCategories = () => {
-  messageError.value = ""
-  isVisibleErr.value = false
-  if (multiSelectionCategory.value.length === 0) {
-    messageError.value = "Please choose a category!"
-    isVisibleErr.value = true
-    return
-  }
-
-  if (multiSelectionCategory.value.length > 1) {
-    messageError.value = "The category is existing!"
-    isVisibleErr.value = true
-    return;
-  }
-
-  selectedCategory.value = multiSelectionCategory.value[0]
-  multipleChoiceForm.value.category_id = multiSelectionCategory.value[0].category_id;
-  multipleChoiceForm.value.category_name = multiSelectionCategory.value[0].category_name;
+const handleSelectedCategories = (data) => {
+  selectedCategory.value = data
+  multipleChoiceForm.value.category_id = data.category_id;
+  multipleChoiceForm.value.category_name = data.category_name;
   isDisplayCategory.value = false
   Object.assign(categoryForm.value, categoryFormDefault);
-  multiSelectionCategory.value = []
 
 }
 

@@ -1,5 +1,7 @@
 import axios from 'axios'
-import { getAcToken } from "./localStorage";//khi login se luu token nay vao local storage
+import { getAcToken } from "./localStorage";
+import router from "./router.js";
+//khi login se luu token nay vao local storage
 let lang = 'ja'
 // Next we make an 'instance' of it
 const instance = axios.create({
@@ -34,6 +36,9 @@ instance.interceptors.request.use(
       return response
     },
     async (error) => {
+        if(error?.response?.status === 401){
+            router.push("/login")
+        }
       return Promise.reject(error)
     }
   )
