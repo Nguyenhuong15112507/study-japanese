@@ -34,19 +34,19 @@
             <div v-if="listQuestion.length === 0">
                 Please click on button add question
             </div>
-            <div v-for="(item, index) in listQuestion" class="question-wrap">
+            <div v-for="(item, index) in listQuestion" class="question-wrap" :key="index">
                 <div class="daily-content-overview" style=" margin-top: 20px;">
+
                     <div class="question-input categories-input" style="display: flex; align-items: center;">
                         <div class="label-input">Question</div>
                         <input type="text" id="categoryName" placeholder="Enter question" style="width: 400px;" />
                     </div>
                     <div class="question-input categories-input" style="display: flex; align-items: center;">
                         <div class="label-input">Type</div>
-                        <select id="" class="category-kbn" v-model="item.type_quiz"
+                        <select class="category-kbn" v-model="item.type_quiz"
                             style="margin-right: 10px;width: 200px;background-color: rgba(184, 227, 245, 0.3);border: 1px solid rgba(156, 209, 232, 0.6); border-radius: 2px;">
                             <option value="0">Trắc nghiệm</option>
                             <option value="1">Tự luận</option>
-
                         </select>
                     </div>
                     <div class="img-container">
@@ -174,7 +174,7 @@ const questionDefault = {
     extension: "",
     content_type: "",
     file_size: 0,
-    type_quiz: 0,
+    type_quiz: "0",
     question: "",
     essay: "",
     description: "",
@@ -322,7 +322,7 @@ const handleSelectedCategories = () => {
 }
 
 const handleAddQuestion = () => {
-    listQuestion.value.push({ ...questionForm })
+    listQuestion.value.push({ ...questionForm.value })
 }
 const handleChangeTypeQuestion = () => {
     
