@@ -8,21 +8,22 @@
                 </div>
                 <div class="input-item categories-input" style="display: flex; align-items: center;">
                     <div class="label-input">Category</div>
-                    <input type="text"  placeholder="Choose category" :disabled="isDisabled"
-                        style="width: 300px; background-color: rgb(235 234 234);" v-model="selectedCategory.category_name" />
+                    <input type="text" placeholder="Choose category" :disabled="isDisabled"
+                        style="width: 300px; background-color: rgb(235 234 234);"
+                        v-model="selectedCategory.category_name" />
                     <button class="choose-btn" @click="handleOpenPopup()">Choose</button>
                 </div>
                 <div class="input-item categories-input" style="display: flex; align-items: center;">
                     <div class="label-input" style="">Time</div>
-                    <input type="time"  placeholder="Choose category"
+                    <input type="time" placeholder="Choose category"
                         style="width: 100px; background-color: #fff; border: 1px solid rgba(156, 209, 232, 0.6); border-radius: 5px; height: 30px; margin-right: 5px;" />
                     <span>~</span>
-                    <input type="time"  placeholder="Choose category"
+                    <input type="time" placeholder="Choose category"
                         style="width: 100px; background-color: #fff; border: 1px solid rgba(156, 209, 232, 0.6); border-radius: 5px;height: 30px; margin-left:  5px;" />
                 </div>
                 <div class="input-item categories-input" style="display: flex; align-items: center;">
                     <div class="label-input">Description</div>
-                    <textarea type="text"  class="textareacss" placeholder="Enter description"
+                    <textarea type="text" class="textareacss" placeholder="Enter description"
                         style="width: 400px;background-color: #fff"></textarea>
                 </div>
 
@@ -31,8 +32,7 @@
                 <div class="daily-content-overview" style=" margin-top: 20px;">
                     <div class="question-input categories-input" style="display: flex; align-items: center;">
                         <div class="label-input">Question</div>
-                        <input type="text"  id="categoryName" placeholder="Enter question"
-                            style="width: 400px;" />
+                        <input type="text" id="categoryName" placeholder="Enter question" style="width: 400px;" />
                     </div>
                     <div class="question-input categories-input" style="display: flex; align-items: center;">
                         <div class="label-input">Type</div>
@@ -86,7 +86,7 @@
             <div class="new-categories-container lesson-create">
                 <h5 class="add-category-title">Categories</h5>
                 <div class="input-item categories-input" style="display: flex; align-items: center;">
-                    <select  id="" class="category-kbn" style="margin-right: 10px;width: 100px;"
+                    <select id="" class="category-kbn" style="margin-right: 10px;width: 100px;"
                         v-model="categoryForm.japanese_level">
                         <option value="">Select level</option>
                         <option value="n5">N5</option>
@@ -95,8 +95,8 @@
                         <option value="n2">N2</option>
                         <option value="n1">N1</option>
                     </select>
-                    <input :class="[{ 'validateInput': isExit }]" type="text" id="categoryName"
-                        placeholder="Enter category" style="width: 400px;" v-model="categoryForm.category_name" />
+                    <input :class="[{ 'validateInput': isExit }]" type="text" id="categoryName" placeholder="Enter category"
+                        style="width: 400px;" v-model="categoryForm.category_name" />
                     <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;"
                         @click="handleCreateCategory(3)">Add
                     </button>
@@ -111,7 +111,8 @@
                         </tr>
                         <tbody>
                             <tr v-for="(item, index) in categoryList" :key="index" class="categories-list-tr">
-                                <td><input type="checkbox" @change="(val) => handleChangeCheckboxCategory(val, item)" class="vocabu-table-content" style="width: 100%;" /></td>
+                                <td><input type="checkbox" @change="(val) => handleChangeCheckboxCategory(val, item)"
+                                        class="vocabu-table-content" style="width: 100%;" /></td>
                                 <td class="categories-list-content">{{ index + 1 }}</td>
                                 <td class="categories-list-content"> {{ item.japanese_level }}</td>
                                 <td class="categories-list-content"> {{ item.category_name }}</td>
@@ -119,33 +120,38 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="input-item categories-input" style="display: flex; align-items: center; justify-content: center;">
+                <div class="input-item categories-input"
+                    style="display: flex; align-items: center; justify-content: center;">
                     <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;"
                         @click="handleSelectedCategories">Save
                     </button>
-                    <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center; background-color: #ddd;"
+                    <button class="new-btn"
+                        style="padding: 0 10px; margin-left: 10px; align-items: center; background-color: #ddd;"
                         @click="handleCloseChoseCategories">Cancel
                     </button>
                 </div>
             </div>
         </div>
     </div>
+    <ErrorMessage :message="messageError" :is-visible="isVisibleErr" @close="handleCloseError" />
 </template>
 <script setup>
 import { ref } from 'vue';
 import { listCategoriesByType, createCategory, editCategory } from "../api/categories";
 
 const categoryFormDefault = {
-  id: null,
-  category_name: "",
-  japanese_level: "",
+    id: null,
+    category_name: "",
+    japanese_level: "",
 }
 
 const categoryList = ref([])
 const isExit = ref(false)
 const isDisabled = ref(true);
 const isDisplayCategory = ref(false)
-const selectedCategory = ref({...categoryFormDefault})
+const messageError = ref('')
+const isVisibleErr = ref(false)
+const selectedCategory = ref({ ...categoryFormDefault })
 const rows = ref([
     { index: 1, option: '', answer: false }
 ]);
@@ -164,11 +170,14 @@ const fetchCategory = async (type) => {
 
 const handleCreateCategory = async (type) => {
     isExit.value = false
+    messageError.value = ""
+    isVisibleErr.value = false
     try {
 
         // check empty
         if (!categoryForm.value.category_name || !categoryForm.value.japanese_level) {
-            alert('empty')
+            messageError.value = "Please choose a category!"
+            isVisibleErr.value = true
             isExit.value = true
             return
         }
@@ -177,7 +186,8 @@ const handleCreateCategory = async (type) => {
         if (categoryList.value.filter((item => item.category_name.trim() ===
             categoryForm.value.category_name.trim())).length > 0) {
             isExit.value = true
-            alert("exist")
+            messageError.value = "The category is existing!"
+            isVisibleErr.value = true
             return
         }
 
@@ -211,10 +221,13 @@ const handleChangeCheckboxCategory = (val, item) => {
     }
 
 }
-
+const handleCloseError = () => {
+    messageError.value = ""
+    isVisibleErr.value = false
+}
 const handleOpenPopup = () => {
-  fetchCategory(3)
-  isDisplayCategory.value = true;
+    fetchCategory(3)
+    isDisplayCategory.value = true;
 };
 
 const addRow = () => {
@@ -233,24 +246,28 @@ const handleChangethisCheckbox = (row) => {
 };
 
 const handleCloseChoseCategories = () => {
-  isDisplayCategory.value = false
-  Object.assign(categoryForm.value, categoryFormDefault);
+    isDisplayCategory.value = false
+    Object.assign(categoryForm.value, categoryFormDefault);
 }
 
 const handleSelectedCategories = () => {
-  if(multiSelectionCategory.value.length === 0){
-    alert("Vui long chon categories!")
-    return
-  }
+    messageError.value = ""
+    isVisibleErr.value = false
+    if (multiSelectionCategory.value.length === 0) {
+        messageError.value = "Please choose a category!"
+        isVisibleErr.value = true
+        return
+    }
 
-  if(multiSelectionCategory.value.length > 1) {
-    alert("Vui long chi chon 1 categories!")
-    return;
-  }
+    if (multiSelectionCategory.value.length > 1) {
+        messageError.value = "The category is existing!"
+        isVisibleErr.value = true
+        return;
+    }
 
-  selectedCategory.value = multiSelectionCategory.value[0]
-  isDisplayCategory.value = false
-  Object.assign(categoryForm.value, categoryFormDefault);
+    selectedCategory.value = multiSelectionCategory.value[0]
+    isDisplayCategory.value = false
+    Object.assign(categoryForm.value, categoryFormDefault);
 
 }
 

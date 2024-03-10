@@ -1,21 +1,23 @@
 <template>
     <div class="flashcard-detail-body">
         <button @click="handleChangeToDetail()" class="new-btn" id="creat-new-result-btn" style="margin: 10px">Back</button>
-        <div v-for="(item, index) in flashcardVocabuDetail" :key="index" @click="item.isChange = !item.isChange"
-            class="card-wrapper">
-            <div :class="['card-body', { 'hangeCardDisplay': item.isChange }]">
-                <div v-if="item.isChange" class="card-front">
-                    <p>{{ item.new_word }}</p>
+        <div class="flashcard-detail-container">
+            <div v-for="(item, index) in flashcardVocabuDetail" :key="index" @click="item.isChange = !item.isChange"
+                class="card-wrapper">
+                <div :class="['card-body', { 'hangeCardDisplay': item.isChange }]">
+                    <div v-if="item.isChange" class="card-front">
+                        <p>{{ item.new_word }}</p>
+                    </div>
+                    <div v-else class="card-back">
+                        <p>音読み：{{ item.spelling }}</p>
+                        <p>意味：{{ item.defination }}</p>
+                    </div>
+
                 </div>
-                <div v-else class="card-back">
-                    <p>音読み：{{ item.spelling }}</p>
-                    <p>意味：{{ item.defination }}</p>
-                </div>
-            
             </div>
-        </div>
 
         </div>
+    </div>
 </template>
 <script setup>
 import { ref } from 'vue';
@@ -27,7 +29,7 @@ const fetchDetailFlashcard = async (id) => {
     try {
         const data = await showDetailFlashcardVocabu(id)
         if (data?.data?.data) {
-            flashcardVocabuDetail.value = data?.data?.data.map((item) => {return {...item, isChange: true}})
+            flashcardVocabuDetail.value = data?.data?.data.map((item) => { return { ...item, isChange: true } })
         }
     } catch (error) {
 

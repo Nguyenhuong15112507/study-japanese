@@ -7,6 +7,7 @@ import router from './router'
 import './permission'
 // import store from './store/index.js';
 import App from './App.vue'
+import ErrorMessage from "./components/errormessage/ErrorMessage.vue"
 
 
 const app = createApp(App)
@@ -14,5 +15,6 @@ const app = createApp(App)
 
 app.use(router)
 app.use(store())
+app.component("ErrorMessage", ErrorMessage)
 // app.use(store)
 app.mount('#app')
