@@ -240,7 +240,7 @@ input[type="file"] {
   font-size: 20px;
   font-weight: 700;
   position: fixed;
-  right: 20px;
+  right: 125px;
   bottom: 20px;
   background-color: rgb(67, 186, 237);
   color: #fff;
@@ -254,6 +254,26 @@ input[type="file"] {
 .add-question-btn:hover {
   background-color: rgba(8, 170, 239);
 }
+
+.submit-btn {
+  font-size: 20px;
+  font-weight: 700;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background-color: rgb(67, 186, 237);
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.submit-btn:hover {
+  background-color: rgba(8, 170, 239);
+}
+
 .new-categories-container-wrap {
   position: fixed;
   top: 0;
