@@ -39,7 +39,8 @@
 
                     <div class="question-input categories-input" style="display: flex; align-items: center;">
                         <div class="label-input">Question</div>
-                        <input type="text" id="categoryName" placeholder="Enter question" style="width: 400px;" />
+                        <input type="text" id="categoryName" placeholder="Enter question" style="width: 400px;"
+                            v-model="item.question" />
                     </div>
                     <div class="question-input categories-input" style="display: flex; align-items: center;">
                         <div class="label-input">Type</div>
@@ -83,9 +84,17 @@
                             </tbody>
                         </table>
                     </div>
-                    <div v-else class="question-input categories-input" style="display: flex; align-items: center;">
-                        <div class="label-input">Description</div>
-                        <textarea class="textareacss" placeholder="Enter question" style="width: 400px;" ></textarea>
+                    <div v-else>
+                        <div class="question-input categories-input" style="display: flex; align-items: center;">
+                            <div class="label-input">Description</div>
+                            <textarea class="textareacss" placeholder="Enter question" style="width: 400px;"
+                                v-model="item.essay"></textarea>
+                        </div>
+                        <div class="question-input categories-input" style="display: flex; align-items: center;">
+                            <div class="label-input">Note</div>
+                            <textarea class="textareacss" placeholder="Enter question" style="width: 400px;"
+                                v-model="item.description"></textarea>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -325,7 +334,7 @@ const handleAddQuestion = () => {
     listQuestion.value.push({ ...questionForm.value })
 }
 const handleChangeTypeQuestion = () => {
-    
+
 }
 </script>
 <style scoped>
@@ -390,5 +399,4 @@ input:disabled {
     max-height: 100px;
     overflow-y: auto;
 
-}
-</style>
+}</style>

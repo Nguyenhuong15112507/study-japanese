@@ -133,6 +133,7 @@
 .categories-input {
   margin-bottom: 10px;
   margin-top: 10px;
+  width: 600px;
 }
 .new-form {
   width: 589px;
@@ -197,7 +198,7 @@ input[type="file"] {
   margin-left: 10px;
 }
 .vocabulary-list {
-  width: 600px;
+  width: 550px;
   position: relative;
   left: 16px;
   right: 0;
