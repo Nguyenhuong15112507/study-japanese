@@ -23,39 +23,7 @@
         </div>
         <div class="page-container">
             <div class="content-input">
-                <!-- <h3 class="title-content">Give Question</h3>
-                <div class="content-input-header">
-                    <button class="new-btn" id="creat-new-lesson-btn" onclick="isvisible(popupContainner)">Question</button>
-
-                    <div class="homwork-list-header">
-                        <label for="status">Status</label>
-                        <select name="status" id="status-filter">
-                            <option value="Waiting">Waiting</option>
-                            <option value="Doing">Doing</option>
-                            <option value="Finished">Finished</option>
-                            <option value="Pending">Pending</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="list-content-item lesson-homework-list">
-                    <div v-for="(item, index) in listLesson" :key="index"
-                        class="lession-content-overview lession-homework-overview">
-                        <h4 class="lesson-name">{{ item.name }}</h4>
-                        <div class="created-date">
-                            <span class="label">Date: </span>
-                            <span class="date">{{ item.date }}</span>
-                        </div>
-                        <div class="status">
-                            <span class="label">Status: </span>
-                            <span class="homework-status">{{ item.homework }}</span>
-                        </div>
-                        <p class="overview-para">{{ item.Gramform }}</p>
-                        <div class="show-detail-and-practice">
-                            <button class="check-homework-btn">Show detail</button>
-                        </div>
-                    </div>
-                    
-                </div> -->
+                
                 <h4 class="lesson-name">JLPT N4: Vocabulary</h4>
                 <div class="list-content-item lesson-content-list">
                     <div  v-for="(item, index) in listLesson" :key="index" class="lession-content-overview">
@@ -75,87 +43,7 @@
 
 
             </div>
-            <div class="student-daily">
-                <h3 class="title-content">Your daily</h3>
-                <button class="new-btn" id="creat-new-daily-btn">Create</button>
-                <div class="new-input daily">
-                    <h4 class="form-title">Writing new daily</h4>
-                    <div class="new-form daily-create">
-                        <div class="input-item">
-                            <span class="span-label"><label for="dailyName">Title</label></span>
-                            <input type="text" name="dailyName" id="dailyName">
-                        </div>
-                        <div class="input-item">
-                            <span class="span-label"><label for="dailyContent">Content</label></span>
-                            <textarea name="dailyContent" id="dailyContent"></textarea>
-                        </div>
-                        <div class="input-item">
-                            <span class="span-label"><label for="dailydate">Date</label></span>
-                            <input type="date" name="date" id="dailydate">
-                        </div>
-                        <div class="input-item">
-                            <span class="span-label"><label for="daily-pic">Upload</label></span>
-                            <input type="file" name="daily-pic" id="daily-pic">
-                        </div>
 
-
-                    </div>
-                    <div class="btn-container">
-                        <button class="new-btn submit-btn" id="submit-daily-btn">Submit</button>
-                        <button class="new-btn cancel-btn" id="cancel-daily-btn">Cancel</button>
-                    </div>
-                </div>
-                <div class="list-content-item daily-content-list">
-                    <div class="daily-content-overview">
-                        <img class="student-daily-img" src="../img/Hinh-Anh-Anime-Chibi-Girl (3).jpg" alt="">
-                        <h4 class="daily-name">N5: Vocabulary1</h4>
-                        <div class="created-date">
-                            <span class="label">Date: </span>
-                            <span class="date">12/12/2023</span>
-                        </div>
-                        <p class="overview-para">Today, i'm very happy.</p>
-                        <div class="show-detail">
-                            <a href="" class="show-detail">Show detail</a>
-                        </div>
-                    </div>
-                    <div class="daily-content-overview">
-                        <img class="student-daily-img" src="../img/Hinh-Anh-Anime-Chibi-Girl (3).jpg" alt="">
-                        <h4 class="daily-name">N5: Vocabulary1</h4>
-                        <div class="created-date">
-                            <span class="label">Date: </span>
-                            <span class="date">12/12/2023</span>
-                        </div>
-                        <p class="overview-para">Today, i'm very happy.</p>
-                        <div class="show-detail">
-                            <a href="" class="show-detail">Show detail</a>
-                        </div>
-                    </div>
-                    <div class="daily-content-overview">
-                        <img class="student-daily-img" src="../img/Hinh-Anh-Anime-Chibi-Girl (3).jpg" alt="">
-                        <h4 class="daily-name">N5: Vocabulary1</h4>
-                        <div class="created-date">
-                            <span class="label">Date: </span>
-                            <span class="date">12/12/2023</span>
-                        </div>
-                        <p class="overview-para">Today, i'm very happy.</p>
-                        <div class="show-detail">
-                            <a href="" class="show-detail">Show detail</a>
-                        </div>
-                    </div>
-                    <div class="daily-content-overview">
-                        <img class="student-daily-img" src="../img/Hinh-Anh-Anime-Chibi-Girl (3).jpg" alt="">
-                        <h4 class="daily-name">N5: Vocabulary1</h4>
-                        <div class="created-date">
-                            <span class="label">Date: </span>
-                            <span class="date">12/12/2023</span>
-                        </div>
-                        <p class="overview-para">Today, i'm very happy.</p>
-                        <div class="show-detail">
-                            <a href="" class="show-detail">Show detail</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <div class="popup-containner">

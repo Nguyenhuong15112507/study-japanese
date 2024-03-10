@@ -3,7 +3,7 @@
         <div class="nav-bar">
             <div class="nav-bar-item-list">
                 <div class="nav-bar-item" @click="handleChangePageTeacher()">Home</div>
-                <div class="nav-bar-item">Daily</div>
+                <div class="nav-bar-item" @click="handleChangePageDaily()">Daily</div>
                 <div class="nav-bar-item">Q&A</div>
             </div>
             <div class="login-infor">
@@ -75,6 +75,9 @@ const handleChangePageTeacher = () => {
 }
 const handleChangePageLogin = () => {
     router.push('/login')
+}
+const handleChangePageDaily = () => {
+    router.push('/studentDaily')
 }
 const handleDisplayPopup = () => {
     popupIsVisable.value = !popupIsVisable.value

@@ -7,7 +7,7 @@ import router from './router'
 import './permission'
 // import store from './store/index.js';
 import App from './App.vue'
-import ErrorMessage from "./components/errormessage/ErrorMessage.vue"
+import ErrorMessage from "./components/comonComponent/ErrorMessage.vue"
 
 
 const app = createApp(App)

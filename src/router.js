@@ -33,6 +33,18 @@ const router = createRouter({
                 }
               ],
         },
+        
+        {
+            path: '/studentDaily',
+            component: () => import('./AppLayout.vue'),
+            children: [
+                {
+                  path: '',
+                  name: 'studentDaily',
+                  component: () => import('./components/StudentDaily.vue')
+                }
+              ],
+        },
         {
             path: '/chatMessage',
             component: () => import('./AppLayout.vue'),
