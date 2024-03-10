@@ -146,7 +146,6 @@ const questionDefault = {
   list_quiz_item: []
 }
 
-const isExit = ref(false)
 const isDisabled = ref(true);
 const isDisplayCategory = ref(false)
 const messageError = ref('')
