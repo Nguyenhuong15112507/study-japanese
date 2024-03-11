@@ -45,6 +45,18 @@ const router = createRouter({
                 }
               ],
         },
+
+        {
+          path: '/calendar',
+          component: () => import('./AppLayout.vue'),
+          children: [
+              {
+                path: '',
+                name: 'calendar',
+                component: () => import('./components/Calendar.vue')
+              }
+            ],
+      },
         {
             path: '/chatMessage',
             component: () => import('./AppLayout.vue'),

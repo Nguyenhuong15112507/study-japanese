@@ -4,6 +4,7 @@
             <div class="nav-bar-item-list">
                 <div class="nav-bar-item" @click="handleChangePageTeacher()">Home</div>
                 <div class="nav-bar-item" @click="handleChangePageDaily()">Daily</div>
+                <div class="nav-bar-item" @click="handleChangePageCalender()">Calendar</div>
                 <div class="nav-bar-item">Q&A</div>
             </div>
             <div class="login-infor">
@@ -78,6 +79,9 @@ const handleChangePageLogin = () => {
 }
 const handleChangePageDaily = () => {
     router.push('/studentDaily')
+}
+const handleChangePageCalender = () => {
+    router.push('/calendar')
 }
 const handleDisplayPopup = () => {
     popupIsVisable.value = !popupIsVisable.value
