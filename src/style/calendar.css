@@ -291,6 +291,7 @@ p, span, ul, li {
     padding: 0.8rem 0 1rem 1rem;
     background: #f5f7f6;
 }
+
 @media screen and (min-width: 55em) {
     .calendar__days {
         width: 70%;
@@ -308,6 +309,7 @@ p, span, ul, li {
     font-weight: 100;
     -webkit-font-smoothing: subpixel-antialiased;
     font-size: 1rem;
+    font-weight: 600;
 }
 .calendar__week {
     display: flex;
@@ -318,7 +320,13 @@ p, span, ul, li {
     flex-flow: column wrap;
     justify-content: space-between;
     width: 100%;
-    padding: 1.9rem 0.2rem 0.2rem;
+    padding: 1.9rem 0.5rem 0.5rem;
+}
+.calendar__day:hover {
+    border: 1px solid rgb(49, 171, 224, 0.6);
+    background-color: rgba(235, 242, 245, 0.6);
+    cursor: pointer;
+    border-radius: 5px;
 }
 .calendar__date {
     color: #040605;
