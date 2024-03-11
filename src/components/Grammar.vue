@@ -5,11 +5,9 @@
 
             <div class="question-container">
                 <div class="question-type-menu">
-                    <h3 class="question-theme">JLPT N4: Grammar</h3>
-                    <ul class="question-theme-list">
-                        <li @click="handleChangeLearnContent()" class="question-theme-item"><a href="#">どうぞ　よろしく</a></li>
-                        <li @click="handleChangeLearnContent()" class="question-theme-item"><a href="#">がっこう</a></li>
-                        <li @click="handleChangeLearnContent()" class="question-theme-item"><a href="#">かいもの（１）</a></li>
+                    <ul v-for="(item, index) in categoryList" :key="index" class="question-theme-list">
+                        <h3 class="question-theme" style="margin: 5px auto;">{{ item.japanese_level }}</h3>
+                        <li @click="handleChangeLearnContent()" class="question-theme-item">{{ item.category_name }}</li>
                     </ul>
 
                 </div>
@@ -41,11 +39,19 @@
                     </div>
                     <div class="question-group-list">
                         <div class="question-group-item">
-                            <h5 class="question-content" style="color: rgba(43, 43, 239, 0.868); font-size: 16px;">1. {{ grammarRef.grammar_form }}</h5>
+                            <h5 class="question-content" style="color: rgba(43, 43, 239, 0.868); font-size: 16px;">1. {{
+                                grammarRef.grammar_form }}</h5>
                             <ul class="answers-list">
-                                <li class="answer-item"> <div class="form-define">Define:</div><div>{{ grammarRef.form_define }}</div></li>
-                                <li class="answer-item"> <div class="form-define">Example 1:</div> {{ grammarRef.example_1 }}</li>
-                                <li class="answer-item"> <div class="form-define">Example 2:</div> {{ grammarRef.example_2 }}</li>
+                                <li class="answer-item">
+                                    <div class="form-define">Define:</div>
+                                    <div>{{ grammarRef.form_define }}</div>
+                                </li>
+                                <li class="answer-item">
+                                    <div class="form-define">Example 1:</div> {{ grammarRef.example_1 }}
+                                </li>
+                                <li class="answer-item">
+                                    <div class="form-define">Example 2:</div> {{ grammarRef.example_2 }}
+                                </li>
                                 <img src="../img/9-1.png" class="example-img" alt="">
                             </ul>
 
@@ -102,10 +108,10 @@
 import { ref } from 'vue';
 import router from "../router";
 import { listGrammar, createGrammar } from "../api/grammar"
+import { listCategoriesByType, createCategory, editCategory } from "../api/categories";
 import moment from 'moment'
 const isDisplayLearnContent = ref(false)
-const grammarId = ref(null)
-
+const categoryList = ref([])
 const pathId = router.currentRoute.value.query
 
 const formGram = {
@@ -119,7 +125,21 @@ const formGram = {
     date: null
 }
 const grammarRef = ref(formGram)
+const categoryFormDefault = {
+    id: null,
+    category_name: "",
+    japanese_level: "",
+}
+const categoryForm = ref({ ...categoryFormDefault })
+const fetchCategory = async (type) => {
+    try {
+        const data = await listCategoriesByType(type);
+        categoryList.value = data.data.data;
+    } catch (error) {
 
+    }
+}
+fetchCategory(1)
 const listLessonInGrammar = ref([])
 const fetchGrammar = async () => {
     try {
@@ -154,6 +174,9 @@ const handleBack = () => {
     isDisplayLearnContent.value = !isDisplayLearnContent.value
     grammarRef.value = formGram
 }
+const handleFilterGrammar = (type) => {
+    fetchCategory(1)
+};
 </script>
 
 <style scoped>
@@ -212,7 +235,10 @@ const handleBack = () => {
     background: rgb(108, 185, 217);
     cursor: not-allowed;
 }
-
+.question-theme-item:hover {
+    color: blue;
+    cursor: pointer;
+}
 .lession-homework-overview {
     width: 96%;
 }
@@ -236,5 +262,4 @@ const handleBack = () => {
 .form-define {
     color: blue;
 
-}
-</style>
+}</style>

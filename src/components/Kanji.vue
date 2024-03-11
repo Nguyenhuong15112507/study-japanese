@@ -3,14 +3,10 @@
     <div class="practice-content-container">
       <div class="question-container">
         <div class="question-type-menu">
-          <h3 class="question-theme">JLPT N4: Kanji</h3>
-          <ul class="question-theme-list">
-            <li class="question-theme-item"><a href="#">第一課：花・化</a></li>
-            <li class="question-theme-item">
-              <a href="#">第二課：東・西・北・南</a>
-            </li>
-            <li class="question-theme-item"><a href="#">第三課：食・飲</a></li>
-          </ul>
+          <ul v-for="(item, index) in categoryList" :key="index" class="question-theme-list">
+                        <h3 class="question-theme" style="margin: 5px auto;">{{ item.japanese_level }}</h3>
+                        <li @click="handleChangeLearnContent()" class="question-theme-item">{{ item.category_name }}</li>
+                    </ul>
         </div>
         <div
           v-if="!isDisplayLearnContent"
@@ -124,11 +120,12 @@ import { ref } from "vue";
 import router from "../router";
 import { studentJapaneseStore } from "../store";
 import { showDetailkanji, listKanji } from "../api/kanji";
+import { listCategoriesByType, createCategory, editCategory } from "../api/categories";
 import moment from "moment";
 
-const userStudentJapaneseStore = studentJapaneseStore();
 
 const isDisplayLearnContent = ref(false);
+const categoryList = ref([])
 const kanjiId = ref(null);
 
 const pathkanjiId = router.currentRoute.value.query;
@@ -147,7 +144,15 @@ const kanjiForm = {
 };
 const kanjiFormRef = ref(kanjiForm);
 const pageKanjiList = ref([]);
+const fetchCategory = async (type) => {
+    try {
+        const data = await listCategoriesByType(type);
+        categoryList.value = data.data.data;
+    } catch (error) {
 
+    }
+}
+fetchCategory(2)
 const fetchKanji = async () => {
   try {
     const data = await listKanji();
@@ -207,7 +212,10 @@ const handleChangeLearnContent = (id) => {
   width: 25%;
   /* margin: 10px; */
 }
-
+.question-theme-item:hover {
+    color: blue;
+    cursor: pointer;
+}
 .lession-homework-overview {
   width: 96%;
 }
