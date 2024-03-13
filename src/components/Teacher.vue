@@ -159,6 +159,15 @@
                 </label>
                 <input type="file" id="file-upload">
               </div> -->
+              <div class="input-item" style="display: flex; align-items: center; width: 500px;">
+                <span class="span-label"><label for="lessonName">Title</label></span>
+                <input type="text" name="lessonName" id="announceName"
+                  style="margin-left: 56px;" />
+              </div>
+              <div class="input-item" style="display: flex; align-items: center; width: 500px;">
+                <span class="span-label"><label for="lessonName">Description</label></span>
+                <input type="text" name="lessonName" id="announceName"/>
+              </div>
               <div class="vocabulary-list">
                 <table class="vocabu-list-table" width="800" border="1" cellpadding="2px">
                   <tr class="vocabu-table-head">
@@ -168,7 +177,9 @@
                     <th class="vocabu-table-title">Onyomi</th>
                     <th class="vocabu-table-title">Kunyomi</th>
                     <th class="vocabu-table-title">Kanji's name</th>
+                    <th class="vocabu-table-title">Example</th>
                     <th class="vocabu-table-title">Defination</th>
+                    <th class="vocabu-table-title">Image</th>
                     <th class="vocabu-table-title" style="padding: 5px 10px;width: 80px;">Delete</th>
                   </tr>
                   <tbody>
@@ -188,9 +199,13 @@
                           class="vocabu-table-content" /></td>
                       <td><input type="text" v-model="row.kanji_name" @keyup.enter="saveEdit(index)"
                           @blur="saveEdit(index)" class="vocabu-table-content" /></td>
+                      <td><input type="text" v-model="row.example" @keyup.enter="saveEdit(index)" @blur="saveEdit(index)"
+                          class="vocabu-table-content" /></td>
                       <!-- <td v-if="!isEditing(index)" class="vocabu-table-content">{{ row.spelling }}</td> -->
                       <td><input type="text" v-model="row.defination" @keyup.enter="saveEdit(index)"
                           @blur="saveEdit(index)" class="vocabu-table-content" /></td>
+                      <td><input type="file" @keyup.enter="saveEdit(index)" @blur="saveEdit(index)"
+                          class="vocabu-table-content" /></td>
                       <td class="vocabu-table-content"><i @click="deleteRow(index)" class="far fa-trash-alt"></i></td>
                     </tr>
                     <tr>
@@ -200,7 +215,9 @@
                       <td class="vocabu-table-content"><input type="text" v-model="newRow.onyomi" /></td>
                       <td class="vocabu-table-content"><input type="text" v-model="newRow.kunyomi" /></td>
                       <td class="vocabu-table-content"><input type="text" v-model="newRow.kanji_name" /></td>
+                      <td class="vocabu-table-content"><input type="text" v-model="newRow.example" /></td>
                       <td class="vocabu-table-content"><input type="text" v-model="newRow.defination" /></td>
+                      <td class="vocabu-table-content"><input type="file" /></td>
                       <td class="vocabu-table-content" colspan="1"><i @click="addRow" class="fas fa-plus"></i></td>
                     </tr>
                   </tbody>
@@ -370,15 +387,8 @@
 import { ref } from "vue"; // dung de import
 import router from "../router";
 import moment from "moment";
-import { showDetailFlashcard, createFlashcard } from "../api/flashcard";
-
-
-import {
-  listGrammar,
-  createGrammar,
-  editGrammar,
-  showDetailGrammar,
-} from "../api/grammar";
+import { showDetailKanjiNew, createKanjiNew } from "../api/kanjinew";
+import {listGrammar,  createGrammar,   editGrammar,  showDetailGrammar} from "../api/grammar";
 import { listKanji, createKanji, showDetailkanji } from "../api/kanji";
 import { listCategoriesByType, createCategory, editCategory } from "../api/categories";
 import { listAnnounce, showDetailAnnounce, createAnnounce, editAnnounce } from "../api/announce";
@@ -405,6 +415,7 @@ const newRow = ref({
   new_kanji: '',
   kanji_name: '',
   defination: '',
+  example: '',
   onyomi: '',
   kunyomi: '',
   column5: '',
@@ -432,19 +443,19 @@ const categoryFormDefault = {
 }
 const categoryForm = ref({ ...categoryFormDefault })
 const formAnnounce = ref(formAnnounceDefault);
-// const formKanjiDefault = {
-//   id: null,
-//   title: "",
-//   kanji_name: "",
-//   example: "",
-//   spell_onyomi: "",
-//   spell_kuyomi: "",
-//   kanji_url: "",
-//   path_base: "",
-//   file_name: "",
-//   file_ext: "",
-// };
-// const formKanji = ref(formKanjiDefault);
+const formKanjiDefault = {
+  id: null,
+  new_kanji: '',
+  kanji_name: '',
+  defination: '',
+  example: '',
+  onyomi: '',
+  kunyomi: '',
+  path_base: "",
+  file_name: "",
+  file_ext: "",
+};
+const formKanji = ref(formKanjiDefault);
 
 
 const fetchAnnounce = async () => {
@@ -580,32 +591,32 @@ const handleEditGrammar = async () => {
 
 // kanji
 
-// const fetchKanji = async () => {
-//   try {
-//     const data = await listKanji();
-//     if (data?.data?.data) {
-//       kanjiContentList.value = data.data.data;
-//     }
-//   } catch (error) {
-//   }
-// };
+const fetchKanji = async () => {
+  try {
+    const data = await listKanji();
+    if (data?.data?.data) {
+      kanjiContentList.value = data.data.data;
+    }
+  } catch (error) {
+  }
+};
 
-// fetchKanji();
+fetchKanji();
 
-// const handleCreateKanji = async () => {
-//   try {
-//     const request = formKanji.value;
-//     const data = await createKanji(request)
-//     const result = data?.data?.data
-//     if (result) {
-//       fetchKanji()
-//       formKanji.value = formKanjiDefault
-//       handleCloseKanjiPopup()
-//     }
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
+const handleCreateKanji = async () => {
+  try {
+    const request = formKanji.value;
+    const data = await createKanji(request)
+    const result = data?.data?.data
+    if (result) {
+      fetchKanji()
+      formKanji.value = formKanjiDefault
+      handleCloseKanjiPopup()
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 const appendAnnounceContent = async () => {
 
@@ -647,7 +658,7 @@ const handleOpenKanjiPopup = () => {
 }
 
 const handleCloseKanjiPopup = () => {
-  // formKanji.value = formKanjiDefault;
+  formKanji.value = formKanjiDefault;
   isDisplayKanjiCreate.value = false;
 };
 
@@ -717,25 +728,25 @@ const handleCloseError = () => {
 const queryRouter = router.currentRoute.value.query
 
 const multiflashcardSelection = ref([]);
-const flashcardFormDefault = {
+const kanjinewFormDefault = {
   title: '',
   description: '',
-  list_flashcard_vocabulary: []
+  list_kanji_vocabulary: []
 }
-const flashcardForm = ref(flashcardFormDefault)
+const kanjinewForm = ref(kanjinewFormDefault)
 
 
 const editIndex = ref(null);
 
 const editData = ref({});
 
-const fetchFlashcardDetail = async (id) => {
+const fetchKanjiNewDetail = async (id) => {
   try {
-    const data = await showDetailFlashcard(id)
+    const data = await showDetailKanjiNew(id)
     const result = data?.data?.data
     if (result) {
-      flashcardForm.value = result
-      rows.value = result.list_flashcard_vocabulary
+      kanjinewForm.value = result
+      rows.value = result.list_kanji_vocabulary
     }
   } catch (error) {
 
@@ -743,17 +754,17 @@ const fetchFlashcardDetail = async (id) => {
 }
 
 if (queryRouter?.id) {
-  fetchFlashcardDetail(queryRouter.id)
+  fetchKanjiNewDetail(queryRouter.id)
 }
 
 const handleSaveVocabulary = async () => {
   try {
-    const request = flashcardForm.value;
-    request.list_flashcard_vocabulary = rows.value.map((item) => { return { new_kanji: item.new_kanji, onyomi: item.onyomi, kunyomi: item.kunyomi, kanji_name: item.kanji_name,defination: item.defination } })
-    const data = await createFlashcard(request)
+    const request = kanjinewForm.value;
+    request.list_kanji_vocabulary = rows.value.map((item) => { return { new_kanji: item.new_kanji, onyomi: item.onyomi, kunyomi: item.kunyomi, kanji_name: item.kanji_name, defination: item.defination, example: item.example } })
+    const data = await createKanjiNew(request)
     const result = data?.data?.data
     if (result != null) {
-      fetchFlashcardDetail(result)
+      fetchKanjiNewDetail(result)
     }
   } catch (error) {
     console.error(error)
@@ -830,10 +841,12 @@ const handleChangethisCheckbox = (row) => {
   text-align: center;
 
 }
+
 .vocabu-list-table[data-v-9b550bf2] {
-    border-collapse: collapse;
-    width: 100%;
+  border-collapse: collapse;
+  width: 100%;
 }
+
 .categories-list-head {
   background-color: rgb(61, 183, 236);
 }
