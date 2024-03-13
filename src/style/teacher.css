@@ -198,7 +198,7 @@ header {
     max-height: 200px;
     padding-left: 10px;
     padding-bottom: 10px;
-    max-height: 200px;
+    max-height: 103px;
     overflow: auto;
     /* -webkit-box-shadow: 0 0 5px 0 rgba(171, 213, 231, 0.6); */
 }
@@ -236,7 +236,7 @@ input[type=text],input[type=date], .textareacss, #dailyContent1,#dailyContent2, 
     height: 30px;
     padding-left: 10px;
     outline: none;
-    width: 98%;
+    width: 92%;
 }
 #status-filter {
     /* background-color: rgb(49, 171, 224, 0.6); */
@@ -346,7 +346,7 @@ textarea {
 .daily {
     width: 90%;
     position: absolute;
-    top: 0%;
+    top: 10%;
     background-color: #fff;
     margin: 10px 0;
     border: 1px solid rgb(49, 171, 224, 0.6);
@@ -354,6 +354,8 @@ textarea {
     border-radius: 5px;
     padding-left: 10px;
     padding-right: 10px;
+    max-height: 840px;
+    overflow: auto;
 }
 
 .daily-create {
@@ -430,10 +432,10 @@ delete-btn[disabled]{
 .lesson {
     width: 90%;
     background-color: #fff;
-    max-height: 800px;
+    max-height: 850px;
     overflow: auto;
     position: absolute;
-    top: 5%;
+    top: 1opx;
     background-color: #fff;
 }
 
@@ -448,3 +450,29 @@ delete-btn[disabled]{
 input[type="date"] {
     width: 30%;
 }
+.img-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+    height: 130px;
+    width: 200px;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+  }
+  .custom-file-upload {
+    border: 2px dashed rgba(86, 185, 227, 0.6);
+    display: inline-block;
+    padding: 12px 12px;
+    border-radius: 4px;
+    /* background-color: rgba(156, 209, 232, 0.6);; */
+    cursor: pointer;
+  }
+  .fa-image {
+    margin: 0;
+    color: rgba(86, 185, 227, 0.6);
+    font-size: 80px;
+  }
+  input[type="file"] {
+    display: none;
+  }

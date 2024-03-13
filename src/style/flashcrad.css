@@ -50,6 +50,49 @@
 .card-back p[data-v-67ae61fb] {
     top: 40%;
 }
+input[type=text][data-v-ccf76d49],
+input[type=date][data-v-ccf76d49],
+.textareacss[data-v-ccf76d49],
+#dailyContent1[data-v-ccf76d49],
+#dailyContent2[data-v-ccf76d49],
+#status-filter[data-v-ccf76d49],
+#announceContent[data-v-ccf76d49] {
+  background-color: rgba(184, 227, 245, 0.3);
+  /* border-radius: 5px; */
+  border: none;
+  height: 28px;
+  /* padding-left: 10px; */
+  /* outline: none; */
+  width: 90%;
+}
+
+.vocabu-list-title {
+  margin: 10px 5px 0 5px;
+}
+
+.new-btn {
+  margin: 0 5px;
+}
+
+.vocabu-list-table {
+  border-collapse: collapse;
+}
+
+.vocabu-table-title {
+  font-weight: bold;
+}
+
+.vocabu-table-content {
+  text-align: center;
+}
+
+.vocabu-table-tr:hover {
+  background-color: rgba(147, 214, 243, 0.6);
+}
+
+.vocabu-table-head {
+  background-color: rgba(8, 170, 239);
+}
 /* .card-back {
     transform: rotateX(180deg);
 } */

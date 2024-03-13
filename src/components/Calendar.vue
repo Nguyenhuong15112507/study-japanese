@@ -17,7 +17,7 @@
 
         <aside class="calendar__sidebar">
 
-            <h2 class="sidebar__heading">Wednesday<br>April 6</h2>
+            <h2 class="sidebar__heading">Wednesday<br>March 15</h2>
             <ul class="sidebar__list">
                 <li class="sidebar__list-item sidebar__list-item--complete"><span class="list-item__time">8.30</span> Team
                     Meeting</li>
@@ -26,6 +26,12 @@
                 <li class="sidebar__list-item"><span class="list-item__time">2.30</span> Design Review</li>
                 <li class="sidebar__list-item"><span class="list-item__time">4.00</span> Get Groceries</li>
             </ul>
+            <div class="add-task">
+                <input type="text" autocomplete="off" placeholder="Add New Task" v-model="tasks.name" @keyup.enter="newItem"
+                    class="task-input" />
+                <button class="add-new-task" @click="newItem" style="width: 40px; font-size: 25px;">+</button>
+                <!-- <input type="submit" value="" class="submit-task" @click="newItem" title="Add Task" /> -->
+            </div>
         </aside>
 
 
@@ -41,180 +47,190 @@
             </section>
 
             <section class="calendar__week">
-                <div class="calendar__day inactive">
+                <div @click="handleDisplayPopupTask()" class="calendar__day inactive">
                     <span class="calendar__date">30</span>
                     <span class="calendar__task">2</span>
                 </div>
-                <div class="calendar__day inactive">
+                <div @click="handleDisplayPopupTask()" class="calendar__day inactive">
                     <span class="calendar__date">31</span>
                     <span class="calendar__task">4</span>
                 </div>
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">1</span>
                     <span class="calendar__task">2</span>
                 </div>
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">2</span>
                     <span class="calendar__task">3</span>
                 </div>
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">3</span>
                     <span class="calendar__task">1</span>
                 </div>
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">4</span>
                     <span class="calendar__task">2</span>
                 </div>
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">5</span>
                     <span class="calendar__task">4</span>
                 </div>
             </section>
 
             <section class="calendar__week">
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">6</span>
                     <span class="calendar__task">2</span>
                 </div>
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">7</span>
                     <span class="calendar__task">3</span>
                 </div>
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">8</span>
                     <span class="calendar__task">3</span>
                 </div>
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">9</span>
                     <span class="calendar__task">1</span>
                 </div>
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">10</span>
                     <span class="calendar__task">2</span>
                 </div>
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">11</span>
                     <span class="calendar__task">2</span>
                 </div>
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">12</span>
                     <span class="calendar__task">1</span>
                 </div>
             </section>
 
             <section class="calendar__week">
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">13</span>
                     <span class="calendar__task">2</span>
                 </div>
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">14</span>
                     <span class="calendar__task">2</span>
                 </div>
-                <div class="calendar__day today">
+                <div @click="handleDisplayPopupTask()" class="calendar__day today">
                     <span class="calendar__date">15</span>
                     <span class="calendar__task calendar__task--today">4 items</span>
                 </div>
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">16</span>
                     <span class="calendar__task">2</span>
                 </div>
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">17</span>
                     <span class="calendar__task">1</span>
                 </div>
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">18</span>
                     <span class="calendar__task">4</span>
                 </div>
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">19</span>
                     <span class="calendar__task">2</span>
                 </div>
             </section>
 
             <section class="calendar__week">
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">20</span>
                     <span class="calendar__task">2</span>
                 </div>
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">21</span>
                     <span class="calendar__task">2</span>
                 </div>
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">22</span>
                     <span class="calendar__task">1</span>
                 </div>
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">23</span>
                     <span class="calendar__task">2</span>
                 </div>
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">24</span>
                     <span class="calendar__task">5</span>
                 </div>
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">25</span>
                     <span class="calendar__task">3</span>
                 </div>
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">26</span>
                     <span class="calendar__task">1</span>
                 </div>
             </section>
 
             <section class="calendar__week">
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">27</span>
                     <span class="calendar__task">2</span>
                 </div>
-                <div class="calendar__day">
+                <div @click="handleDisplayPopupTask()" class="calendar__day">
                     <span class="calendar__date">28</span>
                     <span class="calendar__task">1</span>
                 </div>
-                <div class="calendar__day inactive">
+                <div @click="handleDisplayPopupTask()" class="calendar__day inactive">
                     <span class="calendar__date">1</span>
                     <span class="calendar__task">2</span>
                 </div>
-                <div class="calendar__day inactive">
+                <div @click="handleDisplayPopupTask()" class="calendar__day inactive">
                     <span class="calendar__date">2</span>
                     <span class="calendar__task">1</span>
                 </div>
-                <div class="calendar__day inactive">
+                <div @click="handleDisplayPopupTask()" class="calendar__day inactive">
                     <span class="calendar__date">3</span>
                     <span class="calendar__task">5</span>
                 </div>
-                <div class="calendar__day inactive">
+                <div @click="handleDisplayPopupTask()" class="calendar__day inactive">
                     <span class="calendar__date">4</span>
                     <span class="calendar__task">3</span>
                 </div>
-                <div class="calendar__day inactive">
+                <div @click="handleDisplayPopupTask()" class="calendar__day inactive">
                     <span class="calendar__date">5</span>
                     <span class="calendar__task">1</span>
                 </div>
             </section>
         </section>
-        <div class="todotasklist-container">
-        <div class="app-container" id="taskList">
-            <h1 class="app-header">TO DO LIST</h1>
-            <div class="add-task">
-                <input type="text" autocomplete="off" placeholder="Add New Task" v-model="tasks.name" @keyup.enter="newItem"
-                    class="task-input" />
-                <button class="add-new-task" @click="newItem">Add</button>
-                <!-- <input type="submit" value="" class="submit-task" @click="newItem" title="Add Task" /> -->
+        <div v-if="isDisplay" class="todotasklist-container">
+            <div class="app-container" id="taskList">
+                <h1 class="app-header">TO DO LIST</h1>
+                <div class="time-contain">
+                    <input type="time" class="time" v-model="tasks.startTime"><span>~</span><input type="time" class="time"
+                        v-model="tasks.endTime">
+                </div>
+                <div class="add-task">
+
+                    <input type="text" autocomplete="off" placeholder="Add New Task" v-model="tasks.name"
+                        @keyup.enter="newItem" class="task-input" />
+                    <button class="add-new-task" @click="newItem">Add</button>
+                    <!-- <input type="submit" value="" class="submit-task" @click="newItem" title="Add Task" /> -->
+                </div>
+                <ul class="task-list">
+                    <li v-for="task in tasks" :key="task.name" class="task-list-item">
+                        <div class="task-list-item-label">
+                            <input type="checkbox" />
+                            <span class="task-name">{{ task.startTime }}</span> ~ <span class="task-name">{{ task.endTime }}</span>
+                            :
+                            <span class="task-name">{{ task.name }}</span>
+                        </div>
+                        <span @click="delItem(task)" class="delete-btn" title="Delete Task">❌</span>
+                    </li>
+                </ul>
+                <button class="new-btn submit-btn" @click="handleClosePopupTask()">
+                    Close
+                </button>
             </div>
-            <ul class="task-list">
-                <li v-for="task in tasks" :key="task.name" class="task-list-item">
-                    <div class="task-list-item-label">
-                        <input type="checkbox" />
-                        <span class="task-name">{{ task.name }}</span>
-                    </div>
-                    <span @click="delItem(task)" class="delete-btn" title="Delete Task">❌</span>
-                </li>
-            </ul>
         </div>
-    </div>
 
     </main>
 </template>
@@ -222,14 +238,15 @@
 import { ref } from 'vue';
 
 const tasks = ref([
-    { name: 'Start a new pen' },
-    { name: 'Read a book' },
-    { name: 'Meeting with team' },
+    { name: 'Start a new pen', startTime: '8:00', endTime: '10:00' },
+    { name: 'Read a book', startTime: '8:00', endTime: '10:00' },
+    { name: 'Meeting with team', startTime: '8:00', endTime: '10:00' },
 ]);
+const isDisplay = ref(false)
 
 function newItem() {
     if (!tasks.value.name) return;
-    tasks.value.push({ name: tasks.value.name, del: '' });
+    tasks.value.push({ name: tasks.value.name, startTime: tasks.value.startTime, endTime: tasks.value.endTime, del: '' });
     tasks.value.name = '';
 }
 
@@ -239,6 +256,12 @@ function delItem(task) {
         tasks.value.splice(taskIndex, 1);
     }
 }
+const handleDisplayPopupTask = () => {
+    isDisplay.value = true
+}
+const handleClosePopupTask = () => {
+    isDisplay.value = false
+}
 </script>
 <style scoped>
 @import "../style/calendar.css";
@@ -247,6 +270,7 @@ function delItem(task) {
 * {
     box-sizing: border-box;
 }
+
 .todotasklist-container {
     position: fixed;
     top: 0;
@@ -269,11 +293,32 @@ ul {
     list-style: none;
     padding: 0;
 }
+
+.time {
+    outline: none;
+    border-radius: 3px;
+    border: 1px solid rgb(61, 183, 236);
+    margin: 0 5px;
+}
+
+.submit-btn {
+    border: 1px solid rgb(49, 171, 224, 0.6);
+    background-color: rgb(49, 171, 224, 0.6);
+    border-radius: 2px;
+    -webkit-box-shadow: 0 0 5px 0 rgba(171, 213, 231, 0.6);
+    height: 35px;
+    width: 80px;
+    position: relative;
+    left: 180px;
+
+}
+
 .add-new-task {
     background-color: rgb(61, 183, 236);
     border: none;
     border-radius: 5px;
 }
+
 .app-container {
     border-radius: 8px;
     width: 100%;
@@ -281,7 +326,8 @@ ul {
     background-color: rgb(219 240 249);
     padding: 24px;
     overflow: auto;
-    margin: 30px;
+    margin-top: 15%;
+    height: 500px;
 }
 
 .app-header {
@@ -299,7 +345,7 @@ ul {
     border: none;
     background: var(--add-button);
     color: #fff;
-   
+
     background-size: 18px;
     background-position: center;
     background-repeat: no-repeat;
@@ -344,7 +390,7 @@ ul {
         height: 16px;
         border-radius: 50%;
         border: 1px solid rgb(110 200 238);
-        
+
         background-repeat: no-repeat;
         background-position: center;
         background-size: 0;
@@ -390,7 +436,7 @@ ul {
     width: 16px;
     height: 16px;
     background-repeat: no-repeat;
-   
+
     background-size: 16px;
     background-position: center;
     cursor: pointer;
@@ -403,5 +449,4 @@ ul {
         -webkit-appearance: none;
         -moz-appearance: none;
     }
-}
-</style>
+}</style>

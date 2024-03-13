@@ -5,16 +5,16 @@
         <h3 class="announce-title">Anounce</h3>
         <div class="announce-list">
           <button type="submit" class="new-btn" id="creat-new-announce-btn" style="margin: 10px"
-                  @click="handleOnClickbtn()">
+            @click="handleOnClickbtn()">
             Create
           </button>
           <button class="new-btn cancel-btn delete-btn" id="delete-announce-btn" style="margin-left: 0"
-                  @click="removeAnnounce()">
+            @click="removeAnnounce()">
             Delete
           </button>
           <div v-for="(item, index) in announceContenlist" :key="index" class="announce-item">
             <div class="themeAndCheck">
-              <input type="checkbox" name="theme-check" class="theme-check" @change="handleChangeCheckbox(item)"/>
+              <input type="checkbox" name="theme-check" class="theme-check" @change="handleChangeCheckbox(item)" />
               <h4 class="anounce-theme" @click="handleShowAnnounceDetail(item.id)">{{ item.announce_name }}</h4>
             </div>
             <p class="anounce-para">{{ item.description }}</p>
@@ -54,15 +54,15 @@
         <h4 class="lesson-name">JLPT N4: Grammar</h4>
         <div class="list-content-item lesson-content-list">
           <div v-for="(item, index) in lessonContenlist" :key="index" class="lession-content-overview">
-            <img src="../img/15801f0d.jpg" alt="" class="lesson-content-img"/>
+            <img src="../img/15801f0d.jpg" alt="" class="lesson-content-img" />
             <h4 class="lesson-name">{{ item.grammar_name }}</h4>
             <div class="created-date">
               <span class="label">Date: </span>
               <span class="date">{{
-                  item.create_at
-                      ? moment(item.create_at).format("DD-MM-YYYY")
-                      : ""
-                }}</span>
+                item.create_at
+                ? moment(item.create_at).format("DD-MM-YYYY")
+                : ""
+              }}</span>
             </div>
             <p class="overview-para">{{ item.grammar_form }}</p>
             <ul class="show-detail-and-practice">
@@ -93,7 +93,7 @@
               <h5 class="add-category-title">Categories</h5>
               <div class="input-item categories-input" style="display: flex; align-items: center;">
                 <select name="category-kbn" id="" class="category-kbn" style="margin-right: 10px;width: 50px;"
-                        v-model="categoryForm.japanese_level">
+                  v-model="categoryForm.japanese_level">
                   <option value="n5">N5</option>
                   <option value="n4">N4</option>
                   <option value="n3">N3</option>
@@ -101,13 +101,13 @@
                   <option value="n1">N1</option>
                 </select>
                 <input :class="[{ 'validateInput': isExit }]" type="text" name="lessonName" id="categoryName"
-                       placeholder="Enter category" style="width: 400px;" v-model="categoryForm.category_name"/>
+                  placeholder="Enter category" style="width: 400px;" v-model="categoryForm.category_name" />
                 <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;"
-                        @click="handleCreateCategory(2)">Add
+                  @click="handleCreateCategory(2)">Add
                 </button>
               </div>
               <div class="input-item categories">
-                <table class="categories-list" width="700" border="1" cellpadding="2px">
+                <table class="categories-list" width="700px" border="1" cellpadding="2px">
                   <tr class="categories-list-head">
                     <th class="categories-list-title" style="width: 30px ;"></th>
                     <th class="categories-list-title" style="width: 30px ;">STT</th>
@@ -115,21 +115,22 @@
                     <th class="categories-list-title" style="width: 150px ;">Category</th>
                   </tr>
                   <tbody>
-                  <tr v-for="(item, index) in categoryList" :key="index" class="categories-list-tr">
-                    <td><input type="checkbox" class="vocabu-table-content" style="width: 100%;"/></td>
-                    <td class="categories-list-content">{{ index + 1 }}</td>
-                    <td class="categories-list-content"> {{ item.japanese_level }}</td>
-                    <td class="categories-list-content"> {{ item.category_name }}</td>
-                  </tr>
+                    <tr v-for="(item, index) in categoryList" :key="index" class="categories-list-tr">
+                      <td><input type="checkbox" class="vocabu-table-content" style="width: 100%;" /></td>
+                      <td class="categories-list-content">{{ index + 1 }}</td>
+                      <td class="categories-list-content"> {{ item.japanese_level }}</td>
+                      <td class="categories-list-content"> {{ item.category_name }}</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
+
             </div>
 
             <div class="new-form daily-create">
-              <div class="input-item">
+              <!-- <div class="input-item">
                 <span class="span-label"><label for="dailyName">Title</label></span>
-                <input type="text" name="dailyName" id="dailyName" v-model="formKanji.title"/>
+                <input type="text" name="dailyName" id="dailyName" v-model="formKanji.title" />
               </div>
               <div class="input-item">
                 <span class="span-label"><label for="dailyContent">Kanji</label></span>
@@ -150,31 +151,84 @@
 
               <div class="input-item">
                 <span class="span-label"><label for="daily-pic">URL</label></span>
-                <input type="text" name="daily-pic" id="daily-pic" v-model="formKanji.kanji_url"/>
+                <input type="text" name="daily-pic" id="daily-pic" v-model="formKanji.kanji_url" />
+              </div>
+              <div class="img-container">
+                <label for="file-upload" class="custom-file-upload">
+                  <i class="fas fa-image"></i>
+                </label>
+                <input type="file" id="file-upload">
+              </div> -->
+              <div class="vocabulary-list">
+                <table class="vocabu-list-table" width="800" border="1" cellpadding="2px">
+                  <tr class="vocabu-table-head">
+                    <th class="vocabu-table-title" style="width: 50px ;"></th>
+                    <th class="vocabu-table-title" style="width: 50px ;">STT</th>
+                    <th class="vocabu-table-title">Kanji</th>
+                    <th class="vocabu-table-title">Onyomi</th>
+                    <th class="vocabu-table-title">Kunyomi</th>
+                    <th class="vocabu-table-title">Kanji's name</th>
+                    <th class="vocabu-table-title">Defination</th>
+                    <th class="vocabu-table-title" style="padding: 5px 10px;width: 80px;">Delete</th>
+                  </tr>
+                  <tbody>
+                    <tr v-for="(row, index) in rows" :key="index" class="vocabu-table-tr">
+                      <td><input type="checkbox" class="vocabu-table-content" @change="handleChangethisCheckbox(row)"
+                          style="width: 100%;" /></td>
+                      <td v-if="!isEditing(index)" class="vocabu-table-content">{{ index + 1 }}</td>
+                      <td v-else><input type="text" v-model="editData.column1" @keyup.enter="saveEdit(index)"
+                          @blur="saveEdit(index)" class="vocabu-table-content" /></td>
+                      <!-- <td v-if="!isEditing(index)" class="vocabu-table-content"> {{ row.new_kanji }}</td> -->
+                      <td><input type="text" v-model="row.new_kanji" @keyup.enter="saveEdit(index)"
+                          @blur="saveEdit(index)" class="vocabu-table-content" /></td>
+                      <!-- <td v-if="!isEditing(index)" class="vocabu-table-content">{{ row.defination }}</td> -->
+                      <td><input type="text" v-model="row.onyomi" @keyup.enter="saveEdit(index)" @blur="saveEdit(index)"
+                          class="vocabu-table-content" /></td>
+                      <td><input type="text" v-model="row.kunyomi" @keyup.enter="saveEdit(index)" @blur="saveEdit(index)"
+                          class="vocabu-table-content" /></td>
+                      <td><input type="text" v-model="row.kanji_name" @keyup.enter="saveEdit(index)"
+                          @blur="saveEdit(index)" class="vocabu-table-content" /></td>
+                      <!-- <td v-if="!isEditing(index)" class="vocabu-table-content">{{ row.spelling }}</td> -->
+                      <td><input type="text" v-model="row.defination" @keyup.enter="saveEdit(index)"
+                          @blur="saveEdit(index)" class="vocabu-table-content" /></td>
+                      <td class="vocabu-table-content"><i @click="deleteRow(index)" class="far fa-trash-alt"></i></td>
+                    </tr>
+                    <tr>
+                      <td><input type="checkbox" class="vocabu-table-content" /></td>
+                      <td class="vocabu-table-content"></td>
+                      <td class="vocabu-table-content"><input type="text" v-model="newRow.new_kanji" /></td>
+                      <td class="vocabu-table-content"><input type="text" v-model="newRow.onyomi" /></td>
+                      <td class="vocabu-table-content"><input type="text" v-model="newRow.kunyomi" /></td>
+                      <td class="vocabu-table-content"><input type="text" v-model="newRow.kanji_name" /></td>
+                      <td class="vocabu-table-content"><input type="text" v-model="newRow.defination" /></td>
+                      <td class="vocabu-table-content" colspan="1"><i @click="addRow" class="fas fa-plus"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
 
-              <div class="btn-container">
-                <button class="new-btn submit-btn" id="submit-daily-btn" @click="handleCreateKanji()">
-                  Submit
-                </button>
-                <button class="new-btn cancel-btn" id="cancel-daily-btn" @click="handleCloseKanjiPopup()">
-                  Cancel
-                </button>
-              </div>
+            </div>
+            <div class="btn-container">
+              <button class="new-btn submit-btn" id="submit-daily-btn" @click="handleSaveVocabulary()">
+                Submit
+              </button>
+              <button class="new-btn cancel-btn" id="cancel-daily-btn" @click="handleCloseKanjiPopup()">
+                Cancel
+              </button>
             </div>
           </div>
         </div>
         <div class="list-content-item daily-content-list">
           <div v-for="(item, index) in kanjiContentList" :key="index" class="daily-content-overview">
-            <img class="student-daily-img" src="../img/Hinh-Anh-Anime-Chibi-Girl (3).jpg" alt=""/>
+            <img class="student-daily-img" src="../img/Hinh-Anh-Anime-Chibi-Girl (3).jpg" alt="" />
             <h4 class="daily-name">{{ item.title }}</h4>
             <div class="created-date">
               <span class="label">Date: </span>
               <span class="date">{{
-                  item.create_at
-                      ? moment(item.create_at).format("DD-MM-YYYY")
-                      : ""
-                }}</span>
+                item.create_at
+                ? moment(item.create_at).format("DD-MM-YYYY")
+                : ""
+              }}</span>
             </div>
             <p class="overview-para">{{ item.kanji_name }}</p>
             <div class="show-detail">
@@ -199,7 +253,7 @@
         </div>
         <div class="input-item categories-input" style="display: flex; align-items: center;">
           <select name="category-kbn" id="" class="category-kbn" style="margin-right: 10px;width: 50px;"
-                  v-model="categoryForm.japanese_level">
+            v-model="categoryForm.japanese_level">
             <option value="n5">N5</option>
             <option value="n4">N4</option>
             <option value="n3">N3</option>
@@ -207,9 +261,9 @@
             <option value="n1">N1</option>
           </select>
           <input type="text" name="lessonName" id="categoryName" placeholder="Enter category" style="width: 400px;"
-                 v-model="categoryForm.category_name"/>
+            v-model="categoryForm.category_name" />
           <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;"
-                  @click="handleCreateCategory(1)">Add
+            @click="handleCreateCategory(1)">Add
           </button>
         </div>
         <div class="input-item categories">
@@ -221,13 +275,13 @@
               <th class="categories-list-title" style="width: 150px ;">Category</th>
             </tr>
             <tbody>
-            <tr v-for="(item, index) in categoryList" :key="index" class="categories-list-tr">
-              <td><input type="checkbox" @change="(val) => handleChangeCheckboxCategory(val, item)"
-                         class="vocabu-table-content" style="width: 100%;"/></td>
-              <td class="categories-list-content">{{ index + 1 }}</td>
-              <td class="categories-list-content"> {{ item.japanese_level }}</td>
-              <td class="categories-list-content"> {{ item.category_name }}</td>
-            </tr>
+              <tr v-for="(item, index) in categoryList" :key="index" class="categories-list-tr">
+                <td><input type="checkbox" @change="(val) => handleChangeCheckboxCategory(val, item)"
+                    class="vocabu-table-content" style="width: 100%;" /></td>
+                <td class="categories-list-content">{{ index + 1 }}</td>
+                <td class="categories-list-content"> {{ item.japanese_level }}</td>
+                <td class="categories-list-content"> {{ item.category_name }}</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -235,27 +289,27 @@
       <div class="new-form lesson-create">
         <div class="input-item">
           <span class="span-label"><label for="lessonName">Title</label></span>
-          <input type="text" name="lessonName" id="lessonName" v-model="formGramma.grammar_name"/>
+          <input type="text" name="lessonName" id="lessonName" v-model="formGramma.grammar_name" />
         </div>
         <div class="input-item">
           <span class="span-label"><label for="lessonContent">Form</label></span>
           <textarea class="textareacss" name="lessonContent" id="lessonContent1"
-                    v-model="formGramma.grammar_form"></textarea>
+            v-model="formGramma.grammar_form"></textarea>
         </div>
         <div class="input-item">
           <span class="span-label"><label for="lessonContent">Define</label></span>
           <textarea class="textareacss" name="lessonContent" id="lessonContent2"
-                    v-model="formGramma.form_define"></textarea>
+            v-model="formGramma.form_define"></textarea>
         </div>
         <div class="input-item">
           <span class="span-label"><label for="lessonContent">Example 1</label></span>
           <textarea class="textareacss" name="lessonContent" id="lessonContent3"
-                    v-model="formGramma.example_1"></textarea>
+            v-model="formGramma.example_1"></textarea>
         </div>
         <div class="input-item">
           <span class="span-label"><label for="lessonContent">Example 2</label></span>
           <textarea class="textareacss" name="lessonContent" id="lessonContent4"
-                    v-model="formGramma.example_2"></textarea>
+            v-model="formGramma.example_2"></textarea>
         </div>
         <!-- <div class="input-item">
           <span class="span-label"><label for="date">Date</label></span>
@@ -263,7 +317,13 @@
         </div> -->
         <div class="input-item">
           <span class="span-label"><label for="homework-url">URL</label></span>
-          <input type="text" name="homework-url" id="homework-url" v-model="formGramma.home_work"/>
+          <input type="text" name="homework-url" id="homework-url" v-model="formGramma.home_work" />
+        </div>
+        <div class="img-container">
+          <label for="file-upload" class="custom-file-upload">
+            <i class="fas fa-image"></i>
+          </label>
+          <input type="file" id="file-upload">
         </div>
       </div>
       <div class="btn-container">
@@ -286,7 +346,7 @@
       <div class="new-form announce-create">
         <div class="input-item">
           <span class="span-label"><label for="lessonName">Title</label></span>
-          <input type="text" name="lessonName" id="announceName" v-model="formAnnounce.announce_name"/>
+          <input type="text" name="lessonName" id="announceName" v-model="formAnnounce.announce_name" />
         </div>
         <div class="input-item">
           <span class="span-label"><label for="lessonContent">Content</label></span>
@@ -307,10 +367,11 @@
 </template>
 
 <script setup>
-import {ref, reactive} from "vue"; // dung de import
+import { ref } from "vue"; // dung de import
 import router from "../router";
 import moment from "moment";
-import {studentJapaneseStore} from "../store";
+import { showDetailFlashcard, createFlashcard } from "../api/flashcard";
+
 
 import {
   listGrammar,
@@ -318,16 +379,37 @@ import {
   editGrammar,
   showDetailGrammar,
 } from "../api/grammar";
-import {listKanji, createKanji, showDetailkanji} from "../api/kanji";
-import {listCategoriesByType, createCategory, editCategory} from "../api/categories";
-import {listAnnounce, showDetailAnnounce, createAnnounce, editAnnounce} from "../api/announce";
+import { listKanji, createKanji, showDetailkanji } from "../api/kanji";
+import { listCategoriesByType, createCategory, editCategory } from "../api/categories";
+import { listAnnounce, showDetailAnnounce, createAnnounce, editAnnounce } from "../api/announce";
 
 const lessonContenlist = ref([]);
 const announceContenlist = ref([]);
 
 const kanjiContentList = ref([]);
 const categoryList = ref([])
+const rows = ref([]);
 
+const isDisplayAnnounceCreate = ref(false);
+const isDisplayLessonCreate = ref(false);
+const isDisplayKanjiCreate = ref(false);
+const isExit = ref(false)
+const isVisibleErr = ref(false)
+
+const multiSelection = ref([]);
+const multiSelectionCategory = ref([]);
+const messageError = ref("")
+
+const newRow = ref({
+  column1: '',
+  new_kanji: '',
+  kanji_name: '',
+  defination: '',
+  onyomi: '',
+  kunyomi: '',
+  column5: '',
+  column6: ''
+});
 const formGrammaDefault = {
   id: null,
   grammar_name: "",
@@ -348,31 +430,23 @@ const categoryFormDefault = {
   category_name: "",
   japanese_level: "",
 }
-const categoryForm = ref({...categoryFormDefault})
+const categoryForm = ref({ ...categoryFormDefault })
 const formAnnounce = ref(formAnnounceDefault);
-const formKanjiDefault = {
-  id: null,
-  title: "",
-  kanji_name: "",
-  example: "",
-  spell_onyomi: "",
-  spell_kuyomi: "",
-  kanji_url: "",
-  path_base: "",
-  file_name: "",
-  file_ext: "",
-};
-const formKanji = ref(formKanjiDefault);
+// const formKanjiDefault = {
+//   id: null,
+//   title: "",
+//   kanji_name: "",
+//   example: "",
+//   spell_onyomi: "",
+//   spell_kuyomi: "",
+//   kanji_url: "",
+//   path_base: "",
+//   file_name: "",
+//   file_ext: "",
+// };
+// const formKanji = ref(formKanjiDefault);
 
-const isDisplayAnnounceCreate = ref(false);
-const isDisplayLessonCreate = ref(false);
-const isDisplayKanjiCreate = ref(false);
-const isExit = ref(false)
-const isVisibleErr = ref(false)
 
-const multiSelection = ref([]);
-const multiSelectionCategory = ref([]);
-const messageError = ref("")
 const fetchAnnounce = async () => {
   try {
     const data = await listAnnounce();
@@ -420,14 +494,14 @@ const handleCreateCategory = async (type) => {
 
     // check exist category name
     if (categoryList.value.filter((item => item.category_name.trim() ===
-        categoryForm.value.category_name.trim())).length > 0) {
+      categoryForm.value.category_name.trim())).length > 0) {
       isExit.value = true
       isVisibleErr.value = true
       messageError.value = "Categories exist!"
       return
     }
 
-    const request = {...categoryForm.value, type: type};
+    const request = { ...categoryForm.value, type: type };
     const data = await createCategory(request)
     const result = data?.data?.data
     if (result) {
@@ -506,32 +580,32 @@ const handleEditGrammar = async () => {
 
 // kanji
 
-const fetchKanji = async () => {
-  try {
-    const data = await listKanji();
-    if (data?.data?.data) {
-      kanjiContentList.value = data.data.data;
-    }
-  } catch (error) {
-  }
-};
+// const fetchKanji = async () => {
+//   try {
+//     const data = await listKanji();
+//     if (data?.data?.data) {
+//       kanjiContentList.value = data.data.data;
+//     }
+//   } catch (error) {
+//   }
+// };
 
-fetchKanji();
+// fetchKanji();
 
-const handleCreateKanji = async () => {
-  try {
-    const request = formKanji.value;
-    const data = await createKanji(request)
-    const result = data?.data?.data
-    if (result) {
-      fetchKanji()
-      formKanji.value = formKanjiDefault
-      handleCloseKanjiPopup()
-    }
-  } catch (error) {
-    console.log(error)
-  }
-}
+// const handleCreateKanji = async () => {
+//   try {
+//     const request = formKanji.value;
+//     const data = await createKanji(request)
+//     const result = data?.data?.data
+//     if (result) {
+//       fetchKanji()
+//       formKanji.value = formKanjiDefault
+//       handleCloseKanjiPopup()
+//     }
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
 
 const appendAnnounceContent = async () => {
 
@@ -573,7 +647,7 @@ const handleOpenKanjiPopup = () => {
 }
 
 const handleCloseKanjiPopup = () => {
-  formKanji.value = formKanjiDefault;
+  // formKanji.value = formKanjiDefault;
   isDisplayKanjiCreate.value = false;
 };
 
@@ -581,10 +655,6 @@ const handleClosePopup = () => {
   formGramma.value = formGrammaDefault;
   isDisplayLessonCreate.value = false;
 };
-
-const handleValidateCategoryName = () => {
-
-}
 
 const handleOnClickbtn = () => {
   formAnnounce.value = formAnnounceDefault
@@ -594,7 +664,7 @@ const handleOnClickbtn = () => {
 const handleChangeCheckbox = (row) => {
   if (multiSelection.value.includes(row.index)) {
     multiSelection.value = multiSelection.value.filter(
-        (item) => item !== row.index
+      (item) => item !== row.index
     );
   } else {
     multiSelection.value.push(row.index);
@@ -607,18 +677,18 @@ const removeAnnounce = () => {
   }
   multiSelection.value.forEach((itemSelect, index) => {
     announceContenlist.value = announceContenlist.value.filter(
-        (item) => itemSelect !== item.index
+      (item) => itemSelect !== item.index
     );
   });
   //
 };
 
 const handleShowDetail = (id) => {
-  router.push({path: "/grammar", query: {id: id}});
+  router.push({ path: "/grammar", query: { id: id } });
 };
 
 const handleShowKanjiDetail = (kanjiid) => {
-  router.push({path: "/kanji", query: {kanjiid: kanjiid}});
+  router.push({ path: "/kanji", query: { kanjiid: kanjiid } });
 };
 
 const handleChangeCheckboxCategory = (val, item) => {
@@ -644,11 +714,105 @@ const handleCloseError = () => {
   messageError.value = ""
   isVisibleErr.value = false
 }
+const queryRouter = router.currentRoute.value.query
+
+const multiflashcardSelection = ref([]);
+const flashcardFormDefault = {
+  title: '',
+  description: '',
+  list_flashcard_vocabulary: []
+}
+const flashcardForm = ref(flashcardFormDefault)
+
+
+const editIndex = ref(null);
+
+const editData = ref({});
+
+const fetchFlashcardDetail = async (id) => {
+  try {
+    const data = await showDetailFlashcard(id)
+    const result = data?.data?.data
+    if (result) {
+      flashcardForm.value = result
+      rows.value = result.list_flashcard_vocabulary
+    }
+  } catch (error) {
+
+  }
+}
+
+if (queryRouter?.id) {
+  fetchFlashcardDetail(queryRouter.id)
+}
+
+const handleSaveVocabulary = async () => {
+  try {
+    const request = flashcardForm.value;
+    request.list_flashcard_vocabulary = rows.value.map((item) => { return { new_kanji: item.new_kanji, onyomi: item.onyomi, kunyomi: item.kunyomi, kanji_name: item.kanji_name,defination: item.defination } })
+    const data = await createFlashcard(request)
+    const result = data?.data?.data
+    if (result != null) {
+      fetchFlashcardDetail(result)
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+
+
+const addRow = () => {
+  rows.value.push({ ...newRow.value });
+  resetForm();
+};
+
+
+
+const saveEdit = (index) => {
+  if (editIndex.value === index) {
+    rows.value.splice(index, 1, { ...editData.value });
+    editIndex.value = null;
+    editData.value = {};
+  }
+};
+
+const isEditing = (index) => {
+  return index === editIndex.value;
+};
+
+const deleteRow = (index) => {
+  rows.value.splice(index, 1);
+};
+
+const resetForm = () => {
+  newRow.value.column1 = '';
+  newRow.value.new_kanji = '';
+  newRow.value.defination = '';
+  newRow.value.onyomi = '';
+  newRow.value.kunyomi = '';
+  newRow.value.kanji_name = '';
+  newRow.value.column5 = '';
+  newRow.value.column6 = '';
+};
+const handleChangethisCheckbox = (row) => {
+  if (multiflashcardSelection.value.includes(row.index)) {
+    multiflashcardSelection.value = multiflashcardSelection.value.filter(
+      (item) => item != row.index
+    );
+  } else {
+    multiflashcardSelection.value.push(row.index);
+  }
+  console.log(multiflashcardSelection.value);
+};
+
+
 </script>
 
 
 <style scoped>
 @import "../style/teacher.css";
+@import "../style/flashcrad.css";
 
 .isVisible {
   visibility: visible;
@@ -666,7 +830,10 @@ const handleCloseError = () => {
   text-align: center;
 
 }
-
+.vocabu-list-table[data-v-9b550bf2] {
+    border-collapse: collapse;
+    width: 100%;
+}
 .categories-list-head {
   background-color: rgb(61, 183, 236);
 }

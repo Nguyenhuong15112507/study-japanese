@@ -16,8 +16,7 @@
     </button>
     <div class="input-item" style="display: flex; align-items: center; width: 500px;">
       <span class="span-label"><label for="lessonName">Title</label></span>
-      <input type="text" name="lessonName" id="announceName" v-model="flashcardForm.title"
-        style="margin-left: 56px;" />
+      <input type="text" name="lessonName" id="announceName" v-model="flashcardForm.title" style="margin-left: 56px;" />
     </div>
     <div class="input-item" style="display: flex; align-items: center; width: 500px;">
       <span class="span-label"><label for="lessonName">Description</label></span>
@@ -42,14 +41,14 @@
             <td v-else><input type="text" v-model="editData.column1" @keyup.enter="saveEdit(index)"
                 @blur="saveEdit(index)" class="vocabu-table-content" /></td>
             <!-- <td v-if="!isEditing(index)" class="vocabu-table-content"> {{ row.new_word }}</td> -->
-            <td><input type="text" v-model="row.new_word" @keyup.enter="saveEdit(index)"
-                @blur="saveEdit(index)" class="vocabu-table-content" /></td>
+            <td><input type="text" v-model="row.new_word" @keyup.enter="saveEdit(index)" @blur="saveEdit(index)"
+                class="vocabu-table-content" /></td>
             <!-- <td v-if="!isEditing(index)" class="vocabu-table-content">{{ row.defination }}</td> -->
-            <td><input type="text" v-model="row.spelling" @keyup.enter="saveEdit(index)"
-                @blur="saveEdit(index)" class="vocabu-table-content" /></td>
+            <td><input type="text" v-model="row.spelling" @keyup.enter="saveEdit(index)" @blur="saveEdit(index)"
+                class="vocabu-table-content" /></td>
             <!-- <td v-if="!isEditing(index)" class="vocabu-table-content">{{ row.spelling }}</td> -->
-            <td><input type="text" v-model="row.defination" @keyup.enter="saveEdit(index)"
-                @blur="saveEdit(index)" class="vocabu-table-content" /></td>
+            <td><input type="text" v-model="row.defination" @keyup.enter="saveEdit(index)" @blur="saveEdit(index)"
+                class="vocabu-table-content" /></td>
             <td class="vocabu-table-content"><i @click="deleteRow(index)" class="far fa-trash-alt"></i></td>
           </tr>
           <tr>
@@ -99,7 +98,7 @@ const fetchFlashcardDetail = async (id) => {
   try {
     const data = await showDetailFlashcard(id)
     const result = data?.data?.data
-    if(result){
+    if (result) {
       flashcardForm.value = result
       rows.value = result.list_flashcard_vocabulary
     }
@@ -108,7 +107,7 @@ const fetchFlashcardDetail = async (id) => {
   }
 }
 
-if(queryRouter?.id){
+if (queryRouter?.id) {
   fetchFlashcardDetail(queryRouter.id)
 }
 
