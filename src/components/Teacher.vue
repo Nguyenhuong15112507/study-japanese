@@ -85,168 +85,6 @@
       <h3 class="title-content">Create New Kanji Lesson</h3>
       <button class="new-btn" id="creat-new-daily-btn" @click="handleOpenKanjiPopup()">Create</button>
       <div class="student-daily">
-        <div v-if="isDisplayKanjiCreate" :class="['daily-component', { isVisible: isDisplayKanjiCreate }]">
-
-          <div class="new-input daily">
-            <h4 class="form-title">New Kanji Lesson</h4>
-            <div class="new-form lesson-create">
-              <h5 class="add-category-title">Categories</h5>
-              <div class="input-item categories-input" style="display: flex; align-items: center;">
-                <select name="category-kbn" id="" class="category-kbn" style="margin-right: 10px;width: 50px;"
-                  v-model="categoryForm.japanese_level">
-                  <option value="n5">N5</option>
-                  <option value="n4">N4</option>
-                  <option value="n3">N3</option>
-                  <option value="n2">N2</option>
-                  <option value="n1">N1</option>
-                </select>
-                <input :class="[{ 'validateInput': isExit }]" type="text" name="lessonName" id="categoryName"
-                  placeholder="Enter category" style="width: 400px;" v-model="categoryForm.category_name" />
-                <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;"
-                  @click="handleCreateCategory(2)">Add
-                </button>
-              </div>
-              <div class="input-item categories">
-                <table class="categories-list" width="700px" border="1" cellpadding="2px">
-                  <tr class="categories-list-head">
-                    <th class="categories-list-title" style="width: 30px ;"></th>
-                    <th class="categories-list-title" style="width: 30px ;">STT</th>
-                    <th class="categories-list-title" style="width: 100px ;">Japanese level</th>
-                    <th class="categories-list-title" style="width: 150px ;">Category</th>
-                  </tr>
-                  <tbody>
-                    <tr v-for="(item, index) in categoryList" :key="index" class="categories-list-tr">
-                      <td><input type="checkbox" class="vocabu-table-content" style="width: 100%;" /></td>
-                      <td class="categories-list-content">{{ index + 1 }}</td>
-                      <td class="categories-list-content"> {{ item.japanese_level }}</td>
-                      <td class="categories-list-content"> {{ item.category_name }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-            </div>
-
-            <div class="new-form daily-create">
-              <!-- <div class="input-item">
-                <span class="span-label"><label for="dailyName">Title</label></span>
-                <input type="text" name="dailyName" id="dailyName" v-model="formKanji.title" />
-              </div>
-              <div class="input-item">
-                <span class="span-label"><label for="dailyContent">Kanji</label></span>
-                <textarea name="dailyContent1" id="dailyContent1" v-model="formKanji.kanji_name"></textarea>
-              </div>
-              <div class="input-item">
-                <span class="span-label"><label for="dailyContent">Spell 1</label></span>
-                <textarea name="dailyContent2" id="dailyContent2" v-model="formKanji.spell_onyomi"></textarea>
-              </div>
-              <div class="input-item">
-                <span class="span-label"><label for="dailyContent">Spell 2</label></span>
-                <textarea name="dailyContent2" id="dailyContent2" v-model="formKanji.spell_kuyomi"></textarea>
-              </div>
-              <div class="input-item">
-                <span class="span-label"><label for="dailyContent">Example</label></span>
-                <textarea name="dailyContent2" id="dailyContent2" v-model="formKanji.example"></textarea>
-              </div>
-
-              <div class="input-item">
-                <span class="span-label"><label for="daily-pic">URL</label></span>
-                <input type="text" name="daily-pic" id="daily-pic" v-model="formKanji.kanji_url" />
-              </div>
-              <div class="img-container">
-                <label for="file-upload" class="custom-file-upload">
-                  <i class="fas fa-image"></i>
-                </label>
-                <input type="file" id="file-upload">
-              </div> -->
-              <div class="input-item" style="display: flex; align-items: center; width: 500px;">
-                <span class="span-label"><label for="lessonName">Title</label></span>
-                <input type="text" name="lessonName" id="announceName" style="margin-left: 56px;" />
-              </div>
-              <div class="input-item" style="display: flex; align-items: center; width: 500px;">
-                <span class="span-label"><label for="lessonName">Description</label></span>
-                <input type="text" name="lessonName" id="announceName" />
-              </div>
-              <div class="vocabulary-list">
-                <table class="vocabu-list-table" width="800" border="1" cellpadding="2px">
-                  <tr class="vocabu-table-head">
-                    <th class="vocabu-table-title" style="width: 50px ;"></th>
-                    <th class="vocabu-table-title" style="width: 50px ;">STT</th>
-                    <th class="vocabu-table-title">Kanji</th>
-                    <th class="vocabu-table-title">Onyomi</th>
-                    <th class="vocabu-table-title">Kunyomi</th>
-                    <th class="vocabu-table-title">Kanji's name</th>
-                    <th class="vocabu-table-title">Example</th>
-                    <th class="vocabu-table-title">Defination</th>
-                    <th class="vocabu-table-title">Image</th>
-                    <th class="vocabu-table-title" style="padding: 5px 10px;width: 80px;">Delete</th>
-                  </tr>
-                  <tbody>
-                    <tr v-for="(row, index) in rows" :key="index" class="vocabu-table-tr">
-                      <td><input type="checkbox" class="vocabu-table-content" @change="handleChangethisCheckbox(row)"
-                          style="width: 100%;" /></td>
-                      <td v-if="!isEditing(index)" class="vocabu-table-content">{{ index + 1 }}</td>
-                      <td v-else><input type="text" v-model="editData.column1" @keyup.enter="saveEdit(index)"
-                          @blur="saveEdit(index)" class="vocabu-table-content" /></td>
-                      <!-- <td v-if="!isEditing(index)" class="vocabu-table-content"> {{ row.new_kanji }}</td> -->
-                      <td><input type="text" v-model="row.new_kanji" @keyup.enter="saveEdit(index)"
-                          @blur="saveEdit(index)" class="vocabu-table-content" /></td>
-                      <!-- <td v-if="!isEditing(index)" class="vocabu-table-content">{{ row.defination }}</td> -->
-                      <td><input type="text" v-model="row.onyomi" @keyup.enter="saveEdit(index)" @blur="saveEdit(index)"
-                          class="vocabu-table-content" /></td>
-                      <td><input type="text" v-model="row.kunyomi" @keyup.enter="saveEdit(index)" @blur="saveEdit(index)"
-                          class="vocabu-table-content" /></td>
-                      <td><input type="text" v-model="row.kanji_name" @keyup.enter="saveEdit(index)"
-                          @blur="saveEdit(index)" class="vocabu-table-content" /></td>
-                      <td><input type="text" v-model="row.example" @keyup.enter="saveEdit(index)" @blur="saveEdit(index)"
-                          class="vocabu-table-content" /></td>
-                      <!-- <td v-if="!isEditing(index)" class="vocabu-table-content">{{ row.spelling }}</td> -->
-                      <td><input type="text" v-model="row.defination" @keyup.enter="saveEdit(index)"
-                          @blur="saveEdit(index)" class="vocabu-table-content" /></td>
-                      <td>
-                        <div class="img-container-lesson">
-                          <label for="file-upload" class="custom-file-upload" style="padding: 3px 15px;">
-                            <i class="fas fa-image imgEdit"></i>
-                          </label>
-                          <input type="file" id="file-upload">
-                        </div>
-                      </td>
-                      <td class="vocabu-table-content"><i @click="deleteRow(index)" class="far fa-trash-alt"></i></td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" class="vocabu-table-content" /></td>
-                      <td class="vocabu-table-content"></td>
-                      <td class="vocabu-table-content"><input type="text" v-model="newRow.new_kanji" /></td>
-                      <td class="vocabu-table-content"><input type="text" v-model="newRow.onyomi" /></td>
-                      <td class="vocabu-table-content"><input type="text" v-model="newRow.kunyomi" /></td>
-                      <td class="vocabu-table-content"><input type="text" v-model="newRow.kanji_name" /></td>
-                      <td class="vocabu-table-content"><input type="text" v-model="newRow.example" /></td>
-                      <td class="vocabu-table-content"><input type="text" v-model="newRow.defination" /></td>
-                      <td class="vocabu-table-content"><input type="file" />
-                        <div class="img-container-lesson">
-                          <label for="file-upload" class="custom-file-upload" style="padding: 3px 15px;">
-                            <i class="fas fa-image imgEdit"></i>
-                          </label>
-                          <input type="file" id="file-upload">
-                        </div>
-                      </td>
-                      <td class="vocabu-table-content" colspan="1"><i @click="addRow" class="fas fa-plus"></i></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-            </div>
-            <div class="btn-container">
-              <button class="new-btn submit-btn" id="submit-daily-btn" @click="handleSaveVocabulary()">
-                Submit
-              </button>
-              <button class="new-btn cancel-btn" id="cancel-daily-btn" @click="handleCloseKanjiPopup()">
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
         <div class="list-content-item daily-content-list">
           <div v-for="(item, index) in kanjiContentList" :key="index" class="daily-content-overview">
             <img class="student-daily-img" src="../img/Hinh-Anh-Anime-Chibi-Girl (3).jpg" alt="" />
@@ -368,6 +206,7 @@
       </div>
     </div>
   </div>
+
   <!-- Announce create -->
   <div v-if="isDisplayAnnounceCreate" :class="['anouncement-create', { isVisible: isDisplayAnnounceCreate }]">
     <div class="new-input announce">
@@ -392,6 +231,7 @@
       </div>
     </div>
   </div>
+  <kanji-popup :is-visible="isDisplayKanjiCreate" @close="handleCloseKanjiPopup" />
   <!-- <footer>Powered by W3.css</footer> -->
 </template>
 
@@ -399,50 +239,12 @@
 import { ref } from "vue"; // dung de import
 import router from "../router";
 import moment from "moment";
-import { showDetailKanjiNew, createKanjiNew } from "../api/kanjinew";
 import { listGrammar, createGrammar, editGrammar, showDetailGrammar } from "../api/grammar";
 import { listKanji, createKanji, showDetailkanji } from "../api/kanji";
 import { listCategoriesByType, createCategory, editCategory } from "../api/categories";
 import { listAnnounce, showDetailAnnounce, createAnnounce, editAnnounce } from "../api/announce";
+import KanjiPopup from "./popup/KanjiPopup.vue";
 
-const lessonContenlist = ref([]);
-const announceContenlist = ref([]);
-
-const kanjiContentList = ref([]);
-const categoryList = ref([])
-const rows = ref([]);
-
-const isDisplayAnnounceCreate = ref(false);
-const isDisplayLessonCreate = ref(false);
-const isDisplayKanjiCreate = ref(false);
-const isExit = ref(false)
-const isVisibleErr = ref(false)
-
-const multiSelection = ref([]);
-const multiSelectionCategory = ref([]);
-const messageError = ref("")
-
-const newRow = ref({
-  column1: '',
-  new_kanji: '',
-  kanji_name: '',
-  defination: '',
-  example: '',
-  onyomi: '',
-  kunyomi: '',
-  column5: '',
-  column6: ''
-});
-const formGrammaDefault = {
-  id: null,
-  grammar_name: "",
-  grammar_form: null,
-  form_define: "",
-  example_1: "",
-  example_2: "",
-  home_work: "",
-};
-const formGramma = ref(formGrammaDefault);
 const formAnnounceDefault = {
   id: null,
   announce_name: "",
@@ -453,21 +255,35 @@ const categoryFormDefault = {
   category_name: "",
   japanese_level: "",
 }
+
+const formGrammaDefault = {
+  id: null,
+  grammar_name: "",
+  grammar_form: null,
+  form_define: "",
+  example_1: "",
+  example_2: "",
+  home_work: "",
+};
+
+const lessonContenlist = ref([]);
+const announceContenlist = ref([]);
+
+const kanjiContentList = ref([]);
+const categoryList = ref([])
+
+const isDisplayAnnounceCreate = ref(false);
+const isDisplayLessonCreate = ref(false);
+const isDisplayKanjiCreate = ref(false);
+const isExit = ref(false)
+const isVisibleErr = ref(false)
+
+const multiSelection = ref([]);
+const multiSelectionCategory = ref([]);
+const messageError = ref("")
+const formGramma = ref(formGrammaDefault);
 const categoryForm = ref({ ...categoryFormDefault })
 const formAnnounce = ref(formAnnounceDefault);
-const formKanjiDefault = {
-  id: null,
-  new_kanji: '',
-  kanji_name: '',
-  defination: '',
-  example: '',
-  onyomi: '',
-  kunyomi: '',
-  path_base: "",
-  file_name: "",
-  file_ext: "",
-};
-const formKanji = ref(formKanjiDefault);
 
 
 const fetchAnnounce = async () => {
@@ -480,6 +296,7 @@ const fetchAnnounce = async () => {
 
   }
 }
+
 fetchAnnounce()
 const fetchCategory = async (type) => {
   try {
@@ -500,6 +317,20 @@ const fetchGrammar = async () => {
   }
 };
 fetchGrammar();
+
+// kanji
+
+const fetchKanji = async () => {
+  try {
+    const data = await listKanji();
+    if (data?.data?.data) {
+      kanjiContentList.value = data.data.data;
+    }
+  } catch (error) {
+  }
+};
+
+fetchKanji();
 
 const handleCreateCategory = async (type) => {
   isExit.value = false
@@ -601,35 +432,6 @@ const handleEditGrammar = async () => {
   }
 };
 
-// kanji
-
-const fetchKanji = async () => {
-  try {
-    const data = await listKanji();
-    if (data?.data?.data) {
-      kanjiContentList.value = data.data.data;
-    }
-  } catch (error) {
-  }
-};
-
-fetchKanji();
-
-const handleCreateKanji = async () => {
-  try {
-    const request = formKanji.value;
-    const data = await createKanji(request)
-    const result = data?.data?.data
-    if (result) {
-      fetchKanji()
-      formKanji.value = formKanjiDefault
-      handleCloseKanjiPopup()
-    }
-  } catch (error) {
-    console.log(error)
-  }
-}
-
 const appendAnnounceContent = async () => {
 
   try {
@@ -665,12 +467,10 @@ const handleOpenPopup = () => {
 };
 
 const handleOpenKanjiPopup = () => {
-  fetchCategory(2)
-  isDisplayKanjiCreate.value = !isDisplayKanjiCreate.value
+  isDisplayKanjiCreate.value = true;
 }
 
 const handleCloseKanjiPopup = () => {
-  formKanji.value = formKanjiDefault;
   isDisplayKanjiCreate.value = false;
 };
 
@@ -737,98 +537,6 @@ const handleCloseError = () => {
   messageError.value = ""
   isVisibleErr.value = false
 }
-const queryRouter = router.currentRoute.value.query
-
-const multiflashcardSelection = ref([]);
-const kanjinewFormDefault = {
-  title: '',
-  description: '',
-  list_kanji_vocabulary: []
-}
-const kanjinewForm = ref(kanjinewFormDefault)
-
-
-const editIndex = ref(null);
-
-const editData = ref({});
-
-const fetchKanjiNewDetail = async (id) => {
-  try {
-    const data = await showDetailKanjiNew(id)
-    const result = data?.data?.data
-    if (result) {
-      kanjinewForm.value = result
-      rows.value = result.list_kanji_vocabulary
-    }
-  } catch (error) {
-
-  }
-}
-
-if (queryRouter?.id) {
-  fetchKanjiNewDetail(queryRouter.id)
-}
-
-const handleSaveVocabulary = async () => {
-  try {
-    const request = kanjinewForm.value;
-    request.list_kanji_vocabulary = rows.value.map((item) => { return { new_kanji: item.new_kanji, onyomi: item.onyomi, kunyomi: item.kunyomi, kanji_name: item.kanji_name, defination: item.defination, example: item.example } })
-    const data = await createKanjiNew(request)
-    const result = data?.data?.data
-    if (result != null) {
-      fetchKanjiNewDetail(result)
-    }
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-
-
-const addRow = () => {
-  rows.value.push({ ...newRow.value });
-  resetForm();
-};
-
-
-
-const saveEdit = (index) => {
-  if (editIndex.value === index) {
-    rows.value.splice(index, 1, { ...editData.value });
-    editIndex.value = null;
-    editData.value = {};
-  }
-};
-
-const isEditing = (index) => {
-  return index === editIndex.value;
-};
-
-const deleteRow = (index) => {
-  rows.value.splice(index, 1);
-};
-
-const resetForm = () => {
-  newRow.value.column1 = '';
-  newRow.value.new_kanji = '';
-  newRow.value.defination = '';
-  newRow.value.onyomi = '';
-  newRow.value.kunyomi = '';
-  newRow.value.kanji_name = '';
-  newRow.value.column5 = '';
-  newRow.value.column6 = '';
-};
-const handleChangethisCheckbox = (row) => {
-  if (multiflashcardSelection.value.includes(row.index)) {
-    multiflashcardSelection.value = multiflashcardSelection.value.filter(
-      (item) => item != row.index
-    );
-  } else {
-    multiflashcardSelection.value.push(row.index);
-  }
-  console.log(multiflashcardSelection.value);
-};
-
 
 </script>
 
