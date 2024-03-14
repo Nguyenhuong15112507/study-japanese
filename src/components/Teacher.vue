@@ -161,12 +161,11 @@
               </div> -->
               <div class="input-item" style="display: flex; align-items: center; width: 500px;">
                 <span class="span-label"><label for="lessonName">Title</label></span>
-                <input type="text" name="lessonName" id="announceName"
-                  style="margin-left: 56px;" />
+                <input type="text" name="lessonName" id="announceName" style="margin-left: 56px;" />
               </div>
               <div class="input-item" style="display: flex; align-items: center; width: 500px;">
                 <span class="span-label"><label for="lessonName">Description</label></span>
-                <input type="text" name="lessonName" id="announceName"/>
+                <input type="text" name="lessonName" id="announceName" />
               </div>
               <div class="vocabulary-list">
                 <table class="vocabu-list-table" width="800" border="1" cellpadding="2px">
@@ -204,8 +203,14 @@
                       <!-- <td v-if="!isEditing(index)" class="vocabu-table-content">{{ row.spelling }}</td> -->
                       <td><input type="text" v-model="row.defination" @keyup.enter="saveEdit(index)"
                           @blur="saveEdit(index)" class="vocabu-table-content" /></td>
-                      <td><input type="file" @keyup.enter="saveEdit(index)" @blur="saveEdit(index)"
-                          class="vocabu-table-content" /></td>
+                      <td>
+                        <div class="img-container-lesson">
+                          <label for="file-upload" class="custom-file-upload" style="padding: 3px 15px;">
+                            <i class="fas fa-image imgEdit"></i>
+                          </label>
+                          <input type="file" id="file-upload">
+                        </div>
+                      </td>
                       <td class="vocabu-table-content"><i @click="deleteRow(index)" class="far fa-trash-alt"></i></td>
                     </tr>
                     <tr>
@@ -217,7 +222,14 @@
                       <td class="vocabu-table-content"><input type="text" v-model="newRow.kanji_name" /></td>
                       <td class="vocabu-table-content"><input type="text" v-model="newRow.example" /></td>
                       <td class="vocabu-table-content"><input type="text" v-model="newRow.defination" /></td>
-                      <td class="vocabu-table-content"><input type="file" /></td>
+                      <td class="vocabu-table-content"><input type="file" />
+                        <div class="img-container-lesson">
+                          <label for="file-upload" class="custom-file-upload" style="padding: 3px 15px;">
+                            <i class="fas fa-image imgEdit"></i>
+                          </label>
+                          <input type="file" id="file-upload">
+                        </div>
+                      </td>
                       <td class="vocabu-table-content" colspan="1"><i @click="addRow" class="fas fa-plus"></i></td>
                     </tr>
                   </tbody>
@@ -388,7 +400,7 @@ import { ref } from "vue"; // dung de import
 import router from "../router";
 import moment from "moment";
 import { showDetailKanjiNew, createKanjiNew } from "../api/kanjinew";
-import {listGrammar,  createGrammar,   editGrammar,  showDetailGrammar} from "../api/grammar";
+import { listGrammar, createGrammar, editGrammar, showDetailGrammar } from "../api/grammar";
 import { listKanji, createKanji, showDetailkanji } from "../api/kanji";
 import { listCategoriesByType, createCategory, editCategory } from "../api/categories";
 import { listAnnounce, showDetailAnnounce, createAnnounce, editAnnounce } from "../api/announce";

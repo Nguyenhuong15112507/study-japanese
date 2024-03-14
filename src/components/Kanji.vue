@@ -42,12 +42,12 @@
               </ul> -->
               <div class="input-item" style="display: flex; align-items: center; width: 500px;">
                 <span class="span-label"><label for="lessonName">Title</label></span>
-                <input type="text" name="lessonName" id="announceName"
+                <input :disabled="isDisabled" type="text" name="lessonName" id="announceName"
                   style="margin-left: 56px;" />
               </div>
               <div class="input-item" style="display: flex; align-items: center; width: 500px;">
                 <span class="span-label"><label for="lessonName">Description</label></span>
-                <input type="text" name="lessonName" id="announceName"/>
+                <input :disabled="isDisabled" type="text" name="lessonName" id="announceName"/>
               </div>
               <div class="vocabulary-list">
                 <table class="vocabu-list-table" width="800" border="1" cellpadding="2px">
@@ -134,6 +134,7 @@ import moment from "moment";
 const isDisplayLearnContent = ref(false);
 const categoryList = ref([])
 const kanjiId = ref(null);
+const isDisabled = ref(true);
 
 const pathkanjiId = router.currentRoute.value.query;
 const kanjiForm = {
@@ -223,6 +224,10 @@ const handleChangeLearnContent = (id) => {
 
 .question-theme-item:hover {
   color: blue;
+  cursor: pointer;
+}
+input:disabled {
+  background-color: rgb(237, 247, 251);
   cursor: pointer;
 }
 
