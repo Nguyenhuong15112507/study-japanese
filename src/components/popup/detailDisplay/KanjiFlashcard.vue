@@ -26,17 +26,17 @@
         </div>
         <div class="question-wrap">
             <div class="daily-content-overview">
-                <h4 class="daily-name">Q1: 「こども」は何の意味ですか。</h4>
+                <h4 class="daily-name">人</h4>
                 <div class="img-container">
                     <img class="student-daily-img" src="../../../img/Hinh-Anh-Anime-Chibi-Girl (3).jpg" alt="">
                 </div>
                 <div class="created-date">
                     <span class="select-option-label">Onyomi </span>
-                    <span class="select-option">2. Mother </span>
+                    <span class="select-option">ニン </span>
                 </div>
                 <div class="created-date">
                     <span class="select-option-label">Kunyomi </span>
-                    <span class="select-option">4. Adult </span>
+                    <span class="select-option">ひと</span>
                 </div>
             </div>
         </div>
@@ -206,10 +206,12 @@ const handleChangeToDetail = () => {
 .created-date {
     display: flex;
     justify-content: space-between;
+    width: 80%;
+    margin-left: 8%;
 
 }
 
-.select-option {
+.select-option, .select-option-label {
     font-weight: 400;
     font-size: 1rem;
     -webkit-letter-spacing: normal;
@@ -225,12 +227,16 @@ const handleChangeToDetail = () => {
     padding: 10px;
     margin: 10px 5px;
     position: relative;
-    width: 100%;
+    width: 80%;
     word-break: break-word;
     display: grid;
     grid-template-columns: auto 1fr;
 }
-
+.select-option-label {
+    font-weight: 600;
+    width: 20%;
+    border: none;
+}
 .learn-type-menu {
     padding: 10px;
     margin: 10px;
