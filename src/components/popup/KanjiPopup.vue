@@ -50,7 +50,7 @@
           <input type="text" name="lessonName" id="announceName"/>
         </div>
         <div class="vocabulary-list">
-          <table class="vocabu-list-table" width="800" border="1" cellpadding="2px">
+          <table class="vocabu-list-table" style="width: 100%;" border="1" cellpadding="2px">
             <tr class="vocabu-table-head">
               <th class="vocabu-table-title" style="width: 50px ;"></th>
               <th class="vocabu-table-title" style="width: 50px ;">STT</th>
@@ -77,8 +77,8 @@
               <td>
                 <div class="img-container-lesson">
                   <label for="file-upload" class="custom-file-upload"
-                         :style="{padding:  row.fileContent ?  0 : 5 + 'px'}">
-                    <img v-if="row.fileContent" :src="row.fileContent" style="height: 90px; width: 90px" alt="avc"/>
+                         :style="{padding:  row.fileContent }">
+                    <img v-if="row.fileContent" :src="row.fileContent" style="height: 18px; width: 27px;" alt="avc"/>
                     <i v-else class="fas fa-image imgEdit"></i>
                   </label>
                   <input ref="file" type="file" :id="'file-upload-'+index" @change="(val) => handleUploadFile(val, true, index)" :key="index">
@@ -98,7 +98,7 @@
               <td class="vocabu-table-content"><input type="file"/>
                 <div class="img-container-lesson">
                   <label for="file-upload" class="custom-file-upload">
-                    <img v-if="newRow.fileContent" :src="newRow.fileContent" style="height: 90px; width: 90px" alt="avc"/>
+                    <img v-if="newRow.fileContent" :src="newRow.fileContent" style="height: 18px; width: 27px;" alt="avc"/>
                     <i v-else class="fas fa-image imgEdit"></i>
                   </label>
                   <input ref="file" type="file" id="file-upload" @change="(val) => handleUploadFile(val, false)">

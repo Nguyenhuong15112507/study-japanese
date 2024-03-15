@@ -5,11 +5,11 @@
       <div class="new-form lesson-create">
         <div class="header-contain">
           <h5 class="add-category-title">Categories</h5>
-          <ErrorMessage :message="messageError" :is-visible="isVisibleErr" @close="handleCloseError"/>
+          <ErrorMessage :message="messageError" :is-visible="isVisibleErr" @close="handleCloseError" />
         </div>
         <div class="input-item categories-input" style="display: flex; align-items: center;">
           <select name="category-kbn" id="" class="category-kbn" style="margin-right: 10px;width: 50px;"
-                  v-model="categoryForm.japanese_level">
+            v-model="categoryForm.japanese_level">
             <option value="n5">N5</option>
             <option value="n4">N4</option>
             <option value="n3">N3</option>
@@ -17,9 +17,9 @@
             <option value="n1">N1</option>
           </select>
           <input type="text" name="lessonName" id="categoryName" placeholder="Enter category" style="width: 400px;"
-                 v-model="categoryForm.category_name"/>
+            v-model="categoryForm.category_name" />
           <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;"
-                  @click="handleCreateCategory(1)">Add
+            @click="handleCreateCategory(1)">Add
           </button>
         </div>
         <div class="input-item categories">
@@ -31,13 +31,13 @@
               <th class="categories-list-title" style="width: 150px ;">Category</th>
             </tr>
             <tbody>
-            <tr v-for="(item, index) in categoryList" :key="index" class="categories-list-tr">
-              <td><input type="checkbox" @change="(val) => handleChangeCheckboxCategory(val, item)"
-                         class="vocabu-table-content" style="width: 100%;"/></td>
-              <td class="categories-list-content">{{ index + 1 }}</td>
-              <td class="categories-list-content"> {{ item.japanese_level }}</td>
-              <td class="categories-list-content"> {{ item.category_name }}</td>
-            </tr>
+              <tr v-for="(item, index) in categoryList" :key="index" class="categories-list-tr">
+                <td><input type="checkbox" @change="(val) => handleChangeCheckboxCategory(val, item)"
+                    class="vocabu-table-content" style="width: 100%;" /></td>
+                <td class="categories-list-content">{{ index + 1 }}</td>
+                <td class="categories-list-content"> {{ item.japanese_level }}</td>
+                <td class="categories-list-content"> {{ item.category_name }}</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -45,37 +45,38 @@
       <div class="new-form lesson-create">
         <div class="input-item">
           <span class="span-label"><label for="lessonName">Title</label></span>
-          <input type="text" name="lessonName" id="lessonName" v-model="formGramma.grammar_name"/>
+          <input type="text" name="lessonName" id="lessonName" v-model="formGramma.grammar_name" />
         </div>
         <div class="input-item">
           <span class="span-label"><label for="lessonContent">Form</label></span>
           <textarea class="textareacss" name="lessonContent" id="lessonContent1"
-                    v-model="formGramma.grammar_form"></textarea>
+            v-model="formGramma.grammar_form"></textarea>
         </div>
         <div class="input-item">
           <span class="span-label"><label for="lessonContent">Define</label></span>
           <textarea class="textareacss" name="lessonContent" id="lessonContent2"
-                    v-model="formGramma.form_define"></textarea>
+            v-model="formGramma.form_define"></textarea>
         </div>
         <div class="input-item">
           <span class="span-label"><label for="lessonContent">Example 1</label></span>
           <textarea class="textareacss" name="lessonContent" id="lessonContent3"
-                    v-model="formGramma.example_1"></textarea>
+            v-model="formGramma.example_1"></textarea>
         </div>
         <div class="input-item">
           <span class="span-label"><label for="lessonContent">Example 2</label></span>
           <textarea class="textareacss" name="lessonContent" id="lessonContent4"
-                    v-model="formGramma.example_2"></textarea>
+            v-model="formGramma.example_2"></textarea>
         </div>
         <div class="input-item">
           <span class="span-label"><label for="homework-url">URL</label></span>
-          <input type="text" name="homework-url" id="homework-url" v-model="formGramma.home_work"/>
+          <input type="text" name="homework-url" id="homework-url" v-model="formGramma.home_work" />
         </div>
         <div class="img-container">
           <label for="file-upload" class="custom-file-upload">
             <i class="fas fa-image"></i>
           </label>
-          <input type="file" id="file-upload">
+          <input type="file" id="file-upload" style="height: 26px;
+    width: 40px;">
         </div>
       </div>
       <div class="btn-container">
@@ -93,9 +94,9 @@
   </div>
 </template>
 <script setup>
-import {defineProps, defineEmits, ref, watch} from 'vue'
-import {createCategory, listCategoriesByType} from "../../api/categories.js";
-import {createGrammar, editGrammar, showDetailGrammar} from "../../api/grammar.js";
+import { defineProps, defineEmits, ref, watch } from 'vue'
+import { createCategory, listCategoriesByType } from "../../api/categories.js";
+import { createGrammar, editGrammar, showDetailGrammar } from "../../api/grammar.js";
 
 const categoryFormDefault = {
   id: null,
@@ -127,7 +128,7 @@ const newRow = ref({
 
 const formGramma = ref(formGrammaDefault);
 
-const categoryForm = ref({...categoryFormDefault})
+const categoryForm = ref({ ...categoryFormDefault })
 const categoryList = ref([])
 const multiSelectionCategory = ref([]);
 
@@ -143,9 +144,9 @@ const props = defineProps({
 const emits = defineEmits(['close', 'submit'])
 
 watch(() => props.isVisible, (val) => {
-  if(val){
+  if (val) {
     fetchCategory(1)
-    if( props.id !== 0)
+    if (props.id !== 0)
       handleShowEditGrammar(props.id)
   }
 })
@@ -241,13 +242,13 @@ const handleCreateCategory = async (type) => {
 
     // check exist category name
     if (categoryList.value.filter((item => item.category_name.trim() ===
-        categoryForm.value.category_name.trim())).length > 0) {
+      categoryForm.value.category_name.trim())).length > 0) {
       isVisibleErr.value = true
       messageError.value = "Categories exist!"
       return
     }
 
-    const request = {...categoryForm.value, type: type};
+    const request = { ...categoryForm.value, type: type };
     const data = await createCategory(request)
     const result = data?.data?.data
     if (result) {

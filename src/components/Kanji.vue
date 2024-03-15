@@ -11,6 +11,7 @@
         <div v-if="!isDisplayLearnContent" class="list-content-item lesson-homework-list">
           <div v-for="(item, index) in pageKanjiList" :key="index"
             class="lession-content-overview lession-homework-overview">
+            <img src="../img/15801f0d.jpg" alt="" class="lesson-content-img" />
             <h4 class="lesson-name">{{ item.title }}</h4>
             <div class="created-date">
               <span class="label">Date: </span>
@@ -33,13 +34,7 @@
         <div v-if="isDisplayLearnContent && kanjiFormRef.id !== null" class="question-content-container">
           <div class="question-group-list">
             <div class="question-group-item">
-              <!-- <ul class="answers-list">
-                <li class="answer-item"><div class="content-name">音読み：</div><div class="content-value">{{ kanjiFormRef.spell_onyomi }}</div></li>
-                <li class="answer-item"><div class="content-name">訓読み：</div><div class="content-value">{{ kanjiFormRef.spell_kuyomi }}</div></li>
-                <li class="answer-item"><div class="content-name">例：</div><div class="content-value">{{ kanjiFormRef.example }}</div></li>
-                <li class="answer-item"><div class="content-name">参考：</div><div class="content-value">{{ kanjiFormRef.kanji_url }}</div></li>
-                <img src="../img/9-1.png" class="example-img" alt="" />
-              </ul> -->
+
               <div class="input-item" style="display: flex; align-items: center; width: 500px;">
                 <span class="span-label"><label for="lessonName">Title</label></span>
                 <input :disabled="isDisabled" type="text" name="lessonName" id="announceName"
@@ -47,9 +42,21 @@
               </div>
               <div class="input-item" style="display: flex; align-items: center; width: 500px;">
                 <span class="span-label"><label for="lessonName">Description</label></span>
-                <input :disabled="isDisabled" type="text" name="lessonName" id="announceName"/>
+                <input :disabled="isDisabled" type="text" name="lessonName" id="announceName" />
               </div>
               <div class="vocabulary-list">
+                <div class="button-container">
+                  <button @click="handleBack()"  class="new-btn" id="back-result-btn"
+                    style="margin: 10px; background-color: rgb(210, 209, 209); width: 50px;margin-left: 0;">
+                    Back
+                  </button>
+                  <button @click="handleChangeKanjiFlashcard" class="new-btn" id="creat-new-result-btn" style="margin: 10px">
+                    Learn
+                  </button>
+                  <button  class="new-btn" id="creat-new-result-btn" style="margin: 10px">
+                    Practice
+                  </button>
+                </div>
                 <table class="vocabu-list-table" width="800" border="1" cellpadding="2px">
                   <tr class="vocabu-table-head">
                     <th class="vocabu-table-title" style="width: 50px ;">STT</th>
@@ -74,47 +81,7 @@
             </div>
           </div>
         </div>
-        <div class="another-infomation">
-          <div class="japanese-intro-title">
-            <h3 class="learning-site">Japanese learning website</h3>
-          </div>
-          <div class="japanese-learning-web">
-            <h3 class="website-name">OJAD</h3>
-            <div class="website-img-container">
-              <img src="../img/20221124-ojad.webp" alt="" class="website-img" />
-            </div>
-            <p class="website-overview">
-              OJAD is an online Japanese accent database for learners and
-              teachers of Japanese. The goal of this tool is to enhance the
-              awareness and understanding of the Japanese pitch accent with a
-              suite of four features.
-            </p>
-          </div>
-          <div class="japanese-learning-web">
-            <h3 class="website-name">JPLANG</h3>
-            <div class="website-img-container">
-              <img src="../img/large-55bb1d6d73e4f.png" alt="" class="website-img" />
-            </div>
-            <p class="website-overview">
-              This Website, provides e-learning materials for learning
-              Japanese,jointly developed by the Japanese Language Center for
-              International Students and the Information Collaboration Center of
-              Tokyo University of Foreign Studies.
-            </p>
-          </div>
-          <div class="japanese-learning-web">
-            <h3 class="website-name">OJAD</h3>
-            <div class="website-img-container">
-              <img src="../img/20221124-ojad.webp" alt="" class="website-img" />
-            </div>
-            <p class="website-overview">
-              OJAD is an online Japanese accent database for learners and
-              teachers of Japanese. The goal of this tool is to enhance the
-              awareness and understanding of the Japanese pitch accent with a
-              suite of four features.
-            </p>
-          </div>
-        </div>
+
       </div>
     </div>
     <div class="practice-question-menu"></div>
@@ -194,6 +161,15 @@ const handleChangeLearnContent = (id) => {
   kanjiFormRef.value = kanji;
   isDisplayLearnContent.value = !isDisplayLearnContent.value;
 };
+
+const handleBack = () => {
+    isDisplayLearnContent.value = false
+    kanjiFormRef.value = kanjiForm
+}
+
+const handleChangeKanjiFlashcard = () => {
+  router.push('/kanji/kanjiFlashcard')
+}
 </script>
 
 <style scoped>
@@ -209,23 +185,22 @@ const handleChangeLearnContent = (id) => {
 
 .lesson-homework-list {
   height: auto;
-  width: 60%;
+  width: 85%;
   margin-left: 10px;
+  margin-right: 10px
 }
 
 .question-type-menu[data-v-1fc56918] {
   width: 17%;
 }
 
-.another-infomation[data-v-1fc56918] {
-  width: 25%;
-  /* margin: 10px; */
-}
+
 
 .question-theme-item:hover {
   color: blue;
   cursor: pointer;
 }
+
 input:disabled {
   background-color: rgb(237, 247, 251);
   cursor: pointer;
@@ -277,4 +252,46 @@ input:disabled {
   background-color: rgb(161 218 243);
 
 }
+
+.lession-content-overview[data-v-05defb10],
+.daily-content-overview[data-v-05defb10] {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  width: 20%;
+  margin-bottom: 10px;
+  /* margin-right: 15px; */
+}
+
+.page-practice-container[data-v-05defb10] {
+  color: black;
+  position: absolute;
+  width: 100%;
+  top: 7px;
+  left: 0;
+  right: 0;
+}
+
+.question-type-menu[data-v-05defb10],
+.question-content-container[data-v-05defb10],
+.another-infomation[data-v-05defb10] {
+  margin-top: 10px;
+}
+
+.question-type-menu[data-v-05defb10] {
+  width: 15%;
+  background-color: rgba(147, 220, 248, 0.6);
+  border: 1px solid rgb(49, 171, 224, 0.6);
+  border-radius: 2px;
+  padding-left: 10px;
+}
+.question-content-container[data-v-05defb10] {
+    margin: 10px 5px 10px 10px;
+    border: 1px solid rgb(49, 171, 224, 0.6);
+    border-radius: 2px;
+    padding-left: 10px;
+    width: 85%;
+}
+
+
 </style>

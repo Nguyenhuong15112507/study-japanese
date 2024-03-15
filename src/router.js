@@ -131,7 +131,12 @@ const router = createRouter({
                 path: '',
                 name: 'kanji',
                 component: () => import('./components/Kanji.vue')
-              }
+              },
+                {
+                  path: '/kanji/kanjiFlashcard',
+                  name: 'kanjiFlashcard',
+                  component: () => import('./components/popup/detailDisplay/KanjiFlashcard.vue')
+                }
             ],
       },
       {
