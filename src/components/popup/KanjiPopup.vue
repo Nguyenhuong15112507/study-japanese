@@ -43,11 +43,11 @@
       <div class="new-form daily-create">
         <div class="input-item" style="display: flex; align-items: center; width: 500px;">
           <span class="span-label"><label for="lessonName">Title</label></span>
-          <input type="text" name="lessonName" id="announceName" style="margin-left: 56px;"/>
+          <input type="text" name="lessonName" id="announceName" v-model="kanjinewForm.title" style="margin-left: 56px;"/>
         </div>
         <div class="input-item" style="display: flex; align-items: center; width: 500px;">
           <span class="span-label"><label for="lessonName">Description</label></span>
-          <input type="text" name="lessonName" id="announceName"/>
+          <input type="text" name="lessonName" id="announceName" v-model="kanjinewForm.description" />
         </div>
         <div class="vocabulary-list">
           <table class="vocabu-list-table" style="width: 100%;" border="1" cellpadding="2px">
@@ -76,9 +76,9 @@
               <td><input type="text" v-model="row.defination" class="vocabu-table-content"/></td>
               <td>
                 <div class="img-container-lesson">
-                  <label for="file-upload" class="custom-file-upload"
-                         :style="{padding:  row.fileContent }">
-                    <img v-if="row.fileContent" :src="row.fileContent" style="height: 18px; width: 27px;" alt="avc"/>
+                  <label :for="'file-upload-'+index" class="custom-file-upload"
+                         :style="{padding:  row.file_content }">
+                    <img v-if="row.file_content" :src="row.file_content" style="height: 18px; width: 27px;" alt="avc"/>
                     <i v-else class="fas fa-image imgEdit"></i>
                   </label>
                   <input ref="file" type="file" :id="'file-upload-'+index" @change="(val) => handleUploadFile(val, true, index)" :key="index">
@@ -98,10 +98,10 @@
               <td class="vocabu-table-content"><input type="file"/>
                 <div class="img-container-lesson">
                   <label for="file-upload" class="custom-file-upload">
-                    <img v-if="newRow.fileContent" :src="newRow.fileContent" style="height: 18px; width: 27px;" alt="avc"/>
+                    <img v-if="newRow.file_content" :src="newRow.file_content" style="height: 18px; width: 27px;" alt="avc"/>
                     <i v-else class="fas fa-image imgEdit"></i>
                   </label>
-                  <input ref="file" type="file" id="file-upload" @change="(val) => handleUploadFile(val, false)">
+                  <input type="file" name="file-upload" id="file-upload" @change="(val) => handleUploadFile(val, false)" >
                 </div>
               </td>
               <td class="vocabu-table-content" colspan="1"><i @click="addRow" class="fas fa-plus"></i></td>
@@ -162,15 +162,25 @@ const newRow = ref({
   kunyomi: '',
   column5: '',
   column6: '',
-  fileContent: ''
+  file_content: ''
 });
 
 const multiSelectionCategory = ref([]);
+
+const kanjinewForm = ref({
+  category_id: 0,
+  title: '',
+  description: '',
+  file_content: '',
+  file_name: '',
+  file_ext: '',
+  content_type: '',
+  file_size: 0
+})
+
 const multiSelectionKanji = ref([]);
 const messageError = ref("")
 const isVisibleErr = ref(false)
-const file = ref()
-
 
 const props = defineProps({
   isVisible: Boolean,
@@ -249,8 +259,25 @@ const resetForm = () => {
   newRow.value.kanji_name = '';
   newRow.value.column5 = '';
   newRow.value.column6 = '';
-  newRow.value.fileContent = '';
+  newRow.value.file_content = '';
 };
+
+const getBase64 = (fileS, isAdd, index) => {
+  console.log(fileS)
+  let reader = new FileReader()
+  reader.readAsDataURL(fileS)
+  reader.onload = (e) => {
+    console.log(e.target.result)
+    if(isAdd){
+      rows.value[index].file_content = e.target.result
+    }else {
+      newRow.value.file_content = e.target.result
+    }
+  }
+  reader.onerror = function (error) {
+    console.error('Error: ', error)
+  }
+}
 
 const handleChangeCheckboxKanji = (row) => {
   if (multiSelectionKanji.value.includes(row.index)) {
@@ -265,7 +292,7 @@ const handleChangeCheckboxKanji = (row) => {
 const handleSaveKanji = async () => {
   try {
     const request = kanjinewForm.value;
-    request.list_kanji_vocabulary = rows.value.map((item) => {
+    request.list_kanji = rows.value.map((item) => {
       return {
         new_kanji: item.new_kanji,
         onyomi: item.onyomi,
@@ -275,11 +302,11 @@ const handleSaveKanji = async () => {
         example: item.example
       }
     })
-    const data = await createKanjiNew(request)
-    const result = data?.data?.data
-    if (result != null) {
-      emits("submit")
-    }
+    // const data = await createKanjiNew(request)
+    // const result = data?.data?.data
+    // if (result != null) {
+    //   emits("submit")
+    // }
   } catch (error) {
     console.error(error)
   }
@@ -289,23 +316,6 @@ const handleCloseKanjiPopup = () => {
   formKanji.value = formKanjiDefault;
   emits("close")
 };
-
-const getBase64 = (fileS, isAdd, index) => {
-  console.log(isAdd)
-  let reader = new FileReader()
-  reader.readAsDataURL(fileS)
-  reader.onload = (e) => {
-    if(isAdd){
-      rows.value[index].fileContent = e.target.result
-    }else {
-      newRow.value.fileContent = e.target.result
-    }
-    file.value.value = null
-  }
-  reader.onerror = function (error) {
-    console.error('Error: ', error)
-  }
-}
 
 </script>
 

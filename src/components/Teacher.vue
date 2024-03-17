@@ -110,102 +110,102 @@
   </div>
 
   <!-- Create lession -->
-  <div v-if="isDisplayLessonCreate" :class="['anouncement-create', { isVisible: isDisplayLessonCreate }]">
-    <div class="new-input lesson">
-      <h4 class="form-title" style="font-size: 20px">Lesson</h4>
-      <div class="new-form lesson-create">
-        <div class="header-contain">
-          <h5 class="add-category-title">Categories</h5>
-          <ErrorMessage :message="messageError" :is-visible="isVisibleErr" @close="handleCloseError" />
-        </div>
-        <div class="input-item categories-input" style="display: flex; align-items: center;">
-          <select name="category-kbn" id="" class="category-kbn" style="margin-right: 10px;width: 50px;"
-            v-model="categoryForm.japanese_level">
-            <option value="n5">N5</option>
-            <option value="n4">N4</option>
-            <option value="n3">N3</option>
-            <option value="n2">N2</option>
-            <option value="n1">N1</option>
-          </select>
-          <input type="text" name="lessonName" id="categoryName" placeholder="Enter category" style="width: 400px;"
-            v-model="categoryForm.category_name" />
-          <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;"
-            @click="handleCreateCategory(1)">Add
-          </button>
-        </div>
-        <div class="input-item categories">
-          <table class="categories-list" width="700" border="1" cellpadding="2px">
-            <tr class="categories-list-head">
-              <th class="categories-list-title" style="width: 30px ;"></th>
-              <th class="categories-list-title" style="width: 30px ;">STT</th>
-              <th class="categories-list-title" style="width: 100px ;">Japanese level</th>
-              <th class="categories-list-title" style="width: 150px ;">Category</th>
-            </tr>
-            <tbody>
-              <tr v-for="(item, index) in categoryList" :key="index" class="categories-list-tr">
-                <td><input type="checkbox" @change="(val) => handleChangeCheckboxCategory(val, item)"
-                    class="vocabu-table-content" style="width: 100%;" /></td>
-                <td class="categories-list-content">{{ index + 1 }}</td>
-                <td class="categories-list-content"> {{ item.japanese_level }}</td>
-                <td class="categories-list-content"> {{ item.category_name }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="new-form lesson-create">
-        <div class="input-item">
-          <span class="span-label"><label for="lessonName">Title</label></span>
-          <input type="text" name="lessonName" id="lessonName" v-model="formGramma.grammar_name" />
-        </div>
-        <div class="input-item">
-          <span class="span-label"><label for="lessonContent">Form</label></span>
-          <textarea class="textareacss" name="lessonContent" id="lessonContent1"
-            v-model="formGramma.grammar_form"></textarea>
-        </div>
-        <div class="input-item">
-          <span class="span-label"><label for="lessonContent">Define</label></span>
-          <textarea class="textareacss" name="lessonContent" id="lessonContent2"
-            v-model="formGramma.form_define"></textarea>
-        </div>
-        <div class="input-item">
-          <span class="span-label"><label for="lessonContent">Example 1</label></span>
-          <textarea class="textareacss" name="lessonContent" id="lessonContent3"
-            v-model="formGramma.example_1"></textarea>
-        </div>
-        <div class="input-item">
-          <span class="span-label"><label for="lessonContent">Example 2</label></span>
-          <textarea class="textareacss" name="lessonContent" id="lessonContent4"
-            v-model="formGramma.example_2"></textarea>
-        </div>
-        <!-- <div class="input-item">
-          <span class="span-label"><label for="date">Date</label></span>
-          <input type="date" name="date" id="date" v-model="lessonDate" />
-        </div> -->
-        <div class="input-item">
-          <span class="span-label"><label for="homework-url">URL</label></span>
-          <input type="text" name="homework-url" id="homework-url" v-model="formGramma.home_work" />
-        </div>
-        <div class="img-container">
-          <label for="file-upload" class="custom-file-upload">
-            <i class="fas fa-image"></i>
-          </label>
-          <input type="file" id="file-upload">
-        </div>
-      </div>
-      <div class="btn-container">
-        <button v-if="!formGramma.id" class="new-btn submit-btn" id="submit-lesson-btn" @click="handleCreateGrammar()">
-          Submit
-        </button>
-        <button v-else class="new-btn submit-btn" id="submit-lesson-btn" @click="handleEditGrammar()">
-          Save
-        </button>
-        <button class="new-btn cancel-btn" id="cancel-lesson-btn" @click="handleClosePopup()">
-          Cancel
-        </button>
-      </div>
-    </div>
-  </div>
+<!--  <div v-if="isDisplayLessonCreate" :class="['anouncement-create', { isVisible: isDisplayLessonCreate }]">-->
+<!--    <div class="new-input lesson">-->
+<!--      <h4 class="form-title" style="font-size: 20px">Lesson</h4>-->
+<!--      <div class="new-form lesson-create">-->
+<!--        <div class="header-contain">-->
+<!--          <h5 class="add-category-title">Categories</h5>-->
+<!--          <ErrorMessage :message="messageError" :is-visible="isVisibleErr" @close="handleCloseError" />-->
+<!--        </div>-->
+<!--        <div class="input-item categories-input" style="display: flex; align-items: center;">-->
+<!--          <select name="category-kbn" id="" class="category-kbn" style="margin-right: 10px;width: 50px;"-->
+<!--            v-model="categoryForm.japanese_level">-->
+<!--            <option value="n5">N5</option>-->
+<!--            <option value="n4">N4</option>-->
+<!--            <option value="n3">N3</option>-->
+<!--            <option value="n2">N2</option>-->
+<!--            <option value="n1">N1</option>-->
+<!--          </select>-->
+<!--          <input type="text" name="lessonName" id="categoryName" placeholder="Enter category" style="width: 400px;"-->
+<!--            v-model="categoryForm.category_name" />-->
+<!--          <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;"-->
+<!--            @click="handleCreateCategory(1)">Add-->
+<!--          </button>-->
+<!--        </div>-->
+<!--        <div class="input-item categories">-->
+<!--          <table class="categories-list" width="700" border="1" cellpadding="2px">-->
+<!--            <tr class="categories-list-head">-->
+<!--              <th class="categories-list-title" style="width: 30px ;"></th>-->
+<!--              <th class="categories-list-title" style="width: 30px ;">STT</th>-->
+<!--              <th class="categories-list-title" style="width: 100px ;">Japanese level</th>-->
+<!--              <th class="categories-list-title" style="width: 150px ;">Category</th>-->
+<!--            </tr>-->
+<!--            <tbody>-->
+<!--              <tr v-for="(item, index) in categoryList" :key="index" class="categories-list-tr">-->
+<!--                <td><input type="checkbox" @change="(val) => handleChangeCheckboxCategory(val, item)"-->
+<!--                    class="vocabu-table-content" style="width: 100%;" /></td>-->
+<!--                <td class="categories-list-content">{{ index + 1 }}</td>-->
+<!--                <td class="categories-list-content"> {{ item.japanese_level }}</td>-->
+<!--                <td class="categories-list-content"> {{ item.category_name }}</td>-->
+<!--              </tr>-->
+<!--            </tbody>-->
+<!--          </table>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="new-form lesson-create">-->
+<!--        <div class="input-item">-->
+<!--          <span class="span-label"><label for="lessonName">Title</label></span>-->
+<!--          <input type="text" name="lessonName" id="lessonName" v-model="formGramma.grammar_name" />-->
+<!--        </div>-->
+<!--        <div class="input-item">-->
+<!--          <span class="span-label"><label for="lessonContent">Form</label></span>-->
+<!--          <textarea class="textareacss" name="lessonContent" id="lessonContent1"-->
+<!--            v-model="formGramma.grammar_form"></textarea>-->
+<!--        </div>-->
+<!--        <div class="input-item">-->
+<!--          <span class="span-label"><label for="lessonContent">Define</label></span>-->
+<!--          <textarea class="textareacss" name="lessonContent" id="lessonContent2"-->
+<!--            v-model="formGramma.form_define"></textarea>-->
+<!--        </div>-->
+<!--        <div class="input-item">-->
+<!--          <span class="span-label"><label for="lessonContent">Example 1</label></span>-->
+<!--          <textarea class="textareacss" name="lessonContent" id="lessonContent3"-->
+<!--            v-model="formGramma.example_1"></textarea>-->
+<!--        </div>-->
+<!--        <div class="input-item">-->
+<!--          <span class="span-label"><label for="lessonContent">Example 2</label></span>-->
+<!--          <textarea class="textareacss" name="lessonContent" id="lessonContent4"-->
+<!--            v-model="formGramma.example_2"></textarea>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; <div class="input-item">-->
+<!--          <span class="span-label"><label for="date">Date</label></span>-->
+<!--          <input type="date" name="date" id="date" v-model="lessonDate" />-->
+<!--        </div> &ndash;&gt;-->
+<!--        <div class="input-item">-->
+<!--          <span class="span-label"><label for="homework-url">URL</label></span>-->
+<!--          <input type="text" name="homework-url" id="homework-url" v-model="formGramma.home_work" />-->
+<!--        </div>-->
+<!--        <div class="img-container">-->
+<!--          <label for="file-upload" class="custom-file-upload">-->
+<!--            <i class="fas fa-image"></i>-->
+<!--          </label>-->
+<!--          <input type="file" id="file-upload">-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="btn-container">-->
+<!--        <button v-if="!formGramma.id" class="new-btn submit-btn" id="submit-lesson-btn" @click="handleCreateGrammar()">-->
+<!--          Submit-->
+<!--        </button>-->
+<!--        <button v-else class="new-btn submit-btn" id="submit-lesson-btn" @click="handleEditGrammar()">-->
+<!--          Save-->
+<!--        </button>-->
+<!--        <button class="new-btn cancel-btn" id="cancel-lesson-btn" @click="handleClosePopup()">-->
+<!--          Cancel-->
+<!--        </button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
 
   <!-- Announce create -->
   <div v-if="isDisplayAnnounceCreate" :class="['anouncement-create', { isVisible: isDisplayAnnounceCreate }]">
@@ -231,7 +231,7 @@
       </div>
     </div>
   </div>
-  <kanji-popup :is-visible="isDisplayKanjiCreate" @close="handleCloseKanjiPopup" />
+  <kanji-popup :is-visible="isDisplayKanjiCreate" :type="1" @close="handleCloseKanjiPopup" />
   <!-- <footer>Powered by W3.css</footer> -->
 </template>
 
