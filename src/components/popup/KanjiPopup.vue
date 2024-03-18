@@ -127,7 +127,7 @@
 
 import {defineEmits, defineProps, ref, watch} from "vue";
 import {createCategory, listCategoriesByType} from "../../api/categories.js";
-import {createKanjiNew} from "../../api/kanjinew.js";
+import {listKanji, createKanji, showDetailkanji} from "../../api/kanji";
 
 const categoryFormDefault = {
   id: null,
@@ -167,7 +167,7 @@ const newRow = ref({
 
 const multiSelectionCategory = ref([]);
 
-const kanjinewForm = ref({
+const kanjinewFormDefault = ref({
   category_id: 0,
   title: '',
   description: '',
@@ -175,9 +175,10 @@ const kanjinewForm = ref({
   file_name: '',
   file_ext: '',
   content_type: '',
-  file_size: 0
+  file_size: 0,
+  list_kanji: []
 })
-
+const kanjinewForm = ref(kanjinewFormDefault)
 const multiSelectionKanji = ref([]);
 const messageError = ref("")
 const isVisibleErr = ref(false)
@@ -193,6 +194,7 @@ const emits = defineEmits(['close', 'submit'])
 watch(() => props.isVisible, (val) => {
   if (val) {
     fetchCategory(1)
+    fetchKanji()
   }
 })
 
@@ -202,6 +204,26 @@ const fetchCategory = async (type) => {
     categoryList.value = data.data.data;
   } catch (error) {
     console.error(error)
+  }
+}
+const fetchKanji = async () => {
+  try {
+    const data = await listKanji()
+    rows.value = data.data.data
+  } catch (error) {
+    console.error(error)
+  }
+}
+const fetcKanjidDetail = async (id) => {
+  try {
+    const data = await showDetailkanji(id)
+    const result = data?.data?.data
+    if (result) {
+      kanjinewForm.value = result
+      rows.value = result.list_kanji
+    }
+  } catch (error) {
+
   }
 }
 
@@ -302,11 +324,12 @@ const handleSaveKanji = async () => {
         example: item.example
       }
     })
-    // const data = await createKanjiNew(request)
-    // const result = data?.data?.data
-    // if (result != null) {
-    //   emits("submit")
-    // }
+    const data = await createKanji(request)
+    const result = data?.data?.data
+    if (result != null) {
+      fetcKanjidDetail(result)
+      emits("submit")
+    }
   } catch (error) {
     console.error(error)
   }
