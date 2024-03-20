@@ -98,7 +98,6 @@ import moment from "moment";
 
 const isDisplayLearnContent = ref(false);
 const categoryList = ref([])
-const kanjiId = ref(null);
 const isDisabled = ref(true);
 
 const pathkanjiId = router.currentRoute.value.query;
@@ -149,7 +148,7 @@ const fetchKanji = async () => {
                 if (kanji) {
                   kanjinewForm.value = kanji
                   isDisplayLearnContent.value = true
-
+                  fetcKanjidDetail(pathkanjiId.id)
                 }
                 console.log(pageKanjiList.value)
             }

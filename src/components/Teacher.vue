@@ -516,8 +516,8 @@ const handleShowDetail = (id) => {
   router.push({ path: "/grammar", query: { id: id } });
 };
 
-const handleShowKanjiDetail = (kanjiid) => {
-  router.push({ path: "/kanji", query: { kanjiid: kanjiid } });
+const handleShowKanjiDetail = (id) => {
+  router.push({ path: "/kanji", query: { id: id } });
 };
 
 const handleChangeCheckboxCategory = (val, item) => {
