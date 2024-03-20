@@ -231,7 +231,9 @@
       </div>
     </div>
   </div>
+
   <kanji-popup :is-visible="isDisplayKanjiCreate" :type="1" @close="handleCloseKanjiPopup" />
+  <create-lesson-popup :is-visible="isDisplayLessonCreate" :type="2" @close="handleCloseLessonPopup" ></create-lesson-popup>
   <!-- <footer>Powered by W3.css</footer> -->
 </template>
 
@@ -244,6 +246,7 @@ import { listKanji, createKanji, showDetailkanji } from "../api/kanji";
 import { listCategoriesByType, createCategory, editCategory } from "../api/categories";
 import { listAnnounce, showDetailAnnounce, createAnnounce, editAnnounce } from "../api/announce";
 import KanjiPopup from "./popup/KanjiPopup.vue";
+import CreateLessonPopup from "./popup/CreateLessonPopup.vue"
 
 const formAnnounceDefault = {
   id: null,
@@ -472,6 +475,9 @@ const handleOpenKanjiPopup = () => {
 
 const handleCloseKanjiPopup = () => {
   isDisplayKanjiCreate.value = false;
+};
+const handleCloseLessonPopup = () => {
+  isDisplayLessonCreate.value = false;
 };
 
 const handleClosePopup = () => {

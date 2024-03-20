@@ -19,12 +19,12 @@
                 ? moment(item.create_at).format("DD-MM-YYYY")
                 : "" }}</span>
             </div>
-            <div class="status">
+            <!-- <div class="status">
               <span class="label">Kanji: </span>
               <span class="homework-status">{{ item.kanji_name }}</span>
-            </div>
+            </div> -->
             <!-- <p class="overview-para">{{ item.content2 }}</p> -->
-            <div class="show-detail-and-practice">
+            <div class="show-detail-and-practice" style="margin-top: 50px;">
               <button class="check-homework-btn" @click="handleChangeLearnContent(item.id)">
                 Learn
               </button>
@@ -67,13 +67,13 @@
                     <th class="vocabu-table-title">Defination</th>
                   </tr>
                   <tbody>
-                    <tr v-for="(row, index) in rows" :key="index" class="vocabu-table-tr">
+                    <tr v-for="(item, index) in rows" :key="index" class="vocabu-table-tr">
                       <td><input type="checkbox" class="vocabu-table-content" /></td>
-                      <td class="vocabu-table-content">new_kanji</td>
-                      <td class="vocabu-table-content">onyomi</td>
-                      <td class="vocabu-table-content">kunyomi</td>
-                      <td class="vocabu-table-content">kanji_name</td>
-                      <td class="vocabu-table-content">defination</td>
+                      <td class="vocabu-table-content">{{ item.kanji }}</td>
+                      <td class="vocabu-table-content">{{ item.spell_onyomi }}</td>
+                      <td class="vocabu-table-content">{{ item.spell_kuyomi }}</td>
+                      <td class="vocabu-table-content">{{ item.kanji_name }}</td>
+                      <td class="vocabu-table-content">{{ item.define }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -91,10 +91,8 @@
 <script setup>
 import { ref } from "vue";
 import router from "../router";
-import { studentJapaneseStore } from "../store";
 import { showDetailkanji, listKanji } from "../api/kanji";
-import { showDetailKanjiNew, createKanjiNew } from "../api/kanjinew";
-import { listCategoriesByType, createCategory, editCategory } from "../api/categories";
+import { listCategoriesByType } from "../api/categories";
 import moment from "moment";
 
 
@@ -106,17 +104,29 @@ const isDisabled = ref(true);
 const pathkanjiId = router.currentRoute.value.query;
 const kanjiForm = {
   id: null,
-  kanji_name: "",
-  example: "",
-  spell_onyomi: "",
-  spell_kuyomi: "",
-  kanji_url: "",
+  kanji: '',
+  kanji_name: '',
+  define: '',
+  example: '',
+  spell_onyomi: '',
+  spell_kuyomi: '',
   path_base: "",
   file_name: "",
   file_ext: "",
-  create_at: null,
 };
 const kanjiFormRef = ref(kanjiForm);
+const kanjinewFormDefault = ref({
+  category_id: 0,
+  title: '',
+  description: '',
+  file_content: '',
+  file_name: '',
+  file_ext: '',
+  content_type: '',
+  file_size: 0,
+  list_kanji: []
+})
+const kanjinewForm = ref(kanjinewFormDefault)
 const pageKanjiList = ref([]);
 const fetchCategory = async (type) => {
   try {
@@ -136,22 +146,21 @@ const fetchKanji = async () => {
   } catch (error) { }
 };
 fetchKanji();
-
-
-const fetchKanjiDetail = async () => {
+const fetcKanjidDetail = async (id) => {
   try {
-    if (!pathkanjiId?.kanjiid) {
-      return;
-    }
-
-    const data = await showDetailkanji(pathkanjiId?.kanjiid);
-    if (data?.data?.data) {
-      kanjiFormRef.value = data.data.data;
+    const data = await showDetailkanji(id)
+    const result = data?.data?.data
+    if (result) {
+      pageKanjiList.value = result
+      rows.value = result.list_kanji
       isDisplayLearnContent.value = true;
     }
-  } catch (error) { }
-};
-fetchKanjiDetail();
+  } catch (error) {
+
+  }
+}
+
+fetcKanjidDetail();
 
 const handleChangeLearnContent = (id) => {
   const kanji = pageKanjiList.value.find((item) => item.id === id);
@@ -184,10 +193,12 @@ const handleChangeKanjiFlashcard = () => {
 }
 
 .lesson-homework-list {
-  height: auto;
   width: 85%;
   margin-left: 10px;
-  margin-right: 10px
+  margin-right: 10px;
+  height: 500px;
+  display: flex;
+
 }
 
 .question-type-menu[data-v-1fc56918] {

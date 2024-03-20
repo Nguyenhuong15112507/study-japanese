@@ -45,13 +45,15 @@
       <div class="new-form lesson-create">
         <div class="input-item">
           <span class="span-label"><label for="lessonName">Title</label></span>
-          <input type="text" name="lessonName" id="lessonName" v-model="formGramma.grammar_name" />
+          <input :class="{ 'validateInput': hasErr.includes('titleIsEmpty') }" @input="handleOnchangeTitle()" type="text" name="lessonName" id="lessonName" v-model="formGramma.grammar_name" />
         </div>
+        <div class="erroMesSentence" v-if="hasErr.includes('titleIsEmpty')">Please enter lesson's title</div>
         <div class="input-item">
           <span class="span-label"><label for="lessonContent">Form</label></span>
-          <textarea class="textareacss" name="lessonContent" id="lessonContent1"
+          <textarea :class="['textareacss', { 'validateInput': hasErr.includes('GrammarFormIsEmpty') }]" name="lessonContent" id="lessonContent1" @input="handleOnchangeGrammarForm()"
             v-model="formGramma.grammar_form"></textarea>
         </div>
+        <div class="erroMesSentence" v-if="hasErr.includes('GrammarFormIsEmpty')">Please enter lesson's form</div>
         <div class="input-item">
           <span class="span-label"><label for="lessonContent">Define</label></span>
           <textarea class="textareacss" name="lessonContent" id="lessonContent2"
@@ -97,7 +99,7 @@
 import { defineProps, defineEmits, ref, watch } from 'vue'
 import { createCategory, listCategoriesByType } from "../../api/categories.js";
 import { createGrammar, editGrammar, showDetailGrammar } from "../../api/grammar.js";
-
+const hasErr = ref([])
 const categoryFormDefault = {
   id: null,
   category_name: "",
@@ -174,7 +176,17 @@ const handleCreateGrammar = async () => {
     messageError.value = "Vui long chi chon 1 categories"
     return
   }
+  hasErr.value = []
+  if (formGramma.value.grammar_name === "") {
+    hasErr.value.push('titleIsEmpty')
+  }
+  if (formGramma.value.grammar_form === "") {
+    hasErr.value.push('GrammarFormIsEmpty')
+  }
 
+  if (hasErr.value.length > 0) {
+    return
+  }
   const lessonRequest = {
     ...formGramma.value,
     description: "",
@@ -192,7 +204,30 @@ const handleCreateGrammar = async () => {
     console.error(error);
   }
 }
+const handleOnchangeTitle = (value) => {
+  const isIncludesTitle = hasErr.value.includes('titleIsEmpty')
+  if (formGramma.value.grammar_name === "" && isIncludesTitle) {
+    return
+  }
+  if (formGramma.value.grammar_name === "" && !isIncludesTitle) {
+    hasErr.value.push('titleIsEmpty')
+    return
+  }
 
+  hasErr.value = hasErr.value.filter(item => item !== 'titleIsEmpty')//Loc ra nhung phan tu khac userName de gan lai cho hasErr
+}
+const handleOnchangeGrammarForm = (value) => {
+  const isIncludesGrammarForm = hasErr.value.includes('GrammarFormIsEmpty')
+  if (formGramma.value.grammar_form === "" && isIncludesGrammarForm) {
+    return
+  }
+  if (formGramma.value.grammar_form === "" && !isIncludesGrammarForm) {
+    hasErr.value.push('GrammarFormIsEmpty')
+    return
+  }
+
+  hasErr.value = hasErr.value.filter(item => item !== 'GrammarFormIsEmpty')//Loc ra nhung phan tu khac userName de gan lai cho hasErr
+}
 const handleEditGrammar = async () => {
   try {
     const lessonRequest = {
@@ -206,10 +241,12 @@ const handleEditGrammar = async () => {
     if (data?.data?.data) {
       formGramma.value = formGrammaDefault;
       emits("submit")
+      handleClosePopup()
     }
   } catch (error) {
     console.error(error)
   }
+  
 };
 
 const handleShowEditGrammar = async (id) => {
@@ -315,7 +352,10 @@ const handleCloseError = () => {
 .categories-list-head {
   background-color: rgb(61, 183, 236);
 }
-
+.erroMesSentence {
+  font-size: 12px;
+  color: red;
+}
 .validateInput {
   color: red;
   border: 1px solid red;
