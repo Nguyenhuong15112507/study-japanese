@@ -279,7 +279,6 @@ const deleteRow = (index) => {
 };
 
 const handleUploadFile = (val, isAdd, index) => {
-  console.log('abc')
   getBase64(val.target.files[0], isAdd, index)
 
 }
@@ -293,6 +292,7 @@ const resetForm = () => {
   newRow.value.kanji_name = '';
   newRow.value.column5 = '';
   newRow.value.column6 = '';
+  newRow.value.example = '';
   newRow.value.file_content = '';
 };
 
@@ -338,7 +338,7 @@ const handleSaveKanji = async () => {
   }
   try {
     const request = kanjinewForm.value;
-    const categoryId = multiSelectionCategory.value[0].category_id;
+    const categoryId = multiSelectionCategory.value[0].id;
     request.category_id = categoryId;
     request.list_kanji = rows.value.map((item) => {
       return {
