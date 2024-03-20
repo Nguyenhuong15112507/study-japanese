@@ -31,18 +31,18 @@
             </div>
           </div>
         </div>
-        <div v-if="isDisplayLearnContent && kanjiFormRef.id !== null" class="question-content-container">
+        <div v-if="isDisplayLearnContent && kanjinewForm.id !== null" class="question-content-container">
           <div class="question-group-list">
             <div class="question-group-item">
 
               <div class="input-item" style="display: flex; align-items: center; width: 500px;">
                 <span class="span-label"><label for="lessonName">Title</label></span>
-                <input :disabled="isDisabled" type="text" name="lessonName" id="announceName"
+                <input :disabled="isDisabled" type="text" name="lessonName" v-model="kanjinewForm.title" id="announceName"
                   style="margin-left: 56px;" />
               </div>
               <div class="input-item" style="display: flex; align-items: center; width: 500px;">
                 <span class="span-label"><label for="lessonName">Description</label></span>
-                <input :disabled="isDisabled" type="text" name="lessonName" id="announceName" />
+                <input :disabled="isDisabled" v-model="kanjinewForm.description" type="text" name="lessonName" id="announceName" />
               </div>
               <div class="vocabulary-list">
                 <div class="button-container">
@@ -128,6 +128,8 @@ const kanjinewFormDefault = ref({
 })
 const kanjinewForm = ref(kanjinewFormDefault)
 const pageKanjiList = ref([]);
+
+const rows = ref([])
 const fetchCategory = async (type) => {
   try {
     const data = await listCategoriesByType(type);
@@ -151,7 +153,8 @@ const fetcKanjidDetail = async (id) => {
     const data = await showDetailkanji(id)
     const result = data?.data?.data
     if (result) {
-      pageKanjiList.value = result
+      kanjinewForm.value = result
+      console.log(kanjinewForm.value)
       rows.value = result.list_kanji
       isDisplayLearnContent.value = true;
     }
@@ -160,15 +163,10 @@ const fetcKanjidDetail = async (id) => {
   }
 }
 
-fetcKanjidDetail();
+// fetcKanjidDetail();
 
 const handleChangeLearnContent = (id) => {
-  const kanji = pageKanjiList.value.find((item) => item.id === id);
-  if (!kanji) {
-    return;
-  }
-  kanjiFormRef.value = kanji;
-  isDisplayLearnContent.value = !isDisplayLearnContent.value;
+  fetcKanjidDetail(id)
 };
 
 const handleBack = () => {
