@@ -144,6 +144,15 @@ const fetchKanji = async () => {
     const data = await listKanji();
     if (data?.data?.data) {
       pageKanjiList.value = data.data.data;
+      if (pathkanjiId?.id) {
+                const kanji = pageKanjiList.value.find(item => item.id.toString() === pathkanjiId.id)
+                if (kanji) {
+                  kanjinewForm.value = kanji
+                  isDisplayLearnContent.value = true
+
+                }
+                console.log(pageKanjiList.value)
+            }
     }
   } catch (error) { }
 };
@@ -194,7 +203,7 @@ const handleChangeKanjiFlashcard = () => {
   width: 85%;
   margin-left: 10px;
   margin-right: 10px;
-  height: 500px;
+  height: 450px;
   display: flex;
 
 }
@@ -267,7 +276,7 @@ input:disabled {
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 5px;
-  width: 20%;
+  width: 250px;
   margin-bottom: 10px;
   /* margin-right: 15px; */
 }

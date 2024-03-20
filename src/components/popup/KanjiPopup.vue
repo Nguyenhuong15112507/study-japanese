@@ -400,6 +400,7 @@ const handleChangeCheckboxCategory = (val, item) => {
   }
 
 }
+
 const handleCloseKanjiPopup = () => {
   formKanji.value = formKanjiDefault;
   emits("close")
@@ -408,6 +409,9 @@ const handleCloseError = () => {
   messageError.value = ""
   isVisibleErr.value = false
 }
+const handleShowKanjiDetail = (kanjiid) => {
+  router.push({ path: "/kanji", query: { kanjiid: id } });
+};
 
 </script>
 
