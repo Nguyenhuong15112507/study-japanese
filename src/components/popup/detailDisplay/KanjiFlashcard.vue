@@ -24,19 +24,19 @@
             <span class="current-selection">Question setting</span>
         </div> -->
         </div>
-        <div class="question-wrap">
+        <div class="question-wrap" v-for="(item, index) in rows" :key="index">
             <div class="daily-content-overview">
-                <h4 class="daily-name">人</h4>
+                <h4 class="daily-name">{{ item.kanji }}</h4>
                 <div class="img-container">
                     <img class="student-daily-img" src="../../../img/Hinh-Anh-Anime-Chibi-Girl (3).jpg" alt="">
                 </div>
                 <div class="created-date">
                     <span class="select-option-label">Onyomi </span>
-                    <span class="select-option">ニン </span>
+                    <span class="select-option"> {{ item.spell_onyomi }} </span>
                 </div>
                 <div class="created-date">
                     <span class="select-option-label">Kunyomi </span>
-                    <span class="select-option">ひと</span>
+                    <span class="select-option">{{ item.spell_kuyomi }}</span>
                 </div>
             </div>
         </div>
@@ -61,7 +61,74 @@
 
 <script setup>
 import { ref } from 'vue';
+import { showDetailkanji,listKanji } from "../../../api/kanji";
+
+import router from "../../../router";
 const isChange = ref(true)
+const pathkanjiId = router.currentRoute.value.query;
+const kanjiForm = {
+  id: null,
+  kanji: '',
+  kanji_name: '',
+  define: '',
+  example: '',
+  spell_onyomi: '',
+  spell_kuyomi: '',
+  path_base: "",
+  file_name: "",
+  file_ext: "",
+};
+const kanjiFormRef = ref(kanjiForm);
+const kanjinewFormDefault = ref({
+  category_id: 0,
+  title: '',
+  description: '',
+  file_content: '',
+  file_name: '',
+  file_ext: '',
+  content_type: '',
+  file_size: 0,
+  list_kanji: []
+})
+const kanjinewForm = ref(kanjinewFormDefault)
+const pageKanjiList = ref([]);
+const fetchKanji = async () => {
+  try {
+    const data = await listKanji();
+    console.log(data)
+    if (data?.data?.data) {
+      pageKanjiList.value = data.data.data;
+      
+      if (pathkanjiId?.id) {
+                const kanji = pageKanjiList.value.find(item => item.id.toString() === pathkanjiId.id)
+                if (kanji) {
+                  kanjinewForm.value = kanji
+                  isDisplayLearnContent.value = true
+                  fetcKanjidDetail(pathkanjiId.id)
+                }
+                console.log(pageKanjiList.value)
+            }
+    }
+  } catch (error) { }
+};
+fetchKanji();
+
+const fetcKanjidDetail = async (id) => {
+  try {
+    const data = await showDetailkanji(id)
+    const result = data?.data?.data
+    if (result) {
+      kanjinewForm.value = result
+      console.log(kanjinewForm.value)
+      rows.value = result.list_kanji
+      isDisplayLearnContent.value = true;
+    }
+  } catch (error) {
+
+  }
+}
+
+
 const handleChangeFlashcard = () => {
     isChange.value = !isChange.value
 }

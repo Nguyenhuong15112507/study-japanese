@@ -19,3 +19,4 @@ export function showDetailkanji(id) {
         method: "get"
     })
 }
+

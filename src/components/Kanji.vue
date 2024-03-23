@@ -50,7 +50,7 @@
                     style="margin: 10px; background-color: rgb(210, 209, 209); width: 50px;margin-left: 0;">
                     Back
                   </button>
-                  <button @click="handleChangeKanjiFlashcard" class="new-btn" id="creat-new-result-btn" style="margin: 10px">
+                  <button @click="handleChangeKanjiFlashcard(kanjinewForm.id)" class="new-btn" id="creat-new-result-btn" style="margin: 10px">
                     Learn
                   </button>
                   <button  class="new-btn" id="creat-new-result-btn" style="margin: 10px">
@@ -182,8 +182,8 @@ const handleBack = () => {
     kanjiFormRef.value = kanjiForm
 }
 
-const handleChangeKanjiFlashcard = () => {
-  router.push('/kanji/kanjiFlashcard')
+const handleChangeKanjiFlashcard = (kanjiItemid) => {
+  router.push({path: "/kanji/kanjiFlashcard", query: { id: kanjiItemid } })
 }
 </script>
 
