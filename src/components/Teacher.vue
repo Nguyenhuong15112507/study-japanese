@@ -232,8 +232,8 @@
     </div>
   </div>
 
-  <kanji-popup :is-visible="isDisplayKanjiCreate" :type="1" @close="handleCloseKanjiPopup" />
-  <create-lesson-popup :is-visible="isDisplayLessonCreate" :type="2" @close="handleCloseLessonPopup" ></create-lesson-popup>
+  <kanji-popup :is-visible="isDisplayKanjiCreate" :type="2" @close="handleCloseKanjiPopup" @submit="handleSubmitKanji" />
+  <create-lesson-popup :is-visible="isDisplayLessonCreate" :type="1" @close="handleCloseLessonPopup" ></create-lesson-popup>
   <!-- <footer>Powered by W3.css</footer> -->
 </template>
 
@@ -520,28 +520,8 @@ const handleShowKanjiDetail = (id) => {
   router.push({ path: "/kanji", query: { id: id } });
 };
 
-const handleChangeCheckboxCategory = (val, item) => {
-  const checked = val.target.checked //syntax lay value cua checkbox
-  if (checked && multiSelectionCategory.value.length === 0) {
-    multiSelectionCategory.value.push(item)
-    return
-  }
-
-  const categoryExist = multiSelectionCategory.value.filter((itemC) => itemC.id === item.id)
-  if (checked && categoryExist.length === 0) {
-    multiSelectionCategory.value.push(item)
-    return;
-  }
-
-  if (!checked && categoryExist.length > 0) {
-    multiSelectionCategory.value = multiSelectionCategory.value.filter((itemC) => itemC.id !== item.id)
-  }
-
-}
-
-const handleCloseError = () => {
-  messageError.value = ""
-  isVisibleErr.value = false
+const handleSubmitKanji = () => {
+  fetchKanji();
 }
 
 </script>

@@ -2,83 +2,85 @@
   <div v-if="isVisible" :class="['anouncement-create', { isVisible }]">
     <div class="new-input lesson">
       <h4 class="form-title" style="font-size: 20px">Lesson</h4>
-      <div class="new-form lesson-create">
-        <div class="header-contain">
-          <h5 class="add-category-title">Categories</h5>
-          <ErrorMessage :message="messageError" :is-visible="isVisibleErr" @close="handleCloseError" />
-        </div>
-        <div class="input-item categories-input" style="display: flex; align-items: center;">
-          <select name="category-kbn" id="" class="category-kbn" style="margin-right: 10px;width: 50px;"
-            v-model="categoryForm.japanese_level">
-            <option value="n5">N5</option>
-            <option value="n4">N4</option>
-            <option value="n3">N3</option>
-            <option value="n2">N2</option>
-            <option value="n1">N1</option>
-          </select>
-          <input type="text" name="lessonName" id="categoryName" placeholder="Enter category" style="width: 400px;"
-            v-model="categoryForm.category_name" />
-          <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;"
-            @click="handleCreateCategory(1)">Add
-          </button>
-        </div>
-        <div class="input-item categories">
-          <table class="categories-list" width="700" border="1" cellpadding="2px">
-            <tr class="categories-list-head">
-              <th class="categories-list-title" style="width: 30px ;"></th>
-              <th class="categories-list-title" style="width: 30px ;">STT</th>
-              <th class="categories-list-title" style="width: 100px ;">Japanese level</th>
-              <th class="categories-list-title" style="width: 150px ;">Category</th>
-            </tr>
-            <tbody>
+      <div style="height: 90%; overflow: auto">
+        <div class="new-form lesson-create">
+          <div class="header-contain">
+            <h5 class="add-category-title">Categories</h5>
+            <ErrorMessage :message="messageError" :is-visible="isVisibleErr" @close="handleCloseError" />
+          </div>
+          <div class="input-item categories-input" style="display: flex; align-items: center;">
+            <select name="category-kbn" id="" class="category-kbn" style="margin-right: 10px;width: 50px;"
+                    v-model="categoryForm.japanese_level">
+              <option value="n5">N5</option>
+              <option value="n4">N4</option>
+              <option value="n3">N3</option>
+              <option value="n2">N2</option>
+              <option value="n1">N1</option>
+            </select>
+            <input type="text" name="lessonName" id="categoryName" placeholder="Enter category" style="width: 400px;"
+                   v-model="categoryForm.category_name" />
+            <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;"
+                    @click="handleCreateCategory()">Add
+            </button>
+          </div>
+          <div class="input-item categories">
+            <table class="categories-list" width="700" border="1" cellpadding="2px">
+              <tr class="categories-list-head">
+                <th class="categories-list-title" style="width: 30px ;"></th>
+                <th class="categories-list-title" style="width: 30px ;">STT</th>
+                <th class="categories-list-title" style="width: 100px ;">Japanese level</th>
+                <th class="categories-list-title" style="width: 150px ;">Category</th>
+              </tr>
+              <tbody>
               <tr v-for="(item, index) in categoryList" :key="index" class="categories-list-tr">
                 <td><input type="checkbox" @change="(val) => handleChangeCheckboxCategory(val, item)"
-                    class="vocabu-table-content" style="width: 100%;" /></td>
+                           class="vocabu-table-content" style="width: 100%;" /></td>
                 <td class="categories-list-content">{{ index + 1 }}</td>
                 <td class="categories-list-content"> {{ item.japanese_level }}</td>
                 <td class="categories-list-content"> {{ item.category_name }}</td>
               </tr>
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
-      <div class="new-form lesson-create">
-        <div class="input-item">
-          <span class="span-label"><label for="lessonName">Title</label></span>
-          <input :class="{ 'validateInput': hasErr.includes('titleIsEmpty') }" @input="handleOnchangeTitle()" type="text" name="lessonName" id="lessonName" v-model="formGramma.grammar_name" />
-        </div>
-        <div class="erroMesSentence" v-if="hasErr.includes('titleIsEmpty')">Please enter lesson's title</div>
-        <div class="input-item">
-          <span class="span-label"><label for="lessonContent">Form</label></span>
-          <textarea :class="['textareacss', { 'validateInput': hasErr.includes('GrammarFormIsEmpty') }]" name="lessonContent" id="lessonContent1" @input="handleOnchangeGrammarForm()"
-            v-model="formGramma.grammar_form"></textarea>
-        </div>
-        <div class="erroMesSentence" v-if="hasErr.includes('GrammarFormIsEmpty')">Please enter lesson's form</div>
-        <div class="input-item">
-          <span class="span-label"><label for="lessonContent">Define</label></span>
-          <textarea class="textareacss" name="lessonContent" id="lessonContent2"
-            v-model="formGramma.form_define"></textarea>
-        </div>
-        <div class="input-item">
-          <span class="span-label"><label for="lessonContent">Example 1</label></span>
-          <textarea class="textareacss" name="lessonContent" id="lessonContent3"
-            v-model="formGramma.example_1"></textarea>
-        </div>
-        <div class="input-item">
-          <span class="span-label"><label for="lessonContent">Example 2</label></span>
-          <textarea class="textareacss" name="lessonContent" id="lessonContent4"
-            v-model="formGramma.example_2"></textarea>
-        </div>
-        <div class="input-item">
-          <span class="span-label"><label for="homework-url">URL</label></span>
-          <input type="text" name="homework-url" id="homework-url" v-model="formGramma.home_work" />
-        </div>
-        <div class="img-container">
-          <label for="file-upload" class="custom-file-upload">
-            <i class="fas fa-image"></i>
-          </label>
-          <input type="file" id="file-upload" style="height: 26px;
+        <div class="new-form lesson-create">
+          <div class="input-item">
+            <span class="span-label"><label for="lessonName">Title</label></span>
+            <input :class="{ 'validateInput': hasErr.includes('titleIsEmpty') }" @input="handleOnchangeTitle()" type="text" name="lessonName" id="lessonName" v-model="formGramma.grammar_name" />
+          </div>
+          <div class="erroMesSentence" v-if="hasErr.includes('titleIsEmpty')">Please enter lesson's title</div>
+          <div class="input-item">
+            <span class="span-label"><label for="lessonContent">Form</label></span>
+            <textarea :class="['textareacss', { 'validateInput': hasErr.includes('GrammarFormIsEmpty') }]" name="lessonContent" id="lessonContent1" @input="handleOnchangeGrammarForm()"
+                      v-model="formGramma.grammar_form"></textarea>
+          </div>
+          <div class="erroMesSentence" v-if="hasErr.includes('GrammarFormIsEmpty')">Please enter lesson's form</div>
+          <div class="input-item">
+            <span class="span-label"><label for="lessonContent">Define</label></span>
+            <textarea class="textareacss" name="lessonContent" id="lessonContent2"
+                      v-model="formGramma.form_define"></textarea>
+          </div>
+          <div class="input-item">
+            <span class="span-label"><label for="lessonContent">Example 1</label></span>
+            <textarea class="textareacss" name="lessonContent" id="lessonContent3"
+                      v-model="formGramma.example_1"></textarea>
+          </div>
+          <div class="input-item">
+            <span class="span-label"><label for="lessonContent">Example 2</label></span>
+            <textarea class="textareacss" name="lessonContent" id="lessonContent4"
+                      v-model="formGramma.example_2"></textarea>
+          </div>
+          <div class="input-item">
+            <span class="span-label"><label for="homework-url">URL</label></span>
+            <input type="text" name="homework-url" id="homework-url" v-model="formGramma.home_work" />
+          </div>
+          <div class="img-container">
+            <label for="file-upload" class="custom-file-upload">
+              <i class="fas fa-image"></i>
+            </label>
+            <input type="file" id="file-upload" style="height: 26px;
     width: 40px;">
+          </div>
         </div>
       </div>
       <div class="btn-container">
@@ -147,15 +149,15 @@ const emits = defineEmits(['close', 'submit'])
 
 watch(() => props.isVisible, (val) => {
   if (val) {
-    fetchCategory(1)
+    fetchCategory()
     if (props.id !== 0)
       handleShowEditGrammar(props.id)
   }
 })
 
-const fetchCategory = async (type) => {
+const fetchCategory = async () => {
   try {
-    const data = await listCategoriesByType(type);
+    const data = await listCategoriesByType(props.type);
     categoryList.value = data.data.data;
   } catch (error) {
     console.error(error)
@@ -265,7 +267,7 @@ const handleClosePopup = () => {
   emits("close")
 }
 
-const handleCreateCategory = async (type) => {
+const handleCreateCategory = async () => {
   isVisibleErr.value = false
   messageError.value = ""
   try {
@@ -285,11 +287,11 @@ const handleCreateCategory = async (type) => {
       return
     }
 
-    const request = { ...categoryForm.value, type: type };
+    const request = { ...categoryForm.value, type: props.type };
     const data = await createCategory(request)
     const result = data?.data?.data
     if (result) {
-      await fetchCategory(type)
+      await fetchCategory(props.type)
       Object.assign(categoryForm.value, categoryFormDefault);
     }
   } catch (error) {
@@ -360,4 +362,6 @@ const handleCloseError = () => {
   color: red;
   border: 1px solid red;
 }
+
+
 </style>

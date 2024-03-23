@@ -200,6 +200,7 @@ header {
     padding-bottom: 10px;
     max-height: 103px;
     overflow: auto;
+    width: 60.2%;
     /* -webkit-box-shadow: 0 0 5px 0 rgba(171, 213, 231, 0.6); */
 }
 .add-category-title {
@@ -410,6 +411,7 @@ delete-btn[disabled]{
     bottom: 0;
     margin: auto;
     width: 80%;
+    height: 100%;
     z-index: 5;
     display: flex;
     justify-content: center;
@@ -431,12 +433,11 @@ delete-btn[disabled]{
 } */
 .lesson {
     width: 90%;
+    height: 95%;
     background-color: #fff;
-    max-height: 850px;
     overflow: auto;
     position: absolute;
-    top: 1opx;
-    background-color: #fff;
+    top: 1px;
 }
 
 .announce {
@@ -493,3 +494,7 @@ input[type="date"] {
     max-height: 300px;
     overflow: auto;
   }
+
+textarea {
+    min-height: 80px;
+}

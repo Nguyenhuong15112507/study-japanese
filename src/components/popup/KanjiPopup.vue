@@ -17,7 +17,7 @@
           <input type="text" name="lessonName" id="categoryName" placeholder="Enter category" style="width: 400px;"
             v-model="categoryForm.category_name" />
           <button class="new-btn" style="padding: 0 10px; margin-left: 10px; align-items: center;"
-            @click="handleCreateCategory(2)">Add
+            @click="handleCreateCategory()">Add
           </button>
         </div>
         <div class="input-item categories">
@@ -203,23 +203,14 @@ const emits = defineEmits(['close', 'submit'])
 
 watch(() => props.isVisible, (val) => {
   if (val) {
-    fetchCategory(1)
-    // fetchKanji()
+    fetchCategory()
   }
 })
 
-const fetchCategory = async (type) => {
+const fetchCategory = async () => {
   try {
-    const data = await listCategoriesByType(type);
+    const data = await listCategoriesByType(props.type);
     categoryList.value = data.data.data;
-  } catch (error) {
-    console.error(error)
-  }
-}
-const fetchKanji = async () => {
-  try {
-    const data = await listKanji()
-    rows.value = data.data.data
   } catch (error) {
     console.error(error)
   }
@@ -233,11 +224,11 @@ const fetcKanjidDetail = async (id) => {
       rows.value = result.list_kanji
     }
   } catch (error) {
-
+    console.error(error)
   }
 }
 
-const handleCreateCategory = async (type) => {
+const handleCreateCategory = async () => {
   isVisibleErr.value = false
   messageError.value = ""
   try {
@@ -257,11 +248,11 @@ const handleCreateCategory = async (type) => {
       return
     }
 
-    const request = { ...categoryForm.value, type: type };
+    const request = { ...categoryForm.value, type: props.type };
     const data = await createCategory(request)
     const result = data?.data?.data
     if (result) {
-      await fetchCategory(type)
+      await fetchCategory()
       Object.assign(categoryForm.value, categoryFormDefault);
     }
   } catch (error) {
@@ -297,11 +288,9 @@ const resetForm = () => {
 };
 
 const getBase64 = (fileS, isAdd, index) => {
-  console.log(fileS)
   let reader = new FileReader()
   reader.readAsDataURL(fileS)
   reader.onload = (e) => {
-    console.log(e.target.result)
     if (isAdd) {
       rows.value[index].file_content = e.target.result
     } else {
