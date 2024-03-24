@@ -135,7 +135,7 @@
 
 import { defineEmits, defineProps, ref, watch } from "vue";
 import { createCategory, listCategoriesByType } from "../../api/categories.js";
-import { listKanji, createKanji, showDetailkanji } from "../../api/kanji";
+import {  createKanji, showDetailkanji } from "../../api/kanji";
 
 const categoryFormDefault = {
   id: null,
@@ -398,9 +398,6 @@ const handleCloseError = () => {
   messageError.value = ""
   isVisibleErr.value = false
 }
-const handleShowKanjiDetail = (kanjiid) => {
-  router.push({ path: "/kanji", query: { kanjiid: id } });
-};
 
 </script>
 

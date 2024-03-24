@@ -76,9 +76,12 @@
           </div>
           <div class="img-container">
             <label for="file-upload" class="custom-file-upload">
-              <i class="fas fa-image"></i>
+              <img v-if="formGramma.file_content" :src="formGramma.file_content" style="height: 70%; width: 70%;"
+                        alt="avc" />
+              <i v-else class="fas fa-image"></i>
             </label>
-            <input type="file" id="file-upload" style="height: 26px;
+            <input  type="file" name="file-upload" id="file-upload"
+                      @change="(val) => handleUploadFile(val)" style="height: 26px;
     width: 40px;">
           </div>
         </div>
@@ -116,19 +119,10 @@ const formGrammaDefault = {
   example_1: "",
   example_2: "",
   home_work: "",
+  file_content: ''
 };
 
-const newRow = ref({
-  column1: '',
-  new_kanji: '',
-  kanji_name: '',
-  defination: '',
-  example: '',
-  onyomi: '',
-  kunyomi: '',
-  column5: '',
-  column6: ''
-});
+
 
 const formGramma = ref(formGrammaDefault);
 
@@ -150,8 +144,8 @@ const emits = defineEmits(['close', 'submit'])
 watch(() => props.isVisible, (val) => {
   if (val) {
     fetchCategory()
-    if (props.id !== 0)
-      handleShowEditGrammar(props.id)
+    // if (props.id !== 0)
+    //   handleShowEditGrammar(props.id)
   }
 })
 
@@ -201,6 +195,7 @@ const handleCreateGrammar = async () => {
     if (data?.data?.data) {
       formGramma.value = formGrammaDefault;
       emits("submit")
+      handleClosePopup()
     }
   } catch (error) {
     console.error(error);
@@ -217,6 +212,7 @@ const handleOnchangeTitle = (value) => {
   }
 
   hasErr.value = hasErr.value.filter(item => item !== 'titleIsEmpty')//Loc ra nhung phan tu khac userName de gan lai cho hasErr
+  
 }
 const handleOnchangeGrammarForm = (value) => {
   const isIncludesGrammarForm = hasErr.value.includes('GrammarFormIsEmpty')
@@ -262,7 +258,20 @@ const handleShowEditGrammar = async (id) => {
     console.log(error);
   }
 };
+const handleUploadFile = (val) => {
+  getBase64(val.target.files[0])
 
+}
+const getBase64 = (fileS) => {
+  let reader = new FileReader()
+  reader.readAsDataURL(fileS)
+  reader.onload = (e) => {
+    formGramma.value.file_content = e.target.result
+  }
+  reader.onerror = function (error) {
+    console.error('Error: ', error)
+  }
+}
 const handleClosePopup = () => {
   emits("close")
 }

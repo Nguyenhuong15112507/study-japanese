@@ -241,9 +241,9 @@
 import { ref } from "vue"; // dung de import
 import router from "../router";
 import moment from "moment";
-import { listGrammar, createGrammar, editGrammar, showDetailGrammar } from "../api/grammar";
-import { listKanji, createKanji, showDetailkanji } from "../api/kanji";
-import { listCategoriesByType, createCategory, editCategory } from "../api/categories";
+import { listGrammar, showDetailGrammar } from "../api/grammar";
+import { listKanji } from "../api/kanji";
+import { listCategoriesByType } from "../api/categories";
 import { listAnnounce, showDetailAnnounce, createAnnounce, editAnnounce } from "../api/announce";
 import KanjiPopup from "./popup/KanjiPopup.vue";
 import CreateLessonPopup from "./popup/CreateLessonPopup.vue"
@@ -253,11 +253,7 @@ const formAnnounceDefault = {
   announce_name: "",
   description: "",
 };
-const categoryFormDefault = {
-  id: null,
-  category_name: "",
-  japanese_level: "",
-}
+
 
 const formGrammaDefault = {
   id: null,
@@ -278,14 +274,10 @@ const categoryList = ref([])
 const isDisplayAnnounceCreate = ref(false);
 const isDisplayLessonCreate = ref(false);
 const isDisplayKanjiCreate = ref(false);
-const isExit = ref(false)
-const isVisibleErr = ref(false)
+
 
 const multiSelection = ref([]);
-const multiSelectionCategory = ref([]);
-const messageError = ref("")
 const formGramma = ref(formGrammaDefault);
-const categoryForm = ref({ ...categoryFormDefault })
 const formAnnounce = ref(formAnnounceDefault);
 
 
@@ -335,74 +327,6 @@ const fetchKanji = async () => {
 
 fetchKanji();
 
-const handleCreateCategory = async (type) => {
-  isExit.value = false
-  isVisibleErr.value = false
-  messageError.value = ""
-  try {
-
-    // check empty
-    if (!categoryForm.value.category_name || !categoryForm.value.japanese_level) {
-      isVisibleErr.value = true
-      isExit.value = true
-      messageError.value = "Vui chon categories hoac level"
-      return
-    }
-
-    // check exist category name
-    if (categoryList.value.filter((item => item.category_name.trim() ===
-      categoryForm.value.category_name.trim())).length > 0) {
-      isExit.value = true
-      isVisibleErr.value = true
-      messageError.value = "Categories exist!"
-      return
-    }
-
-    const request = { ...categoryForm.value, type: type };
-    const data = await createCategory(request)
-    const result = data?.data?.data
-    if (result) {
-      await fetchCategory(type)
-      Object.assign(categoryForm.value, categoryFormDefault);
-    }
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-const handleCreateGrammar = async () => {
-  isVisibleErr.value = false
-  messageError.value = ""
-  if (multiSelectionCategory.value.length === 0) {
-    isVisibleErr.value = true
-    messageError.value = "Vui long chon categories"
-    return
-  }
-
-  if (multiSelectionCategory.value.length > 1) {
-    isVisibleErr.value = true
-    messageError.value = "Vui long chi chon 1 categories"
-    return
-  }
-
-  const lessonRequest = {
-    ...formGramma.value,
-    description: "",
-    path_base: "",
-    file_name: "",
-    file_ext: "",
-  };
-  try {
-    const data = await createGrammar(lessonRequest);
-    if (data?.data?.data) {
-      await fetchGrammar();
-      isDisplayLessonCreate.value = false;
-      formGramma.value = formGrammaDefault;
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
 
 const handleShowEditGrammar = async (id) => {
   try {
@@ -416,24 +340,7 @@ const handleShowEditGrammar = async (id) => {
     console.log(error);
   }
 };
-const handleEditGrammar = async () => {
-  try {
-    const lessonRequest = {
-      ...formGramma.value,
-      description: "",
-      path_base: "",
-      file_name: "",
-      file_ext: "",
-    };
-    const data = await editGrammar(lessonRequest);
-    if (data?.data?.data) {
-      fetchGrammar();
-      isDisplayLessonCreate.value = false;
-      formGramma.value = formGrammaDefault;
-    }
-  } catch (error) {
-  }
-};
+
 
 const appendAnnounceContent = async () => {
 
@@ -480,10 +387,6 @@ const handleCloseLessonPopup = () => {
   isDisplayLessonCreate.value = false;
 };
 
-const handleClosePopup = () => {
-  formGramma.value = formGrammaDefault;
-  isDisplayLessonCreate.value = false;
-};
 
 const handleOnClickbtn = () => {
   formAnnounce.value = formAnnounceDefault
