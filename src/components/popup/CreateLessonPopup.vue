@@ -119,7 +119,11 @@ const formGrammaDefault = {
   example_1: "",
   example_2: "",
   home_work: "",
-  file_content: ''
+  file_content: '',
+  file_name: "",
+  file_size: "",
+  file_ext: "",
+  content_type: "",
 };
 
 
@@ -183,12 +187,11 @@ const handleCreateGrammar = async () => {
   if (hasErr.value.length > 0) {
     return
   }
+  const file_content = formGramma.value.file_content;
   const lessonRequest = {
     ...formGramma.value,
     description: "",
-    path_base: "",
-    file_name: "",
-    file_ext: "",
+    file_content: file_content ? file_content.replace(/^data:(.*,)?/, '') : ''
   };
   try {
     const data = await createGrammar(lessonRequest);
@@ -266,7 +269,13 @@ const getBase64 = (fileS) => {
   let reader = new FileReader()
   reader.readAsDataURL(fileS)
   reader.onload = (e) => {
-    formGramma.value.file_content = e.target.result
+    formGramma.value.file_name = fileS.name;
+    formGramma.value.content_type =  fileS.type;
+    formGramma.value.file_size = fileS.size;
+    formGramma.value.file_ext = formGramma.value.file_name.split('.')[1];
+    formGramma.value.file_content = e.target.result;
+
+    console.log(formGramma.value)
   }
   reader.onerror = function (error) {
     console.error('Error: ', error)

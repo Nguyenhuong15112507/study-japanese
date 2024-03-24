@@ -54,7 +54,7 @@
         <h4 class="lesson-name">JLPT N4: Grammar</h4>
         <div class="list-content-item lesson-content-list">
           <div v-for="(item, index) in lessonContenlist" :key="index" class="lession-content-overview">
-            <img src="../img/15801f0d.jpg" alt="" class="lesson-content-img" />
+            <img :src="baseUrlUpload + item.upload_id " alt="" class="lesson-content-img" />
             <h4 class="lesson-name">{{ item.grammar_name }}</h4>
             <div class="created-date">
               <span class="label">Date: </span>
@@ -233,7 +233,7 @@
   </div>
 
   <kanji-popup :is-visible="isDisplayKanjiCreate" :type="2" @close="handleCloseKanjiPopup" @submit="handleSubmitKanji" />
-  <create-lesson-popup :is-visible="isDisplayLessonCreate" :type="1" @close="handleCloseLessonPopup" ></create-lesson-popup>
+  <create-lesson-popup :is-visible="isDisplayLessonCreate" :type="1" @close="handleCloseLessonPopup" @submit="handleSubmitGrammar" ></create-lesson-popup>
   <!-- <footer>Powered by W3.css</footer> -->
 </template>
 
@@ -253,6 +253,8 @@ const formAnnounceDefault = {
   announce_name: "",
   description: "",
 };
+
+const baseUrlUpload = import.meta.env.VITE_API_BASE_URL + "/api/upload/";
 
 
 const formGrammaDefault = {
@@ -291,7 +293,6 @@ const fetchAnnounce = async () => {
 
   }
 }
-
 fetchAnnounce()
 const fetchCategory = async (type) => {
   try {
@@ -425,6 +426,10 @@ const handleShowKanjiDetail = (id) => {
 
 const handleSubmitKanji = () => {
   fetchKanji();
+}
+
+const handleSubmitGrammar = () => {
+  fetchGrammar();
 }
 
 </script>
