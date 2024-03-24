@@ -52,7 +52,7 @@
                                 <li class="answer-item">
                                     <div class="form-define">Example 2:</div> {{ grammarRef.example_2 }}
                                 </li>
-                                <img src="../img/9-1.png" class="example-img" alt="">
+                                <img :src="baseUrlUpload + grammarRef.upload_id " class="example-img" alt="">
                             </ul>
 
                         </div>
@@ -124,6 +124,7 @@ const formGram = {
     homework: '',
     date: null
 }
+const baseUrlUpload = import.meta.env.VITE_API_BASE_URL + "/api/upload/";
 const grammarRef = ref(formGram)
 const categoryFormDefault = {
     id: null,

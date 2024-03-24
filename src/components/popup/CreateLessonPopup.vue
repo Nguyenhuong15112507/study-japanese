@@ -272,7 +272,7 @@ const getBase64 = (fileS) => {
     formGramma.value.file_name = fileS.name;
     formGramma.value.content_type =  fileS.type;
     formGramma.value.file_size = fileS.size;
-    formGramma.value.file_ext = formGramma.value.file_name.split('.')[1];
+    formGramma.value.file_ext = fileS.name.slice(fileS.name.lastIndexOf('.') + 1);
     formGramma.value.file_content = e.target.result;
 
     console.log(formGramma.value)
