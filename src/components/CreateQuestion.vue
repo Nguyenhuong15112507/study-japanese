@@ -51,12 +51,12 @@
             </select>
           </div>
           <div class="img-container">
-            <label for="file-upload" class="custom-file-upload">
+            <label :for="'file-upload-'+index" class="custom-file-upload">
               <img v-if="item.file_content" :src="item.file_content" style="height: 18px; width: 27px;" alt="avc" />
                       <i v-else class="fas fa-image imgEdit"></i>
             </label>
-            <input type="file" name="file-upload" id="file-upload"
-                      @change="(val) => handleUploadFile(val)">
+            <input type="file" name="file-upload" :id="'file-upload-'+index"
+                      @change="(val) => handleUploadFile(val, index)">
           </div>
 
           <div v-if="item.type_quiz.toString() === '0'" class="vocabulary-list">
@@ -175,22 +175,15 @@ const addRow = (list_quiz_item = []) => {
 const deleteRow = (list_quiz_item = [], index) => {
   list_quiz_item.splice(index, 1);
 };
-const handleUploadFile = (val) => {
-  getBase64(val.target.files[0])
-  console.log(listQuestion)
+const handleUploadFile = (val, index) => {
+  getBase64(val.target.files[0], index)
 
 }
-const getBase64 = (fileS) => {
+const getBase64 = (fileS, index) => {
   let reader = new FileReader()
   reader.readAsDataURL(fileS)
   reader.onload = (e) => {
-    questionForm.value.file_name = fileS.name;
-    questionForm.value.content_type =  fileS.type;
-    questionForm.value.file_size = fileS.size;
-    questionForm.value.file_ext = fileS.name.slice(fileS.name.lastIndexOf('.') + 1);
-    questionForm.value.file_content = e.target.result
-
-console.log(questionForm.value.file_ext)
+    listQuestion.value[index].file_content = e.target.result;
   }
   reader.onerror = function (error) {
     console.error('Error: ', error)
