@@ -7,3 +7,9 @@ export function createMultipleChoice(data) {
         data,
     });
 }
+export function listMultipleChoice() {
+    return request({
+        url: "/api/multiple-choice",
+        method: "get",
+    });
+}

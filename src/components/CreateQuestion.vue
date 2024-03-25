@@ -52,7 +52,7 @@
           </div>
           <div class="img-container">
             <label :for="'file-upload-'+index" class="custom-file-upload">
-              <img v-if="item.file_content" :src="item.file_content" style="height: 18px; width: 27px;" alt="avc" />
+              <img v-if="item.file_content" :src="item.file_content" style="height: 100%; width: 100%;" alt="avc" />
                       <i v-else class="fas fa-image imgEdit"></i>
             </label>
             <input type="file" name="file-upload" :id="'file-upload-'+index"
@@ -184,6 +184,10 @@ const getBase64 = (fileS, index) => {
   reader.readAsDataURL(fileS)
   reader.onload = (e) => {
     listQuestion.value[index].file_content = e.target.result;
+    listQuestion.value[index].file_name = fileS.name;
+    listQuestion.value[index].file_size = fileS.size;
+    listQuestion.value[index].file_ext = fileS.name.slice(fileS.name.lastIndexOf('.') + 1);
+    listQuestion.value[index].content_type = fileS.type
   }
   reader.onerror = function (error) {
     console.error('Error: ', error)
@@ -301,4 +305,14 @@ input:disabled {
   max-height: 100px;
   overflow-y: auto;
 
-}</style>
+}
+.custom-file-upload[data-v-2fc85add] {
+    border: 2px dashed rgba(86, 185, 227, 0.6);
+    display: inline-block;
+    padding: 12px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    height: 80%;
+}
+</style>

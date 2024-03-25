@@ -175,7 +175,12 @@ const newRow = ref({
   spell_kuyomi: '',
   column5: '',
   column6: '',
-  file_content: ''
+  file_content: '',
+  file_name: "",
+  file_ext: "",
+  content_type: "",
+  file_size: 0,
+
 });
 
 const multiSelectionCategory = ref([]);
@@ -295,6 +300,10 @@ const getBase64 = (fileS, isAdd, index) => {
       rows.value[index].file_content = e.target.result
     } else {
       newRow.value.file_content = e.target.result
+      newRow.value.file_name = fileS.name;
+      newRow.value.file_size = fileS.size;
+      newRow.value.file_ext = fileS.name.slice(fileS.name.lastIndexOf('.') + 1);
+      newRow.value.content_type = fileS.type
     }
   }
   reader.onerror = function (error) {
@@ -336,7 +345,13 @@ const handleSaveKanji = async () => {
         spell_kuyomi: item.spell_kuyomi,
         kanji_name: item.kanji_name,
         define: item.define,
-        example: item.example
+        example: item.example,
+        file_content: item.file_content,
+        file_name: item.file_name,
+        file_ext: item.file_ext,
+        content_type: item.content_type,
+        file_size: item.file_size,
+
       }
     })
     const data = await createKanji(request)
@@ -349,6 +364,7 @@ const handleSaveKanji = async () => {
   } catch (error) {
     console.error(error)
   }
+  
 }
 const handleOnchangeTitle = (value) => {
   const isIncludesTitle = hasErr.value.includes('titleIsEmpty')
