@@ -346,7 +346,7 @@ const handleSaveKanji = async () => {
         kanji_name: item.kanji_name,
         define: item.define,
         example: item.example,
-        file_content: item.file_content,
+        file_content:  item.file_content ? item.file_content.replace(/^data:(.*,)?/, '') : '',
         file_name: item.file_name,
         file_ext: item.file_ext,
         content_type: item.content_type,

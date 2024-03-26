@@ -28,7 +28,7 @@
             <div class="daily-content-overview">
                 <h4 class="daily-name">{{ item.kanji }}</h4>
                 <div class="img-container">
-                    <img class="student-daily-img" src="../../../img/Hinh-Anh-Anime-Chibi-Girl (3).jpg" alt="">
+                    <img class="student-daily-img" :src="baseUrlUpload + item.upload_id " alt="">
                 </div>
                 <div class="created-date">
                     <span class="select-option-label">Onyomi </span>
@@ -48,6 +48,9 @@ import { ref } from 'vue';
 import { showDetailkanji,listKanji } from "../../../api/kanji";
 
 import router from "../../../router";
+
+const baseUrlUpload = import.meta.env.VITE_API_BASE_URL + "/api/upload/";
+
 const isChange = ref(true)
 const pathkanjiId = router.currentRoute.value.query;
 const rows = ref([]);

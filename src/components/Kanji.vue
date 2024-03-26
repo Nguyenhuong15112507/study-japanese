@@ -95,6 +95,7 @@ import { showDetailkanji, listKanji } from "../api/kanji";
 import { listCategoriesByType } from "../api/categories";
 import moment from "moment";
 
+const baseUrlUpload = import.meta.env.VITE_API_BASE_URL + "/api/upload/";
 
 const isDisplayLearnContent = ref(false);
 const categoryList = ref([])
