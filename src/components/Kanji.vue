@@ -201,10 +201,11 @@ const handleChangeKanjiFlashcard = (kanjiItemid) => {
 
 .lesson-homework-list {
   width: 85%;
-  margin-left: 10px;
-  margin-right: 10px;
-  height: 450px;
-  display: flex;
+    margin-left: 10px;
+    margin-right: 10px;
+    /* height: 450px; */
+    display: flex;
+    flex-wrap: wrap;
 
 }
 

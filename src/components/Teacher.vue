@@ -51,10 +51,9 @@
           </button>
         </div>
 
-        <h4 class="lesson-name">JLPT N4: Grammar</h4>
         <div class="list-content-item lesson-content-list">
           <div v-for="(item, index) in lessonContenlist" :key="index" class="lession-content-overview">
-            <img :src="baseUrlUpload + item.upload_id " alt="" class="lesson-content-img" />
+            <img :src="baseUrlUpload + item.upload_id" alt="" class="lesson-content-img" />
             <h4 class="lesson-name">{{ item.grammar_name }}</h4>
             <div class="created-date">
               <span class="label">Date: </span>
@@ -87,6 +86,32 @@
       <div class="student-daily">
         <div class="list-content-item daily-content-list">
           <div v-for="(item, index) in kanjiContentList" :key="index" class="daily-content-overview">
+            <img class="student-daily-img" :src="baseUrlUpload + item.upload_id" alt="" />
+            <h4 class="daily-name">{{ item.title }}</h4>
+            <div class="created-date">
+              <span class="label">Date: </span>
+              <span class="date">{{
+                item.create_at
+                ? moment(item.create_at).format("DD-MM-YYYY")
+                : ""
+              }}</span>
+            </div>
+            <p class="overview-para">{{ item.kanji_name }}</p>
+            <div class="show-detail">
+              <button class="check-homework-btn" @click="handleShowKanjiDetail(item.id)">
+                Show detail
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- create new question -->
+      <h3 class="title-content">Create New Question Lesson</h3>
+      <button class="new-btn" id="creat-new-daily-btn" @click="handleOpenQuestionpage()">Create</button>
+      <div class="student-daily">
+        <div class="list-content-item daily-content-list">
+          <div v-for="(item, index) in kanjiContentList" :key="index" class="daily-content-overview">
             <img class="student-daily-img" src="../img/Hinh-Anh-Anime-Chibi-Girl (3).jpg" alt="" />
             <h4 class="daily-name">{{ item.title }}</h4>
             <div class="created-date">
@@ -109,7 +134,7 @@
     </div>
   </div>
 
- 
+
 
   <!-- Announce create -->
   <div v-if="isDisplayAnnounceCreate" :class="['anouncement-create', { isVisible: isDisplayAnnounceCreate }]">
@@ -136,8 +161,11 @@
     </div>
   </div>
 
+
+
   <kanji-popup :is-visible="isDisplayKanjiCreate" :type="2" @close="handleCloseKanjiPopup" @submit="handleSubmitKanji" />
-  <create-lesson-popup :is-visible="isDisplayLessonCreate" :type="1" @close="handleCloseLessonPopup" @submit="handleSubmitGrammar" ></create-lesson-popup>
+  <create-lesson-popup :is-visible="isDisplayLessonCreate" :type="1" @close="handleCloseLessonPopup"
+    @submit="handleSubmitGrammar"></create-lesson-popup>
   <!-- <footer>Powered by W3.css</footer> -->
 </template>
 
@@ -335,7 +363,9 @@ const handleSubmitKanji = () => {
 const handleSubmitGrammar = () => {
   fetchGrammar();
 }
-
+const handleOpenQuestionpage = () => {
+  router.push('/createQuestion')
+}
 </script>
 
 

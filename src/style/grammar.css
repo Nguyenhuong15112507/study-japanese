@@ -72,14 +72,15 @@ footer {
 }
 
 /* page question body */
-.page-practice-container {
-
+.page-practice-container[data-v-1fc56918] {
     color: black;
     position: relative;
-    top: 7px;
+    top: 10px;
     width: 100%;
-    height: 800px;
-    overflow-y: auto;
+    height: 100%;
+    /* overflow-y: auto; */
+    left: 0;
+    right: 0;
 }
 .practice-type-menu {
     display: flex;

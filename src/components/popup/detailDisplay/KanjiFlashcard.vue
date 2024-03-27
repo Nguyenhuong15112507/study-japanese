@@ -28,7 +28,7 @@
             <div class="daily-content-overview">
                 <h4 class="daily-name">{{ item.kanji }}</h4>
                 <div class="img-container">
-                    <img class="student-daily-img" :src="baseUrlUpload + item.upload_id " alt="">
+                    <img class="example-img" :src="baseUrlUpload + item.upload_id " alt="">
                 </div>
                 <div class="created-date">
                     <span class="select-option-label">Onyomi </span>
@@ -99,7 +99,14 @@ const handleChangeToDetail = () => {
     padding: 10px;
     flex-wrap: wrap;
 }
+.example-img {
+    width: 40%;
+    height: 40%;
+    border: 1px solid gray;
+    margin-top: 10px;
+    border-radius: 5px;
 
+}
 .current-selection {
     margin: 10px;
 }
@@ -253,10 +260,11 @@ const handleChangeToDetail = () => {
     border-radius: 5px;
     background-color: rgb(197 237 255);
 }
-.daily-content-overview {
+.daily-content-overview[data-v-0a1e0f6a] {
     padding: 10px;
     border: 1px solid rgb(197 237 255);
     border-radius: 5px;
+    width: 60%;
 }
 .daily-name {
     text-align: center;

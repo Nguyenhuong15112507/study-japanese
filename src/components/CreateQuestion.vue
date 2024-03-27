@@ -236,6 +236,7 @@ const handleCreateMultipleChoice = async () => {
     const data = await createMultipleChoice(request)
     if (data.data?.data) {
       alert('oke')
+      questionForm.value = questionDefault
     }
   } catch (e) {
     console.log(e)

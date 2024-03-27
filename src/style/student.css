@@ -238,7 +238,6 @@ textarea {
 .lesson-homework-list {
     margin-top: 10px;
     display: inline-block;
-    height: 400px;
     overflow-y: auto;
 }
 .lession-content-overview, .daily-content-overview {

@@ -45,15 +45,26 @@
       <div class="new-form daily-create">
         <div class="input-item" style="display: flex; align-items: center; width: 500px;">
           <span class="span-label"><label for="lessonName">Title</label></span>
-          
-            <input :class="{ 'validateInput': hasErr.includes('titleIsEmpty') }" type="text" name="lessonName" id="announceName" v-model="kanjinewForm.title"
-              @input="handleOnchangeTitle()" style="margin-left: 56px;" />
-          
+
+          <input :class="{ 'validateInput': hasErr.includes('titleIsEmpty') }" type="text" name="lessonName"
+            id="announceName" v-model="kanjinewForm.title" @input="handleOnchangeTitle()" style="margin-left: 56px;" />
+
         </div>
         <div class="erroMesSentence" v-if="hasErr.includes('titleIsEmpty')">Please enter kanji's title</div>
         <div class="input-item" style="display: flex; align-items: center; width: 500px;">
           <span class="span-label"><label for="lessonName">Description</label></span>
           <input type="text" name="lessonName" id="announceName" v-model="kanjinewForm.description" />
+        </div>
+        <div class="img-container-lesson" style="height: 200px;
+    width: 200px;">
+          <label for="file-upload-title" class="custom-file-upload" style="height: 110px;
+    width: 110px;">
+            <img v-if="kanjinewForm.file_content" :src="kanjinewForm.file_content" style="height: 100%;
+    width: 100%;" alt="avc" />
+            <i v-else class="fas fa-image imgEdit" style="font-size: 100px;"></i>
+          </label>
+          <input ref="file" type="file" id="file-upload-title" @change="(val) => handleUploadFileTitle(val)"
+          >
         </div>
         <div class="vocabulary-list">
           <table class="vocabu-list-table" style="width: 100%;" border="1" cellpadding="2px">
@@ -135,7 +146,7 @@
 
 import { defineEmits, defineProps, ref, watch } from "vue";
 import { createCategory, listCategoriesByType } from "../../api/categories.js";
-import {  createKanji, showDetailkanji } from "../../api/kanji";
+import { createKanji, showDetailkanji } from "../../api/kanji";
 
 const categoryFormDefault = {
   id: null,
@@ -193,7 +204,7 @@ const kanjinewFormDefault = ref({
   file_name: '',
   file_ext: '',
   content_type: '',
-  file_size: 0,
+  file_size: "",
   list_kanji: []
 })
 const kanjinewForm = ref(kanjinewFormDefault)
@@ -278,6 +289,10 @@ const handleUploadFile = (val, isAdd, index) => {
   getBase64(val.target.files[0], isAdd, index)
 
 }
+const handleUploadFileTitle = (value) => {
+  getBase64Title(value.target.files[0])
+
+}
 
 const resetForm = () => {
   newRow.value.column1 = '';
@@ -310,7 +325,22 @@ const getBase64 = (fileS, isAdd, index) => {
     console.error('Error: ', error)
   }
 }
+const getBase64Title = (fileS, isAdd, index) => {
+  let reader = new FileReader()
+  reader.readAsDataURL(fileS)
+  reader.onload = (e) => {
 
+      kanjinewForm.value.file_content = e.target.result
+      kanjinewForm.value.file_name = fileS.name;
+      kanjinewForm.value.file_size = fileS.size;
+      kanjinewForm.value.file_ext = fileS.name.slice(fileS.name.lastIndexOf('.') + 1);
+      kanjinewForm.value.content_type = fileS.type
+    
+  }
+  reader.onerror = function (error) {
+    console.error('Error: ', error)
+  }
+}
 
 const handleSaveKanji = async () => {
   isVisibleErr.value = false
@@ -335,7 +365,8 @@ const handleSaveKanji = async () => {
     return
   }
   try {
-    const request = kanjinewForm.value;
+    const request ={ ...kanjinewForm.value,
+    file_content: kanjinewForm.value.file_content ? kanjinewForm.value.file_content.replace(/^data:(.*,)?/, '') : ''};
     const categoryId = multiSelectionCategory.value[0].id;
     request.category_id = categoryId;
     request.list_kanji = rows.value.map((item) => {
@@ -346,7 +377,7 @@ const handleSaveKanji = async () => {
         kanji_name: item.kanji_name,
         define: item.define,
         example: item.example,
-        file_content:  item.file_content ? item.file_content.replace(/^data:(.*,)?/, '') : '',
+        file_content: item.file_content ? item.file_content.replace(/^data:(.*,)?/, '') : '',
         file_name: item.file_name,
         file_ext: item.file_ext,
         content_type: item.content_type,
@@ -364,7 +395,7 @@ const handleSaveKanji = async () => {
   } catch (error) {
     console.error(error)
   }
-  
+
 }
 const handleOnchangeTitle = (value) => {
   const isIncludesTitle = hasErr.value.includes('titleIsEmpty')
@@ -457,4 +488,5 @@ const handleCloseError = () => {
 .validateInput {
   color: red;
   border: 1px solid red;
-}</style>
+}
+</style>
