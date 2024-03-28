@@ -111,9 +111,9 @@
       <button class="new-btn" id="creat-new-daily-btn" @click="handleOpenQuestionpage()">Create</button>
       <div class="student-daily">
         <div class="list-content-item daily-content-list">
-          <div v-for="(item, index) in kanjiContentList" :key="index" class="daily-content-overview">
+          <div v-for="(item, index) in questionContentList" :key="index" class="daily-content-overview">
             <img class="student-daily-img" src="../img/Hinh-Anh-Anime-Chibi-Girl (3).jpg" alt="" />
-            <h4 class="daily-name">{{ item.title }}</h4>
+            <h4 class="daily-name">{{ item.multiple_choice_name }}</h4>
             <div class="created-date">
               <span class="label">Date: </span>
               <span class="date">{{
@@ -122,9 +122,9 @@
                 : ""
               }}</span>
             </div>
-            <p class="overview-para">{{ item.kanji_name }}</p>
+            <p class="overview-para">{{ item.description }}</p>
             <div class="show-detail">
-              <button class="check-homework-btn" @click="handleShowKanjiDetail(item.id)">
+              <button class="check-homework-btn" @click="handleShowQuestionDetail(item.id)">
                 Show detail
               </button>
             </div>
@@ -179,6 +179,7 @@ import { listCategoriesByType } from "../api/categories";
 import { listAnnounce, showDetailAnnounce, createAnnounce, editAnnounce } from "../api/announce";
 import KanjiPopup from "./popup/KanjiPopup.vue";
 import CreateLessonPopup from "./popup/CreateLessonPopup.vue"
+import { listMultipleChoice } from "../api/multipleChoice";
 
 const formAnnounceDefault = {
   id: null,
@@ -204,6 +205,8 @@ const announceContenlist = ref([]);
 
 const kanjiContentList = ref([]);
 const categoryList = ref([])
+
+const questionContentList = ref([])
 
 const isDisplayAnnounceCreate = ref(false);
 const isDisplayLessonCreate = ref(false);
@@ -259,7 +262,18 @@ const fetchKanji = async () => {
 };
 
 fetchKanji();
-
+const  fetchMultipleChoice = async () => {
+  try {
+    const data = await listMultipleChoice()
+    if(data?.data?.data) {
+      questionContentList.value = data.data.data;
+      console.log(data.data.data)
+    }
+  } catch (error) {
+    
+  }
+}
+fetchMultipleChoice()
 
 const handleShowEditGrammar = async (id) => {
   try {
@@ -355,7 +369,9 @@ const handleShowDetail = (id) => {
 const handleShowKanjiDetail = (id) => {
   router.push({ path: "/kanji", query: { id: id } });
 };
-
+const handleShowQuestionDetail = (id) => {
+  router.push({ path: "/createQuestion", query: { id: id } });
+};
 const handleSubmitKanji = () => {
   fetchKanji();
 }

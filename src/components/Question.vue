@@ -237,4 +237,11 @@ const updateSteps = (direction) => {
 .learning-site {
     padding: 0 10px;
 }
+.question-container[data-v-5ab2d74e] {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    position: absolute;
+    top: 220px;
+}
 </style>

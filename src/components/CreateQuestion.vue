@@ -204,7 +204,7 @@ const handleSelectedCategories = (data) => {
   multipleChoiceForm.value.category_name = data.category_name;
   isDisplayCategory.value = false
   Object.assign(categoryForm.value, categoryFormDefault);
-
+  console.log(data)
 }
 
 const handleAddQuestion = () => {
