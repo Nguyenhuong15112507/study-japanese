@@ -1,17 +1,23 @@
 <template>
-  <div class="page-practice-container">
-    <div class="practice-content-container">
-      <div class="question-container">
-        <div class="question-type-menu">
-          <ul v-for="(item, index) in categoryList" :key="index" class="question-theme-list">
-            <h3 class="question-theme" style="margin: 5px auto;">{{ item.japanese_level }}</h3>
-            <li @click="handleChangeLearnContent()" class="question-theme-item">{{ item.category_name }}</li>
-          </ul>
+  <div class="page-kanji-container">
+      <div class="kanji-container">
+        <div class="kanji-type-menu">
+          <div v-for="(item, index) in categoryList" :key="index">
+            <p>
+              <a class="btn btn-outline-success categories-level" data-bs-toggle="collapse" :href="'#collapseExample-'+index" role="button" aria-expanded="false" :aria-controls="'collapseExample-'+index">
+                {{ item.japanese_level.toLocaleUpperCase() }}
+              </a>
+            </p>
+            <div class="collapse" :id="'collapseExample-'+index" style="margin-bottom: 10px">
+              <div @click="handleChangeLearnContent()" class="card card-body">
+                {{ item.category_name }}
+              </div>
+            </div>
+          </div>
         </div>
-        <div v-if="!isDisplayLearnContent" class="list-content-item lesson-homework-list">
-          <div v-for="(item, index) in pageKanjiList" :key="index"
-            class="lession-content-overview lession-homework-overview">
-            <img src="../img/15801f0d.jpg" alt="" class="lesson-content-img" />
+        <div v-if="!isDisplayLearnContent" class="row kanji-content">
+          <div v-for="(item, index) in pageKanjiList" :key="index" class="col-sm-3 content-kanji">
+            <img src="../img/15801f0d.jpg" alt="" class="kanji-imag" />
             <h4 class="lesson-name">{{ item.title }}</h4>
             <div class="created-date">
               <span class="label">Date: </span>
@@ -19,41 +25,35 @@
                 ? moment(item.create_at).format("DD-MM-YYYY")
                 : "" }}</span>
             </div>
-            <!-- <div class="status">
-              <span class="label">Kanji: </span>
-              <span class="homework-status">{{ item.kanji_name }}</span>
-            </div> -->
-            <!-- <p class="overview-para">{{ item.content2 }}</p> -->
             <div class="show-detail-and-practice" style="margin-top: 50px;">
-              <button class="check-homework-btn" @click="handleChangeLearnContent(item.id)">
+              <button class="btn btn-info" @click="handleChangeLearnContent(item.id)">
                 Learn
               </button>
             </div>
           </div>
         </div>
-        <div v-if="isDisplayLearnContent && kanjinewForm.id !== null" class="question-content-container">
+        <div v-if="isDisplayLearnContent && kanjinewForm.id !== null" class="row kanji-detail">
           <div class="question-group-list">
             <div class="question-group-item">
 
               <div class="input-item" style="display: flex; align-items: center; width: 500px;">
                 <span class="span-label"><label for="lessonName">Title</label></span>
-                <input :disabled="isDisabled" type="text" name="lessonName" v-model="kanjinewForm.title" id="announceName"
-                  style="margin-left: 56px;" />
+                <input :disabled="isDisabled" class="form-control" type="text" name="lessonName" v-model="kanjinewForm.title" id="announceName"
+                  style="margin-left: 90px;" />
               </div>
-              <div class="input-item" style="display: flex; align-items: center; width: 500px;">
+              <div class="input-item" style="display: flex; align-items: center; width: 500px; margin-top: 10px">
                 <span class="span-label"><label for="lessonName">Description</label></span>
-                <input :disabled="isDisabled" v-model="kanjinewForm.description" type="text" name="lessonName" id="announceName" />
+                <input :disabled="isDisabled" class="form-control" v-model="kanjinewForm.description" type="text" name="lessonName" id="announceName" style="margin-left: 37px" />
               </div>
               <div class="vocabulary-list">
                 <div class="button-container">
-                  <button @click="handleBack()"  class="new-btn" id="back-result-btn"
-                    style="margin: 10px; background-color: rgb(210, 209, 209); width: 50px;margin-left: 0;">
+                  <button @click="handleBack()"  class="btn btn-secondary">
                     Back
                   </button>
-                  <button @click="handleChangeKanjiFlashcard(kanjinewForm.id)" class="new-btn" id="creat-new-result-btn" style="margin: 10px">
+                  <button @click="handleChangeKanjiFlashcard(kanjinewForm.id)" class="btn btn-info" id="creat-new-result-btn" style="margin: 10px">
                     Learn
                   </button>
-                  <button  class="new-btn" id="creat-new-result-btn" style="margin: 10px">
+                  <button  class="btn btn-warning">
                     Practice
                   </button>
                 </div>
@@ -83,7 +83,6 @@
         </div>
 
       </div>
-    </div>
     <div class="practice-question-menu"></div>
   </div>
 </template>
@@ -188,129 +187,44 @@ const handleChangeKanjiFlashcard = (kanjiItemid) => {
 }
 </script>
 
-<style scoped>
-@import "../style/grammar.css";
-@import "../style/teacher.css";
+<style scoped lang="scss">
 @import "../style/flashcrad.css";
 
-.example-img {
-  width: 70%;
-  border: 1px solid gray;
-  margin-top: 10px;
-}
-
-.lesson-homework-list {
-  width: 85%;
-    margin-left: 10px;
-    margin-right: 10px;
-    /* height: 450px; */
+.page-kanji-container {
+  .kanji-container {
     display: flex;
-    flex-wrap: wrap;
-
+    width: 100%;
+    .kanji-type-menu {
+      margin-top: 161px;
+      padding-top: 10px;
+      padding-right: 20px;
+      padding-left: 20px;
+      background-color: rgba(147, 220, 248, 0.6);
+      width: 20%;
+      .categories-level {
+        width: 100%;
+      }
+    }
+    .kanji-content {
+      margin-top: 180px;
+      width: 80%;
+      justify-content: center;
+      .content-kanji {
+        border: 1px solid #0dcaf0;
+        border-radius: 10px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        padding: 10px;
+        .kanji-imag {
+          width: 100%;
+        }
+      }
+    }
+    .kanji-detail {
+      margin-top: 180px;
+      width: 80%;
+      padding-left: 20px;
+    }
+  }
 }
-
-.question-type-menu[data-v-1fc56918] {
-  width: 17%;
-}
-
-
-
-.question-theme-item:hover {
-  color: blue;
-  cursor: pointer;
-}
-
-input:disabled {
-  background-color: rgb(237, 247, 251);
-  cursor: pointer;
-}
-
-.lession-homework-overview {
-  width: 96%;
-}
-
-.isVisible {
-  visibility: visible;
-}
-
-.ishide {
-  display: none;
-}
-
-.question-content {
-  margin: 10px auto;
-  font-size: 18px;
-  text-align: center;
-}
-
-.content-name {
-  margin: auto 10px;
-  width: 100px;
-  color: blue;
-}
-
-.content-value {
-  margin-left: 30px;
-  margin-bottom: 10px;
-}
-
-.vocabu-list-table {
-  position: relative;
-  width: 100%;
-  margin-right: 10px;
-}
-
-.vocabulary-list {
-  width: 98%;
-}
-
-.vocabu-table-title[data-v-05defb10] {
-  font-weight: bold;
-  align-items: center;
-  text-align: center;
-  background-color: rgb(161 218 243);
-
-}
-
-.lession-content-overview[data-v-05defb10],
-.daily-content-overview[data-v-05defb10] {
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 5px;
-  width: 250px;
-  margin-bottom: 10px;
-  /* margin-right: 15px; */
-}
-
-.page-practice-container[data-v-05defb10] {
-  color: black;
-  position: absolute;
-  width: 100%;
-  top: 7px;
-  left: 0;
-  right: 0;
-}
-
-.question-type-menu[data-v-05defb10],
-.question-content-container[data-v-05defb10],
-.another-infomation[data-v-05defb10] {
-  margin-top: 10px;
-}
-
-.question-type-menu[data-v-05defb10] {
-  width: 15%;
-  background-color: rgba(147, 220, 248, 0.6);
-  border: 1px solid rgb(49, 171, 224, 0.6);
-  border-radius: 2px;
-  padding-left: 10px;
-}
-.question-content-container[data-v-05defb10] {
-    margin: 10px 5px 10px 10px;
-    border: 1px solid rgb(49, 171, 224, 0.6);
-    border-radius: 2px;
-    padding-left: 10px;
-    width: 85%;
-}
-
-
 </style>

@@ -197,17 +197,6 @@ const handleFilterGrammar = (type) => {
     margin-left: 10Px;
 }
 
-.question-type-menu[data-v-1fc56918] {
-    width: 17%;
-
-}
-
-.another-infomation[data-v-1fc56918] {
-    width: 25%;
-    /* margin: 10px; */
-
-}
-
 .buttons {
     display: flex;
     gap: 20px;

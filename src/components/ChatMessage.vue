@@ -1,476 +1,1101 @@
 <template>
-  <div class="container clearfix">
-    <div class="people-list" id="people-list">
-      <div class="search">
-        <input type="text" placeholder="search" />
-        <i class="fa fa-search"></i>
-      </div>
-      <ul class="list">
-        <li class="clearfix">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="avatar" />
-          <div class="about">
-            <div class="name">Vincent Porter</div>
-            <div class="status">
-              <i class="fa fa-circle online"></i> online
+  <section class="message-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="chat-area">
+            <!-- chatlist -->
+            <div class="chatlist">
+              <div class="modal-dialog-scrollable">
+                <div class="modal-content">
+                  <div class="chat-header">
+                    <div class="msg-search">
+                      <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search"
+                             aria-label="search">
+                      <a class="add" href="#"><img class="img-fluid"
+                                                   src="https://mehedihtml.com/chatbox/assets/img/add.svg"
+                                                   alt="add"></a>
+                    </div>
+
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="Open-tab" data-bs-toggle="tab" data-bs-target="#Open"
+                                type="button" role="tab" aria-controls="Open" aria-selected="true">Open
+                        </button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="Closed-tab" data-bs-toggle="tab" data-bs-target="#Closed"
+                                type="button" role="tab" aria-controls="Closed" aria-selected="false">Closed
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="modal-body">
+                    <!-- chat-list -->
+                    <div class="chat-lists">
+                      <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="Open" role="tabpanel" aria-labelledby="Open-tab">
+                          <!-- chat-list -->
+                          <div class="chat-list">
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                                <span class="active"></span>
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Mehedi Hasan</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Ryhan</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Malek Hasan</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Sadik Hasan</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Bulu </h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Maria SK</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Dipa Hasan</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Jhon Hasan</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Tumpa Moni</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Payel Akter</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Baby Akter</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Zuwel Rana</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Habib </h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Jalal Ahmed</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Hasan Ali</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Mehedi Hasan</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+
+
+                          </div>
+                          <!-- chat-list -->
+                        </div>
+                        <div class="tab-pane fade" id="Closed" role="tabpanel" aria-labelledby="Closed-tab">
+
+                          <!-- chat-list -->
+                          <div class="chat-list">
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                                <span class="active"></span>
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Mehedi Hasan</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Ryhan</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Malek Hasan</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Sadik Hasan</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Bulu </h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Maria SK</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Dipa Hasan</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Jhon Hasan</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Tumpa Moni</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Payel Akter</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Baby Akter</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Zuwel Rana</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Habib </h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Jalal Ahmed</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Hasan Ali</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+                            <a href="#" class="d-flex align-items-center">
+                              <div class="flex-shrink-0">
+                                <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                     alt="user img">
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <h3>Mehedi Hasan</h3>
+                                <p>front end developer</p>
+                              </div>
+                            </a>
+
+                          </div>
+                          <!-- chat-list -->
+                        </div>
+                      </div>
+
+                    </div>
+                    <!-- chat-list -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- chatlist -->
+
+
+            <!-- chatbox -->
+            <div class="chatbox">
+              <div class="modal-dialog-scrollable">
+                <div class="modal-content">
+                  <div class="msg-head">
+                    <div class="row">
+                      <div class="col-8">
+                        <div class="d-flex align-items-center">
+                          <span class="chat-icon"><img class="img-fluid"
+                                                       src="https://mehedihtml.com/chatbox/assets/img/arroleftt.svg"
+                                                       alt="image title"></span>
+                          <div class="flex-shrink-0">
+                            <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png"
+                                 alt="user img">
+                          </div>
+                          <div class="flex-grow-1 ms-3">
+                            <h3>Mehedi Hasan</h3>
+                            <p>front end developer</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <ul class="moreoption">
+                          <li class="navbar nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></a>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="#">Action</a></li>
+                              <li><a class="dropdown-item" href="#">Another action</a></li>
+                              <li>
+                                <hr class="dropdown-divider">
+                              </li>
+                              <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="modal-body">
+                    <div class="msg-body">
+                      <ul>
+                        <li class="sender">
+                          <p> Hey, Are you there? </p>
+                          <span class="time">10:06 am</span>
+                        </li>
+                        <li class="sender">
+                          <p> Hey, Are you there? </p>
+                          <span class="time">10:16 am</span>
+                        </li>
+                        <li class="repaly">
+                          <p>yes!</p>
+                          <span class="time">10:20 am</span>
+                        </li>
+                        <li class="sender">
+                          <p> Hey, Are you there? </p>
+                          <span class="time">10:26 am</span>
+                        </li>
+                        <li class="sender">
+                          <p> Hey, Are you there? </p>
+                          <span class="time">10:32 am</span>
+                        </li>
+                        <li class="repaly">
+                          <p>How are you?</p>
+                          <span class="time">10:35 am</span>
+                        </li>
+                        <li>
+                          <div class="divider">
+                            <h6>Today</h6>
+                          </div>
+                        </li>
+
+                        <li class="repaly">
+                          <p> yes, tell me</p>
+                          <span class="time">10:36 am</span>
+                        </li>
+                        <li class="repaly">
+                          <p>yes... on it</p>
+                          <span class="time">junt now</span>
+                        </li>
+
+                      </ul>
+                    </div>
+                  </div>
+
+
+                  <div class="send-box">
+                    <form action="">
+                      <input type="text" class="form-control" aria-label="message…" placeholder="Write message…">
+
+                      <button type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send</button>
+                    </form>
+
+                    <div class="send-btns">
+                      <div class="attach">
+                        <div class="button-wrapper">
+                                                    <span class="label">
+                                                        <img class="img-fluid"
+                                                             src="https://mehedihtml.com/chatbox/assets/img/upload.svg"
+                                                             alt="image title"> attached file
+                                                    </span><input type="file" name="upload" id="upload"
+                                                                  class="upload-box" placeholder="Upload File"
+                                                                  aria-label="Upload File">
+                        </div>
+
+                        <select class="form-control" id="exampleFormControlSelect1">
+                          <option>Select template</option>
+                          <option>Template 1</option>
+                          <option>Template 2</option>
+                        </select>
+
+                        <div class="add-apoint">
+                          <a href="#" data-toggle="modal" data-target="#exampleModal4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewbox="0 0 16 16"
+                                 fill="none">
+                              <path
+                                  d="M8 16C3.58862 16 0 12.4114 0 8C0 3.58862 3.58862 0 8 0C12.4114 0 16 3.58862 16 8C16 12.4114 12.4114 16 8 16ZM8 1C4.14001 1 1 4.14001 1 8C1 11.86 4.14001 15 8 15C11.86 15 15 11.86 15 8C15 4.14001 11.86 1 8 1Z"
+                                  fill="#7D7D7D"/>
+                              <path
+                                  d="M11.5 8.5H4.5C4.224 8.5 4 8.276 4 8C4 7.724 4.224 7.5 4.5 7.5H11.5C11.776 7.5 12 7.724 12 8C12 8.276 11.776 8.5 11.5 8.5Z"
+                                  fill="#7D7D7D"/>
+                              <path
+                                  d="M8 12C7.724 12 7.5 11.776 7.5 11.5V4.5C7.5 4.224 7.724 4 8 4C8.276 4 8.5 4.224 8.5 4.5V11.5C8.5 11.776 8.276 12 8 12Z"
+                                  fill="#7D7D7D"/>
+                            </svg>
+                            Appoinment</a>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </li>
+          <!-- chatbox -->
 
-        <li class="clearfix">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_02.jpg" alt="avatar" />
-          <div class="about">
-            <div class="name">Aiden Chavez</div>
-            <div class="status">
-              <i class="fa fa-circle offline"></i> left 7 mins ago
-            </div>
-          </div>
-        </li>
 
-        <li class="clearfix">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_03.jpg" alt="avatar" />
-          <div class="about">
-            <div class="name">Mike Thomas</div>
-            <div class="status">
-              <i class="fa fa-circle online"></i> online
-            </div>
-          </div>
-        </li>
-
-        <li class="clearfix">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_04.jpg" alt="avatar" />
-          <div class="about">
-            <div class="name">Erica Hughes</div>
-            <div class="status">
-              <i class="fa fa-circle online"></i> online
-            </div>
-          </div>
-        </li>
-
-        <li class="clearfix">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_05.jpg" alt="avatar" />
-          <div class="about">
-            <div class="name">Ginger Johnston</div>
-            <div class="status">
-              <i class="fa fa-circle online"></i> online
-            </div>
-          </div>
-        </li>
-
-        <li class="clearfix">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_06.jpg" alt="avatar" />
-          <div class="about">
-            <div class="name">Tracy Carpenter</div>
-            <div class="status">
-              <i class="fa fa-circle offline"></i> left 30 mins ago
-            </div>
-          </div>
-        </li>
-
-        <li class="clearfix">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_07.jpg" alt="avatar" />
-          <div class="about">
-            <div class="name">Christian Kelly</div>
-            <div class="status">
-              <i class="fa fa-circle offline"></i> left 10 hours ago
-            </div>
-          </div>
-        </li>
-
-        <li class="clearfix">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_08.jpg" alt="avatar" />
-          <div class="about">
-            <div class="name">Monica Ward</div>
-            <div class="status">
-              <i class="fa fa-circle online"></i> online
-            </div>
-          </div>
-        </li>
-
-        <li class="clearfix">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_09.jpg" alt="avatar" />
-          <div class="about">
-            <div class="name">Dean Henry</div>
-            <div class="status">
-              <i class="fa fa-circle offline"></i> offline since Oct 28
-            </div>
-          </div>
-        </li>
-
-        <li class="clearfix">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_10.jpg" alt="avatar" />
-          <div class="about">
-            <div class="name">Peyton Mckinney</div>
-            <div class="status">
-              <i class="fa fa-circle online"></i> online
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    <div class="chat">
-      <div class="chat-header clearfix">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg" alt="avatar" />
-
-        <div class="chat-about">
-          <div class="chat-with">Chat with Vincent Porter</div>
-          <div class="chat-num-messages">already 1 902 messages</div>
         </div>
-        <i class="fa fa-star"></i>
-      </div> <!-- end chat-header -->
-
-      <div class="chat-history">
-        <ul>
-          <li class="clearfix">
-            <div class="message-data align-right">
-              <span class="message-data-time">10:10 AM, Today</span> &nbsp; &nbsp;
-              <span class="message-data-name">Olia</span> <i class="fa fa-circle me"></i>
-
-            </div>
-            <div class="message other-message float-right">
-              Hi Vincent, how are you? How is the project coming along?
-            </div>
-          </li>
-
-          <li>
-            <div class="message-data">
-              <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
-              <span class="message-data-time">10:12 AM, Today</span>
-            </div>
-            <div class="message my-message">
-              Are we meeting today? Project has been already finished and I have results to show you.
-            </div>
-          </li>
-
-          <li class="clearfix">
-            <div class="message-data align-right">
-              <span class="message-data-time">10:14 AM, Today</span> &nbsp; &nbsp;
-              <span class="message-data-name">Olia</span> <i class="fa fa-circle me"></i>
-
-            </div>
-            <div class="message other-message float-right">
-              Well I am not sure. The rest of the team is not here yet. Maybe in an hour or so? Have you faced any
-              problems at the last phase of the project?
-            </div>
-          </li>
-
-          <li>
-            <div class="message-data">
-              <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
-              <span class="message-data-time">10:20 AM, Today</span>
-            </div>
-            <div class="message my-message">
-              Actually everything was fine. I'm very excited to show this to our team.
-            </div>
-          </li>
-
-          <li>
-            <div class="message-data">
-              <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
-              <span class="message-data-time">10:31 AM, Today</span>
-            </div>
-            <i class="fa fa-circle online"></i>
-            <i class="fa fa-circle online" style="color: #AED2A6"></i>
-            <i class="fa fa-circle online" style="color:#DAE9DA"></i>
-          </li>
-
-        </ul>
-
-      </div> <!-- end chat-history -->
-
-      <div class="chat-message clearfix">
-        <textarea name="message-to-send" id="message-to-send" placeholder="Type your message" rows="3"></textarea>
-
-        <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
-        <i class="fa fa-file-image-o"></i>
-
-        <button>Send</button>
-
-      </div> <!-- end chat-message -->
-
-    </div> <!-- end chat -->
-
-  </div> <!-- end container -->
-
-  <!-- <script id="message-template" type="text/x-handlebars-template">
-  <li class="clearfix">
-    <div class="message-data align-right">
-      <span class="message-data-time" >{{time}}, Today</span> &nbsp; &nbsp;
-      <span class="message-data-name" >Olia</span> <i class="fa fa-circle me"></i>
+      </div>
     </div>
-    <div class="message other-message float-right">
-      {{messageOutput}}
-    </div>
-  </li>
-</script>
-
-<script id="message-response-template" type="text/x-handlebars-template">
-  <li>
-    <div class="message-data">
-      <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
-      <span class="message-data-time">{{time}}, Today</span>
-    </div>
-    <div class="message my-message">
-      {{response}}
-    </div>
-  </li>
-</script> -->
+  </section>
 </template>
 
 <style scoped lang="scss">
-@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
-
-
-$green: #86BB71;
-$blue: #94C2ED;
-$orange: #E38968;
-$gray: #92959E;
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
+.message-area {
+  height: 80vh;
+  overflow: hidden;
+  padding: 30px 0;
+  background: #f5f5f5;
+  margin-top: 150px;
 }
 
-body {
-  background: #C5DDEB;
-  font: 14px/20px "Lato", Arial, sans-serif;
-  padding: 40px 0;
-  color: white;
+.chat-area {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 0.3rem;
+  height: 70vh;
+  overflow: hidden;
+  min-height: calc(100% - 1rem);
 }
 
-.container {
-  margin: 0 auto;
-  width: 750px;
-  background: #444753;
-  border-radius: 5px;
-}
-
-.people-list {
-  width: 260px;
+.chatlist {
+  outline: 0;
+  height: 100%;
+  overflow: hidden;
+  width: 300px;
   float: left;
+  padding: 15px;
+}
 
-  .search {
-    padding: 20px;
+.chat-area .modal-content {
+  border: none;
+  border-radius: 0;
+  outline: 0;
+  height: 100%;
+}
+
+.chat-area .modal-dialog-scrollable {
+  height: 100% !important;
+}
+
+.chatbox {
+  width: auto;
+  overflow: hidden;
+  height: 100%;
+  border-left: 1px solid #ccc;
+}
+
+.chatbox .modal-dialog,
+.chatlist .modal-dialog {
+  max-width: 100%;
+  margin: 0;
+}
+
+.msg-search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat-area .form-control {
+  display: block;
+  width: 80%;
+  padding: 0.375rem 0.75rem;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #222;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ccc;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.25rem;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.chat-area .form-control:focus {
+  outline: 0;
+  box-shadow: inherit;
+}
+
+a.add img {
+  height: 36px;
+}
+
+.chat-area .nav-tabs {
+  border-bottom: 1px solid #dee2e6;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: inherit;
+}
+
+.chat-area .nav-tabs .nav-item {
+  width: 100%;
+}
+
+.chat-area .nav-tabs .nav-link {
+  width: 100%;
+  color: #180660;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-transform: capitalize;
+  margin-top: 5px;
+  margin-bottom: -1px;
+  background: 0 0;
+  border: 1px solid transparent;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.chat-area .nav-tabs .nav-item.show .nav-link,
+.chat-area .nav-tabs .nav-link.active {
+  color: #222;
+  background-color: #fff;
+  border-color: transparent transparent #000;
+}
+
+.chat-area .nav-tabs .nav-link:focus,
+.chat-area .nav-tabs .nav-link:hover {
+  border-color: transparent transparent #000;
+  isolation: isolate;
+}
+
+.chat-list h3 {
+  color: #222;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-transform: capitalize;
+  margin-bottom: 0;
+}
+
+.chat-list p {
+  color: #343434;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-transform: capitalize;
+  margin-bottom: 0;
+}
+
+.chat-list a.d-flex {
+  margin-bottom: 15px;
+  position: relative;
+  text-decoration: none;
+}
+
+.chat-list .active {
+  display: block;
+  content: '';
+  clear: both;
+  position: absolute;
+  bottom: 3px;
+  left: 34px;
+  height: 12px;
+  width: 12px;
+  background: #00DB75;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.msg-head h3 {
+  color: #222;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+.msg-head p {
+  color: #343434;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-transform: capitalize;
+  margin-bottom: 0;
+}
+
+.msg-head {
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.moreoption {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.moreoption .navbar {
+  padding: 0;
+}
+
+.moreoption li .nav-link {
+  color: #222;
+  font-size: 16px;
+}
+
+.moreoption .dropdown-toggle::after {
+  display: none;
+}
+
+.moreoption .dropdown-menu[data-bs-popper] {
+  top: 100%;
+  left: auto;
+  right: 0;
+  margin-top: 0.125rem;
+}
+
+.msg-body ul {
+  overflow: hidden;
+}
+
+.msg-body ul li {
+  list-style: none;
+  margin: 15px 0;
+}
+
+.msg-body ul li.sender {
+  display: block;
+  width: 100%;
+  position: relative;
+}
+
+.msg-body ul li.sender:before {
+  display: block;
+  clear: both;
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: -7px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 12px 15px 12px;
+  border-color: transparent transparent #f5f5f5 transparent;
+  -webkit-transform: rotate(-37deg);
+  -ms-transform: rotate(-37deg);
+  transform: rotate(-37deg);
+}
+
+.msg-body ul li.sender p {
+  color: #000;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+  padding: 15px;
+  background: #f5f5f5;
+  display: inline-block;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin-bottom: 0;
+}
+
+.msg-body ul li.sender p b {
+  display: block;
+  color: #180660;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.msg-body ul li.repaly {
+  display: block;
+  width: 100%;
+  text-align: right;
+  position: relative;
+}
+
+.msg-body ul li.repaly:before {
+  display: block;
+  clear: both;
+  content: '';
+  position: absolute;
+  bottom: 15px;
+  right: -7px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 12px 15px 12px;
+  border-color: transparent transparent #4b7bec transparent;
+  -webkit-transform: rotate(37deg);
+  -ms-transform: rotate(37deg);
+  transform: rotate(37deg);
+}
+
+.msg-body ul li.repaly p {
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+  padding: 15px;
+  background: #4b7bec;
+  display: inline-block;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  margin-bottom: 0;
+}
+
+.msg-body ul li.repaly p b {
+  display: block;
+  color: #061061;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.msg-body ul li.repaly:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+.time {
+  display: block;
+  color: #000;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+li.repaly .time {
+  margin-right: 20px;
+}
+
+.divider {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.msg-body h6 {
+  text-align: center;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #222;
+  background: #fff;
+  display: inline-block;
+  padding: 0 5px;
+  margin-bottom: 0;
+}
+
+.divider:after {
+  display: block;
+  content: '';
+  clear: both;
+  position: absolute;
+  top: 12px;
+  left: 0;
+  border-top: 1px solid #EBEBEB;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.send-box {
+  padding: 15px;
+  border-top: 1px solid #ccc;
+}
+
+.send-box form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.send-box .form-control {
+  display: block;
+  width: 85%;
+  padding: 0.375rem 0.75rem;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #222;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ccc;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.25rem;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.send-box button {
+  border: none;
+  background: #3867d6;
+  padding: 0.375rem 5px;
+  color: #fff;
+  border-radius: 0.25rem;
+  font-size: 14px;
+  font-weight: 400;
+  width: 24%;
+  margin-left: 1%;
+}
+
+.send-box button i {
+  margin-right: 5px;
+}
+
+.send-btns .button-wrapper {
+  position: relative;
+  width: 125px;
+  height: auto;
+  text-align: left;
+  margin: 0 auto;
+  display: block;
+  background: #F6F7FA;
+  border-radius: 3px;
+  padding: 5px 15px;
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  overflow: hidden;
+}
+
+.send-btns .button-wrapper span.label {
+  position: relative;
+  z-index: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+  color: #343945;
+  font-weight: 400;
+  text-transform: capitalize;
+  font-size: 13px;
+}
+
+#upload {
+  display: inline-block;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.send-btns .attach .form-control {
+  display: inline-block;
+  width: 120px;
+  height: auto;
+  padding: 5px 8px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #343945;
+  background-color: #F6F7FA;
+  background-clip: padding-box;
+  border: 1px solid #F6F7FA;
+  border-radius: 3px;
+  margin-bottom: 5px;
+}
+
+.send-btns .button-wrapper span.label img {
+  margin-right: 5px;
+}
+
+.button-wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+button:focus {
+  outline: 0;
+}
+
+.add-apoint {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.add-apoint a {
+  text-decoration: none;
+  background: #F6F7FA;
+  border-radius: 8px;
+  padding: 8px 8px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #343945;
+}
+
+.add-apoint a svg {
+  margin-right: 5px;
+}
+
+.chat-icon {
+  display: none;
+}
+
+.closess i {
+  display: none;
+}
+
+
+@media (max-width: 767px) {
+  .chat-icon {
+    display: block;
+    margin-right: 5px;
   }
-
-  input {
-    border-radius: 3px;
-    border: none;
-    padding: 14px;
-    color: white;
-    background: #6A6C75;
-    width: 90%;
+  .chatlist {
+    width: 100%;
+  }
+  .chatbox {
+    width: 100%;
+    position: absolute;
+    left: 1000px;
+    right: 0;
+    background: #fff;
+    transition: all 0.5s ease;
+    border-left: none;
+  }
+  .showbox {
+    left: 0 !important;
+    transition: all 0.5s ease;
+  }
+  .msg-head h3 {
     font-size: 14px;
   }
-
-  .fa-search {
-    position: relative;
-    left: -25px;
+  .msg-head p {
+    font-size: 12px;
   }
-
-  ul {
-    padding: 20px;
-    height: 770px;
-
-
-
-
-    li {
-      padding-bottom: 20px;
-    }
+  .msg-head .flex-shrink-0 img {
+    height: 30px;
   }
-
-  img {
-    float: left;
+  .send-box button {
+    width: 28%;
   }
-
-  .about {
-    float: left;
-    margin-top: 8px;
+  .send-box .form-control {
+    width: 70%;
   }
-
-  .about {
-    padding-left: 8px;
+  .chat-list h3 {
+    font-size: 14px;
   }
-
-  .status {
-    color: $gray;
+  .chat-list p {
+    font-size: 12px;
   }
-
-}
-
-.chat {
-  width: 490px;
-  float: left;
-  background: #F2F5F8;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-
-  color: #434651;
-
-  .chat-header {
-    padding: 20px;
-    border-bottom: 2px solid white;
-
-    img {
-      float: left;
-    }
-
-    .chat-about {
-      float: left;
-      padding-left: 10px;
-      margin-top: 6px;
-    }
-
-    .chat-with {
-      font-weight: bold;
-      font-size: 16px;
-    }
-
-    .chat-num-messages {
-      color: $gray;
-    }
-
-    .fa-star {
-      float: right;
-      color: #D8DADF;
-      font-size: 20px;
-      margin-top: 12px;
-    }
+  .msg-body ul li.sender p {
+    font-size: 13px;
+    padding: 8px;
+    border-bottom-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
   }
-
-  .chat-history {
-    padding: 30px 30px 20px;
-    border-bottom: 2px solid white;
-    overflow-y: scroll;
-    height: 575px;
-
-    .message-data {
-      margin-bottom: 15px;
-    }
-
-    .message-data-time {
-      color: lighten($gray, 8%);
-      padding-left: 6px;
-    }
-
-    .message {
-      color: white;
-      padding: 18px 20px;
-      line-height: 26px;
-      font-size: 16px;
-      border-radius: 7px;
-      margin-bottom: 30px;
-      width: 90%;
-      position: relative;
-
-      &:after {
-        bottom: 100%;
-        left: 7%;
-        border: solid transparent;
-        content: " ";
-        height: 0;
-        width: 0;
-        position: absolute;
-        pointer-events: none;
-        border-bottom-color: $green;
-        border-width: 10px;
-        margin-left: -10px;
-      }
-    }
-
-    .my-message {
-      background: $green;
-    }
-
-    .other-message {
-      background: $blue;
-
-      &:after {
-        border-bottom-color: $blue;
-        left: 93%;
-      }
-    }
-
+  .msg-body ul li.repaly p {
+    font-size: 13px;
+    padding: 8px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
   }
-
-  .chat-message {
-    padding: 30px;
-
-    textarea {
-      width: 100%;
-      border: none;
-      padding: 10px 20px;
-      font: 14px/22px "Lato", Arial, sans-serif;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      resize: none;
-
-    }
-
-    .fa-file-o,
-    .fa-file-image-o {
-      font-size: 16px;
-      color: gray;
-      cursor: pointer;
-
-    }
-
-    button {
-      float: right;
-      color: $blue;
-      font-size: 16px;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-      background: #F2F5F8;
-
-      &:hover {
-        color: darken($blue, 7%);
-      }
-    }
-  }
-}
-
-.online,
-.offline,
-.me {
-  margin-right: 3px;
-  font-size: 10px;
-}
-
-.online {
-  color: $green;
-}
-
-.offline {
-  color: $orange;
-}
-
-.me {
-  color: $blue;
-}
-
-.align-left {
-  text-align: left;
-}
-
-.align-right {
-  text-align: right;
-}
-
-.float-right {
-  float: right;
-}
-
-.clearfix:after {
-  visibility: hidden;
-  display: block;
-  font-size: 0;
-  content: " ";
-  clear: both;
-  height: 0;
 }
 </style>

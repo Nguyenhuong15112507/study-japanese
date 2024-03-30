@@ -159,14 +159,7 @@ footer {
     display: flex;
     top: 147px;
     position: absolute;
-}
-.question-type-menu {
-    width: 15%;
-    margin: 10px 5px 10px 10px;
-    background-color: rgba(147, 220, 248, 0.6);
-    border: 1px solid rgb(49, 171, 224, 0.6);
-    border-radius: 2px;
-    padding-left: 10px;
+    justify-content: space-between;
 }
 .answers-list {
     list-style: none;
@@ -184,13 +177,6 @@ footer {
 }
 .radio-btn {
     margin-right: 5px;
-}
-.another-infomation {
-    width: 20%;
-    margin: 10px;
-    background-color: rgba(147, 220, 248, 0.6);
-    border: 1px solid rgb(49, 171, 224, 0.6);
-    border-radius: 2px;
 }
 .question-type-menu, .question-content-container, .another-infomation {
     margin-top: 0;

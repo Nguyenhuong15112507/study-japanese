@@ -98,8 +98,7 @@
         <div class="erroMesSentence" v-if="hasErr.includes('passWIsEmpty')">Please enter your password</div>
         <div class="erroMesSentence" v-if="hasErr.includes('passWLength')">Your password exceed 10</div>
         <div class="btn-wrap">
-          <button @click="handlechangenamebtn()" class="save-btn">{{ !isEdit ? 'Edit' : 'Save' }}</button>
-
+          <button type="button" @click="handlechangenamebtn()" class="btn save-btn">{{ !isEdit ? 'Edit' : 'Save' }}</button>
         </div>
       </div>
     </div>
@@ -208,7 +207,7 @@ body {
   max-width: 100%;
   width: 100%;
   height: 1000px;
-  margin: 0 auto;
+  margin: 0 10px auto;
   background-color: rgb(242, 240, 240);
   position: absolute;
   top: 156px;
@@ -310,16 +309,6 @@ body {
   margin-right: 10px;
 }
 
-/* Button */
-.btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #fff;
-  background-color: #0073b7;
-  border: 1px solid #000
-}
-
 .login-infor-img {
   background-color: #fff;
 }
@@ -407,9 +396,9 @@ body {
 .save-btn {
   border: 1px solid rgb(49, 171, 224, 0.6);
   background-color: rgb(49, 171, 224, 0.6);
-  border-radius: 2px;
+  border-radius: 5px;
   -webkit-box-shadow: 0 0 5px 0 rgba(171, 213, 231, 0.6);
-  padding: 5px 10px;
+  padding: 5px 20px;
 }
 
 .btn-wrap {
