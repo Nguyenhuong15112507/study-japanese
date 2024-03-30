@@ -7,7 +7,7 @@
         <div class="nav-bar-item" @click="handleChangePageCalender()">Calendar</div>
         <div class="nav-bar-item">Q&A</div>
       </div>
-      <div class="login-infor">
+      <div class="login-infor" v-if="userName">
         <div @click="handleChangePageUser()"><img class="login-infor-img" src="../img/Hinh-Anh-Anime-Chibi-Girl (3).jpg"
                                                   style="width: 30px;" alt=""></div>
         <div class="dropdown-toggle user-name" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -70,7 +70,7 @@ const handleChangePageListen = () => {
   router.push('/learn-listen')
 }
 const handleChangePageTeacher = () => {
-  if (userRole.value === 'teacher') {
+  if (!userRole.value || userRole.value === 'teacher') {
     router.push('/')
   } else if (userRole.value === 'student') {
     router.push('/student')
@@ -78,6 +78,7 @@ const handleChangePageTeacher = () => {
 
 }
 const handleChangePageLogin = () => {
+  userStudentJapaneseStore.logout();
   router.push('/login')
 }
 const handleChangePageDaily = () => {
