@@ -33,3 +33,10 @@ export function editCategory(id) {
   });
 }
 
+export function showCategories(type) {
+  return request({
+    url: baseUrl + "/show/" + type,
+    method: "get",
+  });
+}
+
