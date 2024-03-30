@@ -21,20 +21,20 @@
           </button>
         </div>
         <div class="input-item categories">
-          <table class="categories-list" width="700px" border="1" cellpadding="2px">
+          <table class="categories-list table caption-top" width="700px" border="1" cellpadding="2px">
             <tr class="categories-list-head">
-              <th class="categories-list-title" style="width: 30px ;"></th>
-              <th class="categories-list-title" style="width: 30px ;">STT</th>
-              <th class="categories-list-title" style="width: 100px ;">Japanese level</th>
-              <th class="categories-list-title" style="width: 150px ;">Category</th>
+              <th class="categories-list-title col" style="width: 30px ;"></th>
+              <th class="categories-list-title col" style="width: 30px ;">STT</th>
+              <th class="categories-list-title col" style="width: 100px ;">Japanese level</th>
+              <th class="categories-list-title col" style="width: 150px ;">Category</th>
             </tr>
             <tbody>
               <tr v-for="(item, index) in categoryList" :key="index" class="categories-list-tr">
                 <td><input type="checkbox" @change="(val) => handleChangeCheckboxCategory(val, item)"
                     class="vocabu-table-content" style="width: 100%;" /></td>
-                <td class="categories-list-content">{{ index + 1 }}</td>
-                <td class="categories-list-content"> {{ item.japanese_level }}</td>
-                <td class="categories-list-content"> {{ item.category_name }}</td>
+                <td class="categories-list-content col">{{ index + 1 }}</td>
+                <td class="categories-list-content col"> {{ item.japanese_level }}</td>
+                <td class="categories-list-content col"> {{ item.category_name }}</td>
               </tr>
             </tbody>
           </table>
@@ -67,30 +67,30 @@
           >
         </div>
         <div class="vocabulary-list">
-          <table class="vocabu-list-table" style="width: 100%;" border="1" cellpadding="2px">
+          <table class="vocabu-list-table table caption-top" style="width: 100%;" border="1" cellpadding="2px">
             <tr class="vocabu-table-head">
-              <th class="vocabu-table-title" style="width: 50px ;"></th>
-              <th class="vocabu-table-title" style="width: 50px ;">STT</th>
-              <th class="vocabu-table-title">Kanji</th>
-              <th class="vocabu-table-title">Onyomi</th>
-              <th class="vocabu-table-title">Kunyomi</th>
-              <th class="vocabu-table-title">Kanji's name</th>
-              <th class="vocabu-table-title">Example</th>
-              <th class="vocabu-table-title">Defination</th>
-              <th class="vocabu-table-title">Image</th>
-              <th class="vocabu-table-title" style="padding: 5px 10px;width: 80px;">Delete</th>
+              <th class="vocabu-table-title col" style="width: 50px ;"></th>
+              <th class="vocabu-table-title col" style="width: 50px ;">STT</th>
+              <th class="vocabu-table-title col">Kanji</th>
+              <th class="vocabu-table-title col">Onyomi</th>
+              <th class="vocabu-table-title col">Kunyomi</th>
+              <th class="vocabu-table-title col">Kanji's name</th>
+              <th class="vocabu-table-title col">Example</th>
+              <th class="vocabu-table-title col">Defination</th>
+              <th class="vocabu-table-title col">Image</th>
+              <th class="vocabu-table-title col" style="padding: 5px 10px;width: 80px;">Delete</th>
             </tr>
             <tbody>
               <tr v-for="(row, index) in rows" :key="index" class="vocabu-table-tr">
                 <td><input type="checkbox" class="vocabu-table-content" @change="handleChangeCheckboxKanji(row)"
                     style="width: 100%;" /></td>
                 <td class="vocabu-table-content">{{ index + 1 }}</td>
-                <td><input type="text" v-model="row.kanji" class="vocabu-table-content" /></td>
-                <td><input type="text" v-model="row.spell_onyomi" class="vocabu-table-content" /></td>
-                <td><input type="text" v-model="row.spell_kuyomi" class="vocabu-table-content" /></td>
-                <td><input type="text" v-model="row.kanji_name" class="vocabu-table-content" /></td>
-                <td><input type="text" v-model="row.example" class="vocabu-table-content" /></td>
-                <td><input type="text" v-model="row.define" class="vocabu-table-content" /></td>
+                <td><input type="text" v-model="row.kanji" class="vocabu-table-content col" /></td>
+                <td><input type="text" v-model="row.spell_onyomi" class="vocabu-table-content col" /></td>
+                <td><input type="text" v-model="row.spell_kuyomi" class="vocabu-table-content col" /></td>
+                <td><input type="text" v-model="row.kanji_name" class="vocabu-table-content col" /></td>
+                <td><input type="text" v-model="row.example" class="vocabu-table-content col" /></td>
+                <td><input type="text" v-model="row.define" class="vocabu-table-content col" /></td>
                 <td>
                   <div class="img-container-lesson">
                     <label :for="'file-upload-' + index" class="custom-file-upload"
@@ -102,18 +102,18 @@
                       @change="(val) => handleUploadFile(val, true, index)" :key="index">
                   </div>
                 </td>
-                <td class="vocabu-table-content"><i @click="deleteRow(index)" class="far fa-trash-alt"></i></td>
+                <td class="vocabu-table-content col"><i @click="deleteRow(index)" class="far fa-trash-alt"></i></td>
               </tr>
               <tr>
-                <td><input type="checkbox" class="vocabu-table-content" /></td>
-                <td class="vocabu-table-content"></td>
-                <td class="vocabu-table-content"><input type="text" v-model="newRow.kanji" /></td>
-                <td class="vocabu-table-content"><input type="text" v-model="newRow.spell_onyomi" /></td>
-                <td class="vocabu-table-content"><input type="text" v-model="newRow.spell_kuyomi" /></td>
-                <td class="vocabu-table-content"><input type="text" v-model="newRow.kanji_name" /></td>
-                <td class="vocabu-table-content"><input type="text" v-model="newRow.example" /></td>
-                <td class="vocabu-table-content"><input type="text" v-model="newRow.define" /></td>
-                <td class="vocabu-table-content"><input type="file" />
+                <td><input type="checkbox" class="vocabu-table-content col" /></td>
+                <td class="vocabu-table-content col"></td>
+                <td class="vocabu-table-content col"><input type="text" v-model="newRow.kanji" /></td>
+                <td class="vocabu-table-content col"><input type="text" v-model="newRow.spell_onyomi" /></td>
+                <td class="vocabu-table-content col"><input type="text" v-model="newRow.spell_kuyomi" /></td>
+                <td class="vocabu-table-content col"><input type="text" v-model="newRow.kanji_name" /></td>
+                <td class="vocabu-table-content col"><input type="text" v-model="newRow.example" /></td>
+                <td class="vocabu-table-content col"><input type="text" v-model="newRow.define" /></td>
+                <td class="vocabu-table-content col"><input type="file" />
                   <div class="img-container-lesson">
                     <label for="file-upload" class="custom-file-upload">
                       <img v-if="newRow.file_content" :src="newRow.file_content" style="height: 18px; width: 27px;"
@@ -124,7 +124,7 @@
                       @change="(val) => handleUploadFile(val, false)">
                   </div>
                 </td>
-                <td class="vocabu-table-content" colspan="1"><i @click="addRow" class="fas fa-plus"></i></td>
+                <td class="vocabu-table-content col" colspan="1"><i @click="addRow" class="fas fa-plus"></i></td>
               </tr>
             </tbody>
           </table>
