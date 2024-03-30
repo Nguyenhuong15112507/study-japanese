@@ -224,7 +224,11 @@ const updateSteps = (direction) => {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
     transition: all 200ms linear;
 }
-
+.flashcard-container[data-v-902065cb] {
+    width: 100%;
+    position: relative;
+    top: 198px;
+}
 .buttons button:active {
     transform: scale(0.97);
 }

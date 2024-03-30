@@ -232,7 +232,11 @@ input[type=date][data-v-ccf76d49],
 .vocabu-table-title {
   font-weight: bold;
 }
-
+.flashcard-container[data-v-902065cb] {
+  width: 100%;
+  position: relative;
+  top: 200px;
+}
 .vocabu-table-content {
   text-align: center;
 }

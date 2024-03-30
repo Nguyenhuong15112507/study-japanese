@@ -160,14 +160,12 @@ footer {
 .displayNone {
     display: none;
 }
-.question-container {
+.question-container[data-v-c5f3fc1b] {
     width: 100%;
     text-align: left;
     display: flex;
     position: relative;
-    top: 65px;
-    /* top: 147px;
-    position: absolute; */
+    top: 216px;
 }
 .question-type-menu {
     width: 15%;
@@ -235,4 +233,9 @@ footer {
 }
 .isOrigin {
     background-color: #fff;
+}
+.flashcard-container[data-v-902065cb] {
+    width: 100%;
+    position: relative;
+    top: 200px;
 }

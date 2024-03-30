@@ -200,7 +200,7 @@ const handleCloseChoseCategories = () => {
 
 const handleSelectedCategories = (data) => {
   selectedCategory.value = data
-  multipleChoiceForm.value.category_id = data.category_id;
+  multipleChoiceForm.value.category_id = data.id;
   multipleChoiceForm.value.category_name = data.category_name;
   isDisplayCategory.value = false
   Object.assign(categoryForm.value, categoryFormDefault);

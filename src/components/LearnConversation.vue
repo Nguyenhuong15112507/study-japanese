@@ -1,6 +1,6 @@
 <template>
     <div class="practice-content-container">
-        <div class="question-container">
+        <div class="conversation-container" style="display: flex;">
             <div class="question-type-menu">
                 <h3 class="question-theme">Unit 1: Greating</h3>
                 <ul class="question-theme-list">
@@ -164,7 +164,7 @@ const playSound = (sound) => {
     width: 95%;
     margin: 10px;
 }
-.question-container {
+.conversation-container {
     width: 100%;
     text-align: left;
     display: flex;
@@ -279,5 +279,12 @@ const playSound = (sound) => {
 .listening-title {
     font-weight: 800;
     text-align: center;
+}
+.question-container[data-v-c5f3fc1b] {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    position: relative;
+    top: 216px;
 }
 </style>
