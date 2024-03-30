@@ -160,7 +160,7 @@ footer {
 .displayNone {
     display: none;
 }
-.question-container[data-v-c5f3fc1b] {
+.question-container{
     width: 100%;
     text-align: left;
     display: flex;

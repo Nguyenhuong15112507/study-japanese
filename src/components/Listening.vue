@@ -273,11 +273,4 @@ const playSound = (sound) => {
     font-weight: 800;
     text-align: center;
 }
-.question-container[data-v-c5f3fc1b] {
-    width: 100%;
-    text-align: left;
-    display: flex;
-    position: relative;
-    top: 216px;
-}
 </style>
