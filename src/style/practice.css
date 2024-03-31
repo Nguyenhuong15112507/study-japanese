@@ -72,7 +72,7 @@ footer {
 }
 
 /* page question body */
-.page-practice-container[data-v-1fc56918] {
+.page-practice-container {
     color: black;
     position: relative;
     top: 1px;
@@ -82,7 +82,7 @@ footer {
     left: 0;
     right: 0;
 }
-.practice-type-menu[data-v-902065cb] {
+.practice-type-menu {
     display: flex;
     justify-content: center;
     position: fixed;
@@ -94,7 +94,7 @@ footer {
 .practice-type-btn, .learn-vocab {
     margin: 20px;
     height: 30px;
-    width: 100px;
+    width: 120px;
     font-weight: 600;
     border: 1px solid rgb(49, 171, 224);
     background-color: rgb(49, 171, 224);
@@ -109,9 +109,7 @@ footer {
     cursor: pointer;
 }
 
-.practice-question-menu {
 
-}
 
 /* flash-card-container */
 .flashcard-container {
@@ -219,7 +217,7 @@ footer {
 .isOrigin {
     background-color: #fff;
 }
-.flashcard-container[data-v-902065cb] {
+.flashcard-container {
     width: 100%;
     position: relative;
     top: 200px;

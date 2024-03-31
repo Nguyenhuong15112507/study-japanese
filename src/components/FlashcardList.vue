@@ -24,40 +24,42 @@
     </div>
     <!-- <button class="new-btn" @click="addRow">Add Row</button> -->
     <div class="vocabulary-list">
-      <table class="vocabu-list-table" width="800" border="1" cellpadding="2px">
+      <table class="vocabu-list-table table table-bordered border-primary align-middle" width="800" border="1" cellpadding="2px">
+        <thead class="table-info">
         <tr class="vocabu-table-head">
-          <th class="vocabu-table-title" style="width: 50px ;"></th>
-          <th class="vocabu-table-title" style="width: 50px ;">STT</th>
-          <th class="vocabu-table-title">Vocabulary</th>
-          <th class="vocabu-table-title">Spelling</th>
-          <th class="vocabu-table-title">Defination</th>
-          <th class="vocabu-table-title" style="padding: 5px 10px;width: 80px;">Delete</th>
+          <th class="vocabu-table-title col" style="width: 50px ;"></th>
+          <th class="vocabu-table-title col" style="width: 50px ;">STT</th>
+          <th class="vocabu-table-title col">Vocabulary</th>
+          <th class="vocabu-table-title col">Spelling</th>
+          <th class="vocabu-table-title col">Defination</th>
+          <th class="vocabu-table-title col" style="padding: 5px 10px;width: 80px;">Delete</th>
         </tr>
+      </thead>
         <tbody>
           <tr v-for="(row, index) in rows" :key="index" class="vocabu-table-tr">
-            <td><input type="checkbox" class="vocabu-table-content" @change="handleChangethisCheckbox(row)"
+            <td><input type="checkbox" class="vocabu-table-content col" @change="handleChangethisCheckbox(row)"
                 style="width: 100%;" /></td>
-            <td v-if="!isEditing(index)" class="vocabu-table-content">{{ index + 1 }}</td>
+            <td v-if="!isEditing(index)" class="vocabu-table-content col">{{ index + 1 }}</td>
             <td v-else><input type="text" v-model="editData.column1" @keyup.enter="saveEdit(index)"
-                @blur="saveEdit(index)" class="vocabu-table-content" /></td>
+                @blur="saveEdit(index)" class="vocabu-table-content col" /></td>
             <!-- <td v-if="!isEditing(index)" class="vocabu-table-content"> {{ row.new_word }}</td> -->
             <td><input type="text" v-model="row.new_word" @keyup.enter="saveEdit(index)" @blur="saveEdit(index)"
-                class="vocabu-table-content" /></td>
+                class="vocabu-table-content col" /></td>
             <!-- <td v-if="!isEditing(index)" class="vocabu-table-content">{{ row.defination }}</td> -->
             <td><input type="text" v-model="row.spelling" @keyup.enter="saveEdit(index)" @blur="saveEdit(index)"
-                class="vocabu-table-content" /></td>
+                class="vocabu-table-content col" /></td>
             <!-- <td v-if="!isEditing(index)" class="vocabu-table-content">{{ row.spelling }}</td> -->
             <td><input type="text" v-model="row.defination" @keyup.enter="saveEdit(index)" @blur="saveEdit(index)"
-                class="vocabu-table-content" /></td>
-            <td class="vocabu-table-content"><i @click="deleteRow(index)" class="far fa-trash-alt"></i></td>
+                class="vocabu-table-content col" /></td>
+            <td class="vocabu-table-content col"><i @click="deleteRow(index)" class="far fa-trash-alt"></i></td>
           </tr>
           <tr>
             <td><input type="checkbox" class="vocabu-table-content" /></td>
-            <td class="vocabu-table-content"></td>
-            <td class="vocabu-table-content"><input type="text" v-model="newRow.new_word" /></td>
-            <td class="vocabu-table-content"><input type="text" v-model="newRow.spelling" /></td>
-            <td class="vocabu-table-content"><input type="text" v-model="newRow.defination" /></td>
-            <td class="vocabu-table-content" colspan="1"><i @click="addRow" class="fas fa-plus"></i></td>
+            <td class="vocabu-table-content col"></td>
+            <td class="vocabu-table-content col"><input type="text" v-model="newRow.new_word" /></td>
+            <td class="vocabu-table-content col"><input type="text" v-model="newRow.spelling" /></td>
+            <td class="vocabu-table-content col"><input type="text" v-model="newRow.defination" /></td>
+            <td class="vocabu-table-content col" colspan="1"><i @click="addRow" class="fas fa-plus"></i></td>
           </tr>
         </tbody>
       </table>
@@ -201,13 +203,13 @@ const handleSelectFlashcardItem = () => {
 @import '../style/flashcrad.css';
 @import '../style/teacher.css';
 
-input[type=text][data-v-ccf76d49],
-input[type=date][data-v-ccf76d49],
-.textareacss[data-v-ccf76d49],
-#dailyContent1[data-v-ccf76d49],
-#dailyContent2[data-v-ccf76d49],
-#status-filter[data-v-ccf76d49],
-#announceContent[data-v-ccf76d49] {
+input[type=text],
+input[type=date],
+.textareacss,
+#dailyContent1,
+#dailyContent2,
+#status-filter,
+#announceContent {
   background-color: rgba(184, 227, 245, 0.3);
   /* border-radius: 5px; */
   border: none;
@@ -227,7 +229,12 @@ input[type=date][data-v-ccf76d49],
 
 .vocabu-list-table {
   border-collapse: collapse;
+  width: 100%;
+  th, td {
+    text-align: center;
+  }
 }
+
 
 .vocabu-table-title {
   font-weight: bold;

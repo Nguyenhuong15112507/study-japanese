@@ -59,13 +59,13 @@
             <textarea v-model="kanjinewForm.description" style="width: 40%;" :class="['form-control']" ></textarea>
           </div>
         </div>
-        <div class="img-container-lesson" style="height: 200px;
+        <div class="img-container-lesson" style="height: 140px;
     width: 200px;">
           <label for="file-upload-title" class="custom-file-upload" style="height: 110px;
     width: 110px;">
             <img v-if="kanjinewForm.file_content" :src="kanjinewForm.file_content" style="height: 100%;
     width: 100%;" alt="avc"/>
-            <i v-else class="fas fa-image imgEdit" style="font-size: 100px;"></i>
+            <i v-else class="fas fa-image imgEdit" style="font-size: 83px;"></i>
           </label>
           <input ref="file" type="file" id="file-upload-title" @change="(val) => handleUploadFileTitle(val)"
           >

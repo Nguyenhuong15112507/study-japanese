@@ -20,7 +20,7 @@
       </div>
       <div v-if="!isDisplayLearnContent" class="row kanji-content">
         <div v-for="(item, index) in pageKanjiList" :key="index" class="col-sm-3 content-kanji">
-          <img src="../img/15801f0d.jpg" alt="" class="kanji-imag"/>
+          <img :src="baseUrlUpload + item.upload_id" class="kanji-imag" alt="">
           <h4 class="lesson-name">{{ item.title }}</h4>
           <div class="created-date">
             <span class="label">Date: </span>
@@ -65,7 +65,7 @@
                   Practice
                 </button>
               </div>
-              <table class="vocabu-list-table" width="800" border="1" cellpadding="2px">
+              <table class="vocabu-list-table" width="800px" border="1" cellpadding="2px">
                 <tr class="vocabu-table-head">
                   <th class="vocabu-table-title" style="width: 50px ;">STT</th>
                   <th class="vocabu-table-title">Kanji</th>
@@ -211,7 +211,7 @@ const handleChangeKanjiFlashcard = (kanjiItemid) => {
       padding-left: 20px;
       background-color: rgba(147, 220, 248, 0.6);
       width: 20%;
-
+      height: 100em;
       .categories-level {
         width: 100%;
       }

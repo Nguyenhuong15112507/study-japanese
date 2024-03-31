@@ -47,16 +47,16 @@
     font-size: large;
     margin: 0;
 }
-.card-back p[data-v-67ae61fb] {
+.card-back p {
     top: 40%;
 }
-input[type=text][data-v-ccf76d49],
-input[type=date][data-v-ccf76d49],
-.textareacss[data-v-ccf76d49],
-#dailyContent1[data-v-ccf76d49],
-#dailyContent2[data-v-ccf76d49],
-#status-filter[data-v-ccf76d49],
-#announceContent[data-v-ccf76d49] {
+input[type=text],
+input[type=date],
+.textareacss,
+#dailyContent1,
+#dailyContent2,
+#status-filter,
+#announceContent {
   background-color: rgba(184, 227, 245, 0.3);
   /* border-radius: 5px; */
   border: none;

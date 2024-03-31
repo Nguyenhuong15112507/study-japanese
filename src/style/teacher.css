@@ -28,16 +28,7 @@ header {
     width: 100%;
     left: 0;
 }
-/* .sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
 
-} */
-/* footer {
-    position: relative;
-    bottom: -10em;
-} */
 .page-title-content {
     margin: 10px;
 }
@@ -347,7 +338,7 @@ textarea {
 .daily {
     width: 90%;
     position: absolute;
-    top: 6%;
+    top: 2%;
     background-color: #fff;
     margin: 10px 0;
     border: 1px solid rgb(49, 171, 224, 0.6);
@@ -418,19 +409,7 @@ delete-btn[disabled]{
     background: rgba(0, 0, 0, 0.7);
     visibility: hidden;
 }
-/* .popup-containner {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    width: 100%;
-    z-index: 5;
-    display: flex;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.7);
-} */
+
 .lesson {
     width: 90%;
     height: 95%;
