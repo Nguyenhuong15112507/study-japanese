@@ -24,20 +24,20 @@
             </button>
           </div>
           <div class="input-item categories">
-            <table class="categories-list" width="700" border="1" cellpadding="2px">
+            <table class="categories-list table table-bordered border-primary align-middle" width="700px" border="1" cellpadding="2px">
               <tr class="categories-list-head">
-                <th class="categories-list-title" style="width: 30px ;"></th>
-                <th class="categories-list-title" style="width: 30px ;">STT</th>
-                <th class="categories-list-title" style="width: 100px ;">Japanese level</th>
-                <th class="categories-list-title" style="width: 150px ;">Category</th>
+                <th class="categories-list-title col" style="width: 30px ;"></th>
+                <th class="categories-list-title col" style="width: 30px ;">STT</th>
+                <th class="categories-list-title col" style="width: 100px ;">Japanese level</th>
+                <th class="categories-list-title col" style="width: 150px ;">Category</th>
               </tr>
               <tbody>
               <tr v-for="(item, index) in categoryList" :key="index" class="categories-list-tr">
                 <td><input type="checkbox" @change="(val) => handleChangeCheckboxCategory(val, item)"
                            class="vocabu-table-content" style="width: 100%;" /></td>
-                <td class="categories-list-content">{{ index + 1 }}</td>
-                <td class="categories-list-content"> {{ item.japanese_level }}</td>
-                <td class="categories-list-content"> {{ item.category_name }}</td>
+                <td class="categories-list-content col">{{ index + 1 }}</td>
+                <td class="categories-list-content col"> {{ item.japanese_level }}</td>
+                <td class="categories-list-content col"> {{ item.category_name }}</td>
               </tr>
               </tbody>
             </table>
@@ -87,13 +87,13 @@
         </div>
       </div>
       <div class="btn-container">
-        <button v-if="!formGramma.id" class="new-btn submit-btn" id="submit-lesson-btn" @click="handleCreateGrammar()">
+        <button v-if="!formGramma.id" class="btn btn-info me-3" id="submit-lesson-btn" @click="handleCreateGrammar()">
           Submit
         </button>
-        <button v-else class="new-btn submit-btn" id="submit-lesson-btn" @click="handleEditGrammar()">
+        <button v-else class="btn btn-info me-3" id="submit-lesson-btn" @click="handleEditGrammar()">
           Save
         </button>
-        <button class="new-btn cancel-btn" id="cancel-lesson-btn" @click="handleClosePopup()">
+        <button class="btn btn-secondary" id="cancel-lesson-btn" @click="handleClosePopup()">
           Cancel
         </button>
       </div>
@@ -356,7 +356,10 @@ const handleCloseError = () => {
 }
 
 .categories-list {
-  border-collapse: collapse;
+  th {
+    text-align: center;
+  }
+
 }
 
 .categories-list-content {
@@ -364,9 +367,12 @@ const handleCloseError = () => {
 
 }
 
-.vocabu-list-table[data-v-9b550bf2] {
+.vocabu-list-table {
   border-collapse: collapse;
   width: 100%;
+  th, td {
+    text-align: center;
+  }
 }
 
 .categories-list-head {

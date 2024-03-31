@@ -480,7 +480,7 @@ const handleCloseError = () => {
     text-align: center;
   }
 
-  //border-collapse: collapse;
+
 }
 
 .categories-list-content {
