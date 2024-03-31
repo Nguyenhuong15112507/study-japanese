@@ -5,10 +5,25 @@
 
             <div class="question-container">
                 <div class="question-type-menu">
-                    <ul v-for="(item, index) in categoryList" :key="index" class="question-theme-list">
+                    <!-- <ul v-for="(item, index) in categoryList" :key="index" class="question-theme-list">
                         <h3 class="question-theme" style="margin: 5px auto;">{{ item.japanese_level }}</h3>
                         <li @click="handleChangeLearnContent()" class="question-theme-item">{{ item.category_name }}</li>
-                    </ul>
+                    </ul> -->
+                    <div v-for="(item, index) in categoryList" :key="index">
+                        <p>
+                            <a class="btn btn-outline-success categories-level" data-bs-toggle="collapse"
+                                :href="'#collapseExample-' + index" role="button" aria-expanded="false"
+                                :aria-controls="'collapseExample-' + index">
+                                {{ item.japanese_level.toLocaleUpperCase() }}
+                            </a>
+                        </p>
+                        <div class="collapse" :id="'collapseExample-' + index" style="margin-bottom: 10px">
+                            <div class="card card-body">
+                                <a v-for="(itemChild, indexChild) in item.categories" :key="indexChild" href="#"
+                                    @click="handleChangeLearnContent">{{ itemChild.category_name }}</a>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
                 <div v-if="!isDisplayLearnContent" class="list-content-item lesson-homework-list">
@@ -52,7 +67,7 @@
                                 <li class="answer-item">
                                     <div class="form-define">Example 2:</div> {{ grammarRef.example_2 }}
                                 </li>
-                                <img :src="baseUrlUpload + grammarRef.upload_id " class="example-img" alt="">
+                                <img :src="baseUrlUpload + grammarRef.upload_id" class="example-img" alt="">
                             </ul>
 
                         </div>
@@ -108,7 +123,7 @@
 import { ref } from 'vue';
 import router from "../router";
 import { listGrammar, createGrammar } from "../api/grammar"
-import { listCategoriesByType, createCategory, editCategory } from "../api/categories";
+import {showCategories} from "../api/categories";
 import moment from 'moment'
 const isDisplayLearnContent = ref(false)
 const categoryList = ref([])
@@ -133,12 +148,12 @@ const categoryFormDefault = {
 }
 const categoryForm = ref({ ...categoryFormDefault })
 const fetchCategory = async (type) => {
-    try {
-        const data = await listCategoriesByType(type);
-        categoryList.value = data.data.data;
-    } catch (error) {
+  try {
+    const data = await showCategories(type);
+    categoryList.value = data.data.data;
+  } catch (error) {
 
-    }
+  }
 }
 fetchCategory(1)
 const listLessonInGrammar = ref([])
@@ -196,7 +211,18 @@ const handleFilterGrammar = (type) => {
     width: 60%;
     margin-left: 10Px;
 }
+.question-type-menu {
+    margin-top: 10px;
+      padding-top: 10px;
+      padding-right: 20px;
+      padding-left: 20px;
+      background-color: rgba(147, 220, 248, 0.6);
+      width: 20%;
 
+      .categories-level {
+        width: 100%;
+      }
+}
 .buttons {
     display: flex;
     gap: 20px;
@@ -225,10 +251,12 @@ const handleFilterGrammar = (type) => {
     background: rgb(108, 185, 217);
     cursor: not-allowed;
 }
+
 .question-theme-item:hover {
     color: blue;
     cursor: pointer;
 }
+
 .lession-homework-overview {
     width: 96%;
 }
