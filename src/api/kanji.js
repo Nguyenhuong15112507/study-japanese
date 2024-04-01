@@ -1,9 +1,10 @@
 import request from "../axios";
 const baseUrl = "/api/kanji"
-export function listKanji() {
+export function listKanji(params) {
   return request({
     url: baseUrl,
     method: "get",
+    params
   });
 }
 export function createKanji(data) {

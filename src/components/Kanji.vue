@@ -13,7 +13,7 @@
           <div class="collapse" :id="'collapseExample-'+index" style="margin-bottom: 10px">
             <div class="card card-body">
               <a v-for="(itemChild, indexChild) in item.categories" :key="indexChild" href="#"
-                 @click="handleChangeLearnContent">{{ itemChild.category_name }}</a>
+                 @click="handlefilterkanji(itemChild.id)">{{ itemChild.category_name }}</a>
             </div>
           </div>
         </div>
@@ -146,9 +146,9 @@ const fetchCategory = async (type) => {
   }
 }
 fetchCategory(2)
-const fetchKanji = async () => {
+const fetchKanji = async (categoryId) => {
   try {
-    const data = await listKanji();
+    const data = await listKanji({categoryId});
     if (data?.data?.data) {
       pageKanjiList.value = data.data.data;
       if (pathkanjiId?.id) {
@@ -185,6 +185,10 @@ const fetcKanjidDetail = async (id) => {
 const handleChangeLearnContent = (id) => {
   fetcKanjidDetail(id)
 };
+const handlefilterkanji = (id) => {
+  fetchKanji(id)
+};
+
 
 const handleBack = () => {
   isDisplayLearnContent.value = false
