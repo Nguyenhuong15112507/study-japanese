@@ -1,8 +1,9 @@
 import request from "../axios";
-export function listGrammar() {
+export function listGrammar(params) {
   return request({
     url: "/api/grammar",
     method: "get",
+    params
   });
 }
 export function createGrammar(data) {

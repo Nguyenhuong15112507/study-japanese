@@ -194,6 +194,8 @@ const handleCreateGrammar = async () => {
     file_content: file_content ? file_content.replace(/^data:(.*,)?/, '') : ''
   };
   try {
+    const categoryId = multiSelectionCategory.value[0].id;
+    lessonRequest.category_id = categoryId;
     const data = await createGrammar(lessonRequest);
     if (data?.data?.data) {
       formGramma.value = formGrammaDefault;

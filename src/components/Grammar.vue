@@ -20,7 +20,7 @@
                         <div class="collapse" :id="'collapseExample-' + index" style="margin-bottom: 10px">
                             <div class="card card-body">
                                 <a v-for="(itemChild, indexChild) in item.categories" :key="indexChild" href="#"
-                                    @click="handleChangeLearnContent">{{ itemChild.category_name }}</a>
+                                    @click="handlefilterGrammar(itemChild.id)">{{ itemChild.category_name }}</a>
                             </div>
                         </div>
                     </div>
@@ -190,8 +190,8 @@ const handleBack = () => {
     isDisplayLearnContent.value = !isDisplayLearnContent.value
     grammarRef.value = formGram
 }
-const handleFilterGrammar = (type) => {
-    fetchCategory(1)
+const handlefilterGrammar = (id) => {
+    fetchGrammar(id)
 };
 </script>
 
