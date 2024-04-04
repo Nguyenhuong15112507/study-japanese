@@ -157,9 +157,9 @@ const fetchCategory = async (type) => {
 }
 fetchCategory(1)
 const listLessonInGrammar = ref([])
-const fetchGrammar = async () => {
+const fetchGrammar = async (id) => {
     try {
-        const data = await listGrammar()
+        const data = await listGrammar({categoryId: id})
         if (data?.data?.data) {
             listLessonInGrammar.value = data.data.data
             if (pathId?.id) {
