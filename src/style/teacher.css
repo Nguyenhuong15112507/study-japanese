@@ -304,10 +304,17 @@ textarea {
     -webkit-box-shadow: 0 0 5px 0 rgba(171, 213, 231, 0.6);
     cursor: pointer;
 }
-.lesson-content-img, .student-daily-img {
+.student-daily-img {
     width: 100%;
     margin: auto;
     align-items: center;
+    height: 60%;
+}
+.lesson-content-img {
+    width: 100%;
+    margin: auto;
+    align-items: center;
+    height: 40%;
 }
 .show-detail-and-practice {
     list-style: none;

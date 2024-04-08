@@ -240,13 +240,24 @@ textarea {
     display: inline-block;
     overflow-y: auto;
 }
-.lession-content-overview, .daily-content-overview {
+.lession-content-overview {
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 5px;
     width: 250px;
     margin-bottom: 10px;
     margin-right: 15px;
+    height: 400px;
+
+}
+.daily-content-overview {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    width: 250px;
+    margin-bottom: 10px;
+    margin-right: 15px;
+    height: 300px;
 
 }
 .lesson-name {
@@ -261,10 +272,17 @@ textarea {
     -webkit-box-shadow: 0 0 5px 0 rgba(171, 213, 231, 0.6);
     cursor: pointer;
 }
-.lesson-content-img, .student-daily-img {
+.lesson-content-img {
     width: 100%;
     margin: auto;
     align-items: center;
+    height: 40%;
+}
+.student-daily-img {
+    width: 100%;
+    margin: auto;
+    align-items: center;
+    height: 50%;
 }
 .show-detail-and-practice {
     list-style: none;

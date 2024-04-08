@@ -65,23 +65,25 @@
                   Practice
                 </button>
               </div>
-              <table class="vocabu-list-table" width="800px" border="1" cellpadding="2px">
+              <table class="vocabu-list-table  table table-bordered border-primary align-middle" width="800px" border="1" cellpadding="2px">
+                <thead class="table-info">
                 <tr class="vocabu-table-head">
-                  <th class="vocabu-table-title" style="width: 50px ;">STT</th>
-                  <th class="vocabu-table-title">Kanji</th>
-                  <th class="vocabu-table-title">Onyomi</th>
-                  <th class="vocabu-table-title">Kunyomi</th>
-                  <th class="vocabu-table-title">Kanji's name</th>
-                  <th class="vocabu-table-title">Defination</th>
+                  <th class="vocabu-table-title col" style="width: 50px ;">STT</th>
+                  <th class="vocabu-table-title col">Kanji</th>
+                  <th class="vocabu-table-title col">Onyomi</th>
+                  <th class="vocabu-table-title col">Kunyomi</th>
+                  <th class="vocabu-table-title col">Kanji's name</th>
+                  <th class="vocabu-table-title col">Defination</th>
                 </tr>
+              </thead>
                 <tbody>
                 <tr v-for="(item, index) in rows" :key="index" class="vocabu-table-tr">
-                  <td><input type="checkbox" class="vocabu-table-content"/></td>
-                  <td class="vocabu-table-content">{{ item.kanji }}</td>
-                  <td class="vocabu-table-content">{{ item.spell_onyomi }}</td>
-                  <td class="vocabu-table-content">{{ item.spell_kuyomi }}</td>
-                  <td class="vocabu-table-content">{{ item.kanji_name }}</td>
-                  <td class="vocabu-table-content">{{ item.define }}</td>
+                  <td><input type="checkbox" class="vocabu-table-content col"/></td>
+                  <td class="vocabu-table-content col">{{ item.kanji }}</td>
+                  <td class="vocabu-table-content col">{{ item.spell_onyomi }}</td>
+                  <td class="vocabu-table-content col">{{ item.spell_kuyomi }}</td>
+                  <td class="vocabu-table-content col">{{ item.kanji_name }}</td>
+                  <td class="vocabu-table-content col">{{ item.define }}</td>
                 </tr>
                 </tbody>
               </table>
@@ -232,9 +234,11 @@ const handleChangeKanjiFlashcard = (kanjiItemid) => {
         margin-left: 10px;
         margin-bottom: 10px;
         padding: 10px;
+        height: 437px;
 
         .kanji-imag {
           width: 100%;
+          height: 60%;
         }
       }
     }
@@ -244,6 +248,15 @@ const handleChangeKanjiFlashcard = (kanjiItemid) => {
       width: 80%;
       padding-left: 20px;
     }
+    .vocabu-list-table {
+  border-collapse: collapse;
+  width: 100%;
+  th, td {
+    text-align: center;
   }
 }
+
+  }
+}
+
 </style>

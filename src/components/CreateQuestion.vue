@@ -125,14 +125,14 @@ const categoryFormDefault = {
 }
 // tao object default
 const multipleChoiceDefault = {
-  "category_id": 0,
-  "category_name": "",
-  "multiple_choice_name": "",
-  "type": 0,
-  "max_quiz": 0,
-  "min_quiz": 0,
-  "description": "",
-  "list_quiz": []
+  category_id: 0,
+  category_name: "",
+  multiple_choice_name: "",
+  type: 0,
+  max_quiz: 0,
+  min_quiz: 0,
+  description: "",
+  list_quiz: []
 }
 
 const questionDefault = {

@@ -280,4 +280,9 @@ const handlefilterGrammar = (id) => {
 .form-define {
     color: blue;
 
-}</style>
+}
+.question-group-item {
+    margin-top: 20px;
+}
+
+</style>

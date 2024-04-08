@@ -27,7 +27,7 @@
         <h4 class="lesson-name">JLPT N4: Vocabulary</h4>
         <div class="list-content-item lesson-content-list">
           <div v-for="(item, index) in lessonContenlist" :key="index" class="lession-content-overview">
-            <img src="../img/15801f0d.jpg" alt="" class="lesson-content-img" @click="handleShowDetail()">
+            <img :src="baseUrlUpload + item.upload_id" alt="" class="lesson-content-img" />
             <h4 class="lesson-name">{{ item.grammar_name }}</h4>
             <div class="created-date">
               <span class="label">Date: </span>
@@ -48,7 +48,7 @@
         <h4 class="lesson-name">Kanji N4: People</h4>
         <div class="list-content-item daily-content-list">
           <div v-for="(item, index) in kanjiContentList" :key="index" class="daily-content-overview">
-            <img @click="handleShowKanjiDetail(item.id)" class="student-daily-img" src="../img/Hinh-Anh-Anime-Chibi-Girl (3).jpg" alt="" />
+            <img class="student-daily-img" :src="baseUrlUpload + item.upload_id" alt="" />
             <h4 class="daily-name">{{ item.title }}</h4>
             <div class="created-date">
               <span class="label">Date: </span>
@@ -89,6 +89,7 @@ import { listKanji, showDetailkanji } from "../api/kanji";
 import { listCategoriesByType } from "../api/categories";
 import { listAnnounce, showDetailAnnounce } from "../api/announce";
 const userStudentJapaneseStore = studentJapaneseStore()
+const baseUrlUpload = import.meta.env.VITE_API_BASE_URL + "/api/upload/";
 
 const announceContenlist = ref([]);
 const lessonContenlist = ref([]);
@@ -134,8 +135,8 @@ fetchKanji();
 const handleShowDetail = (id) => {
   router.push({ path: "/grammar", query: { id: id } });
 };
-const handleShowKanjiDetail = (kanjiid) => {
-  router.push({ path: "/kanji", query: { kanjiid: kanjiid } });
+const handleShowKanjiDetail = (id) => {
+  router.push({ path: "/kanji", query: { id: id } });
 };
 // const pageAnnounce = userStudentJapaneseStore.announce
 // const pageLesson = userStudentJapaneseStore.lesson

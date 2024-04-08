@@ -372,6 +372,7 @@ const handleShowKanjiDetail = (id) => {
 const handleShowQuestionDetail = (id) => {
   router.push({ path: "/createQuestion", query: { id: id } });
 };
+
 const handleSubmitKanji = () => {
   fetchKanji();
 }

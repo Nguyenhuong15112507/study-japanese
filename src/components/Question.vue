@@ -39,49 +39,7 @@
 
                     </div>
                 </div>
-                <div class="question-group-list">
-                    <div class="question-group-item">
-                        <h5 class="question-content">1. 「どんな（　　）がしますか？」「あまくておいしいですよ。」</h5>
-                        <ul class="answers-list">
-                            <li class="answer-item"><input type="radio" class="radio-btn"> a) たべもの</li>
-                            <li class="answer-item"><input type="radio" class="radio-btn"> b) おいしい</li>
-                            <li class="answer-item"><input type="radio" class="radio-btn"> c) くさい</li>
-                            <li class="answer-item"><input type="radio" class="radio-btn"> d) あじ</li>
-                        </ul>
 
-                        <h5 class="question-content">2. 「どんな（　　）がしますか？」「あまくておいしいですよ。」</h5>
-                        <ul class="answers-list">
-                            <li class="answer-item"><input type="radio" class="radio-btn"> a) たべもの</li>
-                            <li class="answer-item"><input type="radio" class="radio-btn"> b) おいしい</li>
-                            <li class="answer-item"><input type="radio" class="radio-btn"> c) くさい</li>
-                            <li class="answer-item"><input type="radio" class="radio-btn"> d) あじ</li>
-                        </ul>
-
-                        <h5 class="question-content">3. 「どんな（　　）がしますか？」「あまくておいしいですよ。」</h5>
-                        <ul class="answers-list">
-                            <li class="answer-item"><input type="radio" class="radio-btn"> a) たべもの</li>
-                            <li class="answer-item"><input type="radio" class="radio-btn"> b) おいしい</li>
-                            <li class="answer-item"><input type="radio" class="radio-btn"> c) くさい</li>
-                            <li class="answer-item"><input type="radio" class="radio-btn"> d) あじ</li>
-                        </ul>
-
-                        <h5 class="question-content">4. 「どんな（　　）がしますか？」「あまくておいしいですよ。」</h5>
-                        <ul class="answers-list">
-                            <li class="answer-item"><input type="radio" class="radio-btn"> a) たべもの</li>
-                            <li class="answer-item"><input type="radio" class="radio-btn"> b) おいしい</li>
-                            <li class="answer-item"><input type="radio" class="radio-btn"> c) くさい</li>
-                            <li class="answer-item"><input type="radio" class="radio-btn"> d) あじ</li>
-                        </ul>
-                        <h5 class="question-content">5. 「どんな（　　）がしますか？」「あまくておいしいですよ。」</h5>
-                        <ul class="answers-list">
-                            <li class="answer-item"><input type="radio" class="radio-btn"> a) たべもの</li>
-                            <li class="answer-item"><input type="radio" class="radio-btn"> b) おいしい</li>
-                            <li class="answer-item"><input type="radio" class="radio-btn"> c) くさい</li>
-                            <li class="answer-item"><input type="radio" class="radio-btn"> d) あじ</li>
-                        </ul>
-
-                    </div>
-                </div>
             </div>
             <div class="another-infomation">
                 <div class="japanese-intro-title">
@@ -126,16 +84,65 @@
 </template>
 <script setup>
 import { ref, computed } from "vue";
+import router from "../router";
+import {createMultipleChoice, showMultipleChoiceById, listQuiz} from "../api/multipleChoice.js"
 
 const numberOfCircles = ref(5);
 const circles = computed(() => Array.from({ length: numberOfCircles.value }, (_, index) => index + 1));
 const currentStep = ref(1);
 const progressBarWidth = ref("0%");
+const pathId = router.currentRoute.value.query
+console.log(pathId)
 
 const updateSteps = (direction) => {
     currentStep.value = direction === 'next' ? currentStep.value + 1 : currentStep.value - 1;
     progressBarWidth.value = `${((currentStep.value - 1) / (numberOfCircles.value - 1)) * 100}%`;
 };
+const multipleChoiceDefault = {
+  category_id: 0,
+  category_name: "",
+  multiple_choice_name: "",
+  type: 0,
+  max_quiz: 0,
+  min_quiz: 0,
+  description: "",
+  list_quiz: []
+}
+
+const questionDefault = {
+  file_content: "",
+  file_name: "",
+  file_ext: "",
+  content_type: "",
+  file_size: 0,
+  type_quiz: "0",
+  question: "",
+  essay: "",
+  description: "",
+  list_quiz_item: []
+}
+const multipleChoiceForm = ref({...multipleChoiceDefault})
+const questionForm = ref({...questionDefault})
+const listQuestionById = ref([])
+
+const fetchMultichoice = async(id) => {
+try {
+    const data = await showMultipleChoiceById(id)
+    if(data?.data?.data) {
+        listQuestionById.value = data?.data?.data
+        if(pathId?.id) {
+            const multichoice = listMultipleChoiceById.value.find(item => item.id.toString() === pathId.id)
+            if(multichoice) {
+                multipleChoiceForm.value = multichoice
+            }
+        }
+        
+    }
+} catch (error) {
+    
+}
+}
+// fetchMultichoice(id)
 
 </script>
 <style scoped>

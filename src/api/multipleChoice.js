@@ -13,3 +13,15 @@ export function listMultipleChoice() {
         method: "get",
     });
 }
+export function showMultipleChoiceById(id) {
+    return request({
+        url: "/api/multiple-choice/" + id,
+        method: "get",
+    });
+}
+export function listQuiz() {
+    return request({
+        url: "/api/multiple-choice/quiz",
+        method: "get",
+    });
+}

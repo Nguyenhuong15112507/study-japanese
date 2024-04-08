@@ -255,4 +255,9 @@ input[type=date],
 .vocabu-table-head {
   background-color: rgba(8, 170, 239);
 }
+.vocabulary-list {
+    max-height: 300px;
+    overflow:unset
+  
+}
 </style>
